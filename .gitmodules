@@ -1,0 +1,3 @@
+[submodule "PureWiki/vendor/Wikikit"]
+	path = PureWiki/vendor/Wikikit
+	url = https://github.com/TongKuo/Wikikit.git
