@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		83B794141B7DCE5F00F4544E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794131B7DCE5F00F4544E /* AppDelegate.m */; };
+		83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794131B7DCE5F00F4544E /* PWAppDelegate.m */; };
 		83B794171B7DCE5F00F4544E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794161B7DCE5F00F4544E /* main.m */; };
 		83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83B794181B7DCE5F00F4544E /* Assets.xcassets */; };
-		83B7941C1B7DCE5F00F4544E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B7941A1B7DCE5F00F4544E /* MainMenu.xib */; };
+		83B7941C1B7DCE5F00F4544E /* PWMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B7941A1B7DCE5F00F4544E /* PWMainMenu.xib */; };
 		83B794271B7DCE5F00F4544E /* PureWikiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794261B7DCE5F00F4544E /* PureWikiTests.m */; };
 		83B794321B7DCE5F00F4544E /* PureWikiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794311B7DCE5F00F4544E /* PureWikiUITests.m */; };
 /* End PBXBuildFile section */
@@ -34,11 +34,11 @@
 
 /* Begin PBXFileReference section */
 		83B7940F1B7DCE5F00F4544E /* PureWiki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PureWiki.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		83B794121B7DCE5F00F4544E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		83B794131B7DCE5F00F4544E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		83B794121B7DCE5F00F4544E /* PWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PWAppDelegate.h; sourceTree = "<group>"; };
+		83B794131B7DCE5F00F4544E /* PWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PWAppDelegate.m; sourceTree = "<group>"; };
 		83B794161B7DCE5F00F4544E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		83B794181B7DCE5F00F4544E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		83B7941B1B7DCE5F00F4544E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		83B7941B1B7DCE5F00F4544E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PWMainMenu.xib; sourceTree = "<group>"; };
 		83B7941D1B7DCE5F00F4544E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83B794221B7DCE5F00F4544E /* PureWikiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PureWikiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B794261B7DCE5F00F4544E /* PureWikiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PureWikiTests.m; sourceTree = "<group>"; };
@@ -97,11 +97,9 @@
 		83B794111B7DCE5F00F4544E /* PureWiki */ = {
 			isa = PBXGroup;
 			children = (
-				83B794121B7DCE5F00F4544E /* AppDelegate.h */,
-				83B794131B7DCE5F00F4544E /* AppDelegate.m */,
-				83B794181B7DCE5F00F4544E /* Assets.xcassets */,
-				83B7941A1B7DCE5F00F4544E /* MainMenu.xib */,
-				83B7941D1B7DCE5F00F4544E /* Info.plist */,
+				83B794121B7DCE5F00F4544E /* PWAppDelegate.h */,
+				83B794131B7DCE5F00F4544E /* PWAppDelegate.m */,
+				83B7941A1B7DCE5F00F4544E /* PWMainMenu.xib */,
 				83B794151B7DCE5F00F4544E /* Supporting Files */,
 			);
 			path = PureWiki;
@@ -111,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				83B794631B7DD12100F4544E /* PureWiki.entitlements */,
+				83B7941D1B7DCE5F00F4544E /* Info.plist */,
+				83B794181B7DCE5F00F4544E /* Assets.xcassets */,
 				83B794161B7DCE5F00F4544E /* main.m */,
 			);
 			name = "Supporting Files";
@@ -244,7 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */,
-				83B7941C1B7DCE5F00F4544E /* MainMenu.xib in Resources */,
+				83B7941C1B7DCE5F00F4544E /* PWMainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,7 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B794171B7DCE5F00F4544E /* main.m in Sources */,
-				83B794141B7DCE5F00F4544E /* AppDelegate.m in Sources */,
+				83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,12 +306,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		83B7941A1B7DCE5F00F4544E /* MainMenu.xib */ = {
+		83B7941A1B7DCE5F00F4544E /* PWMainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				83B7941B1B7DCE5F00F4544E /* Base */,
 			);
-			name = MainMenu.xib;
+			name = PWMainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
