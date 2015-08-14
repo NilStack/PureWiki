@@ -1,0 +1,518 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83B794141B7DCE5F00F4544E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794131B7DCE5F00F4544E /* AppDelegate.m */; };
+		83B794171B7DCE5F00F4544E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794161B7DCE5F00F4544E /* main.m */; };
+		83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83B794181B7DCE5F00F4544E /* Assets.xcassets */; };
+		83B7941C1B7DCE5F00F4544E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83B7941A1B7DCE5F00F4544E /* MainMenu.xib */; };
+		83B794271B7DCE5F00F4544E /* PureWikiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794261B7DCE5F00F4544E /* PureWikiTests.m */; };
+		83B794321B7DCE5F00F4544E /* PureWikiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794311B7DCE5F00F4544E /* PureWikiUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		83B794231B7DCE5F00F4544E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83B794071B7DCE5F00F4544E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83B7940E1B7DCE5F00F4544E;
+			remoteInfo = PureWiki;
+		};
+		83B7942E1B7DCE5F00F4544E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83B794071B7DCE5F00F4544E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83B7940E1B7DCE5F00F4544E;
+			remoteInfo = PureWiki;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		83B7940F1B7DCE5F00F4544E /* PureWiki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PureWiki.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83B794121B7DCE5F00F4544E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		83B794131B7DCE5F00F4544E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		83B794161B7DCE5F00F4544E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		83B794181B7DCE5F00F4544E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		83B7941B1B7DCE5F00F4544E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		83B7941D1B7DCE5F00F4544E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83B794221B7DCE5F00F4544E /* PureWikiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PureWikiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83B794261B7DCE5F00F4544E /* PureWikiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PureWikiTests.m; sourceTree = "<group>"; };
+		83B794281B7DCE5F00F4544E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83B7942D1B7DCE5F00F4544E /* PureWikiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PureWikiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83B794311B7DCE5F00F4544E /* PureWikiUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PureWikiUITests.m; sourceTree = "<group>"; };
+		83B794331B7DCE5F00F4544E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83B794631B7DD12100F4544E /* PureWiki.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PureWiki.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		83B7940C1B7DCE5F00F4544E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83B7941F1B7DCE5F00F4544E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83B7942A1B7DCE5F00F4544E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		83B794061B7DCE5F00F4544E = {
+			isa = PBXGroup;
+			children = (
+				83B794111B7DCE5F00F4544E /* PureWiki */,
+				83B794251B7DCE5F00F4544E /* PureWikiTests */,
+				83B794301B7DCE5F00F4544E /* PureWikiUITests */,
+				83B794101B7DCE5F00F4544E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		83B794101B7DCE5F00F4544E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83B7940F1B7DCE5F00F4544E /* PureWiki.app */,
+				83B794221B7DCE5F00F4544E /* PureWikiTests.xctest */,
+				83B7942D1B7DCE5F00F4544E /* PureWikiUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83B794111B7DCE5F00F4544E /* PureWiki */ = {
+			isa = PBXGroup;
+			children = (
+				83B794121B7DCE5F00F4544E /* AppDelegate.h */,
+				83B794131B7DCE5F00F4544E /* AppDelegate.m */,
+				83B794181B7DCE5F00F4544E /* Assets.xcassets */,
+				83B7941A1B7DCE5F00F4544E /* MainMenu.xib */,
+				83B7941D1B7DCE5F00F4544E /* Info.plist */,
+				83B794151B7DCE5F00F4544E /* Supporting Files */,
+			);
+			path = PureWiki;
+			sourceTree = "<group>";
+		};
+		83B794151B7DCE5F00F4544E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				83B794631B7DD12100F4544E /* PureWiki.entitlements */,
+				83B794161B7DCE5F00F4544E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83B794251B7DCE5F00F4544E /* PureWikiTests */ = {
+			isa = PBXGroup;
+			children = (
+				83B794261B7DCE5F00F4544E /* PureWikiTests.m */,
+				83B794281B7DCE5F00F4544E /* Info.plist */,
+			);
+			path = PureWikiTests;
+			sourceTree = "<group>";
+		};
+		83B794301B7DCE5F00F4544E /* PureWikiUITests */ = {
+			isa = PBXGroup;
+			children = (
+				83B794311B7DCE5F00F4544E /* PureWikiUITests.m */,
+				83B794331B7DCE5F00F4544E /* Info.plist */,
+			);
+			path = PureWikiUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		83B7940E1B7DCE5F00F4544E /* PureWiki */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83B794361B7DCE5F00F4544E /* Build configuration list for PBXNativeTarget "PureWiki" */;
+			buildPhases = (
+				83B7940B1B7DCE5F00F4544E /* Sources */,
+				83B7940C1B7DCE5F00F4544E /* Frameworks */,
+				83B7940D1B7DCE5F00F4544E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PureWiki;
+			productName = PureWiki;
+			productReference = 83B7940F1B7DCE5F00F4544E /* PureWiki.app */;
+			productType = "com.apple.product-type.application";
+		};
+		83B794211B7DCE5F00F4544E /* PureWikiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83B794391B7DCE5F00F4544E /* Build configuration list for PBXNativeTarget "PureWikiTests" */;
+			buildPhases = (
+				83B7941E1B7DCE5F00F4544E /* Sources */,
+				83B7941F1B7DCE5F00F4544E /* Frameworks */,
+				83B794201B7DCE5F00F4544E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83B794241B7DCE5F00F4544E /* PBXTargetDependency */,
+			);
+			name = PureWikiTests;
+			productName = PureWikiTests;
+			productReference = 83B794221B7DCE5F00F4544E /* PureWikiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		83B7942C1B7DCE5F00F4544E /* PureWikiUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83B7943C1B7DCE5F00F4544E /* Build configuration list for PBXNativeTarget "PureWikiUITests" */;
+			buildPhases = (
+				83B794291B7DCE5F00F4544E /* Sources */,
+				83B7942A1B7DCE5F00F4544E /* Frameworks */,
+				83B7942B1B7DCE5F00F4544E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83B7942F1B7DCE5F00F4544E /* PBXTargetDependency */,
+			);
+			name = PureWikiUITests;
+			productName = PureWikiUITests;
+			productReference = 83B7942D1B7DCE5F00F4544E /* PureWikiUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83B794071B7DCE5F00F4544E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = TongKuo;
+				TargetAttributes = {
+					83B7940E1B7DCE5F00F4544E = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 89BSC2UYH8;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					83B794211B7DCE5F00F4544E = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 83B7940E1B7DCE5F00F4544E;
+					};
+					83B7942C1B7DCE5F00F4544E = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 83B7940E1B7DCE5F00F4544E;
+					};
+				};
+			};
+			buildConfigurationList = 83B7940A1B7DCE5F00F4544E /* Build configuration list for PBXProject "PureWiki" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 83B794061B7DCE5F00F4544E;
+			productRefGroup = 83B794101B7DCE5F00F4544E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				83B7940E1B7DCE5F00F4544E /* PureWiki */,
+				83B794211B7DCE5F00F4544E /* PureWikiTests */,
+				83B7942C1B7DCE5F00F4544E /* PureWikiUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		83B7940D1B7DCE5F00F4544E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */,
+				83B7941C1B7DCE5F00F4544E /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83B794201B7DCE5F00F4544E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83B7942B1B7DCE5F00F4544E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		83B7940B1B7DCE5F00F4544E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83B794171B7DCE5F00F4544E /* main.m in Sources */,
+				83B794141B7DCE5F00F4544E /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83B7941E1B7DCE5F00F4544E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83B794271B7DCE5F00F4544E /* PureWikiTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83B794291B7DCE5F00F4544E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83B794321B7DCE5F00F4544E /* PureWikiUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		83B794241B7DCE5F00F4544E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83B7940E1B7DCE5F00F4544E /* PureWiki */;
+			targetProxy = 83B794231B7DCE5F00F4544E /* PBXContainerItemProxy */;
+		};
+		83B7942F1B7DCE5F00F4544E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83B7940E1B7DCE5F00F4544E /* PureWiki */;
+			targetProxy = 83B7942E1B7DCE5F00F4544E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		83B7941A1B7DCE5F00F4544E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83B7941B1B7DCE5F00F4544E /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		83B794341B7DCE5F00F4544E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		83B794351B7DCE5F00F4544E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		83B794371B7DCE5F00F4544E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PureWiki/PureWiki.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PureWiki/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.PureWiki;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		83B794381B7DCE5F00F4544E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PureWiki/PureWiki.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PureWiki/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.PureWiki;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		83B7943A1B7DCE5F00F4544E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PureWikiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.PureWikiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PureWiki.app/Contents/MacOS/PureWiki";
+			};
+			name = Debug;
+		};
+		83B7943B1B7DCE5F00F4544E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PureWikiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.PureWikiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PureWiki.app/Contents/MacOS/PureWiki";
+			};
+			name = Release;
+		};
+		83B7943D1B7DCE5F00F4544E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PureWikiUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.PureWikiUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PureWiki;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		83B7943E1B7DCE5F00F4544E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PureWikiUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.PureWikiUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PureWiki;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		83B7940A1B7DCE5F00F4544E /* Build configuration list for PBXProject "PureWiki" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83B794341B7DCE5F00F4544E /* Debug */,
+				83B794351B7DCE5F00F4544E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83B794361B7DCE5F00F4544E /* Build configuration list for PBXNativeTarget "PureWiki" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83B794371B7DCE5F00F4544E /* Debug */,
+				83B794381B7DCE5F00F4544E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		83B794391B7DCE5F00F4544E /* Build configuration list for PBXNativeTarget "PureWikiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83B7943A1B7DCE5F00F4544E /* Debug */,
+				83B7943B1B7DCE5F00F4544E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		83B7943C1B7DCE5F00F4544E /* Build configuration list for PBXNativeTarget "PureWikiUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83B7943D1B7DCE5F00F4544E /* Debug */,
+				83B7943E1B7DCE5F00F4544E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83B794071B7DCE5F00F4544E /* Project object */;
+}
