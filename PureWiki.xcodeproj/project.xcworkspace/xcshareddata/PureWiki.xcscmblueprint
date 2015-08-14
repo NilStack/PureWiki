@@ -4,13 +4,15 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "0D0F11DDE7B74E094A69FCB72E3DEF1E1255A8E9" : 0,
     "657576A761C833A7999A56A5721E177FA2FC9BE6" : 0,
-    "0D0F11DDE7B74E094A69FCB72E3DEF1E1255A8E9" : 0
+    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6ECED3FD-6A08-428C-98AA-B62B5C53C1EE",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "0D0F11DDE7B74E094A69FCB72E3DEF1E1255A8E9" : "PureWiki\/PureWiki\/vendor\/Wikikit\/",
     "657576A761C833A7999A56A5721E177FA2FC9BE6" : "PureWiki\/",
-    "0D0F11DDE7B74E094A69FCB72E3DEF1E1255A8E9" : "PureWiki\/PureWiki\/vendor\/Wikikit\/"
+    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : "PureWiki\/PureWiki\/vendor\/Wikikit\/Wikikit\/vendor\/AFNetworking\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "PureWiki",
   "DVTSourceControlWorkspaceBlueprintVersion" : 203,
@@ -25,6 +27,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/PureWiki.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "657576A761C833A7999A56A5721E177FA2FC9BE6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/AFNetworking.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8"
     }
   ]
 }
