@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83B75CAC1B7DDB0C00E9C05E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */; };
+		83B75CC61B7DDB5A00E9C05E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83B75CC41B7DDB5A00E9C05E /* Info.plist */; };
 		83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794131B7DCE5F00F4544E /* PWAppDelegate.m */; };
 		83B794171B7DCE5F00F4544E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794161B7DCE5F00F4544E /* main.m */; };
 		83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83B794181B7DCE5F00F4544E /* Assets.xcassets */; };
@@ -33,6 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		83B75CC41B7DDB5A00E9C05E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83B75CC51B7DDB5A00E9C05E /* Wikikit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wikikit.h; sourceTree = "<group>"; };
 		83B7940F1B7DCE5F00F4544E /* PureWiki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PureWiki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B794121B7DCE5F00F4544E /* PWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PWAppDelegate.h; sourceTree = "<group>"; };
 		83B794131B7DCE5F00F4544E /* PWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PWAppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83B75CAC1B7DDB0C00E9C05E /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,9 +80,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83B75CAD1B7DDB2C00E9C05E /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				83B75CC31B7DDB5A00E9C05E /* Wikikit */,
+			);
+			name = vendor;
+			path = PureWiki/vendor;
+			sourceTree = "<group>";
+		};
+		83B75CC31B7DDB5A00E9C05E /* Wikikit */ = {
+			isa = PBXGroup;
+			children = (
+				83B75CC41B7DDB5A00E9C05E /* Info.plist */,
+				83B75CC51B7DDB5A00E9C05E /* Wikikit.h */,
+			);
+			name = Wikikit;
+			path = Wikikit/Wikikit;
+			sourceTree = "<group>";
+		};
 		83B794061B7DCE5F00F4544E = {
 			isa = PBXGroup;
 			children = (
+				83B75CAD1B7DDB2C00E9C05E /* vendor */,
+				83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */,
 				83B794111B7DCE5F00F4544E /* PureWiki */,
 				83B794251B7DCE5F00F4544E /* PureWikiTests */,
 				83B794301B7DCE5F00F4544E /* PureWikiUITests */,
@@ -245,6 +272,7 @@
 			files = (
 				83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */,
 				83B7941C1B7DCE5F00F4544E /* PWMainMenu.xib in Resources */,
+				83B75CC61B7DDB5A00E9C05E /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +523,7 @@
 				83B794381B7DCE5F00F4544E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83B794391B7DCE5F00F4544E /* Build configuration list for PBXNativeTarget "PureWikiTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +532,7 @@
 				83B7943B1B7DCE5F00F4544E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83B7943C1B7DCE5F00F4544E /* Build configuration list for PBXNativeTarget "PureWikiUITests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +541,7 @@
 				83B7943E1B7DCE5F00F4544E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

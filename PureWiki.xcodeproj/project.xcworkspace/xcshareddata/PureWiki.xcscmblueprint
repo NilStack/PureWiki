@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "657576A761C833A7999A56A5721E177FA2FC9BE6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "657576A761C833A7999A56A5721E177FA2FC9BE6" : 0,
+    "0D0F11DDE7B74E094A69FCB72E3DEF1E1255A8E9" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6ECED3FD-6A08-428C-98AA-B62B5C53C1EE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "657576A761C833A7999A56A5721E177FA2FC9BE6" : "PureWiki\/",
+    "0D0F11DDE7B74E094A69FCB72E3DEF1E1255A8E9" : "PureWiki\/PureWiki\/vendor\/Wikikit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "PureWiki",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "PureWiki.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/Wikikit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0D0F11DDE7B74E094A69FCB72E3DEF1E1255A8E9"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/PureWiki.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "657576A761C833A7999A56A5721E177FA2FC9BE6"
+    }
+  ]
+}
