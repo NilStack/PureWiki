@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="1338" height="1056"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwD-Ap-aVJ">
+                    <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwD-Ap-aVJ" customClass="PWSplitView">
                         <rect key="frame" x="0.0" y="0.0" width="1338" height="1018"/>
                         <subviews>
                             <visualEffectView appearanceType="vibrantLight" fixedFrame="YES" blendingMode="behindWindow" state="followsWindowActiveState" id="KMR-gf-LRD">

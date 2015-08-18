@@ -10,6 +10,7 @@
 		83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E931B8351BF00A33030 /* PWWikiContentView.m */; };
 		83480E971B83530C00A33030 /* PWSidebarTabsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E961B83530C00A33030 /* PWSidebarTabsTable.m */; };
 		83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */; };
+		83480E9D1B83589900A33030 /* PWSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E9C1B83589900A33030 /* PWSplitView.m */; };
 		83A2FBB31B80D76B00939452 /* _WikiJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FB9C1B80D76B00939452 /* _WikiJSON.m */; };
 		83A2FBB41B80D76B00939452 /* NSDate+Wikikit.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FB9E1B80D76B00939452 /* NSDate+Wikikit.m */; };
 		83A2FBB51B80D76B00939452 /* WikiConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBA01B80D76B00939452 /* WikiConstants.m */; };
@@ -73,6 +74,8 @@
 		83480E961B83530C00A33030 /* PWSidebarTabsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSidebarTabsTable.m; sourceTree = "<group>"; };
 		83480E981B83532D00A33030 /* PWSidebarTabsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTableCell.h; sourceTree = "<group>"; };
 		83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSidebarTabsTableCell.m; sourceTree = "<group>"; };
+		83480E9B1B83589900A33030 /* PWSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSplitView.h; sourceTree = "<group>"; };
+		83480E9C1B83589900A33030 /* PWSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSplitView.m; sourceTree = "<group>"; };
 		83A2FB9B1B80D76B00939452 /* _WikiJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _WikiJSON.h; sourceTree = "<group>"; };
 		83A2FB9C1B80D76B00939452 /* _WikiJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _WikiJSON.m; sourceTree = "<group>"; };
 		83A2FB9D1B80D76B00939452 /* NSDate+Wikikit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Wikikit.h"; path = "../../../../../Wikikit/Wikikit/NSDate+Wikikit.h"; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 				83A2FBDE1B833B2A00939452 /* PWStackContainerView.m */,
 				83A2FBE01B833B8E00939452 /* PWStackContainerViewController.h */,
 				83A2FBE11B833B8E00939452 /* PWStackContainerViewController.m */,
+				83480E9B1B83589900A33030 /* PWSplitView.h */,
+				83480E9C1B83589900A33030 /* PWSplitView.m */,
 			);
 			name = "main-window";
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */,
 				83A2FBB61B80D76B00939452 /* WikiContinuation.m in Sources */,
 				83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */,
+				83480E9D1B83589900A33030 /* PWSplitView.m in Sources */,
 				83A2FBB31B80D76B00939452 /* _WikiJSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
