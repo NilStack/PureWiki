@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8322BF821B83812500A890C9 /* PWActionNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF811B83812500A890C9 /* PWActionNotifications.m */; };
+		8322BF861B83A80A00A890C9 /* PWSmartSearchPreviewPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF851B83A80A00A890C9 /* PWSmartSearchPreviewPanel.m */; };
+		8322BF891B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF881B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.m */; };
+		8322BF8B1B83A82A00A890C9 /* PWSmartSearchPreviewPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8322BF8A1B83A82A00A890C9 /* PWSmartSearchPreviewPanel.xib */; };
 		83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E931B8351BF00A33030 /* PWWikiContentView.m */; };
 		83480E971B83530C00A33030 /* PWSidebarTabsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E961B83530C00A33030 /* PWSidebarTabsTable.m */; };
 		83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */; };
@@ -74,6 +77,11 @@
 /* Begin PBXFileReference section */
 		8322BF801B83812500A890C9 /* PWActionNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWActionNotifications.h; sourceTree = "<group>"; };
 		8322BF811B83812500A890C9 /* PWActionNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWActionNotifications.m; sourceTree = "<group>"; };
+		8322BF841B83A80A00A890C9 /* PWSmartSearchPreviewPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchPreviewPanel.h; sourceTree = "<group>"; };
+		8322BF851B83A80A00A890C9 /* PWSmartSearchPreviewPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchPreviewPanel.m; sourceTree = "<group>"; };
+		8322BF871B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchPreviewPanelController.h; sourceTree = "<group>"; };
+		8322BF881B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchPreviewPanelController.m; sourceTree = "<group>"; };
+		8322BF8A1B83A82A00A890C9 /* PWSmartSearchPreviewPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PWSmartSearchPreviewPanel.xib; sourceTree = "<group>"; };
 		83480E921B8351BF00A33030 /* PWWikiContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentView.h; sourceTree = "<group>"; };
 		83480E931B8351BF00A33030 /* PWWikiContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentView.m; sourceTree = "<group>"; };
 		83480E951B83530C00A33030 /* PWSidebarTabsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTable.h; sourceTree = "<group>"; };
@@ -191,6 +199,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8322BF8C1B83AE7700A890C9 /* search-wikipedia */ = {
+			isa = PBXGroup;
+			children = (
+				8322BF8D1B83AE9100A890C9 /* xib */,
+				83480EA11B837A3700A33030 /* PWSmartSearchBar.h */,
+				83480EA21B837A3700A33030 /* PWSmartSearchBar.m */,
+				8322BF841B83A80A00A890C9 /* PWSmartSearchPreviewPanel.h */,
+				8322BF851B83A80A00A890C9 /* PWSmartSearchPreviewPanel.m */,
+				8322BF871B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.h */,
+				8322BF881B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.m */,
+			);
+			name = "search-wikipedia";
+			sourceTree = "<group>";
+		};
+		8322BF8D1B83AE9100A890C9 /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				8322BF8A1B83A82A00A890C9 /* PWSmartSearchPreviewPanel.xib */,
+			);
+			name = xib;
+			sourceTree = "<group>";
+		};
 		83480E901B83515000A33030 /* sidebar */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,8 +304,6 @@
 				83A2FBD51B8326BC00939452 /* PWToolbarController.m */,
 				83A2FBD11B8324D000939452 /* PWNavButtonsPairView.h */,
 				83A2FBD21B8324D000939452 /* PWNavButtonsPairView.m */,
-				83480EA11B837A3700A33030 /* PWSmartSearchBar.h */,
-				83480EA21B837A3700A33030 /* PWSmartSearchBar.m */,
 			);
 			name = toolbar;
 			sourceTree = "<group>";
@@ -392,6 +420,7 @@
 				83A2FBCF1B830AF600939452 /* main-menu */,
 				83A2FBCD1B830ACD00939452 /* main-window */,
 				83A2FBE31B833BBE00939452 /* toolbar */,
+				8322BF8C1B83AE7700A890C9 /* search-wikipedia */,
 				83480E911B83515800A33030 /* wiki-content */,
 				83480E901B83515000A33030 /* sidebar */,
 				83B794151B7DCE5F00F4544E /* Supporting Files */,
@@ -538,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */,
+				8322BF8B1B83A82A00A890C9 /* PWSmartSearchPreviewPanel.xib in Resources */,
 				83A2FBCC1B830AC700939452 /* PWMainWindow.xib in Resources */,
 				83B7941C1B7DCE5F00F4544E /* PWMainMenu.xib in Resources */,
 				83B75D701B7DDDA800E9C05E /* Info.plist in Resources */,
@@ -591,12 +621,14 @@
 				83B794171B7DCE5F00F4544E /* main.m in Sources */,
 				83A2FBD61B8326BC00939452 /* PWToolbarController.m in Sources */,
 				83B75DF51B7DDDB600E9C05E /* AFHTTPSessionManager.m in Sources */,
+				8322BF891B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.m in Sources */,
 				83A2FBDC1B83303900939452 /* PWMainContentView.m in Sources */,
 				83480EA31B837A3700A33030 /* PWSmartSearchBar.m in Sources */,
 				83B75DF41B7DDDB600E9C05E /* AFHTTPRequestOperationManager.m in Sources */,
 				8322BF821B83812500A890C9 /* PWActionNotifications.m in Sources */,
 				83A2FBB51B80D76B00939452 /* WikiConstants.m in Sources */,
 				83A2FBB41B80D76B00939452 /* NSDate+Wikikit.m in Sources */,
+				8322BF861B83A80A00A890C9 /* PWSmartSearchPreviewPanel.m in Sources */,
 				83B75DF61B7DDDB600E9C05E /* AFNetworkReachabilityManager.m in Sources */,
 				83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */,
 				83A2FBB61B80D76B00939452 /* WikiContinuation.m in Sources */,
