@@ -24,8 +24,14 @@
 
 @import Cocoa;
 
+@class PWSmartSearchAttachMenu;
+
 // PWSmartSearchBar class
 @interface PWSmartSearchBar : NSSearchField
+
+@property ( weak ) IBOutlet PWSmartSearchAttachMenu* smartSearchAttachMenu;
+
+- ( void ) popupSearchAttachMenu;
 
 @end // PWSmartSearchBar class
 

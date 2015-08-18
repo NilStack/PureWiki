@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		8322BF821B83812500A890C9 /* PWActionNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF811B83812500A890C9 /* PWActionNotifications.m */; };
 		8322BF961B83C6F400A890C9 /* PWSmartSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF951B83C6F400A890C9 /* PWSmartSearchBar.m */; };
+		8322BF991B83C74200A890C9 /* PWSmartSearchAttachView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF981B83C74200A890C9 /* PWSmartSearchAttachView.m */; };
+		8322BF9C1B83C74B00A890C9 /* PWSmartSearchAttachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF9B1B83C74B00A890C9 /* PWSmartSearchAttachViewController.m */; };
+		8322BF9E1B83C75500A890C9 /* PWSmartSearchAttachView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8322BF9D1B83C75500A890C9 /* PWSmartSearchAttachView.xib */; };
+		8322BFA11B83C82800A890C9 /* PWSmartSearchAttachMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BFA01B83C82800A890C9 /* PWSmartSearchAttachMenu.m */; };
 		83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E931B8351BF00A33030 /* PWWikiContentView.m */; };
 		83480E971B83530C00A33030 /* PWSidebarTabsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E961B83530C00A33030 /* PWSidebarTabsTable.m */; };
 		83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */; };
@@ -76,6 +80,13 @@
 		8322BF811B83812500A890C9 /* PWActionNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWActionNotifications.m; sourceTree = "<group>"; };
 		8322BF941B83C6F400A890C9 /* PWSmartSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchBar.h; sourceTree = "<group>"; };
 		8322BF951B83C6F400A890C9 /* PWSmartSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchBar.m; sourceTree = "<group>"; };
+		8322BF971B83C74200A890C9 /* PWSmartSearchAttachView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchAttachView.h; sourceTree = "<group>"; };
+		8322BF981B83C74200A890C9 /* PWSmartSearchAttachView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchAttachView.m; sourceTree = "<group>"; };
+		8322BF9A1B83C74B00A890C9 /* PWSmartSearchAttachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchAttachViewController.h; sourceTree = "<group>"; };
+		8322BF9B1B83C74B00A890C9 /* PWSmartSearchAttachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchAttachViewController.m; sourceTree = "<group>"; };
+		8322BF9D1B83C75500A890C9 /* PWSmartSearchAttachView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PWSmartSearchAttachView.xib; sourceTree = "<group>"; };
+		8322BF9F1B83C82800A890C9 /* PWSmartSearchAttachMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchAttachMenu.h; sourceTree = "<group>"; };
+		8322BFA01B83C82800A890C9 /* PWSmartSearchAttachMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchAttachMenu.m; sourceTree = "<group>"; };
 		83480E921B8351BF00A33030 /* PWWikiContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentView.h; sourceTree = "<group>"; };
 		83480E931B8351BF00A33030 /* PWWikiContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentView.m; sourceTree = "<group>"; };
 		83480E951B83530C00A33030 /* PWSidebarTabsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTable.h; sourceTree = "<group>"; };
@@ -197,6 +208,12 @@
 				8322BF8D1B83AE9100A890C9 /* xib */,
 				8322BF941B83C6F400A890C9 /* PWSmartSearchBar.h */,
 				8322BF951B83C6F400A890C9 /* PWSmartSearchBar.m */,
+				8322BF971B83C74200A890C9 /* PWSmartSearchAttachView.h */,
+				8322BF981B83C74200A890C9 /* PWSmartSearchAttachView.m */,
+				8322BF9A1B83C74B00A890C9 /* PWSmartSearchAttachViewController.h */,
+				8322BF9B1B83C74B00A890C9 /* PWSmartSearchAttachViewController.m */,
+				8322BF9F1B83C82800A890C9 /* PWSmartSearchAttachMenu.h */,
+				8322BFA01B83C82800A890C9 /* PWSmartSearchAttachMenu.m */,
 			);
 			name = "search-wikipedia";
 			sourceTree = "<group>";
@@ -204,6 +221,7 @@
 		8322BF8D1B83AE9100A890C9 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				8322BF9D1B83C75500A890C9 /* PWSmartSearchAttachView.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -557,6 +575,7 @@
 				83A2FBCC1B830AC700939452 /* PWMainWindow.xib in Resources */,
 				83B7941C1B7DCE5F00F4544E /* PWMainMenu.xib in Resources */,
 				83B75D701B7DDDA800E9C05E /* Info.plist in Resources */,
+				8322BF9E1B83C75500A890C9 /* PWSmartSearchAttachView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,11 +622,13 @@
 				83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */,
 				83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */,
 				83480EA61B837D4500A33030 /* PWBrain.m in Sources */,
+				8322BF9C1B83C74B00A890C9 /* PWSmartSearchAttachViewController.m in Sources */,
 				83B75DFA1B7DDDB600E9C05E /* AFURLResponseSerialization.m in Sources */,
 				83B794171B7DCE5F00F4544E /* main.m in Sources */,
 				83A2FBD61B8326BC00939452 /* PWToolbarController.m in Sources */,
 				83B75DF51B7DDDB600E9C05E /* AFHTTPSessionManager.m in Sources */,
 				83A2FBDC1B83303900939452 /* PWMainContentView.m in Sources */,
+				8322BFA11B83C82800A890C9 /* PWSmartSearchAttachMenu.m in Sources */,
 				83B75DF41B7DDDB600E9C05E /* AFHTTPRequestOperationManager.m in Sources */,
 				8322BF821B83812500A890C9 /* PWActionNotifications.m in Sources */,
 				83A2FBB51B80D76B00939452 /* WikiConstants.m in Sources */,
@@ -619,6 +640,7 @@
 				83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */,
 				83480E9D1B83589900A33030 /* PWSplitView.m in Sources */,
 				83A2FBB31B80D76B00939452 /* _WikiJSON.m in Sources */,
+				8322BF991B83C74200A890C9 /* PWSmartSearchAttachView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -142,6 +142,7 @@
             </searchFieldCell>
             <connections>
                 <outlet property="delegate" destination="-2" id="b2y-nf-x0E"/>
+                <outlet property="smartSearchAttachMenu" destination="JKB-wO-61F" id="yR4-yS-uJH"/>
             </connections>
             <point key="canvasLocation" x="990" y="-2"/>
         </searchField>
@@ -190,19 +191,8 @@
             </connections>
         </viewController>
         <customObject id="AMe-C7-iJg" customClass="PWBrain"/>
-        <menu id="JKB-wO-61F">
-            <items>
-                <menuItem title="Item 1" id="adg-0s-Pic">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 2" id="pKX-Mb-LYA">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 3" id="LOW-V6-3Ch">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-            </items>
-            <point key="canvasLocation" x="269" y="10.5"/>
+        <menu showsStateColumn="NO" id="JKB-wO-61F" customClass="PWSmartSearchAttachMenu">
+            <point key="canvasLocation" x="239" y="16.5"/>
         </menu>
     </objects>
     <resources>

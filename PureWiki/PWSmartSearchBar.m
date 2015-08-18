@@ -23,6 +23,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSmartSearchBar.h"
+#import "PWSmartSearchAttachMenu.h"
 
 // PWSmartSearchBar class
 @implementation PWSmartSearchBar
@@ -32,6 +33,13 @@
     [ super drawRect: _DirtyRect ];
     
     // Drawing code here.
+    }
+
+- ( void ) popupSearchAttachMenu
+    {
+    [ self.smartSearchAttachMenu popUpMenuPositioningItem: [ self.smartSearchAttachMenu itemAtIndex: 0 ]
+                                               atLocation: NSMakePoint( NSMinX( self.frame ) - 3.f, NSMaxY( self.frame ) )
+                                                   inView: self ];
     }
 
 @end // PWSmartSearchBar class
