@@ -32,6 +32,15 @@
 // PWSmartSearchPreviewPanelController class
 @implementation PWSmartSearchPreviewPanelController
 
+#pragma mark Initialization
+- ( instancetype ) init
+    {
+    if ( self = [ super initWithWindowNibName: @"PWSmartSearchPreviewPanel" owner: self ] )
+        ;
+
+    return self;
+    }
+
 - ( void ) windowDidLoad
     {
     [ super windowDidLoad ];

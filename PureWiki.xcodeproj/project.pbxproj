@@ -11,6 +11,7 @@
 		8322BF861B83A80A00A890C9 /* PWSmartSearchPreviewPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF851B83A80A00A890C9 /* PWSmartSearchPreviewPanel.m */; };
 		8322BF891B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF881B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.m */; };
 		8322BF8B1B83A82A00A890C9 /* PWSmartSearchPreviewPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8322BF8A1B83A82A00A890C9 /* PWSmartSearchPreviewPanel.xib */; };
+		8322BF901B83B5F800A890C9 /* PWSmartSearchPreviewContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF8F1B83B5F800A890C9 /* PWSmartSearchPreviewContentView.m */; };
 		83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E931B8351BF00A33030 /* PWWikiContentView.m */; };
 		83480E971B83530C00A33030 /* PWSidebarTabsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E961B83530C00A33030 /* PWSidebarTabsTable.m */; };
 		83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */; };
@@ -82,6 +83,8 @@
 		8322BF871B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchPreviewPanelController.h; sourceTree = "<group>"; };
 		8322BF881B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchPreviewPanelController.m; sourceTree = "<group>"; };
 		8322BF8A1B83A82A00A890C9 /* PWSmartSearchPreviewPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PWSmartSearchPreviewPanel.xib; sourceTree = "<group>"; };
+		8322BF8E1B83B5F800A890C9 /* PWSmartSearchPreviewContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchPreviewContentView.h; sourceTree = "<group>"; };
+		8322BF8F1B83B5F800A890C9 /* PWSmartSearchPreviewContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchPreviewContentView.m; sourceTree = "<group>"; };
 		83480E921B8351BF00A33030 /* PWWikiContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentView.h; sourceTree = "<group>"; };
 		83480E931B8351BF00A33030 /* PWWikiContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentView.m; sourceTree = "<group>"; };
 		83480E951B83530C00A33030 /* PWSidebarTabsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTable.h; sourceTree = "<group>"; };
@@ -205,10 +208,12 @@
 				8322BF8D1B83AE9100A890C9 /* xib */,
 				83480EA11B837A3700A33030 /* PWSmartSearchBar.h */,
 				83480EA21B837A3700A33030 /* PWSmartSearchBar.m */,
-				8322BF841B83A80A00A890C9 /* PWSmartSearchPreviewPanel.h */,
-				8322BF851B83A80A00A890C9 /* PWSmartSearchPreviewPanel.m */,
 				8322BF871B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.h */,
 				8322BF881B83A81E00A890C9 /* PWSmartSearchPreviewPanelController.m */,
+				8322BF8E1B83B5F800A890C9 /* PWSmartSearchPreviewContentView.h */,
+				8322BF8F1B83B5F800A890C9 /* PWSmartSearchPreviewContentView.m */,
+				8322BF841B83A80A00A890C9 /* PWSmartSearchPreviewPanel.h */,
+				8322BF851B83A80A00A890C9 /* PWSmartSearchPreviewPanel.m */,
 			);
 			name = "search-wikipedia";
 			sourceTree = "<group>";
@@ -635,6 +640,7 @@
 				83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */,
 				83480E9D1B83589900A33030 /* PWSplitView.m in Sources */,
 				83A2FBB31B80D76B00939452 /* _WikiJSON.m in Sources */,
+				8322BF901B83B5F800A890C9 /* PWSmartSearchPreviewContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

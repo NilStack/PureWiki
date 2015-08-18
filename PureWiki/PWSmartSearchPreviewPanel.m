@@ -27,6 +27,12 @@
 // PWSmartSearchPreviewPanel class
 @implementation PWSmartSearchPreviewPanel
 
+- ( void ) awakeFromNib
+    {
+    [ self setOpaque: NO ];
+    [ self setBackgroundColor: [ NSColor whiteColor ] ];
+    }
+
 @end // PWSmartSearchPreviewPanel class
 
 /*===============================================================================┐

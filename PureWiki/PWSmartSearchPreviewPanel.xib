@@ -4,19 +4,23 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8121.20"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="PWSmartSearchPreviewPanelController">
+            <connections>
+                <outlet property="window" destination="y8g-zc-dkY" id="Hf9-f7-dBZ"/>
+            </connections>
+        </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="y8g-zc-dkY" customClass="NSPanel">
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="y8g-zc-dkY" customClass="PWSmartSearchPreviewPanel">
             <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="272" y="172" width="566" height="394"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-            <view key="contentView" id="Qz8-xn-rqY">
+            <view key="contentView" id="Qz8-xn-rqY" customClass="PWSmartSearchPreviewContentView">
                 <rect key="frame" x="0.0" y="0.0" width="566" height="394"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="6cy-b7-B6K">
+                    <visualEffectView hidden="YES" appearanceType="vibrantLight" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="6cy-b7-B6K">
                         <rect key="frame" x="0.0" y="0.0" width="566" height="394"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFx-uL-lO0">
@@ -98,7 +102,7 @@
                     <constraint firstAttribute="bottom" secondItem="6cy-b7-B6K" secondAttribute="bottom" id="uvm-cC-jdu"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="279" y="415"/>
+            <point key="canvasLocation" x="8" y="211"/>
         </window>
     </objects>
 </document>

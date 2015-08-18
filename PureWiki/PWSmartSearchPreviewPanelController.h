@@ -26,7 +26,6 @@
 
 // PWSmartSearchPreviewPanelController class
 @interface PWSmartSearchPreviewPanelController : NSWindowController
-
 @end // PWSmartSearchPreviewPanelController class
 
 /*===============================================================================┐
