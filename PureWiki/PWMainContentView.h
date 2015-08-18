@@ -24,8 +24,10 @@
 
 @import Cocoa;
 
+// PWMainContentView class
 @interface PWMainContentView : NSView
-@end
+
+@end // PWMainContentView class
 
 /*===============================================================================┐
 |                                                                                | 

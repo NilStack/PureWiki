@@ -24,6 +24,7 @@
 
 #import "PWBrain.h"
 
+// PWBrain class
 @implementation PWBrain
 
 @dynamic wikiEngine;
@@ -72,7 +73,7 @@ id static sWiseBrain = nil;
                                             failure: _FailureBlock ];
     }
 
-@end
+@end // PWBrain class
 
 /*===============================================================================┐
 |                                                                                | 

@@ -24,6 +24,7 @@
 
 #import "PWStackContainerView.h"
 
+// PWStackContainerView class
 @implementation PWStackContainerView
 
 - ( void ) drawRect: ( NSRect )_DirtyRect
@@ -34,7 +35,7 @@
     NSRectFill( _DirtyRect );
     }
 
-@end
+@end // PWStackContainerView class
 
 /*===============================================================================┐
 |                                                                                | 

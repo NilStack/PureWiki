@@ -26,6 +26,7 @@
 
 @class PWNavButtonsPairView;
 
+// PWToolbarController class
 @interface PWToolbarController : NSViewController <NSToolbarDelegate>
 
 @property ( weak ) IBOutlet PWNavButtonsPairView* navButtons;
@@ -35,7 +36,7 @@
 
 @property ( weak ) IBOutlet NSToolbar* toolbar;
 
-@end
+@end // PWToolbarController class
 
 /*===============================================================================┐
 |                                                                                | 

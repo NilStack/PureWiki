@@ -24,9 +24,10 @@
 
 @import Cocoa;
 
+// PWSplitView class
 @interface PWSplitView : NSSplitView
 
-@end
+@end // PWSplitView class
 
 /*===============================================================================┐
 |                                                                                | 

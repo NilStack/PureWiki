@@ -24,6 +24,7 @@
   
 #import "WikiEngine.h"
 
+// PWBrain class
 @interface PWBrain : NSObject
     {
 @protected
@@ -42,7 +43,7 @@
                                  limit: ( NSUInteger )_Limit
                                success: ( void (^)( NSArray* _MatchedPages ) )_SuccessBlock
                                failure: ( void (^)( NSError* _Error ) )_FailureBlock;
-@end
+@end // PWBrain class
 
 /*===============================================================================┐
 |                                                                                | 

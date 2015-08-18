@@ -24,9 +24,10 @@
 
 #import "PWNavButtonsPairView.h"
 
+// PWNavButtonsPairView class
 @implementation PWNavButtonsPairView
 
-@end
+@end // PWNavButtonsPairView class
 
 /*===============================================================================┐
 |                                                                                | 

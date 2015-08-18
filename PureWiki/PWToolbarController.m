@@ -37,6 +37,7 @@
                                     repMenu: ( NSMenu* )_Menu;
 @end // Private Interfaces
 
+// PWToolbarController class
 @implementation PWToolbarController
 
 #pragma mark Conforms to <NSToolbarDelegate>
@@ -144,7 +145,7 @@ NSString* const kSearchbarToolbarItemIdentifier = @"kSearchbarToolbarItemIdentif
     return newToolbarItem;
     }
 
-@end
+@end // PWToolbarController class
 
 /*===============================================================================┐
 |                                                                                | 

@@ -25,9 +25,10 @@
 @import Cocoa;
 @import WebKit;
 
+// PWWikiContentView class
 @interface PWWikiContentView : WebView
 
-@end
+@end // PWWikiContentView class
 
 /*===============================================================================┐
 |                                                                                | 

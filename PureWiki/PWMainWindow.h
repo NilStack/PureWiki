@@ -24,9 +24,10 @@
 
 @import Cocoa;
 
+// PWMainWindow class
 @interface PWMainWindow : NSWindow
 
-@end
+@end // PWMainWindow class
 
 /*===============================================================================┐
 |                                                                                | 

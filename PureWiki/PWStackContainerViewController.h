@@ -24,9 +24,10 @@
 
 @import Cocoa;
 
+// PWStackContainerViewController class
 @interface PWStackContainerViewController : NSViewController
 
-@end
+@end // PWStackContainerViewController class
 
 /*===============================================================================┐
 |                                                                                | 

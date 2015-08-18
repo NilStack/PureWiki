@@ -24,13 +24,10 @@
 
 #import "PWMainContentView.h"
 
+// PWMainContentView class
 @implementation PWMainContentView
 
-- ( void ) awakeFromNib
-    {
-    }
-
-@end
+@end // PWMainContentView class
 
 /*===============================================================================┐
 |                                                                                | 

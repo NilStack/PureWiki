@@ -24,18 +24,21 @@
 
 #import "PWStackContainerViewController.h"
 
+// Private Interfaces
 @interface PWStackContainerViewController ()
 
-@end
+@end // Private Interfaces
 
+// PWStackContainerViewController class
 @implementation PWStackContainerViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- ( void ) viewDidLoad
+    {
+    [ super viewDidLoad ];
     // Do view setup here.
-}
+    }
 
-@end
+@end // PWStackContainerViewController class
 
 /*===============================================================================┐
 |                                                                                | 

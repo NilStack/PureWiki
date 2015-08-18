@@ -24,9 +24,10 @@
 
 @import Cocoa;
 
+// PWNavButtonsPairView class
 @interface PWNavButtonsPairView : NSView
 
-@end
+@end // PWNavButtonsPairView class
 
 /*===============================================================================┐
 |                                                                                | 

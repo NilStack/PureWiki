@@ -24,9 +24,10 @@
 
 #import "PWWikiContentView.h"
 
+// PWWikiContentView class
 @implementation PWWikiContentView
 
-@end
+@end // PWWikiContentView class
 
 /*===============================================================================┐
 |                                                                                | 

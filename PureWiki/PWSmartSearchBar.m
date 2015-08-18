@@ -24,15 +24,17 @@
 
 #import "PWSmartSearchBar.h"
 
+// PWSmartSearchBar class
 @implementation PWSmartSearchBar
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
+- ( void ) drawRect: ( NSRect )_DirtyRect
+    {
+    [ super drawRect: _DirtyRect ];
     
     // Drawing code here.
-}
+    }
 
-@end
+@end // PWSmartSearchBar class
 
 /*===============================================================================┐
 |                                                                                | 

@@ -24,6 +24,7 @@
 
 #import "PWSplitView.h"
 
+// PWSplitView class
 @implementation PWSplitView
 
 - ( void ) awakeFromNib
@@ -31,7 +32,7 @@
     [ self setHoldingPriority: NSLayoutPriorityFittingSizeCompression forSubviewAtIndex: 1 ];
     }
 
-@end
+@end // PWSplitView class
 
 /*===============================================================================┐
 |                                                                                | 

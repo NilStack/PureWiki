@@ -24,9 +24,10 @@
 
 @import Cocoa;
 
+// PWSmartSearchBar class
 @interface PWSmartSearchBar : NSSearchField
 
-@end
+@end // PWSmartSearchBar class
 
 /*===============================================================================┐
 |                                                                                | 

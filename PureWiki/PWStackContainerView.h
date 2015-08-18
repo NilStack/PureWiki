@@ -24,9 +24,10 @@
 
 @import Cocoa;
 
+// PWStackContainerView class
 @interface PWStackContainerView : NSView
 
-@end
+@end // PWStackContainerView class
 
 /*===============================================================================┐
 |                                                                                | 
