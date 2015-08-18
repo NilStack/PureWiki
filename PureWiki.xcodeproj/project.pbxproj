@@ -25,6 +25,8 @@
 		83A2FBD31B8324D000939452 /* PWNavButtonsPairView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBD21B8324D000939452 /* PWNavButtonsPairView.m */; };
 		83A2FBD61B8326BC00939452 /* PWToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBD51B8326BC00939452 /* PWToolbarController.m */; };
 		83A2FBDC1B83303900939452 /* PWMainContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBDB1B83303900939452 /* PWMainContentView.m */; };
+		83A2FBDF1B833B2A00939452 /* PWStackContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBDE1B833B2A00939452 /* PWStackContainerView.m */; };
+		83A2FBE21B833B8E00939452 /* PWStackContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBE11B833B8E00939452 /* PWStackContainerViewController.m */; };
 		83B75CAC1B7DDB0C00E9C05E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */; };
 		83B75D701B7DDDA800E9C05E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83B75CCA1B7DDDA700E9C05E /* Info.plist */; };
 		83B75DF31B7DDDB600E9C05E /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B75DE11B7DDDB600E9C05E /* AFHTTPRequestOperation.m */; };
@@ -98,6 +100,10 @@
 		83A2FBD51B8326BC00939452 /* PWToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWToolbarController.m; sourceTree = "<group>"; };
 		83A2FBDA1B83303900939452 /* PWMainContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWMainContentView.h; sourceTree = "<group>"; };
 		83A2FBDB1B83303900939452 /* PWMainContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWMainContentView.m; sourceTree = "<group>"; };
+		83A2FBDD1B833B2A00939452 /* PWStackContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWStackContainerView.h; sourceTree = "<group>"; };
+		83A2FBDE1B833B2A00939452 /* PWStackContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWStackContainerView.m; sourceTree = "<group>"; };
+		83A2FBE01B833B8E00939452 /* PWStackContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWStackContainerViewController.h; sourceTree = "<group>"; };
+		83A2FBE11B833B8E00939452 /* PWStackContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWStackContainerViewController.m; sourceTree = "<group>"; };
 		83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		83B75CCA1B7DDDA700E9C05E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83B75DE01B7DDDB600E9C05E /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -175,16 +181,16 @@
 			isa = PBXGroup;
 			children = (
 				83A2FBCE1B830AD500939452 /* xib */,
+				83A2FBC81B830ABB00939452 /* PWMainWindowController.h */,
+				83A2FBC91B830ABB00939452 /* PWMainWindowController.m */,
 				83A2FBC51B830AB000939452 /* PWMainWindow.h */,
 				83A2FBC61B830AB000939452 /* PWMainWindow.m */,
 				83A2FBDA1B83303900939452 /* PWMainContentView.h */,
 				83A2FBDB1B83303900939452 /* PWMainContentView.m */,
-				83A2FBC81B830ABB00939452 /* PWMainWindowController.h */,
-				83A2FBC91B830ABB00939452 /* PWMainWindowController.m */,
-				83A2FBD41B8326BC00939452 /* PWToolbarController.h */,
-				83A2FBD51B8326BC00939452 /* PWToolbarController.m */,
-				83A2FBD11B8324D000939452 /* PWNavButtonsPairView.h */,
-				83A2FBD21B8324D000939452 /* PWNavButtonsPairView.m */,
+				83A2FBDD1B833B2A00939452 /* PWStackContainerView.h */,
+				83A2FBDE1B833B2A00939452 /* PWStackContainerView.m */,
+				83A2FBE01B833B8E00939452 /* PWStackContainerViewController.h */,
+				83A2FBE11B833B8E00939452 /* PWStackContainerViewController.m */,
 			);
 			name = "main-window";
 			sourceTree = "<group>";
@@ -211,6 +217,17 @@
 				83B7941A1B7DCE5F00F4544E /* PWMainMenu.xib */,
 			);
 			name = xib;
+			sourceTree = "<group>";
+		};
+		83A2FBE31B833BBE00939452 /* toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				83A2FBD41B8326BC00939452 /* PWToolbarController.h */,
+				83A2FBD51B8326BC00939452 /* PWToolbarController.m */,
+				83A2FBD11B8324D000939452 /* PWNavButtonsPairView.h */,
+				83A2FBD21B8324D000939452 /* PWNavButtonsPairView.m */,
+			);
+			name = toolbar;
 			sourceTree = "<group>";
 		};
 		83B75CAD1B7DDB2C00E9C05E /* vendor */ = {
@@ -320,6 +337,7 @@
 				83B794131B7DCE5F00F4544E /* PWAppDelegate.m */,
 				83A2FBCF1B830AF600939452 /* main-menu */,
 				83A2FBCD1B830ACD00939452 /* main-window */,
+				83A2FBE31B833BBE00939452 /* toolbar */,
 				83B794151B7DCE5F00F4544E /* Supporting Files */,
 			);
 			path = PureWiki;
@@ -491,6 +509,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A2FBE21B833B8E00939452 /* PWStackContainerViewController.m in Sources */,
 				83B75DF91B7DDDB600E9C05E /* AFURLRequestSerialization.m in Sources */,
 				83A2FBBA1B80D76B00939452 /* WikiJSONObject.m in Sources */,
 				83A2FBB91B80D76B00939452 /* WikiImage.m in Sources */,
@@ -503,6 +522,7 @@
 				83B75DFB1B7DDDB600E9C05E /* AFURLSessionManager.m in Sources */,
 				83A2FBB81B80D76B00939452 /* WikiHTTPSessionManager.m in Sources */,
 				83A2FBCA1B830ABB00939452 /* PWMainWindowController.m in Sources */,
+				83A2FBDF1B833B2A00939452 /* PWStackContainerView.m in Sources */,
 				83A2FBC41B80E38700939452 /* WikikitInfo.m in Sources */,
 				83A2FBBD1B80D76B00939452 /* WikiSessionDataTask.m in Sources */,
 				83A2FBD31B8324D000939452 /* PWNavButtonsPairView.m in Sources */,
