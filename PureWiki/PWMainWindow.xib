@@ -27,18 +27,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="271" height="1018"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMc-KE-Bwg">
+                                    <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMc-KE-Bwg">
+                                        <rect key="frame" x="0.0" y="0.0" width="271" height="975"/>
                                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="ZIl-WM-q3A">
+                                            <rect key="frame" x="0.0" y="0.0" width="271" height="975"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <tableView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="wU4-4o-6Ew" customClass="PWSidebarTabsTable">
-                                                    <rect key="frame" x="0.0" y="0.0" width="43" height="1"/>
+                                                <tableView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="automatic" viewBased="YES" id="wU4-4o-6Ew" customClass="PWSidebarTabsTable">
+                                                    <rect key="frame" x="0.0" y="0.0" width="271" height="975"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn width="40" minWidth="40" maxWidth="1000" id="3TS-qS-qu2">
+                                                        <tableColumn identifier="tabs-column" width="268" minWidth="40" maxWidth="1000" id="3TS-qS-qu2">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -52,11 +54,11 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="ek5-em-Dck">
-                                                                    <rect key="frame" x="1" y="1" width="40" height="20"/>
+                                                                    <rect key="frame" x="1" y="1" width="268" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L3D-u7-ccf">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="272" height="17"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="kZR-ZI-9VF">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -71,16 +73,20 @@
                                                             </prototypeCellViews>
                                                         </tableColumn>
                                                     </tableColumns>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="TDW-Eg-TgK" id="0HP-uI-uHc"/>
+                                                        <outlet property="delegate" destination="TDW-Eg-TgK" id="z0D-Kv-pba"/>
+                                                    </connections>
                                                 </tableView>
                                             </subviews>
                                             <nil key="backgroundColor"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" appearanceType="vibrantLight" verticalHuggingPriority="750" horizontal="YES" id="aZe-2b-bM1">
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="aZe-2b-bM1">
                                             <rect key="frame" x="0.0" y="-16" width="0.0" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" appearanceType="vibrantLight" verticalHuggingPriority="750" horizontal="NO" id="g6e-gs-6d5">
-                                            <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="g6e-gs-6d5">
+                                            <rect key="frame" x="-16" y="0.0" width="16" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -119,16 +125,22 @@
                     <outlet property="delegate" destination="0YV-qA-Xbw" id="JKK-z8-EQi"/>
                 </connections>
             </toolbar>
-            <point key="canvasLocation" x="830" y="662"/>
+            <point key="canvasLocation" x="831" y="651"/>
         </window>
-        <searchField wantsLayer="YES" verticalHuggingPriority="750" id="34m-hF-hQH">
+        <searchField wantsLayer="YES" verticalHuggingPriority="750" id="34m-hF-hQH" customClass="PWSmartSearchBar">
             <rect key="frame" x="0.0" y="0.0" width="450" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="arw-B2-6hx">
+            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search Wikipedia" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="arw-B2-6hx">
                 <font key="font" metaFont="system"/>
                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                <connections>
+                    <action selector="searchWikipediaAction:" target="-2" id="pU3-hT-xI2"/>
+                </connections>
             </searchFieldCell>
+            <connections>
+                <outlet property="delegate" destination="-2" id="b2y-nf-x0E"/>
+            </connections>
             <point key="canvasLocation" x="990" y="-2"/>
         </searchField>
         <customView id="cjA-YO-b28" customClass="PWNavButtonsPairView">
@@ -170,6 +182,12 @@
             </connections>
         </viewController>
         <viewController id="Fu8-12-eJ7" customClass="PWStackContainerViewController"/>
+        <viewController id="TDW-Eg-TgK" customClass="PWSidebarTabsTableController">
+            <connections>
+                <outlet property="sidebarTabsTable" destination="wU4-4o-6Ew" id="imY-PQ-Bim"/>
+            </connections>
+        </viewController>
+        <customObject id="AMe-C7-iJg" customClass="PWBrain"/>
     </objects>
     <resources>
         <image name="NSColumnViewTemplate" width="16" height="10"/>
