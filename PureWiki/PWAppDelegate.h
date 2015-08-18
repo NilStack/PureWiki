@@ -8,7 +8,11 @@
 
 @import Cocoa;
 
+@class PWMainWindowController;
+
 // PWAppDelegate class
 @interface PWAppDelegate : NSObject <NSApplicationDelegate>
+
+@property ( strong ) PWMainWindowController* mainWindowController;
 
 @end // PWAppDelegate class

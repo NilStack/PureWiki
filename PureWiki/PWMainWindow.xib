@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14F25a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8121.20"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PWMainWindowController">
+            <connections>
+                <outlet property="window" destination="f5Q-w8-6qz" id="pth-7K-k1k"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="f5Q-w8-6qz" customClass="PWMainWindow">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
+            <rect key="contentRect" x="335" y="390" width="1338" height="1056"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <view key="contentView" id="gYk-FD-1cl">
+                <rect key="frame" x="0.0" y="0.0" width="1338" height="1056"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <toolbar key="toolbar" implicitIdentifier="3F449748-A780-40AE-B923-7A62B6BDA9DD" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="Nqb-Bc-t9B">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="FSI-MB-RRR"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="WZL-PW-XQT"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="d9r-ug-xtl"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="idJ-nf-ibA"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="fEy-fb-gDH"/>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="FSI-MB-RRR"/>
+                    <toolbarItem reference="WZL-PW-XQT"/>
+                    <toolbarItem reference="fEy-fb-gDH"/>
+                    <toolbarItem reference="d9r-ug-xtl"/>
+                </defaultToolbarItems>
+            </toolbar>
+            <point key="canvasLocation" x="830" y="662"/>
+        </window>
+    </objects>
+</document>

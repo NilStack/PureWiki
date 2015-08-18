@@ -18,6 +18,10 @@
 		83A2FBBB1B80D76B00939452 /* WikiPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBAE1B80D76B00939452 /* WikiPage.m */; };
 		83A2FBBC1B80D76B00939452 /* WikiRevision.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBB01B80D76B00939452 /* WikiRevision.m */; };
 		83A2FBBD1B80D76B00939452 /* WikiSessionDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBB21B80D76B00939452 /* WikiSessionDataTask.m */; };
+		83A2FBC41B80E38700939452 /* WikikitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBC31B80E38700939452 /* WikikitInfo.m */; };
+		83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBC61B830AB000939452 /* PWMainWindow.m */; };
+		83A2FBCA1B830ABB00939452 /* PWMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBC91B830ABB00939452 /* PWMainWindowController.m */; };
+		83A2FBCC1B830AC700939452 /* PWMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A2FBCB1B830AC700939452 /* PWMainWindow.xib */; };
 		83B75CAC1B7DDB0C00E9C05E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */; };
 		83B75D701B7DDDA800E9C05E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83B75CCA1B7DDDA700E9C05E /* Info.plist */; };
 		83B75DF31B7DDDB600E9C05E /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B75DE11B7DDDB600E9C05E /* AFHTTPRequestOperation.m */; };
@@ -78,6 +82,13 @@
 		83A2FBB01B80D76B00939452 /* WikiRevision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WikiRevision.m; path = ../../../../../Wikikit/Wikikit/WikiRevision.m; sourceTree = "<group>"; };
 		83A2FBB11B80D76B00939452 /* WikiSessionDataTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WikiSessionDataTask.h; path = ../../../../../Wikikit/Wikikit/WikiSessionDataTask.h; sourceTree = "<group>"; };
 		83A2FBB21B80D76B00939452 /* WikiSessionDataTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WikiSessionDataTask.m; path = ../../../../../Wikikit/Wikikit/WikiSessionDataTask.m; sourceTree = "<group>"; };
+		83A2FBC21B80E38700939452 /* WikikitInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WikikitInfo.h; path = ../../../../../Wikikit/Wikikit/WikikitInfo.h; sourceTree = "<group>"; };
+		83A2FBC31B80E38700939452 /* WikikitInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WikikitInfo.m; path = ../../../../../Wikikit/Wikikit/WikikitInfo.m; sourceTree = "<group>"; };
+		83A2FBC51B830AB000939452 /* PWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWMainWindow.h; sourceTree = "<group>"; };
+		83A2FBC61B830AB000939452 /* PWMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWMainWindow.m; sourceTree = "<group>"; };
+		83A2FBC81B830ABB00939452 /* PWMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWMainWindowController.h; sourceTree = "<group>"; };
+		83A2FBC91B830ABB00939452 /* PWMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWMainWindowController.m; sourceTree = "<group>"; };
+		83A2FBCB1B830AC700939452 /* PWMainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PWMainWindow.xib; sourceTree = "<group>"; };
 		83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		83B75CCA1B7DDDA700E9C05E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83B75DE01B7DDDB600E9C05E /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -151,6 +162,42 @@
 			path = ../../../../../Wikikit/Wikikit/internal;
 			sourceTree = "<group>";
 		};
+		83A2FBCD1B830ACD00939452 /* main-window */ = {
+			isa = PBXGroup;
+			children = (
+				83A2FBCE1B830AD500939452 /* xib */,
+				83A2FBC51B830AB000939452 /* PWMainWindow.h */,
+				83A2FBC61B830AB000939452 /* PWMainWindow.m */,
+				83A2FBC81B830ABB00939452 /* PWMainWindowController.h */,
+				83A2FBC91B830ABB00939452 /* PWMainWindowController.m */,
+			);
+			name = "main-window";
+			sourceTree = "<group>";
+		};
+		83A2FBCE1B830AD500939452 /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				83A2FBCB1B830AC700939452 /* PWMainWindow.xib */,
+			);
+			name = xib;
+			sourceTree = "<group>";
+		};
+		83A2FBCF1B830AF600939452 /* main-menu */ = {
+			isa = PBXGroup;
+			children = (
+				83A2FBD01B830AFD00939452 /* xib */,
+			);
+			name = "main-menu";
+			sourceTree = "<group>";
+		};
+		83A2FBD01B830AFD00939452 /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				83B7941A1B7DCE5F00F4544E /* PWMainMenu.xib */,
+			);
+			name = xib;
+			sourceTree = "<group>";
+		};
 		83B75CAD1B7DDB2C00E9C05E /* vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				83A2FB9A1B80D76B00939452 /* internal */,
+				83A2FBC21B80E38700939452 /* WikikitInfo.h */,
+				83A2FBC31B80E38700939452 /* WikikitInfo.m */,
 				83A2FB9D1B80D76B00939452 /* NSDate+Wikikit.h */,
 				83A2FB9E1B80D76B00939452 /* NSDate+Wikikit.m */,
 				83A2FB9F1B80D76B00939452 /* WikiConstants.h */,
@@ -254,7 +303,8 @@
 			children = (
 				83B794121B7DCE5F00F4544E /* PWAppDelegate.h */,
 				83B794131B7DCE5F00F4544E /* PWAppDelegate.m */,
-				83B7941A1B7DCE5F00F4544E /* PWMainMenu.xib */,
+				83A2FBCF1B830AF600939452 /* main-menu */,
+				83A2FBCD1B830ACD00939452 /* main-window */,
 				83B794151B7DCE5F00F4544E /* Supporting Files */,
 			);
 			path = PureWiki;
@@ -399,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */,
+				83A2FBCC1B830AC700939452 /* PWMainWindow.xib in Resources */,
 				83B7941C1B7DCE5F00F4544E /* PWMainMenu.xib in Resources */,
 				83B75D701B7DDDA800E9C05E /* Info.plist in Resources */,
 			);
@@ -436,7 +487,10 @@
 				83A2FBBC1B80D76B00939452 /* WikiRevision.m in Sources */,
 				83B75DFB1B7DDDB600E9C05E /* AFURLSessionManager.m in Sources */,
 				83A2FBB81B80D76B00939452 /* WikiHTTPSessionManager.m in Sources */,
+				83A2FBCA1B830ABB00939452 /* PWMainWindowController.m in Sources */,
+				83A2FBC41B80E38700939452 /* WikikitInfo.m in Sources */,
 				83A2FBBD1B80D76B00939452 /* WikiSessionDataTask.m in Sources */,
+				83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */,
 				83B75DFA1B7DDDB600E9C05E /* AFURLResponseSerialization.m in Sources */,
 				83B794171B7DCE5F00F4544E /* main.m in Sources */,
 				83B75DF51B7DDDB600E9C05E /* AFHTTPSessionManager.m in Sources */,
@@ -579,6 +633,7 @@
 				CODE_SIGN_ENTITLEMENTS = PureWiki/PureWiki.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = PureWiki/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.PureWiki;
@@ -593,6 +648,7 @@
 				CODE_SIGN_ENTITLEMENTS = PureWiki/PureWiki.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = PureWiki/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.PureWiki;

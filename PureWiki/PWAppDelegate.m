@@ -7,15 +7,24 @@
 //
 
 #import "PWAppDelegate.h"
+#import "PWMainWindowController.h"
 
 // Private Interfaces
 @interface PWAppDelegate ()
-
-@property ( weak ) IBOutlet NSWindow* window;
 
 @end // Private Interfaces
 
 // PWAppDelegate class
 @implementation PWAppDelegate
+
+- ( void ) awakeFromNib
+    {
+    self.mainWindowController = [ PWMainWindowController mainWindowController ];
+    }
+
+- ( void ) applicationWillFinishLaunching: ( nonnull NSNotification* )_Notification
+    {
+    [ self.mainWindowController showWindow: self ];
+    }
 
 @end // PWAppDelegate class
