@@ -24,7 +24,6 @@
 
 #import "PWAppDelegate.h"
 #import "PWMainWindowController.h"
-#import "PWSmartSearchPreviewPanelController.h"
 
 // Private Interfaces
 @interface PWAppDelegate ()
@@ -37,7 +36,6 @@
 - ( void ) awakeFromNib
     {
     self.mainWindowController = [ PWMainWindowController mainWindowController ];
-    self.smartSearchPreviewPanelController = [ [ PWSmartSearchPreviewPanelController alloc ] init ];
     }
 
 - ( void ) applicationWillFinishLaunching: ( nonnull NSNotification* )_Notification

@@ -25,13 +25,11 @@
 @import Cocoa;
 
 @class PWMainWindowController;
-@class PWSmartSearchPreviewPanelController;
 
 // PWAppDelegate class
 @interface PWAppDelegate : NSObject <NSApplicationDelegate>
 
 @property ( strong ) PWMainWindowController* mainWindowController;
-@property ( strong ) PWSmartSearchPreviewPanelController* smartSearchPreviewPanelController;
 
 @end // PWAppDelegate class
 
