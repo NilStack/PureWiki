@@ -22,6 +22,7 @@
 		83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBC61B830AB000939452 /* PWMainWindow.m */; };
 		83A2FBCA1B830ABB00939452 /* PWMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBC91B830ABB00939452 /* PWMainWindowController.m */; };
 		83A2FBCC1B830AC700939452 /* PWMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A2FBCB1B830AC700939452 /* PWMainWindow.xib */; };
+		83A2FBD31B8324D000939452 /* PWNavButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBD21B8324D000939452 /* PWNavButtons.m */; };
 		83B75CAC1B7DDB0C00E9C05E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */; };
 		83B75D701B7DDDA800E9C05E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83B75CCA1B7DDDA700E9C05E /* Info.plist */; };
 		83B75DF31B7DDDB600E9C05E /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B75DE11B7DDDB600E9C05E /* AFHTTPRequestOperation.m */; };
@@ -89,6 +90,8 @@
 		83A2FBC81B830ABB00939452 /* PWMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWMainWindowController.h; sourceTree = "<group>"; };
 		83A2FBC91B830ABB00939452 /* PWMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWMainWindowController.m; sourceTree = "<group>"; };
 		83A2FBCB1B830AC700939452 /* PWMainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PWMainWindow.xib; sourceTree = "<group>"; };
+		83A2FBD11B8324D000939452 /* PWNavButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWNavButtons.h; sourceTree = "<group>"; };
+		83A2FBD21B8324D000939452 /* PWNavButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWNavButtons.m; sourceTree = "<group>"; };
 		83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		83B75CCA1B7DDDA700E9C05E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83B75DE01B7DDDB600E9C05E /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				83A2FBC61B830AB000939452 /* PWMainWindow.m */,
 				83A2FBC81B830ABB00939452 /* PWMainWindowController.h */,
 				83A2FBC91B830ABB00939452 /* PWMainWindowController.m */,
+				83A2FBD11B8324D000939452 /* PWNavButtons.h */,
+				83A2FBD21B8324D000939452 /* PWNavButtons.m */,
 			);
 			name = "main-window";
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 				83A2FBCA1B830ABB00939452 /* PWMainWindowController.m in Sources */,
 				83A2FBC41B80E38700939452 /* WikikitInfo.m in Sources */,
 				83A2FBBD1B80D76B00939452 /* WikiSessionDataTask.m in Sources */,
+				83A2FBD31B8324D000939452 /* PWNavButtons.m in Sources */,
 				83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */,
 				83B75DFA1B7DDDB600E9C05E /* AFURLResponseSerialization.m in Sources */,
 				83B794171B7DCE5F00F4544E /* main.m in Sources */,

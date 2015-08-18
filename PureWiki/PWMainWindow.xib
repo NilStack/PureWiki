@@ -6,6 +6,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PWMainWindowController">
             <connections>
+                <outlet property="navButtons" destination="cjA-YO-b28" id="fyw-HC-2rU"/>
+                <outlet property="searchWikipediaBar" destination="34m-hF-hQH" id="53d-yD-R7o"/>
+                <outlet property="sidebarStyleButton" destination="nVW-V1-1tx" id="KSW-NU-IuF"/>
                 <outlet property="window" destination="f5Q-w8-6qz" id="pth-7K-k1k"/>
             </connections>
         </customObject>
@@ -20,21 +23,58 @@
                 <autoresizingMask key="autoresizingMask"/>
             </view>
             <toolbar key="toolbar" implicitIdentifier="3F449748-A780-40AE-B923-7A62B6BDA9DD" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="Nqb-Bc-t9B">
-                <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="FSI-MB-RRR"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="WZL-PW-XQT"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="d9r-ug-xtl"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="idJ-nf-ibA"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="fEy-fb-gDH"/>
-                </allowedToolbarItems>
-                <defaultToolbarItems>
-                    <toolbarItem reference="FSI-MB-RRR"/>
-                    <toolbarItem reference="WZL-PW-XQT"/>
-                    <toolbarItem reference="fEy-fb-gDH"/>
-                    <toolbarItem reference="d9r-ug-xtl"/>
-                </defaultToolbarItems>
+                <allowedToolbarItems/>
+                <defaultToolbarItems/>
+                <connections>
+                    <outlet property="delegate" destination="-2" id="CBq-Sl-vUY"/>
+                </connections>
             </toolbar>
             <point key="canvasLocation" x="830" y="662"/>
         </window>
+        <searchField wantsLayer="YES" verticalHuggingPriority="750" id="34m-hF-hQH">
+            <rect key="frame" x="0.0" y="0.0" width="450" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="arw-B2-6hx">
+                <font key="font" metaFont="system"/>
+                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+            </searchFieldCell>
+            <point key="canvasLocation" x="990" y="-2"/>
+        </searchField>
+        <customView id="cjA-YO-b28" customClass="PWNavButtons">
+            <rect key="frame" x="0.0" y="0.0" width="56" height="26"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEs-0h-fYF">
+                    <rect key="frame" x="2" y="0.0" width="26" height="25"/>
+                    <buttonCell key="cell" type="roundTextured" title="go-backward" bezelStyle="texturedRounded" image="NSGoLeftTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ApR-CM-mBb">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qms-6d-6Oy">
+                    <rect key="frame" x="29" y="0.0" width="26" height="25"/>
+                    <buttonCell key="cell" type="roundTextured" title="go-forward" bezelStyle="texturedRounded" image="NSGoRightTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TRg-Jg-diy">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+            <point key="canvasLocation" x="368" y="57"/>
+        </customView>
+        <button verticalHuggingPriority="750" id="nVW-V1-1tx">
+            <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <buttonCell key="cell" type="roundTextured" title="sidebar-style" bezelStyle="texturedRounded" image="NSColumnViewTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xeL-ef-Yb2">
+                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                <font key="font" metaFont="system"/>
+            </buttonCell>
+            <point key="canvasLocation" x="513" y="-26"/>
+        </button>
     </objects>
+    <resources>
+        <image name="NSColumnViewTemplate" width="16" height="10"/>
+        <image name="NSGoLeftTemplate" width="9" height="12"/>
+        <image name="NSGoRightTemplate" width="9" height="12"/>
+    </resources>
 </document>
