@@ -43,7 +43,7 @@
 - ( void ) applicationWillFinishLaunching: ( nonnull NSNotification* )_Notification
     {
     [ self.mainWindowController showWindow: self ];
-    [ self.smartSearchPreviewPanelController showWindow: self ];
+//    [ self.smartSearchPreviewPanelController showWindow: self ];
     }
 
 @end // PWAppDelegate class

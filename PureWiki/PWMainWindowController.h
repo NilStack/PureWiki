@@ -24,10 +24,15 @@
 
 @import Cocoa;
 
+@class PWSmartSearchBar;
+
 // PWMainWindowController class
 @interface PWMainWindowController : NSWindowController <NSTextViewDelegate>
 
 + ( id ) mainWindowController;
+
+@property ( strong ) IBOutlet NSMenu* fuckingMenu;
+@property ( weak ) IBOutlet PWSmartSearchBar* smartSearchBar;
 
 #pragma mark IBActions
 - ( IBAction ) searchWikipediaAction: ( id )_Sender;

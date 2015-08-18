@@ -6,6 +6,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PWMainWindowController">
             <connections>
+                <outlet property="fuckingMenu" destination="JKB-wO-61F" id="tqc-BJ-bcT"/>
+                <outlet property="smartSearchBar" destination="34m-hF-hQH" id="CZK-XV-Ik9"/>
                 <outlet property="window" destination="f5Q-w8-6qz" id="pth-7K-k1k"/>
             </connections>
         </customObject>
@@ -188,6 +190,20 @@
             </connections>
         </viewController>
         <customObject id="AMe-C7-iJg" customClass="PWBrain"/>
+        <menu id="JKB-wO-61F">
+            <items>
+                <menuItem title="Item 1" id="adg-0s-Pic">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Item 2" id="pKX-Mb-LYA">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Item 3" id="LOW-V6-3Ch">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="269" y="10.5"/>
+        </menu>
     </objects>
     <resources>
         <image name="NSColumnViewTemplate" width="16" height="10"/>
