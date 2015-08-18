@@ -1,14 +1,7 @@
 @import Cocoa;
 
-@class PWNavButtons;
-
 // PWMainWindowController class
-@interface PWMainWindowController : NSWindowController <NSToolbarDelegate>
-
-@property ( weak ) IBOutlet PWNavButtons* navButtons;
-@property ( weak ) IBOutlet NSButton* sidebarStyleButton;
-
-@property ( weak ) IBOutlet NSSearchField* searchWikipediaBar;
+@interface PWMainWindowController : NSWindowController
 
 + ( id ) mainWindowController;
 

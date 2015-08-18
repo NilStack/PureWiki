@@ -6,9 +6,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PWMainWindowController">
             <connections>
-                <outlet property="navButtons" destination="cjA-YO-b28" id="fyw-HC-2rU"/>
-                <outlet property="searchWikipediaBar" destination="34m-hF-hQH" id="53d-yD-R7o"/>
-                <outlet property="sidebarStyleButton" destination="nVW-V1-1tx" id="KSW-NU-IuF"/>
                 <outlet property="window" destination="f5Q-w8-6qz" id="pth-7K-k1k"/>
             </connections>
         </customObject>
@@ -16,9 +13,10 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="f5Q-w8-6qz" customClass="PWMainWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <rect key="contentRect" x="335" y="390" width="1338" height="1056"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-            <view key="contentView" id="gYk-FD-1cl">
+            <view key="contentView" id="gYk-FD-1cl" customClass="PWMainContentView">
                 <rect key="frame" x="0.0" y="0.0" width="1338" height="1056"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
@@ -26,7 +24,7 @@
                 <allowedToolbarItems/>
                 <defaultToolbarItems/>
                 <connections>
-                    <outlet property="delegate" destination="-2" id="CBq-Sl-vUY"/>
+                    <outlet property="delegate" destination="0YV-qA-Xbw" id="JKK-z8-EQi"/>
                 </connections>
             </toolbar>
             <point key="canvasLocation" x="830" y="662"/>
@@ -41,19 +39,19 @@
             </searchFieldCell>
             <point key="canvasLocation" x="990" y="-2"/>
         </searchField>
-        <customView id="cjA-YO-b28" customClass="PWNavButtons">
-            <rect key="frame" x="0.0" y="0.0" width="56" height="26"/>
+        <customView id="cjA-YO-b28" customClass="PWNavButtonsPairView">
+            <rect key="frame" x="0.0" y="0.0" width="56" height="24"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEs-0h-fYF">
-                    <rect key="frame" x="2" y="0.0" width="26" height="25"/>
-                    <buttonCell key="cell" type="roundTextured" title="go-backward" bezelStyle="texturedRounded" image="NSGoLeftTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ApR-CM-mBb">
+                    <rect key="frame" x="2" y="-1" width="26" height="25"/>
+                    <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSGoLeftTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ApR-CM-mBb">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qms-6d-6Oy">
-                    <rect key="frame" x="29" y="0.0" width="26" height="25"/>
+                    <rect key="frame" x="29" y="-1" width="26" height="25"/>
                     <buttonCell key="cell" type="roundTextured" title="go-forward" bezelStyle="texturedRounded" image="NSGoRightTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TRg-Jg-diy">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -71,6 +69,14 @@
             </buttonCell>
             <point key="canvasLocation" x="513" y="-26"/>
         </button>
+        <viewController id="0YV-qA-Xbw" customClass="PWToolbarController">
+            <connections>
+                <outlet property="navButtons" destination="cjA-YO-b28" id="biS-I6-nb7"/>
+                <outlet property="searchWikipediaBar" destination="34m-hF-hQH" id="Q88-4X-yM9"/>
+                <outlet property="sidebarStyleButton" destination="nVW-V1-1tx" id="Ney-Pn-95i"/>
+                <outlet property="toolbar" destination="Nqb-Bc-t9B" id="Zex-gV-vgl"/>
+            </connections>
+        </viewController>
     </objects>
     <resources>
         <image name="NSColumnViewTemplate" width="16" height="10"/>
