@@ -12,9 +12,6 @@
 
 - ( void ) awakeFromNib
     {
-    self.material= NSVisualEffectMaterialLight;
-    self.blendingMode = NSVisualEffectBlendingModeBehindWindow;
-    self.state = NSVisualEffectStateActive;
     }
 
 @end

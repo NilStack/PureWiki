@@ -1,5 +1,5 @@
 //
-//  PWMainContentView.h
+//  PWWikiContentView.h
 //  PureWiki
 //
 //  Created by Tong G. on 8/18/15.
@@ -7,6 +7,8 @@
 //
 
 @import Cocoa;
+@import WebKit;
 
-@interface PWMainContentView : NSView
+@interface PWWikiContentView : WebView
+
 @end

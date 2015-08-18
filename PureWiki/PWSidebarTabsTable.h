@@ -1,5 +1,5 @@
 //
-//  PWMainContentView.h
+//  PWSidebarTabsTable.h
 //  PureWiki
 //
 //  Created by Tong G. on 8/18/15.
@@ -8,5 +8,6 @@
 
 @import Cocoa;
 
-@interface PWMainContentView : NSView
+@interface PWSidebarTabsTable : NSTableView
+
 @end
