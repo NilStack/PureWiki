@@ -26,17 +26,16 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
     {
     if ( self = [ super initWithCoder: _Coder ] )
+        {
         self->_openedWikiPages = [ NSMutableArray array ];
 
-    return self;
-    }
+        [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                    selector: @selector( _didSearchSearchPages: )
+                                                        name: PureWikiDidSearchPagesNotif
+                                                      object: nil ];
+        }
 
-- ( void ) awakeFromNib
-    {
-    [ [ NSNotificationCenter defaultCenter ] addObserver: self
-                                                selector: @selector( _didSearchSearchPages: )
-                                                    name: PureWikiDidSearchPagesNotif
-                                                  object: nil ];
+    return self;
     }
 
 - ( void ) dealloc
