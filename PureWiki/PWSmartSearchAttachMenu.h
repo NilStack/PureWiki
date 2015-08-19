@@ -12,6 +12,7 @@
 
 @interface PWSmartSearchAttachMenu : NSMenu
 
+@property ( assign, readwrite ) NSSize size;
 @property ( strong ) PWSmartSearchAttachViewController* smartSearchAttachViewController;
 
 @end

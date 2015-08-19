@@ -16,7 +16,7 @@
 
 + ( instancetype ) attachViewController
     {
-    return [ [ [ self class ] alloc ] init ];
+    return [ [ [ self class ] alloc ] initWithSize: NSZeroSize ];
     }
 
 - ( instancetype ) init

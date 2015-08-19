@@ -11,6 +11,8 @@
 
 @implementation PWSmartSearchAttachMenu
 
+@dynamic size;
+
 - ( void ) awakeFromNib
     {
     self.smartSearchAttachViewController = [ [ PWSmartSearchAttachViewController alloc ] init ];
@@ -19,6 +21,16 @@
     [ fuckingItem setView: self.smartSearchAttachViewController.view ];
 
     [ self addItem: fuckingItem ];
+    }
+
+- ( void ) setSize: ( NSSize )_Size
+    {
+    [ self.smartSearchAttachViewController.view setFrameSize: _Size ];
+    }
+
+- ( NSSize ) size
+    {
+    return self.smartSearchAttachViewController.view.frame.size;
     }
 
 @end

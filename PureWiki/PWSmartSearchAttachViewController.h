@@ -6,7 +6,7 @@
 //  Copyright © 2015 TongKuo. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 
 @interface PWSmartSearchAttachViewController : NSViewController
 
