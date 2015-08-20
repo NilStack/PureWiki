@@ -23,11 +23,20 @@
 
 #import "PWSearchResultsAttachPanelController.h"
 #import "PWSearchResultsTableCellView.h"
+#import "PWActionNotifications.h"
+#import "PWSearchResultsAttachPanel.h"
+#import "PWSearchResultsTableView.h"
+#import "PWSearchResultsTableCellView.h"
+
+#import "WikiPage.h"
+#import "WikiRevision.h"
 
 NSString* const kResultsColumnID = @"results-column";
 
 // Private Interfaces
 @interface PWSearchResultsAttachPanelController ()
+
+- ( void ) _didSearchSearchPages: ( NSNotification* )_Notif;
 
 @end // Private Interfaces
 
@@ -43,11 +52,20 @@ NSString* const kResultsColumnID = @"results-column";
 - ( instancetype ) init
     {
     if ( self = [ super initWithWindowNibName: @"PWSearchResultsAttachPanel" owner: self ] )
-        self->_fetchedWikiPages = [ @[ @"One", @"Two", @"Three"
-                                     , @"Four", @"Five", @"Six"
-                                     , @"Seven", @"Eight", @"Nine"
-                                     ] mutableCopy ];
+        {
+        self->_fetchedWikiPages = [ NSMutableArray array ];
+        [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                    selector: @selector( _didSearchSearchPages: )
+                                                        name: PureWikiDidSearchPagesNotif
+                                                      object: nil ];
+        }
+
     return self;
+    }
+
+- ( void ) dealloc
+    {
+    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidSearchPagesNotif object: nil ];
     }
 
 - ( void ) windowDidLoad
@@ -81,9 +99,23 @@ NSString* const kResultsColumnID = @"results-column";
                     row: ( NSInteger )_Row
     {
     PWSearchResultsTableCellView* tableCellView = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
-    [ tableCellView.testButton setTitle: self->_fetchedWikiPages[ _Row ] ];
+    WikiPage* wikiPage = ( WikiPage* )( self->_fetchedWikiPages[ _Row ] );
+    [ tableCellView.pageTitleTextFiled setStringValue: wikiPage.title ];
+    [ tableCellView.pageSnippetTextFiled setStringValue: [ wikiPage.lastRevision.content substringToIndex: 200 ] ];
 
     return tableCellView;
+    }
+
+#pragma mark Private Interfaces
+- ( void ) _didSearchSearchPages: ( NSNotification* )_Notif
+    {
+    NSArray* matchedPages = _Notif.userInfo[ kPages ];
+
+    if ( matchedPages )
+        {
+        [ self->_fetchedWikiPages addObjectsFromArray: matchedPages ];
+        [ self.searchResultsTableView reloadData ];
+        }
     }
 
 @end // PWSearchResultsAttachPanelController class

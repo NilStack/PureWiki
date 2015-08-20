@@ -79,9 +79,6 @@
                     } ];
 
     [ self.smartSearchBar popupAttachPanel ];
-//    [ self.fuckingMenu popUpMenuPositioningItem: [ self.fuckingMenu itemAtIndex: 0 ]
-//                                     atLocation: NSMakePoint( NSMinX( self.smartSearchBar.frame ) - 3.f, NSMaxY( self.smartSearchBar.frame ) - 3.f )
-//                                         inView: self.smartSearchBar ];
     }
 
 @end // PWMainWindowController

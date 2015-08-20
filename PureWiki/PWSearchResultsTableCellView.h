@@ -27,7 +27,9 @@
 @interface PWSearchResultsTableCellView : NSTableCellView
 
 #pragma mark Outlets
-@property ( weak ) IBOutlet NSButton* testButton;
+@property ( weak ) IBOutlet NSImageView* pageImageView;
+@property ( weak ) IBOutlet NSTextField* pageTitleTextFiled;
+@property ( weak ) IBOutlet NSTextField* pageSnippetTextFiled;
 
 @end // PWSearchResultsTableCellView class
 

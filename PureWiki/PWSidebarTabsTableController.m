@@ -23,7 +23,6 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSidebarTabsTableController.h"
-#import "PWActionNotifications.h"
 #import "PWSidebarTabsTable.h"
 #import "WikiPage.h"
 
@@ -31,9 +30,6 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 
 // Private Interfaces
 @interface PWSidebarTabsTableController ()
-
-- ( void ) _didSearchSearchPages: ( NSNotification* )_Notif;
-
 @end // Private Interfaces
 
 // PWSidebarTabsTableController class
@@ -42,21 +38,9 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
     {
     if ( self = [ super initWithCoder: _Coder ] )
-        {
         self->_openedWikiPages = [ NSMutableArray array ];
 
-        [ [ NSNotificationCenter defaultCenter ] addObserver: self
-                                                    selector: @selector( _didSearchSearchPages: )
-                                                        name: PureWikiDidSearchPagesNotif
-                                                      object: nil ];
-        }
-
     return self;
-    }
-
-- ( void ) dealloc
-    {
-    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidSearchPagesNotif object: nil ];
     }
 
 #pragma mark Conforms to <NSTableViewDataSource>
@@ -87,18 +71,6 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     [ [ ( NSTableCellView* )resultView textField ] setStringValue: wikiPage.title ];
 
     return resultView;
-    }
-
-#pragma mark Private Interfaces
-- ( void ) _didSearchSearchPages: ( NSNotification* )_Notif
-    {
-    NSArray* matchedPages = _Notif.userInfo[ kPages ];
-
-    if ( matchedPages )
-        {
-        [ self->_openedWikiPages addObjectsFromArray: matchedPages ];
-        [ self.sidebarTabsTable reloadData ];
-        }
     }
 
 @end // PWSidebarTabsTableController class

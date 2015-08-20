@@ -31,7 +31,6 @@
 
 + ( id ) mainWindowController;
 
-@property ( strong ) IBOutlet NSMenu* fuckingMenu;
 @property ( weak ) IBOutlet PWSmartSearchBar* smartSearchBar;
 
 #pragma mark IBActions

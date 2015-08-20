@@ -24,6 +24,7 @@
 @import Cocoa;
 
 @class PWSearchResultsAttachPanel;
+@class PWSearchResultsTableView;
 
 // PWSearchResultsAttachPanelController class
 @interface PWSearchResultsAttachPanelController : NSWindowController
@@ -35,6 +36,7 @@
 
 #pragma mark Outlets
 @property ( weak ) IBOutlet PWSearchResultsAttachPanel* searchResultsAttachPanel;
+@property ( weak ) IBOutlet PWSearchResultsTableView* searchResultsTableView;
 
 #pragma mark Initializations
 + ( instancetype ) panelController;

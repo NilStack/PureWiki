@@ -7,6 +7,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PWSearchResultsAttachPanelController">
             <connections>
                 <outlet property="searchResultsAttachPanel" destination="QvC-M9-y7g" id="6mI-Yk-E4S"/>
+                <outlet property="searchResultsTableView" destination="weE-5Z-5VQ" id="MRX-Y9-Qeb"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="TUg-yV-soh"/>
             </connections>
         </customObject>
@@ -24,13 +25,13 @@
                     <visualEffectView appearanceType="vibrantLight" fixedFrame="YES" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="NEo-s5-ZXu">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="70" horizontalPageScroll="10" verticalLineScroll="70" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
+                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="90d-g9-3dd">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="68" rowSizeStyle="automatic" viewBased="YES" id="weE-5Z-5VQ" customClass="PWSearchResultsTableView">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="97" rowSizeStyle="automatic" viewBased="YES" id="weE-5Z-5VQ" customClass="PWSearchResultsTableView">
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -52,19 +53,34 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="6SG-g1-Ej4" customClass="PWSearchResultsTableCellView">
-                                                            <rect key="frame" x="1" y="1" width="447" height="68"/>
+                                                            <rect key="frame" x="1" y="1" width="447" height="97"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CPC-u2-haP">
-                                                                    <rect key="frame" x="182" y="17" width="82" height="32"/>
-                                                                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TSF-gw-EA0">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0o-Zm-5eO">
+                                                                    <rect key="frame" x="20" y="10" width="77" height="77"/>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="1ww-O4-IE6"/>
+                                                                </imageView>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2NN-X7-YRD">
+                                                                    <rect key="frame" x="105" y="70" width="326" height="17"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C++" id="QbM-3i-nep">
                                                                         <font key="font" metaFont="system"/>
-                                                                    </buttonCell>
-                                                                </button>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1p4-h1-gCb">
+                                                                    <rect key="frame" x="105" y="10" width="326" height="52"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C++ (pronounced as cee plus plus, /ˈsiː plʌs plʌs/)…" id="2dF-zc-FYO">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
                                                             </subviews>
                                                             <connections>
-                                                                <outlet property="testButton" destination="CPC-u2-haP" id="eOD-lX-xmp"/>
+                                                                <outlet property="pageImageView" destination="D0o-Zm-5eO" id="R0w-9Z-kzo"/>
+                                                                <outlet property="pageSnippetTextFiled" destination="1p4-h1-gCb" id="JUN-a6-lid"/>
+                                                                <outlet property="pageTitleTextFiled" destination="2NN-X7-YRD" id="fd0-O0-YZ4"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
