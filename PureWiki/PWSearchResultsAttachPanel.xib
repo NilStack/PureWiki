@@ -15,23 +15,23 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g" customClass="PWSearchResultsAttachPanel">
             <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="450" height="270"/>
+            <rect key="contentRect" x="196" y="240" width="450" height="450"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="450" height="270"/>
+                <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <visualEffectView appearanceType="vibrantLight" fixedFrame="YES" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="NEo-s5-ZXu">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                         <subviews>
                             <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="83" horizontalPageScroll="10" verticalLineScroll="83" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="270"/>
+                                <rect key="frame" x="20" y="0.0" width="410" height="450"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="90d-g9-3dd">
-                                    <rect key="frame" x="0.0" y="0.0" width="450" height="270"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="410" height="450"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="81" rowSizeStyle="automatic" viewBased="YES" id="weE-5Z-5VQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="450" height="270"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="410" height="450"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
@@ -70,7 +70,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="328" minWidth="40" maxWidth="1000" id="qPw-2R-S4c">
+                                                <tableColumn width="288" minWidth="40" maxWidth="1000" id="qPw-2R-S4c">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -84,7 +84,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="iNT-6B-Uun">
-                                                            <rect key="frame" x="120" y="1" width="328" height="81"/>
+                                                            <rect key="frame" x="120" y="1" width="288" height="81"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ETz-wn-IlX">
@@ -120,7 +120,10 @@
                     </visualEffectView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="286" y="557"/>
+            <connections>
+                <outlet property="panelVEView" destination="NEo-s5-ZXu" id="NF6-df-vj0"/>
+            </connections>
+            <point key="canvasLocation" x="286" y="652"/>
         </window>
     </objects>
 </document>
