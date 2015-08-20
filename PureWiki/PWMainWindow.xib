@@ -6,7 +6,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PWMainWindowController">
             <connections>
-                <outlet property="fuckingMenu" destination="JKB-wO-61F" id="tqc-BJ-bcT"/>
                 <outlet property="smartSearchBar" destination="34m-hF-hQH" id="CZK-XV-Ik9"/>
                 <outlet property="window" destination="f5Q-w8-6qz" id="pth-7K-k1k"/>
             </connections>
@@ -142,7 +141,6 @@
             </searchFieldCell>
             <connections>
                 <outlet property="delegate" destination="-2" id="b2y-nf-x0E"/>
-                <outlet property="smartSearchAttachMenu" destination="JKB-wO-61F" id="yR4-yS-uJH"/>
             </connections>
             <point key="canvasLocation" x="990" y="-2"/>
         </searchField>
@@ -191,9 +189,6 @@
             </connections>
         </viewController>
         <customObject id="AMe-C7-iJg" customClass="PWBrain"/>
-        <menu showsStateColumn="NO" id="JKB-wO-61F" customClass="PWSmartSearchAttachMenu">
-            <point key="canvasLocation" x="239" y="16.5"/>
-        </menu>
     </objects>
     <resources>
         <image name="NSColumnViewTemplate" width="16" height="10"/>

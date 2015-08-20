@@ -24,7 +24,6 @@
 
 @import Cocoa;
 
-@class PWSmartSearchAttachMenu;
 @class PWSearchResultsAttachPanelController;
 
 // PWSmartSearchBar class
@@ -34,14 +33,10 @@
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
     }
 
-#pragma mark Outlets
-@property ( weak ) IBOutlet PWSmartSearchAttachMenu* smartSearchAttachMenu;
-
 #pragma mark Ivar Properties
 @property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;
 
 #pragma mark Actions
-- ( void ) popupSearchAttachMenu;
 - ( void ) popupAttachPanel;
 
 @end // PWSmartSearchBar class

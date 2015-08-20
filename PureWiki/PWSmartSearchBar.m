@@ -23,7 +23,6 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSmartSearchBar.h"
-#import "PWSmartSearchAttachMenu.h"
 #import "PWSearchResultsAttachPanelController.h"
 
 // PWSmartSearchBar class
@@ -35,20 +34,6 @@
 - ( void ) awakeFromNib
     {
     self->_attachPanelController = [ PWSearchResultsAttachPanelController panelController ];
-    }
-
-- ( void ) popupSearchAttachMenu
-    {
-    if ( self.smartSearchAttachMenu.size.width != NSWidth( self.frame ) )
-        {
-        NSSize oldSmartSearchAttachMenuSize = self.smartSearchAttachMenu.size;
-        oldSmartSearchAttachMenuSize.width = NSWidth( self.frame );
-        [ self.smartSearchAttachMenu setSize: oldSmartSearchAttachMenuSize ];
-        }
-
-    [ self.smartSearchAttachMenu popUpMenuPositioningItem: [ self.smartSearchAttachMenu itemAtIndex: 0 ]
-                                               atLocation: NSMakePoint( NSMinX( self.frame ) - 3.f, NSMaxY( self.frame ) - 3.f )
-                                                   inView: self ];
     }
 
 - ( void ) popupAttachPanel
