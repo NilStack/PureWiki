@@ -45,23 +45,23 @@
     {
     self.titleVisibility = NSWindowTitleHidden;
 
-    NSImage* image = [ self performSelector: @selector( _cornerMask ) asClass: self.superclass ];
-    NSLog( @"%@", image );
-
-    image = [ self performSelector: @selector( _cornerMask ) asClass: self.superclass ];
-    NSLog( @"%@", image );
-
-    NSImage* image1 = [ self performSelector: @selector( _cornerMask ) asClass: self.class ];
-    NSLog( @"%@", image1 );
+//    NSImage* image = [ self performSelector: @selector( _cornerMask ) asClass: self.superclass ];
+//    NSLog( @"%@", image );
+//
+//    image = [ self performSelector: @selector( _cornerMask ) asClass: self.superclass ];
+//    NSLog( @"%@", image );
+//
+//    NSImage* image1 = [ self performSelector: @selector( _cornerMask ) asClass: self.class ];
+//    NSLog( @"%@", image1 );
     }
 
-- ( NSImage* ) _cornerMask
-    {
-    NSImage* image1 = [ self performSelector: @selector( _cornerMask ) asClass: self.superclass ];
-    NSLog( @"🐒%@", image1 );
-
-    return nil;
-    }
+//- ( NSImage* ) _cornerMask
+//    {
+//    NSImage* image1 = [ self performSelector: @selector( _cornerMask ) asClass: self.superclass ];
+//    NSLog( @"🐒%@", image1 );
+//
+//    return nil;
+//    }
 
 @end
 

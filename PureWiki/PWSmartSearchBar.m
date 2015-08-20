@@ -24,15 +24,17 @@
 
 #import "PWSmartSearchBar.h"
 #import "PWSmartSearchAttachMenu.h"
+#import "PWSearchResultsAttachPanelController.h"
 
 // PWSmartSearchBar class
 @implementation PWSmartSearchBar
 
-- ( void ) drawRect: ( NSRect )_DirtyRect
+@dynamic attachPanelController;
+
+#pragma mark Initializations
+- ( void ) awakeFromNib
     {
-    [ super drawRect: _DirtyRect ];
-    
-    // Drawing code here.
+    self->_attachPanelController = [ PWSearchResultsAttachPanelController panelController ];
     }
 
 - ( void ) popupSearchAttachMenu
@@ -47,6 +49,25 @@
     [ self.smartSearchAttachMenu popUpMenuPositioningItem: [ self.smartSearchAttachMenu itemAtIndex: 0 ]
                                                atLocation: NSMakePoint( NSMinX( self.frame ) - 3.f, NSMaxY( self.frame ) - 3.f )
                                                    inView: self ];
+    }
+
+- ( void ) popupAttachPanel
+    {
+    NSRect windowFrame = [ self convertRect: self.frame toView: nil ];
+    NSRect screenFrame = [ self.window convertRectToScreen: windowFrame ];
+
+    NSPoint origin = screenFrame.origin;
+    origin.x -= 3.5f;
+    origin.y -= NSHeight( self->_attachPanelController.window.frame ) - 4.f;
+
+    [ self->_attachPanelController.window setFrameOrigin: origin ];
+    [ self->_attachPanelController.window makeKeyAndOrderFront: self ];
+    }
+
+#pragma mark Dynamic Properties
+- ( PWSearchResultsAttachPanelController* ) attachPanelController
+    {
+    return self->_attachPanelController;
     }
 
 @end // PWSmartSearchBar class
