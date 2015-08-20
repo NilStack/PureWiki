@@ -25,6 +25,7 @@
 @import Foundation;
 
 NSString extern* const PureWikiDidSearchPagesNotif;
+NSString extern* const PureWikiDidEmptySearchNotif;
 
 NSString extern* const kPages;
 

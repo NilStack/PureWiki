@@ -25,6 +25,7 @@
 #import "PWActionNotifications.h"
 
 NSString* const PureWikiDidSearchPagesNotif = @"PureWikiDidSearchPagesNotif";
+NSString* const PureWikiDidEmptySearchNotif = @"PureWikiDidEmptySearchNotif";
 
 NSString* const kPages = @"kPages";
 

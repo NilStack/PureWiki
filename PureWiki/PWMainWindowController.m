@@ -30,12 +30,19 @@
 
 // Private Interfaces
 @interface PWMainWindowController ()
+
+// Timer
+- ( void ) _timerFireMethod: ( NSTimer* )_Timer;
+
+// Searching
+- ( void ) _searchWikiPagesBasedThatHaveValue: ( NSString* )_Value;
+
 @end // Private Interfaces
 
 // prefixWindowController class
 @implementation PWMainWindowController
 
-#pragma mark Initializers
+#pragma mark Initializations
 + ( instancetype ) mainWindowController
     {
     return [ [ [ self class ] alloc ] init ];
@@ -44,20 +51,57 @@
 - ( instancetype ) init
     {
     if ( self = [ super initWithWindowNibName: @"PWMainWindow" ] )
-        {
-
-        }
+        ;
 
     return self;
     }
 
-#pragma mark Conforms <NSNibAwaking> protocol
-- ( void ) awakeFromNib
+#pragma mark IBActions
+- ( IBAction ) searchWikipediaAction: ( id )_Sender
     {
     // TODO:
     }
 
-#pragma mark IBActions
+#pragma mark Conforms to <NSTextFieldDelegate>
+- ( void ) controlTextDidChange: ( nonnull NSNotification* )_Notif
+    {
+    NSTextView* fieldView = _Notif.userInfo[ @"NSFieldEditor" ];
+    NSString* searchValue = fieldView.string;
+
+    // TODO:
+    if ( searchValue.length > 0 )
+        {
+        [ self->_timer invalidate ];
+        self->_timer = [ NSTimer timerWithTimeInterval: ( NSTimeInterval ).6f
+                                                target: self
+                                              selector: @selector( _timerFireMethod: )
+                                              userInfo: @{ @"value" : searchValue }
+                                               repeats: NO ];
+
+        [ [ NSRunLoop currentRunLoop ] addTimer: self->_timer forMode: NSDefaultRunLoopMode ];
+        }
+
+    // if user emptied the search field
+    else if ( searchValue.length == 0 )
+        {
+        [ self->_timer invalidate ];
+        self->_timer = nil;
+
+        [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidEmptySearchNotif
+                                                               object: self
+                                                             userInfo: nil ];
+        }
+    }
+
+#pragma mark Private Interfaces
+- ( void ) _timerFireMethod: ( NSTimer* )_Timer
+    {
+    NSLog( @"%s", __PRETTY_FUNCTION__ );
+
+    [ self _searchWikiPagesBasedThatHaveValue: _Timer.userInfo[ @"value" ] ];
+    [ _Timer invalidate ];
+    }
+
 - ( void ) _searchWikiPagesBasedThatHaveValue: ( NSString* )_Value
     {
     [ [ PWBrain wiseBrain ] searchAllPagesThatHaveValue: _Value
@@ -78,53 +122,6 @@
                     } ];
 
     [ self.smartSearchBar popupAttachPanel ];
-    }
-
-- ( void ) timerFireMethod: ( NSTimer* )_Timer
-    {
-    [ self _searchWikiPagesBasedThatHaveValue: _Timer.userInfo[ @"value" ] ];
-    }
-
-- ( IBAction ) searchWikipediaAction: ( id )_Sender
-    {
-//    NSString* searchValue = [ ( NSSearchField* )_Sender stringValue ];
-//    [ [ PWBrain wiseBrain ] searchAllPagesThatHaveValue: searchValue
-//                                           inNamespaces: nil
-//                                                   what: WikiEngineSearchWhatPageText
-//                                                  limit: 10
-//                                                success:
-//        ^( NSArray* _MatchedPages )
-//            {
-//            if ( _MatchedPages )
-//                [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidSearchPagesNotif
-//                                                                       object: self
-//                                                                     userInfo: @{ kPages : _MatchedPages } ];
-//            } failure:
-//                ^( NSError* _Error )
-//                    {
-//                    NSLog( @"%@", _Error );
-//                    } ];
-//
-//    [ self.smartSearchBar popupAttachPanel ];
-    }
-
-#pragma mark Conforms to <NSTextFieldDelegate>
-- ( void ) controlTextDidChange: ( nonnull NSNotification* )_Notif
-    {
-    NSTextView* fieldView = _Notif.userInfo[ @"NSFieldEditor" ];
-    NSString* searchValue = fieldView.string;
-
-    // TODO:
-    if ( searchValue )
-        {
-        [ self->_timer invalidate ];
-        self->_timer = [ NSTimer timerWithTimeInterval: ( NSTimeInterval )1.f
-                                                target: self
-                                              selector: @selector( timerFireMethod: )
-                                              userInfo: @{ @"value" : searchValue }
-                                               repeats: NO ];
-        [ self->_timer fire ];
-        }
     }
 
 @end // PWMainWindowController

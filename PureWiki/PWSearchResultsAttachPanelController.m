@@ -37,6 +37,7 @@ NSString* const kResultsColumnID = @"results-column";
 @interface PWSearchResultsAttachPanelController ()
 
 - ( void ) _didSearchSearchPages: ( NSNotification* )_Notif;
+- ( void ) _didEmptySearchContent: ( NSNotification* )_Notif;
 
 @end // Private Interfaces
 
@@ -54,9 +55,15 @@ NSString* const kResultsColumnID = @"results-column";
     if ( self = [ super initWithWindowNibName: @"PWSearchResultsAttachPanel" owner: self ] )
         {
         self->_fetchedWikiPages = [ NSMutableArray array ];
+
         [ [ NSNotificationCenter defaultCenter ] addObserver: self
                                                     selector: @selector( _didSearchSearchPages: )
                                                         name: PureWikiDidSearchPagesNotif
+                                                      object: nil ];
+
+        [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                    selector: @selector( _didEmptySearchContent: )
+                                                        name: PureWikiDidEmptySearchNotif
                                                       object: nil ];
         }
 
@@ -66,6 +73,7 @@ NSString* const kResultsColumnID = @"results-column";
 - ( void ) dealloc
     {
     [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidSearchPagesNotif object: nil ];
+    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidEmptySearchNotif object: nil ];
     }
 
 - ( void ) windowDidLoad
@@ -117,6 +125,14 @@ NSString* const kResultsColumnID = @"results-column";
         [ self->_fetchedWikiPages addObjectsFromArray: matchedPages ];
         [ self.searchResultsTableView reloadData ];
         }
+    }
+
+- ( void ) _didEmptySearchContent: ( NSNotification* )_Notif
+    {
+    [ self->_fetchedWikiPages removeAllObjects ];
+    [ self.searchResultsTableView reloadData ];
+
+    [ self.window close ];
     }
 
 @end // PWSearchResultsAttachPanelController class
