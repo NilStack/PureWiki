@@ -25,20 +25,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                         <subviews>
                             <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="70" horizontalPageScroll="10" verticalLineScroll="70" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
-                                <rect key="frame" x="20" y="0.0" width="410" height="450"/>
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="90d-g9-3dd">
-                                    <rect key="frame" x="0.0" y="0.0" width="410" height="450"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="68" rowSizeStyle="automatic" viewBased="YES" id="weE-5Z-5VQ" customClass="PWSearchResultsTableView">
-                                            <rect key="frame" x="0.0" y="0.0" width="410" height="450"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                             <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="406" minWidth="40" maxWidth="1000" id="iBY-Ct-yWY">
+                                                <tableColumn identifier="results-column" width="447" minWidth="40" maxWidth="1000" id="iBY-Ct-yWY">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -52,11 +52,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="6SG-g1-Ej4" customClass="PWSearchResultsTableCellView">
-                                                            <rect key="frame" x="1" y="1" width="406" height="68"/>
+                                                            <rect key="frame" x="1" y="1" width="447" height="68"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CPC-u2-haP">
-                                                                    <rect key="frame" x="162" y="17" width="82" height="32"/>
+                                                                    <rect key="frame" x="182" y="17" width="82" height="32"/>
                                                                     <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TSF-gw-EA0">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
@@ -70,6 +70,10 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="-2" id="s8w-jV-1H9"/>
+                                                <outlet property="delegate" destination="-2" id="1Qg-YJ-cdi"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>

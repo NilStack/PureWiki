@@ -27,6 +27,11 @@
 
 // PWSearchResultsAttachPanelController class
 @interface PWSearchResultsAttachPanelController : NSWindowController
+    <NSTableViewDataSource, NSTableViewDelegate>
+    {
+@protected
+    NSMutableArray __strong* _fetchedWikiPages;    // Used as backing store
+    }
 
 #pragma mark Outlets
 @property ( weak ) IBOutlet PWSearchResultsAttachPanel* searchResultsAttachPanel;
