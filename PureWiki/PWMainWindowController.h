@@ -27,7 +27,11 @@
 @class PWSmartSearchBar;
 
 // PWMainWindowController class
-@interface PWMainWindowController : NSWindowController <NSTextViewDelegate>
+@interface PWMainWindowController : NSWindowController <NSTextFieldDelegate>
+    {
+@protected
+    NSTimer __strong* _timer;
+    }
 
 + ( id ) mainWindowController;
 
