@@ -62,7 +62,7 @@
     {
     [ super drawRect: _DirtyRect ];
 
-    [ [ NSColor whiteColor ] set ];
+    [ [ NSColor blackColor ] set ];
     NSRectFill( _DirtyRect );
     }
 

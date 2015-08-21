@@ -26,13 +26,18 @@
 @import WebKit;
 
 @class WikiPage;
+@class PWCastrateFactory;
 
 // PWWikiContentView class
-@interface PWWikiContentView : NSView
+@interface PWWikiContentView : NSView <WebFrameLoadDelegate>
     {
 @private
     WikiPage __strong* _wikiPage;
     WebView __strong* _backingWebView;
+
+    NSString __strong* _pageArchivePath;
+
+    PWCastrateFactory __strong* _castrateFactory;
     }
 
 #pragma mark Outlets
