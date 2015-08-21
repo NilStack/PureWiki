@@ -21,20 +21,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwD-Ap-aVJ" customClass="PWSplitView">
-                        <rect key="frame" x="0.0" y="0.0" width="1338" height="1018"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1338" height="1056"/>
                         <subviews>
                             <visualEffectView appearanceType="vibrantLight" fixedFrame="YES" blendingMode="behindWindow" state="followsWindowActiveState" id="KMR-gf-LRD">
-                                <rect key="frame" x="0.0" y="0.0" width="271" height="1018"/>
+                                <rect key="frame" x="0.0" y="0.0" width="271" height="1056"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMc-KE-Bwg">
-                                        <rect key="frame" x="0.0" y="0.0" width="271" height="975"/>
+                                        <rect key="frame" x="0.0" y="38" width="271" height="930"/>
                                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="ZIl-WM-q3A">
-                                            <rect key="frame" x="0.0" y="0.0" width="271" height="975"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="271" height="930"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="97" rowSizeStyle="automatic" viewBased="YES" id="wU4-4o-6Ew" customClass="PWSidebarTabsTable">
-                                                    <rect key="frame" x="0.0" y="0.0" width="271" height="975"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="271" height="930"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -105,7 +105,7 @@
                                         </scroller>
                                     </scrollView>
                                     <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-PV-CRz">
-                                        <rect key="frame" x="20" y="985" width="231" height="22"/>
+                                        <rect key="frame" x="20" y="983" width="231" height="22"/>
                                         <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="EEI-TF-J4h">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -115,7 +115,7 @@
                                 </subviews>
                             </visualEffectView>
                             <customView fixedFrame="YES" id="QEV-J8-37j" customClass="PWStackContainerView">
-                                <rect key="frame" x="272" y="0.0" width="1066" height="1018"/>
+                                <rect key="frame" x="272" y="0.0" width="1066" height="1056"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </customView>
                         </subviews>
@@ -129,7 +129,7 @@
                     <constraint firstAttribute="bottom" secondItem="KwD-Ap-aVJ" secondAttribute="bottom" id="8uH-jg-D1C"/>
                     <constraint firstAttribute="trailing" secondItem="KwD-Ap-aVJ" secondAttribute="trailing" id="iIo-4I-xXI"/>
                     <constraint firstItem="KwD-Ap-aVJ" firstAttribute="leading" secondItem="gYk-FD-1cl" secondAttribute="leading" id="ivv-qo-cCz"/>
-                    <constraint firstItem="KwD-Ap-aVJ" firstAttribute="top" secondItem="gYk-FD-1cl" secondAttribute="top" constant="38" id="lqh-wO-f5f"/>
+                    <constraint firstItem="KwD-Ap-aVJ" firstAttribute="top" secondItem="gYk-FD-1cl" secondAttribute="top" id="lqh-wO-f5f"/>
                 </constraints>
             </view>
             <toolbar key="toolbar" implicitIdentifier="3F449748-A780-40AE-B923-7A62B6BDA9DD" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="Nqb-Bc-t9B">

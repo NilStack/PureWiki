@@ -28,6 +28,6 @@
     DOMHTMLLinkElement __strong* _fuckingLinkElement;
     }
 
-- ( WebArchive* ) castrateHTMLDocument: ( DOMHTMLDocument* )_HTMLDocument URL: ( NSURL* )_URL oldArchive: ( WebArchive* )_OldArchive;
+- ( WebArchive* ) castrateFrame: ( WebFrame* )_Frame;
 
 @end // PWCastrateFactory class

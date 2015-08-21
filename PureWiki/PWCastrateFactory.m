@@ -26,14 +26,70 @@
         self->_imageElements = [ NSMutableArray array ];
         self->_styleDeclarations = [ NSMutableArray array ];
         self->_toBeCastrated = [ NSMutableArray array ];
+
+        self->_cssLabURL = [ [ NSBundle mainBundle ] URLForResource: @"purewiki-css" withExtension: @"css" ];
         }
 
     return self;
     }
 
-- ( WebArchive* ) castrateHTMLDocument: ( DOMHTMLDocument* )_HTMLDocument URL: ( NSURL* )_URL oldArchive: ( WebArchive* )_OldArchive
+- ( WebArchive* ) castrateFrame: ( WebFrame* )_Frame;
     {
-    return nil;
+    WebArchive* webArchive = _Frame.dataSource.webArchive;
+    DOMHTMLDocument* document = ( DOMHTMLDocument* )( _Frame.DOMDocument );
+
+    [ self _traverseDOMNodes: document ];
+
+    for ( DOMHTMLElement* _HTMLElem in self->_toBeCastrated )
+        if ( _HTMLElem )
+            [ _HTMLElem.parentElement removeChild: _HTMLElem ];
+
+    DOMHTMLLinkElement* linkElement = nil;
+    for ( DOMHTMLElement* _HTMLElem in self->_toBeCastrated )
+        {
+        if ( [ _HTMLElem isKindOfClass: [ DOMHTMLLinkElement class ] ] )
+            {
+            linkElement = ( DOMHTMLLinkElement* )_HTMLElem;
+            break;
+            }
+        }
+
+//        [ linkElement setHref: self->_cssLabURL.absoluteString ];
+//
+//        [ self->_headElement appendChild: linkElement ];
+    DOMHTMLDivElement* h2Child = ( DOMHTMLDivElement* )( self->_toctitleElement.firstElementChild );
+    [ h2Child setIdName: @"purewiki-ed-toctitle" ];
+
+    DOMNamedNodeMap* attrsOfHlistTableDataElement = [ self->_hlistTableDataElement attributes ];
+    for ( int _Index = 0; _Index < attrsOfHlistTableDataElement.length; _Index++ )
+        {
+        DOMAttr* attr = ( DOMAttr* )[ attrsOfHlistTableDataElement item: _Index ];
+        if ( [ attr.name isEqualToString: @"style" ] )
+            [ attrsOfHlistTableDataElement removeNamedItem: @"style" ];
+        }
+
+    // Get the string representation of the current DOM tree
+    NSURL* mainResourceURL = _Frame.dataSource.request.URL;
+    NSString* sourceCSS = [ NSString stringWithContentsOfURL: self->_cssLabURL encoding: NSUTF8StringEncoding error: nil ];
+
+    DOMHTMLStyleElement* newStyleElement = ( DOMHTMLStyleElement* )[ self->_styleElement cloneNode: YES ];
+    [ newStyleElement setClassName: @"purewiki-ed-css" ];
+    [ newStyleElement setIdName: @"" ];
+    [ ( DOMText* )( newStyleElement.firstChild ) replaceWholeText: sourceCSS ];
+    [ self->_headElement appendChild: newStyleElement ];
+
+    NSString* sourceHTML = [ document.documentElement outerHTML ];
+
+    NSData* sourceHTMLDataRef = [ sourceHTML dataUsingEncoding: NSUTF8StringEncoding ];
+
+    WebResource* newMainResource = [ [ WebResource alloc ] initWithData: sourceHTMLDataRef URL: mainResourceURL MIMEType: @"text/html" textEncodingName: @"utf-8" frameName: @"" ];
+
+    WebArchive* oldWebArchive = webArchive;
+    WebArchive* newWebArchive = [ [ WebArchive alloc ] initWithMainResource: newMainResource subresources: [ oldWebArchive subresources ] subframeArchives: oldWebArchive.subframeArchives ];
+
+//        self->_fuckingLinkElement = nil;
+
+    return newWebArchive;
     }
 
 - ( void ) _traverseNamedNodeMap: ( DOMNode* )_DOMNode

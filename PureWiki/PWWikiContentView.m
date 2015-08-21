@@ -78,8 +78,6 @@
     {
     if ( _Frame == [ _WebView mainFrame ] )
         {
-        WebArchive* webArchive = _Frame.dataSource.webArchive;
-
         if ( ![ [ NSFileManager defaultManager ] fileExistsAtPath: self._archivePath isDirectory: nil ] )
             [ [ NSFileManager defaultManager ] createDirectoryAtPath: self._archivePath withIntermediateDirectories: NO attributes: nil error: nil ];
 
@@ -87,14 +85,14 @@
         NSString* base64edPageTitle = [ [ pageTitle dataUsingEncoding: NSUTF8StringEncoding ] base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength ];
         self->_pageArchivePath = [ self._archivePath stringByAppendingPathComponent: [ NSString stringWithFormat: @"/%@.webarchive", base64edPageTitle ] ];
 
-        WebArchive* castratedArchive = [ self->_castrateFactory castrateHTMLDocument: ( DOMHTMLDocument* )( _Frame.DOMDocument ) URL: _Frame.dataSource.request.URL oldArchive: webArchive ];
-        [ self.webView.mainFrame loadArchive: webArchive ];
+        WebArchive* castratedArchive = [ self->_castrateFactory castrateFrame: _Frame ];
+        [ self.webView.mainFrame loadArchive: castratedArchive ];
 
-        NSError* error = nil;
-        if ( !error )
-            [ castratedArchive.data writeToFile: self->_pageArchivePath options: NSDataWritingAtomic error: &error ];
-        else
-            NSLog( @"error" );
+//        NSError* error = nil;
+//        if ( !error )
+//            [ castratedArchive.data writeToFile: self->_pageArchivePath options: NSDataWritingAtomic error: &error ];
+//        else
+//            NSLog( @"error" );
         }
     }
 

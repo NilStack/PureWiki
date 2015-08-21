@@ -4748,7 +4748,7 @@ div#simpleSearch {
 body {
     font-family: "Athelas", sans-serif;
     font-size: 1.17em;
-    font-weight: normal;
+    font-weight: 30;
     }
 
 code, pre {
@@ -4771,7 +4771,7 @@ td.hlist {
     }
 
 body {
-    -webkit-transform: translate3d( 0, 0, 0 );
+/*    -webkit-transform: translate3d( 0, 0, 0 );*/
     -webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
 }
