@@ -29,6 +29,8 @@
 
 #import "WikiPage.h"
 
+#import "PureLayout.h"
+
 // Private Interfaces
 @interface PWStackContainerView ()
 
@@ -77,8 +79,10 @@
             [ self->_pagesStack addEntriesFromDictionary: @{ wikiPage : wikiContentViewController } ];
         }
 
+    [ self setSubviews: @[] ];
     PWWikiContentViewController* contentViewController = self->_pagesStack[ wikiPage ];
-    
+    [ self addSubview: contentViewController.view ];
+    [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
 
 //    NSLog( @"Fucking Page: %@", _Notif.userInfo[ kPage ] );
     }
