@@ -1,10 +1,26 @@
-//
-//  PWCastrateFactory.m
-//  PureWiki
-//
-//  Created by Tong G. on 8/22/15.
-//  Copyright © 2015 TongKuo. All rights reserved.
-//
+/*=============================================================================┐
+|             _  _  _       _                                                  |  
+|            (_)(_)(_)     | |                            _                    |██
+|             _  _  _ _____| | ____ ___  ____  _____    _| |_ ___              |██
+|            | || || | ___ | |/ ___) _ \|    \| ___ |  (_   _) _ \             |██
+|            | || || | ____| ( (__| |_| | | | | ____|    | || |_| |            |██
+|             \_____/|_____)\_)____)___/|_|_|_|_____)     \__)___/             |██
+|                                                                              |██
+|                 ______                   _  _  _ _ _     _ _                 |██
+|                (_____ \                 (_)(_)(_|_) |   (_) |                |██
+|                 _____) )   _  ____ _____ _  _  _ _| |  _ _| |                |██
+|                |  ____/ | | |/ ___) ___ | || || | | |_/ ) |_|                |██
+|                | |    | |_| | |   | ____| || || | |  _ (| |_                 |██
+|                |_|    |____/|_|   |_____)\_____/|_|_| \_)_|_|                |██
+|                                                                              |██
+|                                                                              |██
+|                         Copyright (c) 2015 Tong Kuo                          |██
+|                                                                              |██
+|                             ALL RIGHTS RESERVED.                             |██
+|                                                                              |██
+└==============================================================================┘██
+  ████████████████████████████████████████████████████████████████████████████████
+  ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWCastrateFactory.h"
 
@@ -131,16 +147,18 @@
                 [ self->_toBeCastrated addObject: node ];
             }
 
+        // <head>
         if ( [ node isKindOfClass: [ DOMHTMLHeadElement class ] ] )
             self->_headElement = ( DOMHTMLHeadElement* )node;
 
+        // <style>
         if ( [ node isKindOfClass: [ DOMHTMLStyleElement class ] ] )
             self->_styleElement = ( DOMHTMLStyleElement* )node;
 
+        // <div>
         if ( [ node isKindOfClass: [ DOMHTMLDivElement class ] ] )
             if ( [ [ ( DOMHTMLDivElement* )node idName ] isEqualToString: @"toctitle" ] )
                 self->_toctitleElement = ( DOMHTMLDivElement* )node;
-
 
         // <td>
         if ( [ node isKindOfClass: [ DOMHTMLTableCellElement class ] ] )
@@ -161,10 +179,7 @@
                     NSString* attrValue = [ attrs item: _Index ].nodeValue;
 
                     if ( [ attrName isEqualToString: @"rel" ] && [ attrValue isEqualToString: @"stylesheet" ] )
-                        {
-                        NSLog( @"Deleting…" );
                         [ self->_toBeCastrated addObject: linkElement ];
-                        }
                     }
                 }
             }
@@ -200,3 +215,23 @@
     }
 
 @end // PWCastrateFactory class
+
+/*===============================================================================┐
+|                                                                                | 
+|                      ++++++     =++++~     +++=     =+++                       | 
+|                        +++,       +++      =+        ++                        | 
+|                        =+++       ~+++     +        =+                         | 
+|                         +++=       =++=   +=        +                          | 
+|                          +++        +++= +=        +=                          | 
+|                          =+++        ++++=        =+                           | 
+|                           +++=       =+++         +                            | 
+|                            +++~       +++=       +=                            | 
+|                            ,+++      ~++++=     ==                             | 
+|                             ++++     +  +++     +                              | 
+|                              +++=   +   ~+++   +,                              | 
+|                               +++  +:    =+++ ==                               | 
+|                               =++++=      +++++                                | 
+|                                +++=        +++                                 | 
+|                                 ++          +=                                 | 
+|                                                                                | 
+└===============================================================================*/
