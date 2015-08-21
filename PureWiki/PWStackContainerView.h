@@ -24,8 +24,16 @@
 
 @import Cocoa;
 
+@class PWWikiContentView;
+@class PWWikiContentViewController;
+
 // PWStackContainerView class
 @interface PWStackContainerView : NSView
+    {
+@protected
+    // @{ WikiPage : PWWikiContentViewController }
+    NSMutableDictionary __strong* _pagesStack;
+    }
 
 @end // PWStackContainerView class
 

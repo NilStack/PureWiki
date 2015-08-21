@@ -26,6 +26,7 @@
 #import "PWSidebarTabsTable.h"
 #import "PWSidebarTabsTableCell.h"
 #import "PWActionNotifications.h"
+#import "PWActionNotifications.h"
 
 #import "WikiPage.h"
 
@@ -91,13 +92,26 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     return resultCellView;
     }
 
+- ( void ) tableViewSelectionDidChange: ( nonnull NSNotification* )_Notification
+    {
+    NSInteger selectedRowIndex = self.sidebarTabsTable.selectedRow;
+
+    NSNotification* notif = [ NSNotification notificationWithName: PureWikiTabsSelectionDidChangeNotif
+                                                           object: self
+                                                         userInfo: @{ kPage : self->_openedWikiPages[ selectedRowIndex ] } ];
+
+    [ [ NSNotificationCenter defaultCenter ] postNotification: notif ];
+    }
+
 #pragma mark Private Interfaces
 - ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif
     {
     WikiPage* wikiPage = _Notif.userInfo[ kPage ];
     [ self->_openedWikiPages addObject: wikiPage ];
-
     [ self.sidebarTabsTable reloadData ];
+
+    NSIndexSet* selectRowIndexes = [ NSIndexSet indexSetWithIndex: self->_openedWikiPages.count - 1 ];
+    [ self.sidebarTabsTable selectRowIndexes: selectRowIndexes byExtendingSelection: NO ];
     }
 
 @end // PWSidebarTabsTableController class

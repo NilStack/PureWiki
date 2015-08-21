@@ -44,7 +44,7 @@
 
 - ( instancetype ) initWithWikiPage: ( WikiPage* )_WikiPage
     {
-    if ( self = [ super initWithNibName: @"PWWikiContentViewController" bundle: [ NSBundle mainBundle ] ] )
+    if ( self = [ super initWithNibName: @"PWWikiContentView" bundle: [ NSBundle mainBundle ] ] )
         [ self.wikiContentView setWikiPage: _WikiPage ];
 
     return self;

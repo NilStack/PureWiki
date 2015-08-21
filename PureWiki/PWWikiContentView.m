@@ -44,7 +44,6 @@
     if ( self->_wikiPage != _WikiPage )
         {
         self->_wikiPage = _WikiPage;
-
         NSLog( @"%@", self->_wikiPage );
         }
     }
