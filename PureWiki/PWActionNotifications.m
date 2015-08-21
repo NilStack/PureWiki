@@ -26,7 +26,9 @@
 
 NSString* const PureWikiDidSearchPagesNotif = @"PureWikiDidSearchPagesNotif";
 NSString* const PureWikiDidEmptySearchNotif = @"PureWikiDidEmptySearchNotif";
+NSString* const PureWikiDidPickUpSearchItemNotif = @"PureWikiDidPickUpSearchItemNotif";
 
+NSString* const kPage = @"kPage";
 NSString* const kPages = @"kPages";
 
 /*===============================================================================┐

@@ -24,9 +24,15 @@
 
 #import "PWSidebarTabsTable.h"
 
+// PWSidebarTabsTable class
 @implementation PWSidebarTabsTable
 
-@end
+- ( void ) awakeFromNib
+    {
+    [ self setAllowsEmptySelection: NO ];
+    }
+
+@end // PWSidebarTabsTable class
 
 /*===============================================================================┐
 |                                                                                | 

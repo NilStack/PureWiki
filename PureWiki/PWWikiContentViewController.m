@@ -22,27 +22,41 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
-@import WebKit;
+#import "PWWikiContentViewController.h"
+#import "PWWikiContentView.h"
 
-@class WikiPage;
+#import "WikiPage.h"
 
-// PWSidebarTabsTableCell class
-@interface PWSidebarTabsTableCell : NSTableCellView
+// Private Interfaces
+@interface PWWikiContentViewController ()
+@end // Private Interfaces
+
+// PWWikiContentViewController class
+@implementation PWWikiContentViewController
+
+@dynamic wikiContentView;
+
+#pragma mark Initializations
++ ( instancetype ) controllerWithWikiPage: ( WikiPage* )_WikiPage
     {
-@private
-    WikiPage __strong* _wikiPage;
+    return [ [ [ self class ] alloc ] initWithWikiPage: _WikiPage ];
+    }
+
+- ( instancetype ) initWithWikiPage: ( WikiPage* )_WikiPage
+    {
+    if ( self = [ super initWithNibName: @"PWWikiContentViewController" bundle: [ NSBundle mainBundle ] ] )
+        [ self.wikiContentView setWikiPage: _WikiPage ];
+
+    return self;
     }
 
 #pragma mark Ivar Properties
-@property ( strong, readwrite ) WikiPage* wikiPage;
+- ( PWWikiContentView* ) wikiContentView
+    {
+    return ( PWWikiContentView* )( self.view );
+    }
 
-#pragma mark Outlets
-@property ( weak ) IBOutlet NSImageView* pageImageView;
-@property ( weak ) IBOutlet NSTextField* pageTitleTextField;
-@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
-
-@end // PWSidebarTabsTableCell class
+@end // PWWikiContentViewController class
 
 /*===============================================================================┐
 |                                                                                | 

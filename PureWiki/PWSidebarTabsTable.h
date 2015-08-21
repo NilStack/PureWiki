@@ -24,9 +24,10 @@
 
 @import Cocoa;
 
+// PWSidebarTabsTable class
 @interface PWSidebarTabsTable : NSTableView
 
-@end
+@end // PWSidebarTabsTable class
 
 /*===============================================================================┐
 |                                                                                | 

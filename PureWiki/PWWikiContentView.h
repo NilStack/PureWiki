@@ -25,8 +25,21 @@
 @import Cocoa;
 @import WebKit;
 
+@class WikiPage;
+
 // PWWikiContentView class
-@interface PWWikiContentView : WebView
+@interface PWWikiContentView : NSView
+    {
+@private
+    WikiPage __strong* _wikiPage;
+    WebView __strong* _backingWebView;
+    }
+
+#pragma mark Outlets
+@property ( weak ) IBOutlet WebView* webView;
+
+#pragma mark Ivar Properties
+@property ( strong, readwrite ) WikiPage* wikiPage;
 
 @end // PWWikiContentView class
 

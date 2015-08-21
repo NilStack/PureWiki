@@ -27,6 +27,33 @@
 // PWWikiContentView class
 @implementation PWWikiContentView
 
+@dynamic wikiPage;
+
+#pragma mark Initializations
+- ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
+    {
+    if ( self = [ super initWithCoder: _Coder ] )
+        self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
+
+    return self;
+    }
+
+#pragma mark Dynamic Properties
+- ( void ) setWikiPage: ( WikiPage* )_WikiPage
+    {
+    if ( self->_wikiPage != _WikiPage )
+        {
+        self->_wikiPage = _WikiPage;
+
+        NSLog( @"%@", self->_wikiPage );
+        }
+    }
+
+- ( WikiPage* ) wikiPage
+    {
+    return self->_wikiPage;
+    }
+
 @end // PWWikiContentView class
 
 /*===============================================================================┐

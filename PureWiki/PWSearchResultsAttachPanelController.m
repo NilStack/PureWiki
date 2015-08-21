@@ -38,6 +38,7 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( void ) _didSearchSearchPages: ( NSNotification* )_Notif;
 - ( void ) _didEmptySearchContent: ( NSNotification* )_Notif;
+- ( void ) _mainWindowDidMove: ( NSNotification* )_Notif;
 
 @end // Private Interfaces
 
@@ -64,6 +65,11 @@ NSString* const kResultsColumnID = @"results-column";
         [ [ NSNotificationCenter defaultCenter ] addObserver: self
                                                     selector: @selector( _didEmptySearchContent: )
                                                         name: PureWikiDidEmptySearchNotif
+                                                      object: nil ];
+
+        [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                    selector: @selector( _mainWindowDidMove: )
+                                                        name: NSWindowDidMoveNotification
                                                       object: nil ];
         }
 
@@ -138,6 +144,11 @@ NSString* const kResultsColumnID = @"results-column";
     [ self.searchResultsTableView reloadData ];
 
     [ self.window close ];
+    }
+
+- ( void ) _mainWindowDidMove: ( NSNotification* )_Notif
+    {
+    // NSLog( @"%@", _Notif );
     }
 
 @end // PWSearchResultsAttachPanelController class

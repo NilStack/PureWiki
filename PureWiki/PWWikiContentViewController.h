@@ -23,26 +23,21 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 @import Cocoa;
-@import WebKit;
 
 @class WikiPage;
+@class PWWikiContentView;
 
-// PWSidebarTabsTableCell class
-@interface PWSidebarTabsTableCell : NSTableCellView
-    {
-@private
-    WikiPage __strong* _wikiPage;
-    }
+// PWWikiContentViewController class
+@interface PWWikiContentViewController : NSViewController
 
 #pragma mark Ivar Properties
-@property ( strong, readwrite ) WikiPage* wikiPage;
+@property ( weak, readonly ) PWWikiContentView* wikiContentView;
 
-#pragma mark Outlets
-@property ( weak ) IBOutlet NSImageView* pageImageView;
-@property ( weak ) IBOutlet NSTextField* pageTitleTextField;
-@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
+#pragma mark Initializations
++ ( instancetype ) controllerWithWikiPage: ( WikiPage* )_WikiPage;
+- ( instancetype ) initWithWikiPage: ( WikiPage* )_WikiPage;
 
-@end // PWSidebarTabsTableCell class
+@end // PWWikiContentViewController class
 
 /*===============================================================================┐
 |                                                                                | 

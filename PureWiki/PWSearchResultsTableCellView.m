@@ -22,6 +22,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSearchResultsTableCellView.h"
+#import "PWActionNotifications.h"
 
 #import "WikiPage.h"
 #import "WikiRevision.h"
@@ -44,7 +45,9 @@
     {
     [ super mouseDown: _Event ];
 
-    NSLog( @"%@", _Event );
+    [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidPickUpSearchItemNotif
+                                                           object: self
+                                                         userInfo: @{ kPage : self->_wikiPage } ];
     }
 
 #pragma mark Dynamic Properties

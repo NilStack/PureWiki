@@ -24,12 +24,18 @@
 
 #import "PWSidebarTabsTableController.h"
 #import "PWSidebarTabsTable.h"
+#import "PWSidebarTabsTableCell.h"
+#import "PWActionNotifications.h"
+
 #import "WikiPage.h"
 
 NSString* const kColumnIdentifierTabs = @"tabs-column";
 
 // Private Interfaces
 @interface PWSidebarTabsTableController ()
+
+- ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif;
+
 @end // Private Interfaces
 
 // PWSidebarTabsTableController class
@@ -38,9 +44,21 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
     {
     if ( self = [ super initWithCoder: _Coder ] )
+        {
         self->_openedWikiPages = [ NSMutableArray array ];
 
+        [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                    selector: @selector( _userDidPickUpSearchItem: )
+                                                        name: PureWikiDidPickUpSearchItemNotif
+                                                      object: nil ];
+        }
+
     return self;
+    }
+
+- ( void ) dealloc
+    {
+    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidPickUpSearchItemNotif object: nil ];
     }
 
 #pragma mark Conforms to <NSTableViewDataSource>
@@ -66,11 +84,20 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
      viewForTableColumn: ( nullable NSTableColumn* )_TableColumn
                     row: ( NSInteger )_Row
     {
-    NSView* resultView = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
+    PWSidebarTabsTableCell* resultCellView = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
     WikiPage* wikiPage = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
-    [ [ ( NSTableCellView* )resultView textField ] setStringValue: wikiPage.title ];
+    [ resultCellView setWikiPage: wikiPage ];
 
-    return resultView;
+    return resultCellView;
+    }
+
+#pragma mark Private Interfaces
+- ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif
+    {
+    WikiPage* wikiPage = _Notif.userInfo[ kPage ];
+    [ self->_openedWikiPages addObject: wikiPage ];
+
+    [ self.sidebarTabsTable reloadData ];
     }
 
 @end // PWSidebarTabsTableController class
