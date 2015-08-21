@@ -24,8 +24,6 @@
     DOMHTMLDivElement __strong* _toctitleElement;
     DOMHTMLTableElement __strong* _metadataTableElement;         /* class="metadata plainlinks ambox ambox-content ambox-multiple_issues compact-ambox" */
     DOMHTMLTableCellElement __strong* _hlistTableDataElement;    /* class="hlist" */
-
-    DOMHTMLLinkElement __strong* _fuckingLinkElement;
     }
 
 - ( WebArchive* ) castrateFrame: ( WebFrame* )_Frame;

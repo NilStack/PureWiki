@@ -28,13 +28,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMc-KE-Bwg">
-                                        <rect key="frame" x="0.0" y="38" width="271" height="930"/>
+                                        <rect key="frame" x="0.0" y="38" width="271" height="932"/>
                                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="ZIl-WM-q3A">
-                                            <rect key="frame" x="0.0" y="0.0" width="271" height="930"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="271" height="932"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="97" rowSizeStyle="automatic" viewBased="YES" id="wU4-4o-6Ew" customClass="PWSidebarTabsTable">
-                                                    <rect key="frame" x="0.0" y="0.0" width="271" height="930"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="271" height="932"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>

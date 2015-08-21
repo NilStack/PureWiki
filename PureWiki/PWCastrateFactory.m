@@ -54,9 +54,6 @@
             }
         }
 
-//        [ linkElement setHref: self->_cssLabURL.absoluteString ];
-//
-//        [ self->_headElement appendChild: linkElement ];
     DOMHTMLDivElement* h2Child = ( DOMHTMLDivElement* )( self->_toctitleElement.firstElementChild );
     [ h2Child setIdName: @"purewiki-ed-toctitle" ];
 
@@ -86,8 +83,6 @@
 
     WebArchive* oldWebArchive = webArchive;
     WebArchive* newWebArchive = [ [ WebArchive alloc ] initWithMainResource: newMainResource subresources: [ oldWebArchive subresources ] subframeArchives: oldWebArchive.subframeArchives ];
-
-//        self->_fuckingLinkElement = nil;
 
     return newWebArchive;
     }
