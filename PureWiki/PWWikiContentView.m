@@ -29,9 +29,6 @@
 
 // Private Interfaces
 @interface PWWikiContentView ()
-
-@property ( strong, readonly ) NSString* _archivePath;
-
 @end // Private Interfaces
 
 // PWWikiContentView class
@@ -78,30 +75,9 @@
     {
     if ( _Frame == [ _WebView mainFrame ] )
         {
-        if ( ![ [ NSFileManager defaultManager ] fileExistsAtPath: self._archivePath isDirectory: nil ] )
-            [ [ NSFileManager defaultManager ] createDirectoryAtPath: self._archivePath withIntermediateDirectories: NO attributes: nil error: nil ];
-
-        NSString* pageTitle = [ NSString stringWithFormat: @"%@-%@", @( self->_wikiPage.ID ).stringValue, [ NSDate date ] ];
-        NSString* base64edPageTitle = [ [ pageTitle dataUsingEncoding: NSUTF8StringEncoding ] base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength ];
-        self->_pageArchivePath = [ self._archivePath stringByAppendingPathComponent: [ NSString stringWithFormat: @"/%@.webarchive", base64edPageTitle ] ];
-
         WebArchive* castratedArchive = [ self->_castrateFactory castrateFrame: _Frame ];
         [ self.webView.mainFrame loadArchive: castratedArchive ];
-
-//        NSError* error = nil;
-//        if ( !error )
-//            [ castratedArchive.data writeToFile: self->_pageArchivePath options: NSDataWritingAtomic error: &error ];
-//        else
-//            NSLog( @"error" );
         }
-    }
-
-#pragma mark Private Interfaces
-@dynamic _archivePath;
-
-- ( NSString* ) _archivePath
-    {
-    return [ NSHomeDirectory() stringByAppendingPathComponent: [ NSString stringWithFormat: @"/Library/archives" ] ];
     }
 
 @end // PWWikiContentView class

@@ -35,8 +35,6 @@
     WikiPage __strong* _wikiPage;
     WebView __strong* _backingWebView;
 
-    NSString __strong* _pageArchivePath;
-
     PWCastrateFactory __strong* _castrateFactory;
     }
 
