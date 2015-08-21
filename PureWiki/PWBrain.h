@@ -28,13 +28,16 @@
 @interface PWBrain : NSObject
     {
 @protected
-    WikiEngine __strong* _wikiEngine;
+    WikiEngine __strong* _instantSearchWikiEngine;
     }
 
-@property ( strong, readonly ) WikiEngine* wikiEngine;
+@property ( strong, readonly ) WikiEngine* instantSearchWikiEngine;
 
 #pragma mark Singleton Initializer
 + ( instancetype ) wiseBrain;
+
+#pragma mark Controlling Task State
+- ( void ) cancelInstantSearchWiki;
 
 #pragma mark Actions
 - ( void ) searchAllPagesThatHaveValue: ( NSString* )_SearchValue
@@ -43,6 +46,14 @@
                                  limit: ( NSUInteger )_Limit
                                success: ( void (^)( NSArray* _MatchedPages ) )_SuccessBlock
                                failure: ( void (^)( NSError* _Error ) )_FailureBlock;
+
+- ( void ) searchAllPagesThatHaveValue: ( NSString* )_SearchValue
+                          inNamespaces: ( NSArray* )_Namespaces
+                                  what: ( WikiEngineSearchWhat )_SearchWhat
+                                 limit: ( NSUInteger )_Limit
+                               success: ( void (^)( NSArray* _MatchedPages ) )_SuccessBlock
+                               failure: ( void (^)( NSError* _Error ) )_FailureBlock
+                     stopAllOtherTasks: ( BOOL )_WillStop;
 @end // PWBrain class
 
 /*===============================================================================┐

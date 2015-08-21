@@ -27,7 +27,7 @@
 // PWBrain class
 @implementation PWBrain
 
-@dynamic wikiEngine;
+@dynamic instantSearchWikiEngine;
 
 #pragma mark Singleton Initializer
 id static sWiseBrain = nil;
@@ -43,7 +43,7 @@ id static sWiseBrain = nil;
         if ( self = [ super init ] )
             {
             // TODO:
-            self->_wikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
+            self->_instantSearchWikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
             sWiseBrain = self;
             }
         }
@@ -54,7 +54,13 @@ id static sWiseBrain = nil;
 #pragma mark Dynamic Properties
 - ( WikiEngine* ) wikiEngine
     {
-    return self->_wikiEngine;
+    return self->_instantSearchWikiEngine;
+    }
+
+#pragma mark Controlling Task State
+- ( void ) cancelInstantSearchWiki
+    {
+    [ self->_instantSearchWikiEngine cancelAll ];
     }
 
 #pragma mark Actions
@@ -65,12 +71,29 @@ id static sWiseBrain = nil;
                                success: ( void (^)( NSArray* _MatchedPages ) )_SuccessBlock
                                failure: ( void (^)( NSError* _Error ) )_FailureBlock
     {
-    [ self->_wikiEngine searchAllPagesThatHaveValue: _SearchValue
-                                       inNamespaces: _Namespaces
-                                               what: _SearchWhat
-                                              limit: _Limit
-                                            success: _SuccessBlock
-                                            failure: _FailureBlock ];
+    [ self->_instantSearchWikiEngine searchAllPagesThatHaveValue: _SearchValue
+                                                    inNamespaces: _Namespaces
+                                                            what: _SearchWhat
+                                                           limit: _Limit
+                                                         success: _SuccessBlock
+                                                         failure: NO ];
+    }
+
+- ( void ) searchAllPagesThatHaveValue: ( NSString* )_SearchValue
+                          inNamespaces: ( NSArray* )_Namespaces
+                                  what: ( WikiEngineSearchWhat )_SearchWhat
+                                 limit: ( NSUInteger )_Limit
+                               success: ( void (^)( NSArray* _MatchedPages ) )_SuccessBlock
+                               failure: ( void (^)( NSError* _Error ) )_FailureBlock
+                     stopAllOtherTasks: ( BOOL )_WillStop
+    {
+    [ self->_instantSearchWikiEngine searchAllPagesThatHaveValue: _SearchValue
+                                                    inNamespaces: _Namespaces
+                                                            what: _SearchWhat
+                                                           limit: _Limit
+                                                         success: _SuccessBlock
+                                                         failure: _FailureBlock
+                                               stopAllOtherTasks: _WillStop ];
     }
 
 @end // PWBrain class

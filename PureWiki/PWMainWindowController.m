@@ -87,6 +87,8 @@
         [ self->_timer invalidate ];
         self->_timer = nil;
 
+        [ [ PWBrain wiseBrain ] cancelInstantSearchWiki ];
+
         [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidEmptySearchNotif
                                                                object: self
                                                              userInfo: nil ];
@@ -119,7 +121,7 @@
                 ^( NSError* _Error )
                     {
                     NSLog( @"%@", _Error );
-                    } ];
+                    } stopAllOtherTasks: YES ];
 
     [ self.smartSearchBar popupAttachPanel ];
     }
