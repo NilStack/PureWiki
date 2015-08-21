@@ -79,8 +79,8 @@
                                                             </subviews>
                                                             <connections>
                                                                 <outlet property="pageImageView" destination="D0o-Zm-5eO" id="R0w-9Z-kzo"/>
-                                                                <outlet property="pageSnippetTextFiled" destination="1p4-h1-gCb" id="JUN-a6-lid"/>
-                                                                <outlet property="pageTitleTextFiled" destination="2NN-X7-YRD" id="fd0-O0-YZ4"/>
+                                                                <outlet property="pageSnippetTextField" destination="1p4-h1-gCb" id="hRr-Go-qVl"/>
+                                                                <outlet property="pageTitleTextField" destination="2NN-X7-YRD" id="k4U-0S-2KL"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>

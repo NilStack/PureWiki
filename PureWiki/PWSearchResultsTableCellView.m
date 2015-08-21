@@ -23,8 +23,13 @@
 
 #import "PWSearchResultsTableCellView.h"
 
+#import "WikiPage.h"
+#import "WikiRevision.h"
+
 // PWSearchResultsTableCellView class
 @implementation PWSearchResultsTableCellView
+
+@dynamic wikiPage;
 
 #pragma mark Custom Drawing
 - ( void ) drawRect: ( NSRect )_DirtyRect
@@ -32,6 +37,21 @@
     [ super drawRect: _DirtyRect ];
     
     // Drawing code here.
+    }
+
+#pragma mark Dynamic Properties
+- ( void ) setWikiPage: ( WikiPage* )_WikiPage
+    {
+    self->_wikiPage = _WikiPage;
+
+    // self.pageImageView =
+    self.pageTitleTextField.stringValue = self->_wikiPage.title;
+    self.pageSnippetTextField.stringValue = [ self->_wikiPage.lastRevision.content substringToIndex: 100 ];
+    }
+
+- ( WikiPage* ) wikiPage
+    {
+    return self->_wikiPage;
     }
 
 @end // PWSearchResultsTableCellView class

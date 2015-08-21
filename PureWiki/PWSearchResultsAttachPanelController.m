@@ -108,8 +108,7 @@ NSString* const kResultsColumnID = @"results-column";
     {
     PWSearchResultsTableCellView* tableCellView = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
     WikiPage* wikiPage = ( WikiPage* )( self->_fetchedWikiPages[ _Row ] );
-    [ tableCellView.pageTitleTextFiled setStringValue: wikiPage.title ];
-    [ tableCellView.pageSnippetTextFiled setStringValue: [ wikiPage.lastRevision.content substringToIndex: 100 ] ];
+    [ tableCellView setWikiPage: wikiPage ];
 
     return tableCellView;
     }

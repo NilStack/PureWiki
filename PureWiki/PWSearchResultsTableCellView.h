@@ -23,13 +23,21 @@
 
 @import Cocoa;
 
+@class WikiPage;
+
 // PWSearchResultsTableCellView class
 @interface PWSearchResultsTableCellView : NSTableCellView
+    {
+@protected
+    WikiPage __strong* _wikiPage;
+    }
+
+@property ( strong ) WikiPage* wikiPage;
 
 #pragma mark Outlets
 @property ( weak ) IBOutlet NSImageView* pageImageView;
-@property ( weak ) IBOutlet NSTextField* pageTitleTextFiled;
-@property ( weak ) IBOutlet NSTextField* pageSnippetTextFiled;
+@property ( weak ) IBOutlet NSTextField* pageTitleTextField;
+@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
 
 @end // PWSearchResultsTableCellView class
 
