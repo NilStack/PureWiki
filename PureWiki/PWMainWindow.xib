@@ -6,7 +6,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PWMainWindowController">
             <connections>
-                <outlet property="smartSearchBar" destination="34m-hF-hQH" id="CZK-XV-Ik9"/>
                 <outlet property="window" destination="f5Q-w8-6qz" id="pth-7K-k1k"/>
             </connections>
         </customObject>
@@ -135,12 +134,9 @@
                 <font key="font" metaFont="system"/>
                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                <connections>
-                    <action selector="searchWikipediaAction:" target="-2" id="pU3-hT-xI2"/>
-                </connections>
             </searchFieldCell>
             <connections>
-                <outlet property="delegate" destination="-2" id="b2y-nf-x0E"/>
+                <outlet property="delegate" destination="5bj-cO-UF5" id="SMG-PO-jCV"/>
             </connections>
             <point key="canvasLocation" x="990" y="-2"/>
         </searchField>
@@ -186,6 +182,11 @@
         <viewController id="TDW-Eg-TgK" customClass="PWSidebarTabsTableController">
             <connections>
                 <outlet property="sidebarTabsTable" destination="wU4-4o-6Ew" id="imY-PQ-Bim"/>
+            </connections>
+        </viewController>
+        <viewController id="5bj-cO-UF5" customClass="PWSmartSearchBarController">
+            <connections>
+                <outlet property="view" destination="34m-hF-hQH" id="R7j-kW-3hW"/>
             </connections>
         </viewController>
         <customObject id="AMe-C7-iJg" customClass="PWBrain"/>
