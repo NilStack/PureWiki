@@ -39,6 +39,14 @@
     // Drawing code here.
     }
 
+#pragma mark Handling Events
+- ( void ) mouseDown: ( nonnull NSEvent* )_Event
+    {
+    [ super mouseDown: _Event ];
+
+    NSLog( @"%@", _Event );
+    }
+
 #pragma mark Dynamic Properties
 - ( void ) setWikiPage: ( WikiPage* )_WikiPage
     {

@@ -22,6 +22,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSearchResultsTableView.h"
+#import "PWSearchResultsTableCellView.h"
 
 // PWSearchResultsTableView class
 @implementation PWSearchResultsTableView
@@ -32,6 +33,18 @@
     [ super drawRect: _DirtyRect ];
     
     // Drawing code here.
+    }
+
+#pragma mark Handling Events
+- ( BOOL ) validateProposedFirstResponder: ( NSResponder* )_Responder
+                                 forEvent: ( NSEvent* )_Event
+    {
+    if ( [ _Responder isKindOfClass: [ PWSearchResultsTableCellView class ] ]
+            || [ _Responder isKindOfClass: [ NSTextField class ] ]
+            || [ _Responder isKindOfClass: [ NSImageView class ] ] )
+        return YES;
+    else
+        return [ super validateProposedFirstResponder: _Responder forEvent: _Event ];
     }
 
 @end // PWSearchResultsTableView class

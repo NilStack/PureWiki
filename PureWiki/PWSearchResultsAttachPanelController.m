@@ -113,6 +113,12 @@ NSString* const kResultsColumnID = @"results-column";
     return tableCellView;
     }
 
+- ( BOOL ) tableView: ( nonnull NSTableView* )_TableView
+     shouldSelectRow: ( NSInteger )_Row
+    {
+    return NO;
+    }
+
 #pragma mark Private Interfaces
 - ( void ) _didSearchSearchPages: ( NSNotification* )_Notif
     {
