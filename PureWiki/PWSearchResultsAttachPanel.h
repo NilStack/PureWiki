@@ -27,7 +27,7 @@
 @interface PWSearchResultsAttachPanel : NSPanel
 
 #pragma mark Outlets
-@property ( weak ) IBOutlet NSVisualEffectView* panelVEView;
+@property ( weak ) IBOutlet NSVisualEffectView* panelBlurBackgroundView;
 
 #pragma mark Hack
 // Just in case Apple decides to make `_cornerMask` public and remove the underscore prefix,

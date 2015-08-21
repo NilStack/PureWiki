@@ -108,7 +108,7 @@
                 </subviews>
             </view>
             <connections>
-                <outlet property="panelVEView" destination="NEo-s5-ZXu" id="NF6-df-vj0"/>
+                <outlet property="panelBlurBackgroundView" destination="NEo-s5-ZXu" id="NF6-df-vj0"/>
             </connections>
             <point key="canvasLocation" x="286" y="652"/>
         </window>

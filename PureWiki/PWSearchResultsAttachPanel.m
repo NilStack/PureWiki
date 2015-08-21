@@ -24,6 +24,13 @@
 #import "PWSearchResultsAttachPanel.h"
 #import "NSObject+PWSmartSearchBar.h"
 
+// Private Interfaces
+@interface PWSearchResultsAttachPanel ()
+
+- ( NSImage* ) _maskImageWithCornerRadius: ( CGFloat )_CornerRadius;
+
+@end // Private Interfaces
+
 // PWSearchResultsAttachPanel class
 @implementation PWSearchResultsAttachPanel
 
@@ -36,7 +43,7 @@
     self.backgroundColor = [ NSColor clearColor ];
 
     NSImage* maskImage = [ self _maskImageWithCornerRadius: 5.f ];
-    self.panelVEView.maskImage = maskImage;
+    self.panelBlurBackgroundView.maskImage = maskImage;
 
     self.cornerMask = maskImage;
     }
@@ -59,6 +66,7 @@
     return self.cornerMask;
     }
 
+#pragma mark Private Interfaces
 - ( NSImage* ) _maskImageWithCornerRadius: ( CGFloat )_CornerRadius
     {
     CGFloat edgeLength = 2.f * _CornerRadius + 1.f;
