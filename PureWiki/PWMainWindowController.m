@@ -72,7 +72,7 @@
     if ( searchValue.length > 0 )
         {
         [ self->_timer invalidate ];
-        self->_timer = [ NSTimer timerWithTimeInterval: ( NSTimeInterval ).6f
+        self->_timer = [ NSTimer timerWithTimeInterval: ( NSTimeInterval ).4f
                                                 target: self
                                               selector: @selector( _timerFireMethod: )
                                               userInfo: @{ @"value" : searchValue }
