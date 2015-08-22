@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8322BF821B83812500A890C9 /* PWActionNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF811B83812500A890C9 /* PWActionNotifications.m */; };
 		8322BF961B83C6F400A890C9 /* PWSmartSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF951B83C6F400A890C9 /* PWSmartSearchBar.m */; };
+		8330E5CD1B88FFA800373760 /* NSURL+PureWiki.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330E5CC1B88FFA800373760 /* NSURL+PureWiki.m */; };
 		83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E931B8351BF00A33030 /* PWWikiContentView.m */; };
 		83480E971B83530C00A33030 /* PWSidebarTabsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E961B83530C00A33030 /* PWSidebarTabsTable.m */; };
 		83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */; };
@@ -89,6 +90,8 @@
 		8322BF811B83812500A890C9 /* PWActionNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWActionNotifications.m; sourceTree = "<group>"; };
 		8322BF941B83C6F400A890C9 /* PWSmartSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchBar.h; sourceTree = "<group>"; };
 		8322BF951B83C6F400A890C9 /* PWSmartSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchBar.m; sourceTree = "<group>"; };
+		8330E5CB1B88FFA800373760 /* NSURL+PureWiki.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PureWiki.h"; sourceTree = "<group>"; };
+		8330E5CC1B88FFA800373760 /* NSURL+PureWiki.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PureWiki.m"; sourceTree = "<group>"; };
 		83480E921B8351BF00A33030 /* PWWikiContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentView.h; sourceTree = "<group>"; };
 		83480E931B8351BF00A33030 /* PWWikiContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentView.m; sourceTree = "<group>"; };
 		83480E951B83530C00A33030 /* PWSidebarTabsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTable.h; sourceTree = "<group>"; };
@@ -392,6 +395,8 @@
 				83480EA51B837D4500A33030 /* PWBrain.m */,
 				8322BF801B83812500A890C9 /* PWActionNotifications.h */,
 				8322BF811B83812500A890C9 /* PWActionNotifications.m */,
+				8330E5CB1B88FFA800373760 /* NSURL+PureWiki.h */,
+				8330E5CC1B88FFA800373760 /* NSURL+PureWiki.m */,
 				83A2FBCF1B830AF600939452 /* main-menu */,
 				83A2FBCD1B830ACD00939452 /* main-window */,
 				83A2FBE31B833BBE00939452 /* toolbar */,
@@ -686,6 +691,7 @@
 				83B7B0221B878EAC002DE75A /* WikiContinuation.m in Sources */,
 				83A2FBD31B8324D000939452 /* PWNavButtonsPairView.m in Sources */,
 				83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */,
+				8330E5CD1B88FFA800373760 /* NSURL+PureWiki.m in Sources */,
 				83B7AFC11B878EAC002DE75A /* NSDate+Wikikit.m in Sources */,
 				83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */,
 				83B7B0241B878EAC002DE75A /* WikiHTTPSessionManager.m in Sources */,

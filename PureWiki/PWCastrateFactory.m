@@ -26,10 +26,12 @@
 
 #import "PWCastrateFactory.h"
 
+#import "NSURL+PureWiki.h"
+
 // Private Interfaces
 @interface PWCastrateFactory ()
 
-@property ( strong, readonly ) NSString* _archivePath;
+@property ( strong, readonly ) NSString* _archiveBasePath;
 @property ( strong, readonly ) NSURL* _archiveBaseURL;
 
 - ( void ) _traverseNamedNodeMap: ( DOMNode* )_DOMNode;
@@ -100,6 +102,7 @@ NSString* TGNonce()
 
 - ( WebArchive* ) castrateFrameInMemory: ( WebFrame* )_Frame
     {
+    NSLog( @"🍰 Base Path: %@", self._archiveBasePath );
     DOMHTMLDocument* document = ( DOMHTMLDocument* )( _Frame.DOMDocument );
 
     [ self _traverseDOMNodes: document ];
@@ -168,17 +171,9 @@ NSString* TGNonce()
 #pragma mark Private Interfaces
 @dynamic _archiveBaseURL;
 
-// TODO: NSURL+PureWiki
-- ( NSString* ) _pathForURL: ( NSURL* )_URL
+- ( NSString* ) _archiveBasePath
     {
-    NSString* path = [ [ _URL pathComponents ] componentsJoinedByString: @"/" ];
-    path = [ path stringByReplacingCharactersInRange: NSMakeRange( 0, 1 ) withString: @"" ];
-    return path;
-    }
-
-- ( NSString* ) _archivePath
-    {
-    return [ self _pathForURL: self._archiveBaseURL ];
+    return self._archiveBaseURL.filePathRep;
     }
 
 - ( NSURL* ) _archiveBaseURL
@@ -194,7 +189,7 @@ NSString* TGNonce()
         {
         cacheURL = [ cacheURL URLByAppendingPathComponent: @"archives" isDirectory: YES ];
 
-        NSString* pathOfCacheURL = [ self _pathForURL: cacheURL ];
+        NSString* pathOfCacheURL = cacheURL.filePathRep;
         if ( ![ [ NSFileManager defaultManager ] fileExistsAtPath: pathOfCacheURL isDirectory: nil ] )
             [ [ NSFileManager defaultManager ] createDirectoryAtPath: pathOfCacheURL withIntermediateDirectories: NO attributes: nil error: &error ];
         }
