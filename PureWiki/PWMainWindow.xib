@@ -177,6 +177,10 @@
                     </buttonCell>
                 </button>
             </subviews>
+            <connections>
+                <outlet property="goBackButton" destination="ZEs-0h-fYF" id="ORI-RM-nwh"/>
+                <outlet property="goForwardButton" destination="qms-6d-6Oy" id="uTL-Tc-FFP"/>
+            </connections>
             <point key="canvasLocation" x="368" y="57"/>
         </customView>
         <button verticalHuggingPriority="750" id="nVW-V1-1tx">

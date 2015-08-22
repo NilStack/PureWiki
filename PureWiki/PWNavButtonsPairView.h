@@ -24,8 +24,21 @@
 
 @import Cocoa;
 
+@class PWWikiContentViewController;
+
 // PWNavButtonsPairView class
 @interface PWNavButtonsPairView : NSView
+    {
+@protected
+    PWWikiContentViewController __weak* _bindingContentViewController;
+    }
+
+#pragma mark Outlets
+@property ( weak ) IBOutlet NSButton* goBackButton;
+@property ( weak ) IBOutlet NSButton* goForwardButton;
+
+#pragma mark Ivar Properties
+@property ( weak, readwrite ) PWWikiContentViewController* bindingContentViewController;
 
 @end // PWNavButtonsPairView class
 
