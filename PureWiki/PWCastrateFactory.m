@@ -160,8 +160,14 @@ NSString* TGNonce()
     NSString* lastPathComponent = [ NSString stringWithFormat: @"%@-%@", _Frame.dataSource.request.URL.absoluteString, TGTimestamp() ];
     lastPathComponent = TGSignWithHMACSHA1( lastPathComponent, TGNonce() );
 
-    NSURL* resultURL = [ NSURL URLWithString: lastPathComponent relativeToURL: self._archiveBaseURL ];
-    [ castratedArchive.data writeToURL: resultURL atomically: YES ];
+    // Returns a new last path component made from the reciever itself
+    // by replacing all characters not in the alphanumeric character set
+    // with precent encoded characters
+    lastPathComponent = [ lastPathComponent stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet alphanumericCharacterSet ] ];
+
+    NSURL* resultURL = [ self._archiveBaseURL URLByAppendingPathComponent: lastPathComponent ];
+    resultURL = [ resultURL URLByAppendingPathExtension: @"webarchive" ];
+    [ castratedArchive.data writeToURL: resultURL options: NSDataWritingAtomic error: _Error ];
 
     return resultURL;
     }
@@ -182,7 +188,6 @@ NSString* TGNonce()
                                                        appropriateForURL: nil
                                                                   create: NO
                                                                    error: &error ];
-
     if ( !error )
         {
         cacheURL = [ cacheURL URLByAppendingPathComponent: @"archives" isDirectory: YES ];

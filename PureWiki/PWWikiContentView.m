@@ -75,17 +75,26 @@
 - ( void )        webView: ( WebView* )_WebView
     didFinishLoadForFrame: ( WebFrame* )_Frame
     {
+    NSError* error = nil;
     if ( _WebView == self->_backingWebView
             && _Frame == [ _WebView mainFrame ] )
         {
-        WebArchive* castratedArchive = [ [ PWCastrateFactory defaultFactory ] castrateFrameInMemory: _Frame ];
-        [ self.webView.mainFrame loadArchive: castratedArchive ];
+//        WebArchive* castratedArchive = [ [ PWCastrateFactory defaultFactory ] castrateFrameInMemory: _Frame ];
+//        [ self.webView.mainFrame loadArchive: castratedArchive ];
 
-        // Resume routing navigation action
-        [ self.webView setPolicyDelegate: self ];
+        NSURL* archiveURL = [ [ PWCastrateFactory defaultFactory ] castrateFrameOnDisk: _Frame error: &error ];
+        if ( !error )
+            {
+            [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
 
-        [ self.owner.goBackButton setEnabled: _WebView.canGoBack ];
-        [ self.owner.goForwardButton setEnabled: _WebView.canGoForward ];
+            // Resume routing navigation action
+            [ self.webView setPolicyDelegate: self ];
+
+            [ self.owner.goBackButton setEnabled: _WebView.canGoBack ];
+            [ self.owner.goForwardButton setEnabled: _WebView.canGoForward ];
+            }
+        else
+            NSLog( @"%@", error );
         }
     }
 
