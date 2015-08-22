@@ -213,7 +213,6 @@
                 <outlet property="view" destination="34m-hF-hQH" id="R7j-kW-3hW"/>
             </connections>
         </viewController>
-        <customObject id="AMe-C7-iJg" customClass="PWBrain"/>
     </objects>
     <resources>
         <image name="NSColumnViewTemplate" width="16" height="10"/>

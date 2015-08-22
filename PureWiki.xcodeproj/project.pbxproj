@@ -15,7 +15,6 @@
 		83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */; };
 		83480E9D1B83589900A33030 /* PWSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E9C1B83589900A33030 /* PWSplitView.m */; };
 		83480EA01B83728000A33030 /* PWSidebarTabsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E9F1B83728000A33030 /* PWSidebarTabsTableController.m */; };
-		83480EA61B837D4500A33030 /* PWBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480EA51B837D4500A33030 /* PWBrain.m */; };
 		83509BCF1B8629DF00C4F454 /* PWSearchResultsAttachPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83509BCE1B8629DF00C4F454 /* PWSearchResultsAttachPanel.m */; };
 		83509BD11B862A0400C4F454 /* PWSearchResultsAttachPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83509BD01B862A0400C4F454 /* PWSearchResultsAttachPanel.xib */; };
 		83509BD41B862A1400C4F454 /* PWSearchResultsAttachPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83509BD31B862A1400C4F454 /* PWSearchResultsAttachPanelController.m */; };
@@ -102,8 +101,6 @@
 		83480E9C1B83589900A33030 /* PWSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSplitView.m; sourceTree = "<group>"; };
 		83480E9E1B83728000A33030 /* PWSidebarTabsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTableController.h; sourceTree = "<group>"; };
 		83480E9F1B83728000A33030 /* PWSidebarTabsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSidebarTabsTableController.m; sourceTree = "<group>"; };
-		83480EA41B837D4500A33030 /* PWBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWBrain.h; sourceTree = "<group>"; };
-		83480EA51B837D4500A33030 /* PWBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWBrain.m; sourceTree = "<group>"; };
 		83509BCD1B8629DF00C4F454 /* PWSearchResultsAttachPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSearchResultsAttachPanel.h; sourceTree = "<group>"; };
 		83509BCE1B8629DF00C4F454 /* PWSearchResultsAttachPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSearchResultsAttachPanel.m; sourceTree = "<group>"; };
 		83509BD01B862A0400C4F454 /* PWSearchResultsAttachPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PWSearchResultsAttachPanel.xib; sourceTree = "<group>"; };
@@ -391,8 +388,6 @@
 			children = (
 				83B794121B7DCE5F00F4544E /* PWAppDelegate.h */,
 				83B794131B7DCE5F00F4544E /* PWAppDelegate.m */,
-				83480EA41B837D4500A33030 /* PWBrain.h */,
-				83480EA51B837D4500A33030 /* PWBrain.m */,
 				8322BF801B83812500A890C9 /* PWActionNotifications.h */,
 				8322BF811B83812500A890C9 /* PWActionNotifications.m */,
 				8330E5CB1B88FFA800373760 /* NSURL+PureWiki.h */,
@@ -698,7 +693,6 @@
 				83B7B0261B878EAC002DE75A /* WikiJSONObject.m in Sources */,
 				83509BCF1B8629DF00C4F454 /* PWSearchResultsAttachPanel.m in Sources */,
 				83509BD41B862A1400C4F454 /* PWSearchResultsAttachPanelController.m in Sources */,
-				83480EA61B837D4500A33030 /* PWBrain.m in Sources */,
 				83B794171B7DCE5F00F4544E /* main.m in Sources */,
 				83A2FBD61B8326BC00939452 /* PWToolbarController.m in Sources */,
 				83A2FBDC1B83303900939452 /* PWMainContentView.m in Sources */,

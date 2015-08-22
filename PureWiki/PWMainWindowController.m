@@ -24,7 +24,6 @@
 
 #import "PWMainWindowController.h"
 #import "PWNavButtonsPairView.h"
-#import "PWBrain.h"
 
 // Private Interfaces
 @interface PWMainWindowController ()
