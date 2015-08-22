@@ -102,7 +102,6 @@ NSString* TGNonce()
 
 - ( WebArchive* ) castrateFrameInMemory: ( WebFrame* )_Frame
     {
-    NSLog( @"🍰 Base Path: %@", self._archiveBasePath );
     DOMHTMLDocument* document = ( DOMHTMLDocument* )( _Frame.DOMDocument );
 
     [ self _traverseDOMNodes: document ];
@@ -156,16 +155,15 @@ NSString* TGNonce()
 - ( NSURL* ) castrateFrameOnDisk: ( WebFrame* )_Frame
                            error: ( NSError** )_Error
     {
-    NSURL* url = nil;
-
     WebArchive* castratedArchive = [ self castrateFrameInMemory: _Frame ];
 
     NSString* lastPathComponent = [ NSString stringWithFormat: @"%@-%@", _Frame.dataSource.request.URL.absoluteString, TGTimestamp() ];
-    lastPathComponent = [ @"/" stringByAppendingString: TGSignWithHMACSHA1( lastPathComponent, TGNonce() ) ];
-    url = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@.webarchive", [ NSHomeDirectory() stringByAppendingString: lastPathComponent ] ] ];
-    [ castratedArchive.data writeToURL: url atomically: YES ];
+    lastPathComponent = TGSignWithHMACSHA1( lastPathComponent, TGNonce() );
 
-    return url;
+    NSURL* resultURL = [ NSURL URLWithString: lastPathComponent relativeToURL: self._archiveBaseURL ];
+    [ castratedArchive.data writeToURL: resultURL atomically: YES ];
+
+    return resultURL;
     }
 
 #pragma mark Private Interfaces
