@@ -81,10 +81,17 @@
 
     [ self setSubviews: @[] ];
     PWWikiContentViewController* contentViewController = self->_pagesStack[ wikiPage ];
+
+    [ self.goBackButton setEnabled: contentViewController.wikiContentView.webView.canGoBack ];
+    [ self.goForwardButton setEnabled: contentViewController.wikiContentView.webView.canGoForward ];
+
+    [ self.goBackButton setTarget: contentViewController.wikiContentView.webView ];
+    [ self.goBackButton setAction: @selector( goBack: ) ];
+    [ self.goForwardButton setTarget: contentViewController.wikiContentView.webView ];
+    [ self.goForwardButton setAction: @selector( goForward: ) ];
+
     [ self addSubview: contentViewController.view ];
     [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
-
-//    NSLog( @"Fucking Page: %@", _Notif.userInfo[ kPage ] );
     }
 
 @end // PWStackContainerView class
