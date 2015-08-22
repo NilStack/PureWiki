@@ -79,9 +79,6 @@
     if ( _WebView == self->_backingWebView
             && _Frame == [ _WebView mainFrame ] )
         {
-//        WebArchive* castratedArchive = [ [ PWCastrateFactory defaultFactory ] castrateFrameInMemory: _Frame ];
-//        [ self.webView.mainFrame loadArchive: castratedArchive ];
-
         NSURL* archiveURL = [ [ PWCastrateFactory defaultFactory ] castrateFrameOnDisk: _Frame error: &error ];
         if ( !error )
             {

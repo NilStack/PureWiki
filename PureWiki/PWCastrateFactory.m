@@ -135,6 +135,7 @@ id sDefaultFactory = nil;
     }
 
 #pragma mark Private Interfaces
+@dynamic _archiveBasePath;
 @dynamic _archiveBaseURL;
 
 - ( NSString* ) _archiveBasePath
