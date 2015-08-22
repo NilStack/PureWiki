@@ -49,7 +49,7 @@ id sDefaultFactory = nil;
     {
     if ( self = [ super init ] )
         {
-        self->_cssLabURL = [ [ NSBundle mainBundle ] URLForResource: @"purewiki-css" withExtension: @"css" ];
+        self->_cssLabURL = [ [ NSBundle mainBundle ] URLForResource: @"purewikied-css" withExtension: @"css" ];
         self->_toBeCastrated = [ NSMutableArray array ];
         }
 
@@ -77,7 +77,7 @@ id sDefaultFactory = nil;
         }
 
     DOMHTMLDivElement* h2Child = ( DOMHTMLDivElement* )( self->_toctitleElement.firstElementChild );
-    [ h2Child setIdName: @"purewiki-ed-toctitle" ];
+    [ h2Child setIdName: @"purewikied-toctitle" ];
 
     DOMNamedNodeMap* attrsOfHlistTableDataElement = [ self->_hlistTableDataElement attributes ];
     for ( int _Index = 0; _Index < attrsOfHlistTableDataElement.length; _Index++ )
@@ -92,7 +92,7 @@ id sDefaultFactory = nil;
     NSString* sourceCSS = [ NSString stringWithContentsOfURL: self->_cssLabURL encoding: NSUTF8StringEncoding error: nil ];
 
     DOMHTMLStyleElement* newStyleElement = ( DOMHTMLStyleElement* )[ self->_styleElement cloneNode: YES ];
-    [ newStyleElement setClassName: @"purewiki-ed-css" ];
+    [ newStyleElement setClassName: @"purewikied-css" ];
     [ newStyleElement setIdName: @"" ];
     [ ( DOMText* )( newStyleElement.firstChild ) replaceWholeText: sourceCSS ];
     [ self->_headElement appendChild: newStyleElement ];

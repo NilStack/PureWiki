@@ -42,10 +42,17 @@
     if ( self = [ super initWithCoder: _Coder ] )
         {
         self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
+
         [ self->_backingWebView setFrameLoadDelegate: self ];
+//        [ self->_backingWebView setPolicyDelegate: self ];
         }
 
     return self;
+    }
+
+- ( void ) awakeFromNib
+    {
+        [ self.webView setPolicyDelegate: self ];
     }
 
 #pragma mark Dynamic Properties
@@ -58,7 +65,7 @@
         [ self->_backingWebView.mainFrame stopLoading ];
 
         NSURLRequest* request = [ NSURLRequest requestWithURL: self->_wikiPage.URL ];
-        [ self->_backingWebView.mainFrame loadRequest: request ];
+        [ self.webView.mainFrame loadRequest: request ];
         }
     }
 
@@ -75,7 +82,20 @@
         {
         WebArchive* castratedArchive = [ [ PWCastrateFactory defaultFactory ] castrateFrame: _Frame ];
         [ self.webView.mainFrame loadArchive: castratedArchive ];
+
+        [ self.webView setPolicyDelegate: self ];
         }
+    }
+
+#pragma mark Conforms to <WebPolicyDelegate>
+- ( void )                  webView: ( WebView* )_WebView
+    decidePolicyForNavigationAction: ( NSDictionary* )_ActionInformation
+                            request: ( NSURLRequest* )_Request
+                              frame: ( WebFrame* )_Frame
+                   decisionListener: ( id <WebPolicyDecisionListener> )_Listener
+    {
+    [ self.webView setPolicyDelegate: nil ];
+    [ self->_backingWebView.mainFrame loadRequest: _Request ];
     }
 
 @end // PWWikiContentView class

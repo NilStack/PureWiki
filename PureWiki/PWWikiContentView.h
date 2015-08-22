@@ -29,7 +29,7 @@
 @class PWCastrateFactory;
 
 // PWWikiContentView class
-@interface PWWikiContentView : NSView <WebFrameLoadDelegate>
+@interface PWWikiContentView : NSView <WebFrameLoadDelegate, WebPolicyDelegate>
     {
 @private
     WikiPage __strong* _wikiPage;

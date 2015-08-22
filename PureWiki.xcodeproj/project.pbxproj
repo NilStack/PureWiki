@@ -61,7 +61,7 @@
 		83B7B0291B878EAC002DE75A /* WikiRevision.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7AFB21B878EAC002DE75A /* WikiRevision.m */; };
 		83B7B02A1B878EAC002DE75A /* WikiSessionDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7AFB41B878EAC002DE75A /* WikiSessionDataTask.m */; };
 		83B7B0461B87A1F6002DE75A /* PWCastrateFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7B0451B87A1F6002DE75A /* PWCastrateFactory.m */; };
-		83B7B0481B87A510002DE75A /* purewiki-css.css in Resources */ = {isa = PBXBuildFile; fileRef = 83B7B0471B87A510002DE75A /* purewiki-css.css */; };
+		83B7B0481B87A510002DE75A /* purewikied-css.css in Resources */ = {isa = PBXBuildFile; fileRef = 83B7B0471B87A510002DE75A /* purewikied-css.css */; };
 		83D46ABC1B878B900061BE7E /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB41B878B900061BE7E /* ALView+PureLayout.m */; };
 		83D46ABD1B878B900061BE7E /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB61B878B900061BE7E /* NSArray+PureLayout.m */; };
 		83D46ABE1B878B900061BE7E /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB81B878B900061BE7E /* NSLayoutConstraint+PureLayout.m */; };
@@ -193,7 +193,7 @@
 		83B7AFB41B878EAC002DE75A /* WikiSessionDataTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikiSessionDataTask.m; sourceTree = "<group>"; };
 		83B7B0441B87A1F6002DE75A /* PWCastrateFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWCastrateFactory.h; sourceTree = "<group>"; };
 		83B7B0451B87A1F6002DE75A /* PWCastrateFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWCastrateFactory.m; sourceTree = "<group>"; };
-		83B7B0471B87A510002DE75A /* purewiki-css.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "purewiki-css.css"; sourceTree = "<group>"; };
+		83B7B0471B87A510002DE75A /* purewikied-css.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "purewikied-css.css"; sourceTree = "<group>"; };
 		83D46AB31B878B900061BE7E /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
 		83D46AB41B878B900061BE7E /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
 		83D46AB51B878B900061BE7E /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
@@ -410,7 +410,7 @@
 				83B7941D1B7DCE5F00F4544E /* Info.plist */,
 				83B794181B7DCE5F00F4544E /* Assets.xcassets */,
 				83B794161B7DCE5F00F4544E /* main.m */,
-				83B7B0471B87A510002DE75A /* purewiki-css.css */,
+				83B7B0471B87A510002DE75A /* purewikied-css.css */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -637,7 +637,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */,
-				83B7B0481B87A510002DE75A /* purewiki-css.css in Resources */,
+				83B7B0481B87A510002DE75A /* purewikied-css.css in Resources */,
 				83509BD11B862A0400C4F454 /* PWSearchResultsAttachPanel.xib in Resources */,
 				83A2FBCC1B830AC700939452 /* PWMainWindow.xib in Resources */,
 				83509BE61B8739FD00C4F454 /* PWWikiContentView.xib in Resources */,
