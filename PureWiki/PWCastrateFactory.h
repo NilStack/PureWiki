@@ -42,6 +42,10 @@
     DOMHTMLTableCellElement __strong* _hlistTableDataElement;    /* class="hlist" */
     }
 
+#pragma mark Initializations
++ ( instancetype ) defaultFactory;
+
+#pragma mark Actions
 - ( WebArchive* ) castrateFrame: ( WebFrame* )_Frame;
 
 @end // PWCastrateFactory class

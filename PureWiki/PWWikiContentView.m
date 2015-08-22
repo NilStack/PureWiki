@@ -43,8 +43,6 @@
         {
         self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
         [ self->_backingWebView setFrameLoadDelegate: self ];
-
-        self->_castrateFactory = [ [ PWCastrateFactory alloc ] init ];
         }
 
     return self;
@@ -75,7 +73,7 @@
     {
     if ( _Frame == [ _WebView mainFrame ] )
         {
-        WebArchive* castratedArchive = [ self->_castrateFactory castrateFrame: _Frame ];
+        WebArchive* castratedArchive = [ [ PWCastrateFactory defaultFactory ] castrateFrame: _Frame ];
         [ self.webView.mainFrame loadArchive: castratedArchive ];
         }
     }

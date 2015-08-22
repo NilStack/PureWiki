@@ -35,6 +35,16 @@
 // PWCastrateFactory class
 @implementation PWCastrateFactory
 
+#pragma mark Initializations
+id sDefaultFactory = nil;
++ ( instancetype ) defaultFactory
+    {
+    if ( !sDefaultFactory )
+        sDefaultFactory = [ [ self alloc ] init ];
+
+    return sDefaultFactory;
+    }
+
 - ( instancetype ) init
     {
     if ( self = [ super init ] )
@@ -132,8 +142,7 @@
                 || [ className isEqualToString: @"toctoggle" ]
                 || [ className isEqualToString: @"printfooter" ]
                 || [ className isEqualToString: @"metadata plainlinks mbox-small" ]
-                || [ className isEqualToString: @"mbox-small plainlinks sistersitebox" ]
-                || [ className isEqualToString: @"collapseButton" ] /* FIXME */ )
+                || [ className isEqualToString: @"mbox-small plainlinks sistersitebox" ] )
             [ self->_toBeCastrated addObject: node ];
 
         if ( [ node respondsToSelector: @selector( idName ) ] )

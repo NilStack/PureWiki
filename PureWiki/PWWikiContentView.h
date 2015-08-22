@@ -34,8 +34,6 @@
 @private
     WikiPage __strong* _wikiPage;
     WebView __strong* _backingWebView;
-
-    PWCastrateFactory __strong* _castrateFactory;
     }
 
 #pragma mark Outlets
