@@ -103,7 +103,9 @@
             [ self.owner.goForwardButton setEnabled: self.webView.canGoForward ];
             [ self.webView setPolicyDelegate: self ];
 
-            NSLog( @"🌰%@", self.webView.backForwardList );
+        #if DEBUG
+            NSLog( @"🌰 Current back-forward list: %@", self.webView.backForwardList );
+        #endif
             }
         }
     }
@@ -122,7 +124,6 @@
         // Pause routing navigation action to avoid the infinite recursion
         [ self.webView setPolicyDelegate: nil ];
 
-//        if ( [ _ActionInformation[ WebActionNavigationTypeKey ] isEqualToNumber: @( WebNavigationTypeBackForward ) ] )
         if ( [ _Request.URL.scheme isEqualToString: @"file" ] )
             [ _Listener use ];
         else
