@@ -40,19 +40,15 @@
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
     {
     if ( self = [ super initWithCoder: _Coder ] )
-        {
         self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
-
-        [ self->_backingWebView setFrameLoadDelegate: self ];
-//        [ self->_backingWebView setPolicyDelegate: self ];
-        }
 
     return self;
     }
 
 - ( void ) awakeFromNib
     {
-        [ self.webView setPolicyDelegate: self ];
+    [ self->_backingWebView setFrameLoadDelegate: self ];
+    [ self.webView setPolicyDelegate: self ];
     }
 
 #pragma mark Dynamic Properties
@@ -78,24 +74,34 @@
 - ( void )        webView: ( WebView* )_WebView
     didFinishLoadForFrame: ( WebFrame* )_Frame
     {
-    if ( _Frame == [ _WebView mainFrame ] )
+    if ( _WebView == self->_backingWebView
+            && _Frame == [ _WebView mainFrame ] )
         {
         WebArchive* castratedArchive = [ [ PWCastrateFactory defaultFactory ] castrateFrame: _Frame ];
         [ self.webView.mainFrame loadArchive: castratedArchive ];
 
+        // Resume routing navigation action
         [ self.webView setPolicyDelegate: self ];
         }
     }
 
 #pragma mark Conforms to <WebPolicyDelegate>
+
+// Routes all the navigation action that occured in self.webView
 - ( void )                  webView: ( WebView* )_WebView
     decidePolicyForNavigationAction: ( NSDictionary* )_ActionInformation
                             request: ( NSURLRequest* )_Request
                               frame: ( WebFrame* )_Frame
                    decisionListener: ( id <WebPolicyDecisionListener> )_Listener
     {
-    [ self.webView setPolicyDelegate: nil ];
-    [ self->_backingWebView.mainFrame loadRequest: _Request ];
+    if ( _WebView == self.webView )
+        {
+        // Pause routing navigation action to avoid the infinite recursion
+        [ self.webView setPolicyDelegate: nil ];
+
+        [ self->_backingWebView.mainFrame loadRequest: _Request ];
+        [ _Listener ignore ];
+        }
     }
 
 @end // PWWikiContentView class
