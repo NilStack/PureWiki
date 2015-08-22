@@ -49,7 +49,9 @@
 - ( void ) awakeFromNib
     {
     [ self->_backingWebView setFrameLoadDelegate: self ];
+
     [ self.webView setPolicyDelegate: self ];
+    [ self.webView setMaintainsBackForwardList: NO ];
     }
 
 #pragma mark Dynamic Properties
@@ -69,6 +71,18 @@
 - ( WikiPage* ) wikiPage
     {
     return self->_wikiPage;
+    }
+
+- ( IBAction ) goBackAction: ( id )_Sender
+    {
+    [ self->_backingWebView goBack: _Sender ];
+    [ self.webView.mainFrame loadArchive: self->_backingWebView.mainFrame.dataSource.webArchive ];
+    }
+
+- ( IBAction ) goForwardAction: ( id )_Sender
+    {
+    [ self->_backingWebView goForward: _Sender ];
+    [ self.webView.mainFrame loadArchive: self->_backingWebView.mainFrame.dataSource.webArchive ];
     }
 
 #pragma mark Conforms to <WebFrameLoadDelegate>
