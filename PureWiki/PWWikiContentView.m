@@ -49,7 +49,10 @@
 - ( void ) awakeFromNib
     {
     [ self->_backingWebView setFrameLoadDelegate: self ];
+    [ self->_backingWebView setMaintainsBackForwardList: NO ];
+
     [ self.webView setPolicyDelegate: self ];
+    [ self.webView setFrameLoadDelegate: self ];
     }
 
 #pragma mark Dynamic Properties
@@ -62,7 +65,7 @@
         [ self->_backingWebView.mainFrame stopLoading ];
 
         NSURLRequest* request = [ NSURLRequest requestWithURL: self->_wikiPage.URL ];
-        [ self.webView.mainFrame loadRequest: request ];
+        [ self->_backingWebView.mainFrame loadRequest: request ];
         }
     }
 
@@ -76,22 +79,32 @@
     didFinishLoadForFrame: ( WebFrame* )_Frame
     {
     NSError* error = nil;
-    if ( _WebView == self->_backingWebView
-            && _Frame == [ _WebView mainFrame ] )
-        {
-        NSURL* archiveURL = [ [ PWCastrateFactory defaultFactory ] castrateFrameOnDisk: _Frame error: &error ];
-        if ( !error )
-            {
-            [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
 
-            // Resume routing navigation action
+    if ( _Frame == [ _WebView mainFrame ] )
+        {
+        if ( _WebView == self->_backingWebView )
+            {
+            NSURL* archiveURL = [ [ PWCastrateFactory defaultFactory ] castrateFrameOnDisk: _Frame error: &error ];
+
+            if ( !error )
+                {
+                [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
+
+                // Resume routing navigation action
+                [ self.webView setPolicyDelegate: self ];
+                }
+            else
+                NSLog( @"%@", error );
+            }
+
+        else if ( _WebView == self.webView )
+            {
+            [ self.owner.goBackButton setEnabled: self.webView.canGoBack ];
+            [ self.owner.goForwardButton setEnabled: self.webView.canGoForward ];
             [ self.webView setPolicyDelegate: self ];
 
-            [ self.owner.goBackButton setEnabled: _WebView.canGoBack ];
-            [ self.owner.goForwardButton setEnabled: _WebView.canGoForward ];
+            NSLog( @"🌰%@", self.webView.backForwardList );
             }
-        else
-            NSLog( @"%@", error );
         }
     }
 
@@ -109,8 +122,14 @@
         // Pause routing navigation action to avoid the infinite recursion
         [ self.webView setPolicyDelegate: nil ];
 
-        [ self->_backingWebView.mainFrame loadRequest: _Request ];
-        [ _Listener ignore ];
+//        if ( [ _ActionInformation[ WebActionNavigationTypeKey ] isEqualToNumber: @( WebNavigationTypeBackForward ) ] )
+        if ( [ _Request.URL.scheme isEqualToString: @"file" ] )
+            [ _Listener use ];
+        else
+            {
+            [ self->_backingWebView.mainFrame loadRequest: _Request ];
+            [ _Listener ignore ];
+            }
         }
     }
 
