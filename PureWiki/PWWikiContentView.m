@@ -25,6 +25,7 @@
 #import "PWWikiContentView.h"
 #import "PWCastrateFactory.h"
 #import "PWStackContainerView.h"
+#import "PWNavButtonsPairView.h"
 
 #import "WikiPage.h"
 
@@ -99,8 +100,7 @@
 
         else if ( _WebView == self.webView )
             {
-            [ self.owner.goBackButton setEnabled: self.webView.canGoBack ];
-            [ self.owner.goForwardButton setEnabled: self.webView.canGoForward ];
+            [ self.owner.navButtonsPairView reload ];
             [ self.webView setPolicyDelegate: self ];
 
         #if DEBUG

@@ -28,6 +28,7 @@
 @class WikiPage;
 @class PWCastrateFactory;
 @class PWStackContainerView;
+@class PWNavButtonsPairView;
 
 @protocol PWWikiContentViewOwner;
 
@@ -51,8 +52,7 @@
 // PWWikiContentViewOwner protocol
 @protocol PWWikiContentViewOwner <NSObject>
 
-@property ( weak ) IBOutlet NSButton* goBackButton;
-@property ( weak ) IBOutlet NSButton* goForwardButton;
+@property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
 
 @end // PWWikiContentViewOwner protocol
 

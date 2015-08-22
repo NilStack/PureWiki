@@ -36,16 +36,29 @@
     {
     self->_bindingContentViewController = _BindingContentViewController;
 
-    [ self.goBackButton setTarget: self->_bindingContentViewController.wikiContentView.webView ];
+    WebView* theWebView = self->_bindingContentViewController.wikiContentView.webView;
+
+    [ self.goBackButton setTarget: theWebView ];
     [ self.goBackButton setAction: @selector( goBack: ) ];
 
-    [ self.goForwardButton setTarget: self->_bindingContentViewController.wikiContentView.webView ];
+    [ self.goForwardButton setTarget: theWebView ];
     [ self.goForwardButton setAction: @selector( goForward: ) ];
+
+    [ self reload ];
     }
 
 - ( PWWikiContentViewController* ) bindingContentViewController
     {
     return self->_bindingContentViewController;
+    }
+
+#pragma mark Actions
+- ( void ) reload
+    {
+    WebView* theWebView = self->_bindingContentViewController.wikiContentView.webView;
+
+    [ self.goBackButton setEnabled: theWebView.canGoBack ];
+    [ self.goForwardButton setEnabled: theWebView.canGoForward ];
     }
 
 @end // PWNavButtonsPairView class

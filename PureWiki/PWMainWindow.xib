@@ -118,8 +118,7 @@
                                 <rect key="frame" x="272" y="0.0" width="1066" height="1056"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <connections>
-                                    <outlet property="goBackButton" destination="ZEs-0h-fYF" id="cqf-Nk-ZgJ"/>
-                                    <outlet property="goForwardButton" destination="qms-6d-6Oy" id="6u0-kk-LV1"/>
+                                    <outlet property="navButtonsPairView" destination="cjA-YO-b28" id="3eg-lP-Ibf"/>
                                 </connections>
                             </customView>
                         </subviews>

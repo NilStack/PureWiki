@@ -23,6 +23,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 @import Cocoa;
+@import WebKit;
 
 @class PWWikiContentViewController;
 
@@ -39,6 +40,9 @@
 
 #pragma mark Ivar Properties
 @property ( weak, readwrite ) PWWikiContentViewController* bindingContentViewController;
+
+#pragma mark Actions
+- ( void ) reload;
 
 @end // PWNavButtonsPairView class
 
