@@ -26,6 +26,9 @@
 
 @class WikiPage;
 @class PWWikiContentView;
+@class PWStackContainerView;
+
+@protocol PWWikiContentViewOwner;
 
 // PWWikiContentViewController class
 @interface PWWikiContentViewController : NSViewController
@@ -34,8 +37,8 @@
 @property ( weak, readonly ) PWWikiContentView* wikiContentView;
 
 #pragma mark Initializations
-+ ( instancetype ) controllerWithWikiPage: ( WikiPage* )_WikiPage;
-- ( instancetype ) initWithWikiPage: ( WikiPage* )_WikiPage;
++ ( instancetype ) controllerWithWikiPage: ( WikiPage* )_WikiPage owner: ( id <PWWikiContentViewOwner> )_Owner;
+- ( instancetype ) initWithWikiPage: ( WikiPage* )_WikiPage owner: ( id <PWWikiContentViewOwner> )_Owner;
 
 @end // PWWikiContentViewController class
 

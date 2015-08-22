@@ -73,7 +73,7 @@
 
     if ( !( self->_pagesStack[ wikiPage ] ) )
         {
-        PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: wikiPage ];
+        PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: wikiPage owner: self ];
 
         if ( wikiContentViewController )
             [ self->_pagesStack addEntriesFromDictionary: @{ wikiPage : wikiContentViewController } ];

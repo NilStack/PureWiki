@@ -278,6 +278,10 @@
 			isa = PBXGroup;
 			children = (
 				83509BE41B8739F500C4F454 /* xib */,
+				83A2FBDD1B833B2A00939452 /* PWStackContainerView.h */,
+				83A2FBDE1B833B2A00939452 /* PWStackContainerView.m */,
+				83A2FBE01B833B8E00939452 /* PWStackContainerViewController.h */,
+				83A2FBE11B833B8E00939452 /* PWStackContainerViewController.m */,
 				83480E921B8351BF00A33030 /* PWWikiContentView.h */,
 				83480E931B8351BF00A33030 /* PWWikiContentView.m */,
 				83509BE11B8738E800C4F454 /* PWWikiContentViewController.h */,
@@ -306,10 +310,6 @@
 				83A2FBC61B830AB000939452 /* PWMainWindow.m */,
 				83A2FBDA1B83303900939452 /* PWMainContentView.h */,
 				83A2FBDB1B83303900939452 /* PWMainContentView.m */,
-				83A2FBDD1B833B2A00939452 /* PWStackContainerView.h */,
-				83A2FBDE1B833B2A00939452 /* PWStackContainerView.m */,
-				83A2FBE01B833B8E00939452 /* PWStackContainerViewController.h */,
-				83A2FBE11B833B8E00939452 /* PWStackContainerViewController.m */,
 				83480E9B1B83589900A33030 /* PWSplitView.h */,
 				83480E9C1B83589900A33030 /* PWSplitView.m */,
 			);

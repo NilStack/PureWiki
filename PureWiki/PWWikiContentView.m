@@ -24,6 +24,7 @@
 
 #import "PWWikiContentView.h"
 #import "PWCastrateFactory.h"
+#import "PWStackContainerView.h"
 
 #import "WikiPage.h"
 
@@ -82,6 +83,9 @@
 
         // Resume routing navigation action
         [ self.webView setPolicyDelegate: self ];
+
+        [ self.owner.goBackButton setEnabled: _WebView.canGoBack ];
+        [ self.owner.goForwardButton setEnabled: _WebView.canGoForward ];
         }
     }
 

@@ -38,14 +38,19 @@
 
 #pragma mark Initializations
 + ( instancetype ) controllerWithWikiPage: ( WikiPage* )_WikiPage
+                                    owner: ( id <PWWikiContentViewOwner> )_Owner
     {
-    return [ [ [ self class ] alloc ] initWithWikiPage: _WikiPage ];
+    return [ [ [ self class ] alloc ] initWithWikiPage: _WikiPage owner: _Owner ];
     }
 
 - ( instancetype ) initWithWikiPage: ( WikiPage* )_WikiPage
+                              owner: ( id <PWWikiContentViewOwner> )_Owner
     {
     if ( self = [ super initWithNibName: @"PWWikiContentView" bundle: [ NSBundle mainBundle ] ] )
+        {
         [ self.wikiContentView setWikiPage: _WikiPage ];
+        [ self.wikiContentView setOwner: _Owner ];
+        }
 
     return self;
     }

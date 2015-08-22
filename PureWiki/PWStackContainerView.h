@@ -22,18 +22,22 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+#import "PWWikiContentView.h"
 
 @class PWWikiContentView;
 @class PWWikiContentViewController;
 
 // PWStackContainerView class
-@interface PWStackContainerView : NSView
+@interface PWStackContainerView : NSView <PWWikiContentViewOwner>
     {
 @protected
     // @{ WikiPage : PWWikiContentViewController }
     NSMutableDictionary __strong* _pagesStack;
     }
+
+#pragma mark Conforms to <PWWikiContentViewOwner>
+@property ( weak ) IBOutlet NSButton* goBackButton;
+@property ( weak ) IBOutlet NSButton* goForwardButton;
 
 @end // PWStackContainerView class
 

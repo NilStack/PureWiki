@@ -117,6 +117,10 @@
                             <customView fixedFrame="YES" id="QEV-J8-37j" customClass="PWStackContainerView">
                                 <rect key="frame" x="272" y="0.0" width="1066" height="1056"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <connections>
+                                    <outlet property="goBackButton" destination="ZEs-0h-fYF" id="cqf-Nk-ZgJ"/>
+                                    <outlet property="goForwardButton" destination="qms-6d-6Oy" id="6u0-kk-LV1"/>
+                                </connections>
                             </customView>
                         </subviews>
                         <holdingPriorities>
@@ -160,17 +164,23 @@
             <subviews>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEs-0h-fYF">
                     <rect key="frame" x="2" y="-1" width="26" height="25"/>
-                    <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSGoLeftTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ApR-CM-mBb">
+                    <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSGoLeftTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ApR-CM-mBb">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="goBack:" target="-1" id="Vb6-H7-Ifw"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qms-6d-6Oy">
                     <rect key="frame" x="29" y="-1" width="26" height="25"/>
-                    <buttonCell key="cell" type="roundTextured" title="go-forward" bezelStyle="texturedRounded" image="NSGoRightTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TRg-Jg-diy">
+                    <buttonCell key="cell" type="roundTextured" title="go-forward" bezelStyle="texturedRounded" image="NSGoRightTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TRg-Jg-diy">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="goForward:" target="-1" id="lAA-8J-7g7"/>
+                    </connections>
                 </button>
             </subviews>
             <point key="canvasLocation" x="368" y="57"/>

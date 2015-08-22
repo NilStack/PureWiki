@@ -27,6 +27,9 @@
 
 @class WikiPage;
 @class PWCastrateFactory;
+@class PWStackContainerView;
+
+@protocol PWWikiContentViewOwner;
 
 // PWWikiContentView class
 @interface PWWikiContentView : NSView <WebFrameLoadDelegate, WebPolicyDelegate>
@@ -41,8 +44,17 @@
 
 #pragma mark Ivar Properties
 @property ( strong, readwrite ) WikiPage* wikiPage;
+@property ( weak, readwrite ) id <PWWikiContentViewOwner> owner;
 
 @end // PWWikiContentView class
+
+// PWWikiContentViewOwner protocol
+@protocol PWWikiContentViewOwner <NSObject>
+
+@property ( weak ) IBOutlet NSButton* goBackButton;
+@property ( weak ) IBOutlet NSButton* goForwardButton;
+
+@end // PWWikiContentViewOwner protocol
 
 /*===============================================================================┐
 |                                                                                | 
