@@ -49,11 +49,8 @@ id sDefaultFactory = nil;
     {
     if ( self = [ super init ] )
         {
-        self->_imageElements = [ NSMutableArray array ];
-        self->_styleDeclarations = [ NSMutableArray array ];
-        self->_toBeCastrated = [ NSMutableArray array ];
-
         self->_cssLabURL = [ [ NSBundle mainBundle ] URLForResource: @"purewiki-css" withExtension: @"css" ];
+        self->_toBeCastrated = [ NSMutableArray array ];
         }
 
     return self;
@@ -61,7 +58,6 @@ id sDefaultFactory = nil;
 
 - ( WebArchive* ) castrateFrame: ( WebFrame* )_Frame;
     {
-    WebArchive* webArchive = _Frame.dataSource.webArchive;
     DOMHTMLDocument* document = ( DOMHTMLDocument* )( _Frame.DOMDocument );
 
     [ self _traverseDOMNodes: document ];
@@ -102,15 +98,14 @@ id sDefaultFactory = nil;
     [ self->_headElement appendChild: newStyleElement ];
 
     NSString* sourceHTML = [ document.documentElement outerHTML ];
-
     NSData* sourceHTMLDataRef = [ sourceHTML dataUsingEncoding: NSUTF8StringEncoding ];
 
     WebResource* newMainResource = [ [ WebResource alloc ] initWithData: sourceHTMLDataRef URL: mainResourceURL MIMEType: @"text/html" textEncodingName: @"utf-8" frameName: @"" ];
 
-    WebArchive* oldWebArchive = webArchive;
-    WebArchive* newWebArchive = [ [ WebArchive alloc ] initWithMainResource: newMainResource subresources: [ oldWebArchive subresources ] subframeArchives: oldWebArchive.subframeArchives ];
+    WebArchive* oldWebArchive = _Frame.dataSource.webArchive;
+    WebArchive* castratedWebArchive = [ [ WebArchive alloc ] initWithMainResource: newMainResource subresources: [ oldWebArchive subresources ] subframeArchives: oldWebArchive.subframeArchives ];
 
-    return newWebArchive;
+    return castratedWebArchive;
     }
 
 - ( void ) _traverseNamedNodeMap: ( DOMNode* )_DOMNode
@@ -120,9 +115,6 @@ id sDefaultFactory = nil;
     for ( int _Index = 0; _Index < attrs.length; _Index++ )
         {
         DOMAttr* attr = ( DOMAttr* )[ attrs item: _Index ];
-
-        if ( attr.style.cssText.length )
-            [ self->_styleDeclarations addObject: attr.style ];
 
         if ( attr.childNodes.length > 0 )
             [ self _traverseNamedNodeMap: attr ];
@@ -192,10 +184,6 @@ id sDefaultFactory = nil;
                     }
                 }
             }
-
-        // <img>
-        if ( [ node isKindOfClass: [ DOMHTMLImageElement class ] ] )
-            [ self->_imageElements addObject: node ];
 
         // <table>
         if ( [ node isKindOfClass: [ DOMHTMLTableElement class ] ] )
