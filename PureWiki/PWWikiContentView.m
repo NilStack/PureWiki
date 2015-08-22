@@ -50,9 +50,10 @@
 - ( void ) awakeFromNib
     {
     [ self->_backingWebView setFrameLoadDelegate: self ];
+    [ self->_backingWebView setMaintainsBackForwardList: NO ];
 
     [ self.webView setPolicyDelegate: self ];
-    [ self.webView setMaintainsBackForwardList: NO ];
+    [ self.webView setFrameLoadDelegate: self ];
     }
 
 #pragma mark Dynamic Properties
