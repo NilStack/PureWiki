@@ -42,7 +42,8 @@
 + ( instancetype ) defaultFactory;
 
 #pragma mark Actions
-- ( WebArchive* ) castrateFrame: ( WebFrame* )_Frame;
+- ( WebArchive* ) castrateFrameInMemory: ( WebFrame* )_Frame;
+- ( NSURL* ) castrateFrameOnDisk: ( WebFrame* )_Frame error: ( NSError** )_Error;
 
 @end // PWCastrateFactory class
 

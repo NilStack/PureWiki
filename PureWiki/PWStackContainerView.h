@@ -26,6 +26,7 @@
 
 @class PWWikiContentView;
 @class PWWikiContentViewController;
+@class PWNavButtonsPairView;
 
 // PWStackContainerView class
 @interface PWStackContainerView : NSView <PWWikiContentViewOwner>
@@ -36,8 +37,7 @@
     }
 
 #pragma mark Conforms to <PWWikiContentViewOwner>
-@property ( weak ) IBOutlet NSButton* goBackButton;
-@property ( weak ) IBOutlet NSButton* goForwardButton;
+@property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
 
 @end // PWStackContainerView class
 

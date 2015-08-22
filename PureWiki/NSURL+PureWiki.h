@@ -22,39 +22,14 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
-@import WebKit;
+@import Foundation;
 
-@class WikiPage;
-@class PWCastrateFactory;
-@class PWStackContainerView;
-@class PWNavButtonsPairView;
+@interface NSURL ( PureWiki )
 
-@protocol PWWikiContentViewOwner;
+#pragma mark Modifying and Converting a File URL
+@property ( strong, readonly ) NSString* filePathRep;
 
-// PWWikiContentView class
-@interface PWWikiContentView : NSView <WebFrameLoadDelegate, WebPolicyDelegate>
-    {
-@private
-    WikiPage __strong* _wikiPage;
-    WebView __strong* _backingWebView;
-    }
-
-#pragma mark Outlets
-@property ( weak ) IBOutlet WebView* webView;
-
-#pragma mark Ivar Properties
-@property ( strong, readwrite ) WikiPage* wikiPage;
-@property ( weak, readwrite ) id <PWWikiContentViewOwner> owner;
-
-@end // PWWikiContentView class
-
-// PWWikiContentViewOwner protocol
-@protocol PWWikiContentViewOwner <NSObject>
-
-@property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
-
-@end // PWWikiContentViewOwner protocol
+@end
 
 /*===============================================================================┐
 |                                                                                | 

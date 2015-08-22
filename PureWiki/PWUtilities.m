@@ -22,39 +22,46 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
-@import WebKit;
+#import <CommonCrypto/CommonHMAC.h>
 
-@class WikiPage;
-@class PWCastrateFactory;
-@class PWStackContainerView;
-@class PWNavButtonsPairView;
+#import "PWUtilities.h"
 
-@protocol PWWikiContentViewOwner;
-
-// PWWikiContentView class
-@interface PWWikiContentView : NSView <WebFrameLoadDelegate, WebPolicyDelegate>
+NSString* PWSignWithHMACSHA1( NSString* _SignatureBaseString, NSString* _SigningKey )
     {
-@private
-    WikiPage __strong* _wikiPage;
-    WebView __strong* _backingWebView;
+    unsigned char buffer[ CC_SHA1_DIGEST_LENGTH ];
+    CCHmac( kCCHmacAlgSHA1
+          , _SigningKey.UTF8String, _SigningKey.length
+          , _SignatureBaseString.UTF8String, _SignatureBaseString.length
+          , buffer
+          );
+
+    NSData* signatureData = [ NSData dataWithBytes: buffer length: CC_SHA1_DIGEST_LENGTH ];
+    NSString* base64 = [ signatureData base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength ];
+
+    return base64;
     }
 
-#pragma mark Outlets
-@property ( weak ) IBOutlet WebView* webView;
+NSString* PWTimestamp()
+    {
+    NSTimeInterval UnixEpoch = [ [ NSDate date ] timeIntervalSince1970 ];
+    NSString* timestamp = [ NSString stringWithFormat: @"%lu", ( NSUInteger )floor( UnixEpoch ) ];
+    return timestamp;
+    }
 
-#pragma mark Ivar Properties
-@property ( strong, readwrite ) WikiPage* wikiPage;
-@property ( weak, readwrite ) id <PWWikiContentViewOwner> owner;
+NSString* PWNonce()
+    {
+    CFUUIDRef UUID = CFUUIDCreate( kCFAllocatorDefault );
+    CFStringRef cfStringRep = CFUUIDCreateString( kCFAllocatorDefault, UUID ) ;
+    NSString* stringRepresentation = [ ( __bridge NSString* )cfStringRep copy ];
 
-@end // PWWikiContentView class
+    if ( UUID )
+        CFRelease( UUID );
 
-// PWWikiContentViewOwner protocol
-@protocol PWWikiContentViewOwner <NSObject>
+    if ( cfStringRep )
+        CFRelease( cfStringRep );
 
-@property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
-
-@end // PWWikiContentViewOwner protocol
+    return stringRepresentation;
+    }
 
 /*===============================================================================┐
 |                                                                                | 

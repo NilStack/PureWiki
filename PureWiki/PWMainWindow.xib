@@ -118,8 +118,7 @@
                                 <rect key="frame" x="272" y="0.0" width="1066" height="1056"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <connections>
-                                    <outlet property="goBackButton" destination="ZEs-0h-fYF" id="cqf-Nk-ZgJ"/>
-                                    <outlet property="goForwardButton" destination="qms-6d-6Oy" id="6u0-kk-LV1"/>
+                                    <outlet property="navButtonsPairView" destination="cjA-YO-b28" id="3eg-lP-Ibf"/>
                                 </connections>
                             </customView>
                         </subviews>
@@ -183,6 +182,10 @@
                     </connections>
                 </button>
             </subviews>
+            <connections>
+                <outlet property="goBackButton" destination="ZEs-0h-fYF" id="ORI-RM-nwh"/>
+                <outlet property="goForwardButton" destination="qms-6d-6Oy" id="uTL-Tc-FFP"/>
+            </connections>
             <point key="canvasLocation" x="368" y="57"/>
         </customView>
         <button verticalHuggingPriority="750" id="nVW-V1-1tx">
@@ -213,7 +216,6 @@
                 <outlet property="view" destination="34m-hF-hQH" id="R7j-kW-3hW"/>
             </connections>
         </viewController>
-        <customObject id="AMe-C7-iJg" customClass="PWBrain"/>
     </objects>
     <resources>
         <image name="NSColumnViewTemplate" width="16" height="10"/>

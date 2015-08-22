@@ -21,40 +21,30 @@
 └==============================================================================┘██
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
-  
-#import "WikiEngine.h"
 
-// PWBrain class
-@interface PWBrain : NSObject
+#import "NSURL+PureWiki.h"
+
+@implementation NSURL ( PureWiki )
+
+@dynamic filePathRep;
+
+#pragma mark Modifying and Converting a File URL
+- ( NSString* ) filePathRep
     {
-@protected
-    WikiEngine __strong* _instantSearchWikiEngine;
+    NSString* pathRep = nil;
+
+    if ( [ self.scheme isEqualToString: @"file" ] )
+        {
+        NSString* tmp = [ [ self pathComponents ] componentsJoinedByString: @"/" ];
+        tmp = [ tmp stringByReplacingCharactersInRange: NSMakeRange( 0, 1 ) withString: @"" ];
+
+        pathRep = tmp;
+        }
+
+    return pathRep;
     }
 
-@property ( strong, readonly ) WikiEngine* instantSearchWikiEngine;
-
-#pragma mark Singleton Initializer
-+ ( instancetype ) wiseBrain;
-
-#pragma mark Controlling Task State
-- ( void ) cancelInstantSearchWiki;
-
-#pragma mark Actions
-- ( void ) searchAllPagesThatHaveValue: ( NSString* )_SearchValue
-                          inNamespaces: ( NSArray* )_Namespaces
-                                  what: ( WikiEngineSearchWhat )_SearchWhat
-                                 limit: ( NSUInteger )_Limit
-                               success: ( void (^)( NSArray* _MatchedPages ) )_SuccessBlock
-                               failure: ( void (^)( NSError* _Error ) )_FailureBlock;
-
-- ( void ) searchAllPagesThatHaveValue: ( NSString* )_SearchValue
-                          inNamespaces: ( NSArray* )_Namespaces
-                                  what: ( WikiEngineSearchWhat )_SearchWhat
-                                 limit: ( NSUInteger )_Limit
-                               success: ( void (^)( NSArray* _MatchedPages ) )_SuccessBlock
-                               failure: ( void (^)( NSError* _Error ) )_FailureBlock
-                     stopAllOtherTasks: ( BOOL )_WillStop;
-@end // PWBrain class
+@end
 
 /*===============================================================================┐
 |                                                                                | 

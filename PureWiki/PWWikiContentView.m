@@ -25,6 +25,7 @@
 #import "PWWikiContentView.h"
 #import "PWCastrateFactory.h"
 #import "PWStackContainerView.h"
+#import "PWNavButtonsPairView.h"
 
 #import "WikiPage.h"
 
@@ -64,7 +65,7 @@
         [ self->_backingWebView.mainFrame stopLoading ];
 
         NSURLRequest* request = [ NSURLRequest requestWithURL: self->_wikiPage.URL ];
-        [ self.webView.mainFrame loadRequest: request ];
+        [ self->_backingWebView.mainFrame loadRequest: request ];
         }
     }
 
@@ -89,17 +90,34 @@
 - ( void )        webView: ( WebView* )_WebView
     didFinishLoadForFrame: ( WebFrame* )_Frame
     {
-    if ( _WebView == self->_backingWebView
-            && _Frame == [ _WebView mainFrame ] )
+    NSError* error = nil;
+
+    if ( _Frame == [ _WebView mainFrame ] )
         {
-        WebArchive* castratedArchive = [ [ PWCastrateFactory defaultFactory ] castrateFrame: _Frame ];
-        [ self.webView.mainFrame loadArchive: castratedArchive ];
+        if ( _WebView == self->_backingWebView )
+            {
+            NSURL* archiveURL = [ [ PWCastrateFactory defaultFactory ] castrateFrameOnDisk: _Frame error: &error ];
 
-        // Resume routing navigation action
-        [ self.webView setPolicyDelegate: self ];
+            if ( !error )
+                {
+                [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
 
-        [ self.owner.goBackButton setEnabled: _WebView.canGoBack ];
-        [ self.owner.goForwardButton setEnabled: _WebView.canGoForward ];
+                // Resume routing navigation action
+                [ self.webView setPolicyDelegate: self ];
+                }
+            else
+                NSLog( @"%@", error );
+            }
+
+        else if ( _WebView == self.webView )
+            {
+            [ self.owner.navButtonsPairView reload ];
+            [ self.webView setPolicyDelegate: self ];
+
+        #if DEBUG
+            NSLog( @"🌰 Current back-forward list: %@", self.webView.backForwardList );
+        #endif
+            }
         }
     }
 
@@ -117,8 +135,13 @@
         // Pause routing navigation action to avoid the infinite recursion
         [ self.webView setPolicyDelegate: nil ];
 
-        [ self->_backingWebView.mainFrame loadRequest: _Request ];
-        [ _Listener ignore ];
+        if ( [ _Request.URL.scheme isEqualToString: @"file" ] )
+            [ _Listener use ];
+        else
+            {
+            [ self->_backingWebView.mainFrame loadRequest: _Request ];
+            [ _Listener ignore ];
+            }
         }
     }
 

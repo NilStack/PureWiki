@@ -23,9 +23,43 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWNavButtonsPairView.h"
+#import "PWWikiContentViewController.h"
+#import "PWWikiContentView.h"
 
 // PWNavButtonsPairView class
 @implementation PWNavButtonsPairView
+
+@dynamic bindingContentViewController;
+
+#pragma mark Dynmaic Properties
+- ( void ) setBindingContentViewController: ( PWWikiContentViewController* __nullable )_BindingContentViewController
+    {
+    self->_bindingContentViewController = _BindingContentViewController;
+
+    WebView* theWebView = self->_bindingContentViewController.wikiContentView.webView;
+
+    [ self.goBackButton setTarget: theWebView ];
+    [ self.goBackButton setAction: @selector( goBack: ) ];
+
+    [ self.goForwardButton setTarget: theWebView ];
+    [ self.goForwardButton setAction: @selector( goForward: ) ];
+
+    [ self reload ];
+    }
+
+- ( PWWikiContentViewController* ) bindingContentViewController
+    {
+    return self->_bindingContentViewController;
+    }
+
+#pragma mark Actions
+- ( void ) reload
+    {
+    WebView* theWebView = self->_bindingContentViewController.wikiContentView.webView;
+
+    [ self.goBackButton setEnabled: theWebView.canGoBack ];
+    [ self.goForwardButton setEnabled: theWebView.canGoForward ];
+    }
 
 @end // PWNavButtonsPairView class
 

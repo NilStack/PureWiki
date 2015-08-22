@@ -26,6 +26,7 @@
 #import "PWActionNotifications.h"
 #import "PWWikiContentView.h"
 #import "PWWikiContentViewController.h"
+#import "PWNavButtonsPairView.h"
 
 #import "WikiPage.h"
 
@@ -81,10 +82,10 @@
 
     [ self setSubviews: @[] ];
     PWWikiContentViewController* contentViewController = self->_pagesStack[ wikiPage ];
+    [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
+
     [ self addSubview: contentViewController.view ];
     [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
-
-//    NSLog( @"Fucking Page: %@", _Notif.userInfo[ kPage ] );
     }
 
 @end // PWStackContainerView class

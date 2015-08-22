@@ -23,9 +23,15 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWCastrateFactory.h"
+#import "PWUtilities.h"
+
+#import "NSURL+PureWiki.h"
 
 // Private Interfaces
 @interface PWCastrateFactory ()
+
+@property ( strong, readonly ) NSString* _archiveBasePath;
+@property ( strong, readonly ) NSURL* _archiveBaseURL;
 
 - ( void ) _traverseNamedNodeMap: ( DOMNode* )_DOMNode;
 - ( void ) _traverseDOMNodes: ( DOMNode* )_DOMNode;
@@ -56,7 +62,7 @@ id sDefaultFactory = nil;
     return self;
     }
 
-- ( WebArchive* ) castrateFrame: ( WebFrame* )_Frame;
+- ( WebArchive* ) castrateFrameInMemory: ( WebFrame* )_Frame
     {
     DOMHTMLDocument* document = ( DOMHTMLDocument* )( _Frame.DOMDocument );
 
@@ -106,6 +112,58 @@ id sDefaultFactory = nil;
     WebArchive* castratedWebArchive = [ [ WebArchive alloc ] initWithMainResource: newMainResource subresources: [ oldWebArchive subresources ] subframeArchives: oldWebArchive.subframeArchives ];
 
     return castratedWebArchive;
+    }
+
+- ( NSURL* ) castrateFrameOnDisk: ( WebFrame* )_Frame
+                           error: ( NSError** )_Error
+    {
+    WebArchive* castratedArchive = [ self castrateFrameInMemory: _Frame ];
+
+    NSString* lastPathComponent = [ NSString stringWithFormat: @"%@-%@", _Frame.dataSource.request.URL.absoluteString, PWTimestamp() ];
+    lastPathComponent = PWSignWithHMACSHA1( lastPathComponent, PWNonce() );
+
+    // Returns a new last path component made from the reciever itself
+    // by replacing all characters not in the alphanumeric character set
+    // with precent encoded characters
+    lastPathComponent = [ lastPathComponent stringByAddingPercentEncodingWithAllowedCharacters: [ NSCharacterSet alphanumericCharacterSet ] ];
+
+    NSURL* resultURL = [ self._archiveBaseURL URLByAppendingPathComponent: lastPathComponent ];
+    resultURL = [ resultURL URLByAppendingPathExtension: @"webarchive" ];
+    [ castratedArchive.data writeToURL: resultURL options: NSDataWritingAtomic error: _Error ];
+
+    return resultURL;
+    }
+
+#pragma mark Private Interfaces
+@dynamic _archiveBasePath;
+@dynamic _archiveBaseURL;
+
+- ( NSString* ) _archiveBasePath
+    {
+    return self._archiveBaseURL.filePathRep;
+    }
+
+- ( NSURL* ) _archiveBaseURL
+    {
+    NSError* error = nil;
+    NSURL* cacheURL = [ [ NSFileManager defaultManager ] URLForDirectory: NSCachesDirectory
+                                                                inDomain: NSUserDomainMask
+                                                       appropriateForURL: nil
+                                                                  create: NO
+                                                                   error: &error ];
+    if ( !error )
+        {
+        cacheURL = [ cacheURL URLByAppendingPathComponent: @"archives" isDirectory: YES ];
+
+        NSString* pathOfCacheURL = cacheURL.filePathRep;
+        if ( ![ [ NSFileManager defaultManager ] fileExistsAtPath: pathOfCacheURL isDirectory: nil ] )
+            [ [ NSFileManager defaultManager ] createDirectoryAtPath: pathOfCacheURL withIntermediateDirectories: NO attributes: nil error: &error ];
+        }
+
+    if ( error )
+        NSLog( @"❌Error Occured in %s: %@", __PRETTY_FUNCTION__, error );
+
+    return cacheURL;
     }
 
 - ( void ) _traverseNamedNodeMap: ( DOMNode* )_DOMNode
