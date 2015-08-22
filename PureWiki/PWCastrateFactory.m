@@ -22,10 +22,15 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
+#import <CommonCrypto/CommonHMAC.h>
+
 #import "PWCastrateFactory.h"
 
 // Private Interfaces
 @interface PWCastrateFactory ()
+
+@property ( strong, readonly ) NSString* _archivePath;
+@property ( strong, readonly ) NSURL* _archiveBaseURL;
 
 - ( void ) _traverseNamedNodeMap: ( DOMNode* )_DOMNode;
 - ( void ) _traverseDOMNodes: ( DOMNode* )_DOMNode;
@@ -56,7 +61,44 @@ id sDefaultFactory = nil;
     return self;
     }
 
-- ( WebArchive* ) castrateFrame: ( WebFrame* )_Frame;
+NSString* TGSignWithHMACSHA1( NSString* _SignatureBaseString, NSString* _SigningKey )
+    {
+    unsigned char buffer[ CC_SHA1_DIGEST_LENGTH ];
+    CCHmac( kCCHmacAlgSHA1
+          , _SigningKey.UTF8String, _SigningKey.length
+          , _SignatureBaseString.UTF8String, _SignatureBaseString.length
+          , buffer
+          );
+
+    NSData* signatureData = [ NSData dataWithBytes: buffer length: CC_SHA1_DIGEST_LENGTH ];
+    NSString* base64 = [ signatureData base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength ];
+
+    return base64;
+    }
+
+NSString* TGTimestamp()
+    {
+    NSTimeInterval UnixEpoch = [ [ NSDate date ] timeIntervalSince1970 ];
+    NSString* timestamp = [ NSString stringWithFormat: @"%lu", ( NSUInteger )floor( UnixEpoch ) ];
+    return timestamp;
+    }
+
+NSString* TGNonce()
+    {
+    CFUUIDRef UUID = CFUUIDCreate( kCFAllocatorDefault );
+    CFStringRef cfStringRep = CFUUIDCreateString( kCFAllocatorDefault, UUID ) ;
+    NSString* stringRepresentation = [ ( __bridge NSString* )cfStringRep copy ];
+
+    if ( UUID )
+        CFRelease( UUID );
+
+    if ( cfStringRep )
+        CFRelease( cfStringRep );
+
+    return stringRepresentation;
+    }
+
+- ( WebArchive* ) castrateFrameInMemory: ( WebFrame* )_Frame
     {
     DOMHTMLDocument* document = ( DOMHTMLDocument* )( _Frame.DOMDocument );
 
@@ -106,6 +148,61 @@ id sDefaultFactory = nil;
     WebArchive* castratedWebArchive = [ [ WebArchive alloc ] initWithMainResource: newMainResource subresources: [ oldWebArchive subresources ] subframeArchives: oldWebArchive.subframeArchives ];
 
     return castratedWebArchive;
+    }
+
+- ( NSURL* ) castrateFrameOnDisk: ( WebFrame* )_Frame
+                           error: ( NSError** )_Error
+    {
+    NSURL* url = nil;
+
+    WebArchive* castratedArchive = [ self castrateFrameInMemory: _Frame ];
+
+    NSString* lastPathComponent = [ NSString stringWithFormat: @"%@-%@", _Frame.dataSource.request.URL.absoluteString, TGTimestamp() ];
+    lastPathComponent = [ @"/" stringByAppendingString: TGSignWithHMACSHA1( lastPathComponent, TGNonce() ) ];
+    url = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@.webarchive", [ NSHomeDirectory() stringByAppendingString: lastPathComponent ] ] ];
+    [ castratedArchive.data writeToURL: url atomically: YES ];
+
+    return url;
+    }
+
+#pragma mark Private Interfaces
+@dynamic _archiveBaseURL;
+
+// TODO: NSURL+PureWiki
+- ( NSString* ) _pathForURL: ( NSURL* )_URL
+    {
+    NSString* path = [ [ _URL pathComponents ] componentsJoinedByString: @"/" ];
+    path = [ path stringByReplacingCharactersInRange: NSMakeRange( 0, 1 ) withString: @"" ];
+    return path;
+    }
+
+- ( NSString* ) _archivePath
+    {
+    return [ self _pathForURL: self._archiveBaseURL ];
+    }
+
+- ( NSURL* ) _archiveBaseURL
+    {
+    NSError* error = nil;
+    NSURL* cacheURL = [ [ NSFileManager defaultManager ] URLForDirectory: NSCachesDirectory
+                                                                inDomain: NSUserDomainMask
+                                                       appropriateForURL: nil
+                                                                  create: NO
+                                                                   error: &error ];
+
+    if ( !error )
+        {
+        cacheURL = [ cacheURL URLByAppendingPathComponent: @"archives" isDirectory: YES ];
+
+        NSString* pathOfCacheURL = [ self _pathForURL: cacheURL ];
+        if ( ![ [ NSFileManager defaultManager ] fileExistsAtPath: pathOfCacheURL isDirectory: nil ] )
+            [ [ NSFileManager defaultManager ] createDirectoryAtPath: pathOfCacheURL withIntermediateDirectories: NO attributes: nil error: &error ];
+        }
+
+    if ( error )
+        NSLog( @"❌Error Occured in %s: %@", __PRETTY_FUNCTION__, error );
+
+    return cacheURL;
     }
 
 - ( void ) _traverseNamedNodeMap: ( DOMNode* )_DOMNode

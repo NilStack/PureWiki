@@ -78,7 +78,7 @@
     if ( _WebView == self->_backingWebView
             && _Frame == [ _WebView mainFrame ] )
         {
-        WebArchive* castratedArchive = [ [ PWCastrateFactory defaultFactory ] castrateFrame: _Frame ];
+        WebArchive* castratedArchive = [ [ PWCastrateFactory defaultFactory ] castrateFrameInMemory: _Frame ];
         [ self.webView.mainFrame loadArchive: castratedArchive ];
 
         // Resume routing navigation action
