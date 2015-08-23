@@ -27,6 +27,9 @@
 @class PWWikiContentView;
 @class PWWikiContentViewController;
 @class PWNavButtonsPairView;
+@class PWSidebarTabsTableController;
+
+@class FBKVOController;
 
 // PWStackContainerView class
 @interface PWStackContainerView : NSView <PWWikiContentViewOwner>
@@ -34,10 +37,12 @@
 @protected
     // @{ WikiPage : PWWikiContentViewController }
     NSMutableDictionary __strong* _pagesStack;
+    FBKVOController __strong* _KVOController;
     }
 
 #pragma mark Conforms to <PWWikiContentViewOwner>
 @property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
+@property ( weak ) IBOutlet PWSidebarTabsTableController* sidebarTabsTableController;
 
 @end // PWStackContainerView class
 

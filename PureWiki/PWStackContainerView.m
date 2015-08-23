@@ -27,8 +27,11 @@
 #import "PWWikiContentView.h"
 #import "PWWikiContentViewController.h"
 #import "PWNavButtonsPairView.h"
+#import "PWSidebarTabsTableController.h"
 
 #import "WikiPage.h"
+
+#import "FBKVOController.h"
 
 #import "PureLayout.h"
 
@@ -48,6 +51,7 @@
     if ( self = [ super initWithCoder: _Coder ] )
         {
         self->_pagesStack = [ NSMutableDictionary dictionary ];
+        self->_KVOController = [ FBKVOController controllerWithObserver: self ];
 
         [ [ NSNotificationCenter defaultCenter ] addObserver: self
                                                     selector: @selector( _tabsSelectionDidChange: )
@@ -56,6 +60,21 @@
         }
 
     return self;
+    }
+
+- ( void ) awakeFromNib
+    {
+    if ( self.sidebarTabsTableController )
+        {
+        [ self->_KVOController observe: self.sidebarTabsTableController
+                               keyPath: PWSidebarCurrentSelectedPageKVOPath
+                               options: NSKeyValueObservingOptionNew
+                                 block:
+            ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change)
+                {
+                NSLog( @"%@", _Change );
+                } ];
+        }
     }
 
 #pragma mark Custom Drawing

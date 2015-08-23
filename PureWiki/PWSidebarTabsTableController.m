@@ -30,6 +30,8 @@
 
 #import "WikiPage.h"
 
+NSString* const PWSidebarCurrentSelectedPageKVOPath = @"currentSelectedPage";
+
 NSString* const kColumnIdentifierTabs = @"tabs-column";
 
 // Private Interfaces
@@ -41,6 +43,8 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 
 // PWSidebarTabsTableController class
 @implementation PWSidebarTabsTableController
+
+@dynamic currentSelectedPage;
 
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
     {
@@ -101,6 +105,16 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
                                                          userInfo: @{ kPage : self->_openedWikiPages[ selectedRowIndex ] } ];
 
     [ [ NSNotificationCenter defaultCenter ] postNotification: notif ];
+
+    [ self willChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
+        self->_currentSelectedPage = self->_openedWikiPages[ selectedRowIndex ];
+    [ self didChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
+    }
+
+#pragma mark Dynamic Properties
+- ( WikiPage* ) currentSelectedPage
+    {
+    return self->_currentSelectedPage;
     }
 
 #pragma mark Private Interfaces

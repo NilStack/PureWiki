@@ -208,7 +208,6 @@
 		83D46AB91B878B900061BE7E /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
 		83D46ABA1B878B900061BE7E /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
 		83D46ABB1B878B900061BE7E /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
-		83D591111B89EC910018BC1C /* FBKVOController-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBKVOController-Prefix.pch"; sourceTree = "<group>"; };
 		83D591121B89EC910018BC1C /* FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBKVOController.h; sourceTree = "<group>"; };
 		83D591131B89EC910018BC1C /* FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBKVOController.m; sourceTree = "<group>"; };
 		83D591141B89EC910018BC1C /* NSObject+FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FBKVOController.h"; sourceTree = "<group>"; };
@@ -543,7 +542,6 @@
 		83D591101B89EC910018BC1C /* FBKVOController */ = {
 			isa = PBXGroup;
 			children = (
-				83D591111B89EC910018BC1C /* FBKVOController-Prefix.pch */,
 				83D591121B89EC910018BC1C /* FBKVOController.h */,
 				83D591131B89EC910018BC1C /* FBKVOController.m */,
 				83D591141B89EC910018BC1C /* NSObject+FBKVOController.h */,

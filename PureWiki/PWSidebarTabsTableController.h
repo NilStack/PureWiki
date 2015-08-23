@@ -24,16 +24,21 @@
 
 @import Cocoa;
 
+@class WikiPage;
 @class PWSidebarTabsTable;
+
+NSString extern* const PWSidebarCurrentSelectedPageKVOPath;
 
 // PWSidebarTabsTableController class
 @interface PWSidebarTabsTableController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
     {
 @protected
     NSMutableArray __strong* _openedWikiPages;
+    WikiPage __weak* _currentSelectedPage;
     }
 
 @property ( weak ) IBOutlet PWSidebarTabsTable* sidebarTabsTable;
+@property ( weak, readonly ) WikiPage* currentSelectedPage;
 
 @end // PWSidebarTabsTableController class
 
