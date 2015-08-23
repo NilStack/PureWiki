@@ -24,6 +24,7 @@
 
 #import "PWAppDelegate.h"
 #import "PWMainWindowController.h"
+#import "PWCastrateFactory.h"
 
 // Private Interfaces
 @interface PWAppDelegate ()
@@ -38,10 +39,14 @@
     self.mainWindowController = [ PWMainWindowController mainWindowController ];
     }
 
-- ( void ) applicationWillFinishLaunching: ( nonnull NSNotification* )_Notification
+- ( void ) applicationWillFinishLaunching: ( nonnull NSNotification* )_Notif
     {
     [ self.mainWindowController showWindow: self ];
-//    [ self.smartSearchPreviewPanelController showWindow: self ];
+    }
+
+- ( void ) applicationWillTerminate: ( nonnull NSNotification* )_Notif
+    {
+    [ [ PWCastrateFactory defaultFactory ] cleanUpCache ];
     }
 
 @end // PWAppDelegate class

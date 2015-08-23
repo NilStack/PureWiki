@@ -33,6 +33,9 @@
 @property ( strong, readonly ) NSString* _archiveBasePath;
 @property ( strong, readonly ) NSURL* _archiveBaseURL;
 
+@property ( strong, readonly ) NSString* _archiveBasePathWithoutCreation;
+@property ( strong, readonly ) NSURL* _archiveBaseURLWithoutCreation;
+
 - ( void ) _traverseNamedNodeMap: ( DOMNode* )_DOMNode;
 - ( void ) _traverseDOMNodes: ( DOMNode* )_DOMNode;
 
@@ -57,6 +60,9 @@ id sDefaultFactory = nil;
         {
         self->_cssLabURL = [ [ NSBundle mainBundle ] URLForResource: @"purewikied-css" withExtension: @"css" ];
         self->_toBeCastrated = [ NSMutableArray array ];
+
+        self->_fileManager = [ [ NSFileManager alloc ] init ];
+        [ self->_fileManager setDelegate: self ];
         }
 
     return self;
@@ -134,9 +140,40 @@ id sDefaultFactory = nil;
     return resultURL;
     }
 
+- ( void ) cleanUpCache
+    {
+    NSError* error = nil;
+
+    NSString* archiveBasePath = self._archiveBasePathWithoutCreation;
+
+    BOOL isDir = NO;
+    BOOL itemExists = [ self->_fileManager fileExistsAtPath: archiveBasePath isDirectory: &isDir ];
+    BOOL isDeletable = itemExists && isDir;
+
+
+    #if DEBUG
+    NSLog( @"\n>>> (Info) PureWiki is going to be terminated, the …/Cache/archives directory is %@\n"
+           @"   >>> Is dir: %d\n"
+           @"   >>> Itme exits: %d\n"
+           @"   >>> So is it deletable? %d\n"
+         , isDeletable ? @"deletable✅" : @"undeletable❌"
+         , isDir, itemExists, isDeletable
+         );
+    #endif
+
+    if ( isDeletable )
+        [ self->_fileManager removeItemAtPath: archiveBasePath error: &error ];
+
+    if ( error )
+        NSLog( @"❌Error Occured in %s: %@", __PRETTY_FUNCTION__, error );
+    }
+
 #pragma mark Private Interfaces
 @dynamic _archiveBasePath;
 @dynamic _archiveBaseURL;
+
+@dynamic _archiveBasePathWithoutCreation;
+@dynamic _archiveBaseURLWithoutCreation;
 
 - ( NSString* ) _archiveBasePath
     {
@@ -146,24 +183,51 @@ id sDefaultFactory = nil;
 - ( NSURL* ) _archiveBaseURL
     {
     NSError* error = nil;
-    NSURL* cacheURL = [ [ NSFileManager defaultManager ] URLForDirectory: NSCachesDirectory
-                                                                inDomain: NSUserDomainMask
-                                                       appropriateForURL: nil
-                                                                  create: NO
-                                                                   error: &error ];
-    if ( !error )
-        {
-        cacheURL = [ cacheURL URLByAppendingPathComponent: @"archives" isDirectory: YES ];
 
+    NSURL* cacheURL = [ self _archiveBaseURLWithoutCreation ];
+    if ( cacheURL )
+        {
         NSString* pathOfCacheURL = cacheURL.filePathRep;
-        if ( ![ [ NSFileManager defaultManager ] fileExistsAtPath: pathOfCacheURL isDirectory: nil ] )
-            [ [ NSFileManager defaultManager ] createDirectoryAtPath: pathOfCacheURL withIntermediateDirectories: NO attributes: nil error: &error ];
+
+        BOOL isDir = NO;
+        BOOL itemExists = [ self->_fileManager fileExistsAtPath: pathOfCacheURL isDirectory: &isDir ];
+
+        if ( ( itemExists && !isDir ) || !itemExists )
+            {
+            if ( !isDir )
+                [ self->_fileManager removeItemAtPath: pathOfCacheURL error: &error ];
+
+            [ self->_fileManager createDirectoryAtPath: pathOfCacheURL withIntermediateDirectories: NO attributes: nil error: &error ];
+            }
         }
 
     if ( error )
         NSLog( @"❌Error Occured in %s: %@", __PRETTY_FUNCTION__, error );
 
     return cacheURL;
+    }
+
+- ( NSString* ) _archiveBasePathWithoutCreation
+    {
+    return self._archiveBaseURLWithoutCreation.filePathRep;
+    }
+
+- ( NSURL* ) _archiveBaseURLWithoutCreation
+    {
+    NSError* error = nil;
+
+    NSURL* resultUrl = nil;
+    NSURL* tmp = [ self->_fileManager URLForDirectory: NSCachesDirectory
+                                             inDomain: NSUserDomainMask
+                                    appropriateForURL: nil
+                                               create: NO
+                                                error: &error ];
+    if ( !error )
+        resultUrl = [ tmp URLByAppendingPathComponent: @"archives" isDirectory: YES ];
+    else
+        NSLog( @"❌Error Occured in %s: %@", __PRETTY_FUNCTION__, error );
+
+    return resultUrl;
     }
 
 - ( void ) _traverseNamedNodeMap: ( DOMNode* )_DOMNode
@@ -267,6 +331,14 @@ id sDefaultFactory = nil;
             [ self _traverseNamedNodeMap: node ];
             }
         }
+    }
+
+#pragma mark Conforms to <NSFileManagerDelegate>
+- ( BOOL )      fileManager: ( nonnull NSFileManager* )_FileManager
+    shouldProceedAfterError: ( nonnull NSError* )_Error
+         removingItemAtPath: ( nonnull NSString* )_Path
+    {
+    return YES;
     }
 
 @end // PWCastrateFactory class

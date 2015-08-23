@@ -26,7 +26,7 @@
 @import WebKit;
 
 // PWCastrateFactory class
-@interface PWCastrateFactory : NSObject
+@interface PWCastrateFactory : NSObject <NSFileManagerDelegate>
     {
 @protected
     NSURL __strong* _cssLabURL;
@@ -36,6 +36,8 @@
     DOMHTMLStyleElement __strong* _styleElement;
     DOMHTMLDivElement __strong* _toctitleElement;
     DOMHTMLTableCellElement __strong* _hlistTableDataElement;    /* class="hlist" */
+
+    NSFileManager __strong* _fileManager;
     }
 
 #pragma mark Initializations
@@ -44,6 +46,8 @@
 #pragma mark Actions
 - ( WebArchive* ) castrateFrameInMemory: ( WebFrame* )_Frame;
 - ( NSURL* ) castrateFrameOnDisk: ( WebFrame* )_Frame error: ( NSError** )_Error;
+
+- ( void ) cleanUpCache;
 
 @end // PWCastrateFactory class
 
