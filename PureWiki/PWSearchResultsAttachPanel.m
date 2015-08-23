@@ -22,6 +22,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSearchResultsAttachPanel.h"
+#import "PWSearchResultsAttachPanelBlurBgView.h"
 #import "NSObject+PWSmartSearchBar.h"
 
 // Private Interfaces
@@ -37,8 +38,6 @@
 #pragma mark Initializations
 - ( void ) awakeFromNib
     {
-//    [ self setLevel: NSFloatingWindowLevel ];
-
     [ self setOpaque: NO ];
     self.backgroundColor = [ NSColor clearColor ];
 

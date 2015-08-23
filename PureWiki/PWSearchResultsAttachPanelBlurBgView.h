@@ -24,22 +24,9 @@
 
 @import Cocoa;
 
-@class PWSearchResultsAttachPanelController;
-
-// PWSmartSearchBar class
-@interface PWSmartSearchBar : NSSearchField
-    {
-@private
-    PWSearchResultsAttachPanelController __strong* _attachPanelController;
-    }
-
-#pragma mark Ivar Properties
-@property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;
-
-#pragma mark Actions
-- ( void ) popupAttachPanel;
-
-@end // PWSmartSearchBar class
+// PWSearchResultsAttachPanelBlurBgView class
+@interface PWSearchResultsAttachPanelBlurBgView : NSVisualEffectView
+@end // PWSearchResultsAttachPanelBlurBgView class
 
 /*===============================================================================┐
 |                                                                                | 

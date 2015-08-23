@@ -35,12 +35,6 @@
 - ( void ) awakeFromNib
     {
     self->_attachPanelController = [ PWSearchResultsAttachPanelController panelController ];
-    [ self->_attachPanelController.searchResultsAttachPanel setDelegate: self ];
-    }
-
-- ( void ) windowDidResignMain: ( nonnull NSNotification* )_Notif
-    {
-    NSLog( @"%@", _Notif );
     }
 
 - ( void ) popupAttachPanel

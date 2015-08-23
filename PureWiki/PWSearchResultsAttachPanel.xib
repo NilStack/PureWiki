@@ -21,7 +21,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <visualEffectView appearanceType="vibrantLight" fixedFrame="YES" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="NEo-s5-ZXu">
+                    <visualEffectView appearanceType="vibrantLight" fixedFrame="YES" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="NEo-s5-ZXu" customClass="PWSearchResultsAttachPanelBlurBgView">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                         <subviews>
                             <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">

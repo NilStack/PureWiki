@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8321EC7F1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8321EC7E1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.m */; };
 		8322BF821B83812500A890C9 /* PWActionNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF811B83812500A890C9 /* PWActionNotifications.m */; };
 		8322BF961B83C6F400A890C9 /* PWSmartSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF951B83C6F400A890C9 /* PWSmartSearchBar.m */; };
 		8330E5CD1B88FFA800373760 /* NSURL+PureWiki.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330E5CC1B88FFA800373760 /* NSURL+PureWiki.m */; };
@@ -88,6 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8321EC7D1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSearchResultsAttachPanelBlurBgView.h; sourceTree = "<group>"; };
+		8321EC7E1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSearchResultsAttachPanelBlurBgView.m; sourceTree = "<group>"; };
 		8322BF801B83812500A890C9 /* PWActionNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWActionNotifications.h; sourceTree = "<group>"; };
 		8322BF811B83812500A890C9 /* PWActionNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWActionNotifications.m; sourceTree = "<group>"; };
 		8322BF941B83C6F400A890C9 /* PWSmartSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchBar.h; sourceTree = "<group>"; };
@@ -254,6 +257,8 @@
 				83509BCE1B8629DF00C4F454 /* PWSearchResultsAttachPanel.m */,
 				83509BD21B862A1400C4F454 /* PWSearchResultsAttachPanelController.h */,
 				83509BD31B862A1400C4F454 /* PWSearchResultsAttachPanelController.m */,
+				8321EC7D1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.h */,
+				8321EC7E1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.m */,
 				83509BD81B864A9100C4F454 /* PWSearchResultsTableView.h */,
 				83509BD91B864A9100C4F454 /* PWSearchResultsTableView.m */,
 				83509BDB1B864B1300C4F454 /* PWSearchResultsTableCellView.h */,
@@ -714,6 +719,7 @@
 				83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */,
 				8330E5CD1B88FFA800373760 /* NSURL+PureWiki.m in Sources */,
 				83B7AFC11B878EAC002DE75A /* NSDate+Wikikit.m in Sources */,
+				8321EC7F1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.m in Sources */,
 				83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */,
 				83B7B0241B878EAC002DE75A /* WikiHTTPSessionManager.m in Sources */,
 				83B7B0261B878EAC002DE75A /* WikiJSONObject.m in Sources */,

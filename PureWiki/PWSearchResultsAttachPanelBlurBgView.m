@@ -22,24 +22,11 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+#import "PWSearchResultsAttachPanelBlurBgView.h"
 
-@class PWSearchResultsAttachPanelController;
-
-// PWSmartSearchBar class
-@interface PWSmartSearchBar : NSSearchField
-    {
-@private
-    PWSearchResultsAttachPanelController __strong* _attachPanelController;
-    }
-
-#pragma mark Ivar Properties
-@property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;
-
-#pragma mark Actions
-- ( void ) popupAttachPanel;
-
-@end // PWSmartSearchBar class
+// PWSearchResultsAttachPanelBlurBgView class
+@implementation PWSearchResultsAttachPanelBlurBgView
+@end // PWSearchResultsAttachPanelBlurBgView class
 
 /*===============================================================================┐
 |                                                                                | 
