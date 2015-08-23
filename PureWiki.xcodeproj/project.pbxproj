@@ -66,6 +66,8 @@
 		83D46ABC1B878B900061BE7E /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB41B878B900061BE7E /* ALView+PureLayout.m */; };
 		83D46ABD1B878B900061BE7E /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB61B878B900061BE7E /* NSArray+PureLayout.m */; };
 		83D46ABE1B878B900061BE7E /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB81B878B900061BE7E /* NSLayoutConstraint+PureLayout.m */; };
+		83D591161B89EC910018BC1C /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D591131B89EC910018BC1C /* FBKVOController.m */; };
+		83D591171B89EC910018BC1C /* NSObject+FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D591151B89EC910018BC1C /* NSObject+FBKVOController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +208,11 @@
 		83D46AB91B878B900061BE7E /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
 		83D46ABA1B878B900061BE7E /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
 		83D46ABB1B878B900061BE7E /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
+		83D591111B89EC910018BC1C /* FBKVOController-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBKVOController-Prefix.pch"; sourceTree = "<group>"; };
+		83D591121B89EC910018BC1C /* FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBKVOController.h; sourceTree = "<group>"; };
+		83D591131B89EC910018BC1C /* FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBKVOController.m; sourceTree = "<group>"; };
+		83D591141B89EC910018BC1C /* NSObject+FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FBKVOController.h"; sourceTree = "<group>"; };
+		83D591151B89EC910018BC1C /* NSObject+FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FBKVOController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */,
+				83D591101B89EC910018BC1C /* FBKVOController */,
 				83B7AEF51B878EAB002DE75A /* Wikikit */,
 				83D46AB21B878B900061BE7E /* PureLayout */,
 			);
@@ -532,6 +540,19 @@
 			path = PureLayout/PureLayout/PureLayout;
 			sourceTree = "<group>";
 		};
+		83D591101B89EC910018BC1C /* FBKVOController */ = {
+			isa = PBXGroup;
+			children = (
+				83D591111B89EC910018BC1C /* FBKVOController-Prefix.pch */,
+				83D591121B89EC910018BC1C /* FBKVOController.h */,
+				83D591131B89EC910018BC1C /* FBKVOController.m */,
+				83D591141B89EC910018BC1C /* NSObject+FBKVOController.h */,
+				83D591151B89EC910018BC1C /* NSObject+FBKVOController.m */,
+			);
+			name = FBKVOController;
+			path = KVOController/FBKVOController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -691,6 +712,7 @@
 				83B7B0211B878EAC002DE75A /* WikiConstants.m in Sources */,
 				83B7B0221B878EAC002DE75A /* WikiContinuation.m in Sources */,
 				83A2FBD31B8324D000939452 /* PWNavButtonsPairView.m in Sources */,
+				83D591171B89EC910018BC1C /* NSObject+FBKVOController.m in Sources */,
 				83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */,
 				8330E5CD1B88FFA800373760 /* NSURL+PureWiki.m in Sources */,
 				83B7AFC11B878EAC002DE75A /* NSDate+Wikikit.m in Sources */,
@@ -717,6 +739,7 @@
 				83B7B02A1B878EAC002DE75A /* WikiSessionDataTask.m in Sources */,
 				83B7AFC81B878EAC002DE75A /* AFNetworkReachabilityManager.m in Sources */,
 				83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */,
+				83D591161B89EC910018BC1C /* FBKVOController.m in Sources */,
 				83B7AFC51B878EAC002DE75A /* AFHTTPRequestOperation.m in Sources */,
 				83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */,
 				83480E9D1B83589900A33030 /* PWSplitView.m in Sources */,
