@@ -107,6 +107,7 @@
                 </subviews>
             </view>
             <connections>
+                <outlet property="delegate" destination="-2" id="7xz-Lo-UNM"/>
                 <outlet property="panelBlurBackgroundView" destination="NEo-s5-ZXu" id="hSF-Fy-fYD"/>
             </connections>
             <point key="canvasLocation" x="-204" y="544"/>

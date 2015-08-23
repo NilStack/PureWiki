@@ -40,6 +40,8 @@ NSString* const kResultsColumnID = @"results-column";
 - ( void ) _didEmptySearchContent: ( NSNotification* )_Notif;
 - ( void ) _mainWindowDidMove: ( NSNotification* )_Notif;
 
+- ( void ) _applicationDidResignActive: ( NSNotification* )_Notif;
+
 @end // Private Interfaces
 
 // PWSearchResultsAttachPanelController class
@@ -84,9 +86,28 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( void ) windowDidLoad
     {
-    [ super windowDidLoad ];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                selector: @selector( _applicationDidResignActive: )
+                                                    name: NSApplicationDidResignActiveNotification
+                                                  object: nil ];
+    }
+
+#pragma mark Controlling The Attach Panel
+- ( void ) popUpAttachPanelOnWindow: ( NSWindow* )_ParentWindow
+                                  at: ( NSPoint )_PointInScreen
+    {
+    if ( _ParentWindow )
+        {
+        [ self.searchResultsAttachPanel setFrameOrigin: _PointInScreen ];
+        [ _ParentWindow addChildWindow: self.searchResultsAttachPanel ordered: NSWindowAbove ];
+        [ self.searchResultsAttachPanel makeKeyAndOrderFront: nil ];
+        }
+    }
+
+- ( void ) closeAttachPanel
+    {
+    [ self.searchResultsAttachPanel.parentWindow removeChildWindow: self.searchResultsAttachPanel ];
+    [ self.searchResultsAttachPanel orderOut: self ];
     }
 
 #pragma mark Conforms to <NSTableViewDataSource>
@@ -149,6 +170,15 @@ NSString* const kResultsColumnID = @"results-column";
 - ( void ) _mainWindowDidMove: ( NSNotification* )_Notif
     {
     // NSLog( @"%@", _Notif );
+    }
+
+- ( void ) _applicationDidResignActive: ( NSNotification* )_Notif
+    {
+    #if DEBUG
+    NSLog( @">>> (Log) Application did resign active: \n{\n    %@\n    Observer:%@\n}", _Notif, self );
+    #endif
+
+    [ self closeAttachPanel ];
     }
 
 @end // PWSearchResultsAttachPanelController class

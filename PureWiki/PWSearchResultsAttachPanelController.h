@@ -38,6 +38,10 @@
 @property ( weak ) IBOutlet PWSearchResultsAttachPanel* searchResultsAttachPanel;
 @property ( weak ) IBOutlet PWSearchResultsTableView* searchResultsTableView;
 
+#pragma mark Controlling The Attach Panel
+- ( void ) popUpAttachPanelOnWindow: ( NSWindow* )_ParentWindow at: ( NSPoint )_PointInScreen;
+- ( void ) closeAttachPanel;
+
 #pragma mark Initializations
 + ( instancetype ) panelController;
 

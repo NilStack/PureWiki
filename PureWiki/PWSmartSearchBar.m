@@ -46,15 +46,19 @@
     origin.x -= 3.5f;
     origin.y -= NSHeight( self->_attachPanelController.window.frame ) - 4.f;
 
-    [ self.window addChildWindow: self->_attachPanelController.window ordered: NSWindowAbove ];
-    [ self->_attachPanelController.window setFrameOrigin: origin ];
-    [ self->_attachPanelController.window makeKeyAndOrderFront: self ];
+    [ self->_attachPanelController popUpAttachPanelOnWindow: self.window at: origin ];
     }
 
 #pragma mark Dynamic Properties
 - ( PWSearchResultsAttachPanelController* ) attachPanelController
     {
     return self->_attachPanelController;
+    }
+
+- ( BOOL ) resignFirstResponder
+    {
+    NSLog( @"%s", __PRETTY_FUNCTION__ );
+    return [ super resignFirstResponder ];
     }
 
 @end // PWSmartSearchBar class

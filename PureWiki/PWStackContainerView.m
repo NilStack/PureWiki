@@ -88,6 +88,11 @@
         }
     }
 
+- ( BOOL ) acceptsFirstResponder
+    {
+    return YES;
+    }
+
 #pragma mark Custom Drawing
 - ( void ) drawRect: ( NSRect )_DirtyRect
     {

@@ -40,6 +40,7 @@
     {
     [ self setOpaque: NO ];
     self.backgroundColor = [ NSColor clearColor ];
+    self.excludedFromWindowsMenu = YES;
 
     NSImage* maskImage = [ self _maskImageWithCornerRadius: 5.f ];
     self.panelBlurBackgroundView.maskImage = maskImage;
@@ -63,7 +64,7 @@
         ^BOOL( NSRect _DstRect )
             {
             NSBezierPath* bezierPath = [ NSBezierPath bezierPathWithRoundedRect: _DstRect xRadius: _CornerRadius yRadius: _CornerRadius ];
-            [ [ NSColor blackColor ] set ];
+            [ [ NSColor whiteColor ] set ];
             [ bezierPath fill ];
 
             return YES;

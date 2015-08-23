@@ -143,6 +143,9 @@
                     <outlet property="delegate" destination="0YV-qA-Xbw" id="JKK-z8-EQi"/>
                 </connections>
             </toolbar>
+            <connections>
+                <outlet property="initialFirstResponder" destination="QEV-J8-37j" id="a7v-n4-ih7"/>
+            </connections>
             <point key="canvasLocation" x="831" y="651"/>
         </window>
         <searchField wantsLayer="YES" verticalHuggingPriority="750" id="34m-hF-hQH" customClass="PWSmartSearchBar">
