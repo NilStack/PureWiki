@@ -55,12 +55,6 @@
     return self->_attachPanelController;
     }
 
-- ( BOOL ) resignFirstResponder
-    {
-    NSLog( @"%s", __PRETTY_FUNCTION__ );
-    return [ super resignFirstResponder ];
-    }
-
 @end // PWSmartSearchBar class
 
 /*===============================================================================┐

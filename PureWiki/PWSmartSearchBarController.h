@@ -27,6 +27,8 @@
 @class WikiEngine;
 @class PWSmartSearchBar;
 
+@class FBKVOController;
+
 // PWSmartSearchBarController class
 @interface PWSmartSearchBarController : NSViewController <NSTextFieldDelegate>
     {

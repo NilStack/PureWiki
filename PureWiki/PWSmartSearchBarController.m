@@ -26,6 +26,7 @@
 #import "PWSmartSearchBar.h"
 #import "PWSmartSearchBar.h"
 #import "PWActionNotifications.h"
+#import "PWSearchResultsAttachPanelController.h"
 
 #import "WikiEngine.h"
 #import "WikiPage.h"
@@ -92,6 +93,12 @@
                                                                object: self
                                                              userInfo: nil ];
         }
+    }
+
+- ( void ) controlTextDidEndEditing: ( nonnull NSNotification* )_Notif
+    {
+    [ self.smartSearchBar.attachPanelController closeAttachPanel ];
+    self.smartSearchBar.stringValue = @"";
     }
 
 #pragma mark Dynamic Properties
