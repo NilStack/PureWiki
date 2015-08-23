@@ -103,7 +103,9 @@
 #pragma mark Private Interfaces
 - ( void ) _timerFireMethod: ( NSTimer* )_Timer
     {
-    NSLog( @"%s", __PRETTY_FUNCTION__ );
+    #if DEBUG
+    NSLog( @">>> (Invocation) %s", __PRETTY_FUNCTION__ );
+    #endif
 
     [ self _searchWikiPagesBasedThatHaveValue: _Timer.userInfo[ @"value" ] ];
     [ _Timer invalidate ];

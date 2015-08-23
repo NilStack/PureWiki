@@ -116,7 +116,7 @@
             [ self.webView setPolicyDelegate: self ];
 
         #if DEBUG
-            NSLog( @"🌰 Current back-forward list: %@", self.webView.backForwardList );
+            NSLog( @">>> (Info) 🌰Current back-forward list: %@", self.webView.backForwardList );
         #endif
             }
         }

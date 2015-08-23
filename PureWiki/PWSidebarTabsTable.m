@@ -29,7 +29,7 @@
 
 - ( void ) awakeFromNib
     {
-    [ self setAllowsEmptySelection: NO ];
+//    [ self setAllowsEmptySelection: NO ];
     }
 
 @end // PWSidebarTabsTable class

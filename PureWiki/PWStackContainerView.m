@@ -37,9 +37,6 @@
 
 // Private Interfaces
 @interface PWStackContainerView ()
-
-- ( void ) _tabsSelectionDidChange: ( NSNotification* )_Notif;
-
 @end // Private Interfaces
 
 // PWStackContainerView class
@@ -52,11 +49,6 @@
         {
         self->_pagesStack = [ NSMutableDictionary dictionary ];
         self->_KVOController = [ FBKVOController controllerWithObserver: self ];
-
-        [ [ NSNotificationCenter defaultCenter ] addObserver: self
-                                                    selector: @selector( _tabsSelectionDidChange: )
-                                                        name: PureWikiTabsSelectionDidChangeNotif
-                                                      object: nil ];
         }
 
     return self;
@@ -72,7 +64,26 @@
                                  block:
             ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change)
                 {
-                NSLog( @"%@", _Change );
+                #if DEBUG
+                NSLog( @">>> (Log) Current selected page has been changed: \n%@", _Change );
+                #endif
+
+                WikiPage* newSelectedPage = _Change[ @"new" ];
+
+                if ( !( self->_pagesStack[ newSelectedPage ] ) )
+                    {
+                    PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: newSelectedPage owner: self ];
+
+                    if ( wikiContentViewController )
+                        [ self->_pagesStack addEntriesFromDictionary: @{ newSelectedPage : wikiContentViewController } ];
+                    }
+
+                [ self setSubviews: @[] ];
+                PWWikiContentViewController* contentViewController = self->_pagesStack[ newSelectedPage ];
+                [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
+
+                [ self addSubview: contentViewController.view ];
+                [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
                 } ];
         }
     }
@@ -84,27 +95,6 @@
 
     [ [ NSColor whiteColor ] set ];
     NSRectFill( _DirtyRect );
-    }
-
-#pragma mark Private Interfaces
-- ( void ) _tabsSelectionDidChange: ( NSNotification* )_Notif
-    {
-    WikiPage* wikiPage = _Notif.userInfo[ kPage ];
-
-    if ( !( self->_pagesStack[ wikiPage ] ) )
-        {
-        PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: wikiPage owner: self ];
-
-        if ( wikiContentViewController )
-            [ self->_pagesStack addEntriesFromDictionary: @{ wikiPage : wikiContentViewController } ];
-        }
-
-    [ self setSubviews: @[] ];
-    PWWikiContentViewController* contentViewController = self->_pagesStack[ wikiPage ];
-    [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
-
-    [ self addSubview: contentViewController.view ];
-    [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
     }
 
 @end // PWStackContainerView class

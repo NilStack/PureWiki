@@ -165,7 +165,7 @@ id sDefaultFactory = nil;
         [ self->_fileManager removeItemAtPath: archiveBasePath error: &error ];
 
     if ( error )
-        NSLog( @"❌Error Occured in %s: %@", __PRETTY_FUNCTION__, error );
+        NSLog( @">>> (Error❌) Occured in %s: %@", __PRETTY_FUNCTION__, error );
     }
 
 #pragma mark Private Interfaces
@@ -202,7 +202,7 @@ id sDefaultFactory = nil;
         }
 
     if ( error )
-        NSLog( @"❌Error Occured in %s: %@", __PRETTY_FUNCTION__, error );
+        NSLog( @">>> (Error❌) Occured in %s: %@", __PRETTY_FUNCTION__, error );
 
     return cacheURL;
     }

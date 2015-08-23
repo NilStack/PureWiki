@@ -99,13 +99,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 - ( void ) tableViewSelectionDidChange: ( nonnull NSNotification* )_Notification
     {
     NSInteger selectedRowIndex = self.sidebarTabsTable.selectedRow;
-
-    NSNotification* notif = [ NSNotification notificationWithName: PureWikiTabsSelectionDidChangeNotif
-                                                           object: self
-                                                         userInfo: @{ kPage : self->_openedWikiPages[ selectedRowIndex ] } ];
-
-    [ [ NSNotificationCenter defaultCenter ] postNotification: notif ];
-
+    
     [ self willChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
         self->_currentSelectedPage = self->_openedWikiPages[ selectedRowIndex ];
     [ self didChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
