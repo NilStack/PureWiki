@@ -24,6 +24,7 @@
 
 #import "PWSmartSearchBar.h"
 #import "PWSearchResultsAttachPanelController.h"
+#import "PWSearchResultsAttachPanel.h"
 
 // PWSmartSearchBar class
 @implementation PWSmartSearchBar
@@ -34,6 +35,12 @@
 - ( void ) awakeFromNib
     {
     self->_attachPanelController = [ PWSearchResultsAttachPanelController panelController ];
+    [ self->_attachPanelController.searchResultsAttachPanel setDelegate: self ];
+    }
+
+- ( void ) windowDidResignMain: ( nonnull NSNotification* )_Notif
+    {
+    NSLog( @"%@", _Notif );
     }
 
 - ( void ) popupAttachPanel
@@ -45,6 +52,7 @@
     origin.x -= 3.5f;
     origin.y -= NSHeight( self->_attachPanelController.window.frame ) - 4.f;
 
+    [ self.window addChildWindow: self->_attachPanelController.window ordered: NSWindowAbove ];
     [ self->_attachPanelController.window setFrameOrigin: origin ];
     [ self->_attachPanelController.window makeKeyAndOrderFront: self ];
     }

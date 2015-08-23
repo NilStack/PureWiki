@@ -24,7 +24,7 @@
 @import Cocoa;
 
 // PWSearchResultsAttachPanel class
-@interface PWSearchResultsAttachPanel : NSPanel
+@interface PWSearchResultsAttachPanel : NSWindow
 
 #pragma mark Outlets
 @property ( weak ) IBOutlet NSVisualEffectView* panelBlurBackgroundView;

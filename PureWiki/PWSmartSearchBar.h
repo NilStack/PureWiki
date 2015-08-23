@@ -27,7 +27,7 @@
 @class PWSearchResultsAttachPanelController;
 
 // PWSmartSearchBar class
-@interface PWSmartSearchBar : NSSearchField
+@interface PWSmartSearchBar : NSSearchField <NSWindowDelegate>
     {
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;

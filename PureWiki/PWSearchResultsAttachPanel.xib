@@ -6,19 +6,18 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PWSearchResultsAttachPanelController">
             <connections>
-                <outlet property="searchResultsAttachPanel" destination="QvC-M9-y7g" id="6mI-Yk-E4S"/>
-                <outlet property="searchResultsTableView" destination="weE-5Z-5VQ" id="MRX-Y9-Qeb"/>
-                <outlet property="window" destination="QvC-M9-y7g" id="TUg-yV-soh"/>
+                <outlet property="searchResultsAttachPanel" destination="s7G-Nl-iBY" id="mWQ-UH-E8m"/>
+                <outlet property="searchResultsTableView" destination="weE-5Z-5VQ" id="Hwg-Gc-Reu"/>
+                <outlet property="window" destination="s7G-Nl-iBY" id="nPk-U9-JWa"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g" customClass="PWSearchResultsAttachPanel">
-            <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="s7G-Nl-iBY" customClass="PWSearchResultsAttachPanel">
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="450" height="450"/>
+            <rect key="contentRect" x="283" y="305" width="450" height="450"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
+            <view key="contentView" id="nRr-2V-Obn">
                 <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -95,7 +94,7 @@
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Z7n-V9-iSR">
-                                    <rect key="frame" x="0.0" y="434" width="410" height="16"/>
+                                    <rect key="frame" x="0.0" y="-16" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="EdO-xp-4c1">
@@ -108,9 +107,9 @@
                 </subviews>
             </view>
             <connections>
-                <outlet property="panelBlurBackgroundView" destination="NEo-s5-ZXu" id="NF6-df-vj0"/>
+                <outlet property="panelBlurBackgroundView" destination="NEo-s5-ZXu" id="hSF-Fy-fYD"/>
             </connections>
-            <point key="canvasLocation" x="286" y="652"/>
+            <point key="canvasLocation" x="-204" y="544"/>
         </window>
     </objects>
 </document>

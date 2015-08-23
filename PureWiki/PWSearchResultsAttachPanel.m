@@ -37,7 +37,7 @@
 #pragma mark Initializations
 - ( void ) awakeFromNib
     {
-    [ self setLevel: NSFloatingWindowLevel ];
+//    [ self setLevel: NSFloatingWindowLevel ];
 
     [ self setOpaque: NO ];
     self.backgroundColor = [ NSColor clearColor ];
@@ -51,18 +51,6 @@
 #pragma mark Hack
 - ( NSImage* ) _cornerMask
     {
-//    NSProcessInfo* processInfo = [ NSProcessInfo processInfo ];
-//    NSOperatingSystemVersion systemVersion = [ processInfo operatingSystemVersion ];
-
-//    if ( systemVersion.minorVersion == 10 )
-//        {
-//        NSImage* image = [ self performSelector: @selector( _cornerMask ) asClass: [ self superclass ] ];
-//        NSLog( @"%@", image );
-//        return image;
-//        }
-
-//    return nil;
-
     return self.cornerMask;
     }
 
