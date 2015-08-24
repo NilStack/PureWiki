@@ -63,7 +63,6 @@
 - ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif
     {
     [ self.attachPanelController closeAttachPanelAndClearResults ];
-//    [ self.window makeFirstResponder: nil ];
     [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
     }
 

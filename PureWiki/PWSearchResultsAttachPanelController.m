@@ -128,7 +128,6 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( void ) closeAttachPanel
     {
-    [ self stopSearching ];
     [ self.searchResultsAttachPanel.parentWindow removeChildWindow: self.searchResultsAttachPanel ];
     [ self.searchResultsAttachPanel orderOut: self ];
     }
@@ -267,6 +266,7 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( void ) _searchWikiPagesBasedThatHaveValue: ( NSString* )_Value
     {
+    [ self popUpAttachPanel ];
     [ self->_instantSearchWikiEngine searchAllPagesThatHaveValue: _Value
                                                     inNamespaces: nil
                                                             what: WikiEngineSearchWhatPageText
@@ -279,8 +279,6 @@ NSString* const kResultsColumnID = @"results-column";
                 [ self->_fetchedWikiPages removeAllObjects ];
                 [ self->_fetchedWikiPages addObjectsFromArray: _MatchedPages ];
                 [ self.searchResultsTableView reloadData ];
-
-                [ self popUpAttachPanel ];
                 }
             } failure:
                 ^( NSError* _Error )

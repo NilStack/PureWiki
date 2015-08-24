@@ -85,6 +85,8 @@
                 [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
                 self->_currentWikiContentViewController = contentViewController;
 
+//                [ self.window makeFirstResponder: self->_currentWikiContentViewController.wikiContentView.webView ];
+
                 [ self addSubview: contentViewController.view ];
                 [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
                 } ];
