@@ -28,18 +28,8 @@
 #import "PWActionNotifications.h"
 #import "PWSearchResultsAttachPanelController.h"
 
-#import "WikiEngine.h"
-#import "WikiPage.h"
-
 // Private Interfaces
 @interface PWSmartSearchBarController ()
-
-// Timer
-- ( void ) _timerFireMethod: ( NSTimer* )_Timer;
-
-// Searching
-- ( void ) _searchWikiPagesBasedThatHaveValue: ( NSString* )_Value;
-
 @end // Private Interfaces
 
 // PWSmartSearchBarController class
@@ -48,14 +38,6 @@
 @dynamic smartSearchBar;
 
 #pragma mark Initializations
-- ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
-    {
-    if ( self = [ super initWithCoder: _Coder ] )
-        self->_instantSearchWikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
-
-    return self;
-    }
-
 - ( void ) viewDidLoad
     {
     [ super viewDidLoad ];
@@ -110,39 +92,6 @@
 - ( PWSmartSearchBar* ) smartSearchBar
     {
     return ( PWSmartSearchBar* )( self.view );
-    }
-
-#pragma mark Private Interfaces
-- ( void ) _timerFireMethod: ( NSTimer* )_Timer
-    {
-    #if DEBUG
-    NSLog( @">>> (Invocation) %s", __PRETTY_FUNCTION__ );
-    #endif
-
-    [ self _searchWikiPagesBasedThatHaveValue: _Timer.userInfo[ @"value" ] ];
-    [ _Timer invalidate ];
-    }
-
-- ( void ) _searchWikiPagesBasedThatHaveValue: ( NSString* )_Value
-    {
-    [ self->_instantSearchWikiEngine searchAllPagesThatHaveValue: _Value
-                                                    inNamespaces: nil
-                                                            what: WikiEngineSearchWhatPageText
-                                                           limit: 10
-                                                         success:
-        ^( NSArray* _MatchedPages )
-            {
-            if ( _MatchedPages )
-                [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidSearchPagesNotif
-                                                                       object: self
-                                                                     userInfo: @{ kPages : _MatchedPages } ];
-            } failure:
-                ^( NSError* _Error )
-                    {
-                    NSLog( @"%@", _Error );
-                    } stopAllOtherTasks: YES ];
-
-    [ self.smartSearchBar popupAttachPanel ];
     }
 
 @end // PWSmartSearchBarController class

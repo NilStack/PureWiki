@@ -26,12 +26,17 @@
 @class PWSearchResultsAttachPanel;
 @class PWSearchResultsTableView;
 
+@class WikiEngine;
+
 // PWSearchResultsAttachPanelController class
 @interface PWSearchResultsAttachPanelController : NSWindowController
     <NSTableViewDataSource, NSTableViewDelegate>
     {
 @protected
     NSMutableArray __strong* _fetchedWikiPages;    // Used as backing store
+
+    WikiEngine __strong* _instantSearchWikiEngine;
+    NSTimer __strong* _timer;
     }
 
 #pragma mark Outlets
@@ -41,6 +46,13 @@
 #pragma mark Controlling The Attach Panel
 - ( void ) popUpAttachPanelOnWindow: ( NSWindow* )_ParentWindow at: ( NSPoint )_PointInScreen;
 - ( void ) closeAttachPanel;
+- ( void ) closeAttachPanelAndClearResults;
+
+#pragma mark Handling Search Results
+@property ( assign, readonly ) BOOL isInUse;
+
+- ( void ) stopSearching;
+- ( void ) clearResults;
 
 #pragma mark Initializations
 + ( instancetype ) panelController;

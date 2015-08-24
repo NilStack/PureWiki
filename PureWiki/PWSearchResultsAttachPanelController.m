@@ -30,17 +30,24 @@
 
 #import "WikiPage.h"
 #import "WikiRevision.h"
+#import "WikiEngine.h"
 
 NSString* const kResultsColumnID = @"results-column";
 
 // Private Interfaces
 @interface PWSearchResultsAttachPanelController ()
 
-- ( void ) _didSearchSearchPages: ( NSNotification* )_Notif;
+- ( void ) _didSearchPages: ( NSNotification* )_Notif;
 - ( void ) _didEmptySearchContent: ( NSNotification* )_Notif;
 - ( void ) _mainWindowDidMove: ( NSNotification* )_Notif;
 
 - ( void ) _applicationDidResignActive: ( NSNotification* )_Notif;
+
+// Timer
+- ( void ) _timerFireMethod: ( NSTimer* )_Timer;
+
+// Searching
+- ( void ) _searchWikiPagesBasedThatHaveValue: ( NSString* )_Value;
 
 @end // Private Interfaces
 
@@ -58,9 +65,10 @@ NSString* const kResultsColumnID = @"results-column";
     if ( self = [ super initWithWindowNibName: @"PWSearchResultsAttachPanel" owner: self ] )
         {
         self->_fetchedWikiPages = [ NSMutableArray array ];
+        self->_instantSearchWikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
 
         [ [ NSNotificationCenter defaultCenter ] addObserver: self
-                                                    selector: @selector( _didSearchSearchPages: )
+                                                    selector: @selector( _didSearchPages: )
                                                         name: PureWikiDidSearchPagesNotif
                                                       object: nil ];
 
@@ -106,8 +114,35 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( void ) closeAttachPanel
     {
+    [ self stopSearching ];
     [ self.searchResultsAttachPanel.parentWindow removeChildWindow: self.searchResultsAttachPanel ];
     [ self.searchResultsAttachPanel orderOut: self ];
+    }
+
+- ( void ) closeAttachPanelAndClearResults
+    {
+    [ self closeAttachPanel ];
+    [ self clearResults ];
+    }
+
+#pragma mark Handling Search Results
+@dynamic isInUse;
+
+- ( BOOL ) isInUse
+    {
+    return self->_fetchedWikiPages.count > 0;
+    }
+
+- ( void ) stopSearching
+    {
+    [ self->_instantSearchWikiEngine cancelAll ];
+    }
+
+- ( void ) clearResults
+    {
+    [ self stopSearching ];
+    [ self->_fetchedWikiPages removeAllObjects ];
+    [ self.searchResultsTableView reloadData ];
     }
 
 #pragma mark Conforms to <NSTableViewDataSource>
@@ -147,7 +182,7 @@ NSString* const kResultsColumnID = @"results-column";
     }
 
 #pragma mark Private Interfaces
-- ( void ) _didSearchSearchPages: ( NSNotification* )_Notif
+- ( void ) _didSearchPages: ( NSNotification* )_Notif
     {
     NSArray* matchedPages = _Notif.userInfo[ kPages ];
 
@@ -161,10 +196,7 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( void ) _didEmptySearchContent: ( NSNotification* )_Notif
     {
-    [ self->_fetchedWikiPages removeAllObjects ];
-    [ self.searchResultsTableView reloadData ];
-
-    [ self.window close ];
+    [ self closeAttachPanelAndClearResults ];
     }
 
 - ( void ) _mainWindowDidMove: ( NSNotification* )_Notif
@@ -179,6 +211,36 @@ NSString* const kResultsColumnID = @"results-column";
     #endif
 
     [ self closeAttachPanel ];
+    }
+
+- ( void ) _timerFireMethod: ( NSTimer* )_Timer
+    {
+    #if DEBUG
+    NSLog( @">>> (Invocation) %s", __PRETTY_FUNCTION__ );
+    #endif
+
+    [ self _searchWikiPagesBasedThatHaveValue: _Timer.userInfo[ @"value" ] ];
+    [ _Timer invalidate ];
+    }
+
+- ( void ) _searchWikiPagesBasedThatHaveValue: ( NSString* )_Value
+    {
+    [ self->_instantSearchWikiEngine searchAllPagesThatHaveValue: _Value
+                                                    inNamespaces: nil
+                                                            what: WikiEngineSearchWhatPageText
+                                                           limit: 10
+                                                         success:
+        ^( NSArray* _MatchedPages )
+            {
+            if ( _MatchedPages )
+                [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidSearchPagesNotif
+                                                                       object: self
+                                                                     userInfo: @{ kPages : _MatchedPages } ];
+            } failure:
+                ^( NSError* _Error )
+                    {
+                    NSLog( @"%@", _Error );
+                    } stopAllOtherTasks: YES ];
     }
 
 @end // PWSearchResultsAttachPanelController class

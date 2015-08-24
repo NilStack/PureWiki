@@ -24,18 +24,12 @@
 
 @import Cocoa;
 
-@class WikiEngine;
 @class PWSmartSearchBar;
 
 @class FBKVOController;
 
 // PWSmartSearchBarController class
 @interface PWSmartSearchBarController : NSViewController <NSTextFieldDelegate>
-    {
-@protected
-    WikiEngine __strong* _instantSearchWikiEngine;
-    NSTimer __strong* _timer;
-    }
 
 @property ( weak ) PWSmartSearchBar* smartSearchBar;
 
