@@ -42,6 +42,8 @@
 // PWStackContainerView class
 @implementation PWStackContainerView
 
+@dynamic currentWikiContentViewController;
+
 #pragma mark Initializations
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
     {
@@ -81,6 +83,7 @@
                 [ self setSubviews: @[] ];
                 PWWikiContentViewController* contentViewController = self->_pagesStack[ newSelectedPage ];
                 [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
+                self->_currentWikiContentViewController = contentViewController;
 
                 [ self addSubview: contentViewController.view ];
                 [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
@@ -100,6 +103,12 @@
 
     [ [ NSColor whiteColor ] set ];
     NSRectFill( _DirtyRect );
+    }
+
+#pragma mark Dynamic Properties
+- ( PWWikiContentViewController* ) currentWikiContentViewController
+    {
+    return self->_currentWikiContentViewController;
     }
 
 @end // PWStackContainerView class

@@ -23,9 +23,16 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 @import Cocoa;
+@import WebKit;
+
+@class PWStackContainerViewController;
 
 // PWMainWindow class
 @interface PWMainWindow : NSWindow
+
+@property ( weak ) IBOutlet PWStackContainerViewController* stackContainerViewController;
+
+- ( void ) makeCurrentWikiContentViewFirstResponder;
 
 @end // PWMainWindow class
 

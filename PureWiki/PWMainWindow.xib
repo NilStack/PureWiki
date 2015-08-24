@@ -145,6 +145,7 @@
             </toolbar>
             <connections>
                 <outlet property="initialFirstResponder" destination="QEV-J8-37j" id="a7v-n4-ih7"/>
+                <outlet property="stackContainerViewController" destination="Fu8-12-eJ7" id="yLd-vV-y9q"/>
             </connections>
             <point key="canvasLocation" x="831" y="651"/>
         </window>
@@ -209,7 +210,11 @@
                 <outlet property="toolbar" destination="Nqb-Bc-t9B" id="Zex-gV-vgl"/>
             </connections>
         </viewController>
-        <viewController id="Fu8-12-eJ7" customClass="PWStackContainerViewController"/>
+        <viewController id="Fu8-12-eJ7" customClass="PWStackContainerViewController">
+            <connections>
+                <outlet property="view" destination="QEV-J8-37j" id="nFn-Yh-Uqz"/>
+            </connections>
+        </viewController>
         <viewController id="TDW-Eg-TgK" customClass="PWSidebarTabsTableController">
             <connections>
                 <outlet property="sidebarTabsTable" destination="wU4-4o-6Ew" id="imY-PQ-Bim"/>

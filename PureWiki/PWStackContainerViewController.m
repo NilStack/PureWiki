@@ -32,10 +32,18 @@
 // PWStackContainerViewController class
 @implementation PWStackContainerViewController
 
+@dynamic stackContainerView;
+
 - ( void ) viewDidLoad
     {
     [ super viewDidLoad ];
     // Do view setup here.
+    }
+
+#pragma mrak Dynamic Properties
+- ( PWStackContainerView* ) stackContainerView
+    {
+    return ( PWStackContainerView* )( self.view );
     }
 
 @end // PWStackContainerViewController class

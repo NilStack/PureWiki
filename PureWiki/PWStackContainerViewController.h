@@ -24,8 +24,12 @@
 
 @import Cocoa;
 
+@class PWStackContainerView;
+
 // PWStackContainerViewController class
 @interface PWStackContainerViewController : NSViewController
+
+@property ( weak, readonly ) PWStackContainerView* stackContainerView;
 
 @end // PWStackContainerViewController class
 

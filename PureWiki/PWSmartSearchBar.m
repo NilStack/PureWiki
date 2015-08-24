@@ -23,6 +23,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSmartSearchBar.h"
+#import "PWMainWindow.h"
 #import "PWSearchResultsAttachPanelController.h"
 #import "PWSearchResultsAttachPanel.h"
 #import "PWActionNotifications.h"
@@ -62,7 +63,8 @@
 - ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif
     {
     [ self.attachPanelController closeAttachPanelAndClearResults ];
-    [ self.window makeFirstResponder: nil ];
+//    [ self.window makeFirstResponder: nil ];
+    [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
     }
 
 @end // PWSmartSearchBar class

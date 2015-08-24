@@ -38,11 +38,17 @@
     // @{ WikiPage : PWWikiContentViewController }
     NSMutableDictionary __strong* _pagesStack;
     FBKVOController __strong* _KVOController;
+
+    PWWikiContentViewController __weak* _currentWikiContentViewController;
     }
+
+#pragma mark Outlets
+@property ( weak ) IBOutlet PWSidebarTabsTableController* sidebarTabsTableController;
 
 #pragma mark Conforms to <PWWikiContentViewOwner>
 @property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
-@property ( weak ) IBOutlet PWSidebarTabsTableController* sidebarTabsTableController;
+
+@property ( weak, readonly ) PWWikiContentViewController* currentWikiContentViewController;
 
 @end // PWStackContainerView class
 

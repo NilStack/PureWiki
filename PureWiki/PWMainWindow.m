@@ -23,31 +23,25 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWMainWindow.h"
-#import <objc/message.h>
+#import "PWWikiContentView.h"
+#import "PWWikiContentViewController.h"
+
+#import "PWStackContainerView.h"
+#import "PWStackContainerViewController.h"
 
 @implementation PWMainWindow
 
 - ( void ) awakeFromNib
     {
     self.titleVisibility = NSWindowTitleHidden;
-
-//    NSImage* image = [ self performSelector: @selector( _cornerMask ) asClass: self.superclass ];
-//    NSLog( @"%@", image );
-//
-//    image = [ self performSelector: @selector( _cornerMask ) asClass: self.superclass ];
-//    NSLog( @"%@", image );
-//
-//    NSImage* image1 = [ self performSelector: @selector( _cornerMask ) asClass: self.class ];
-//    NSLog( @"%@", image1 );
     }
 
-//- ( NSImage* ) _cornerMask
-//    {
-//    NSImage* image1 = [ self performSelector: @selector( _cornerMask ) asClass: self.superclass ];
-//    NSLog( @"🐒%@", image1 );
-//
-//    return nil;
-//    }
+- ( void ) makeCurrentWikiContentViewFirstResponder
+    {
+    WebView* webView = self.stackContainerViewController.stackContainerView.currentWikiContentViewController.wikiContentView.webView;
+    NSLog( @"WebView: %@", webView );
+    [ self makeFirstResponder: webView ];
+    }
 
 @end
 
