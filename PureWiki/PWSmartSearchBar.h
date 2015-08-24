@@ -36,9 +36,6 @@
 #pragma mark Ivar Properties
 @property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;
 
-#pragma mark Actions
-- ( void ) popupAttachPanel;
-
 @end // PWSmartSearchBar class
 
 /*===============================================================================┐

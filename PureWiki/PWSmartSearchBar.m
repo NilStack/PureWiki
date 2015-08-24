@@ -34,19 +34,7 @@
 #pragma mark Initializations
 - ( void ) awakeFromNib
     {
-    self->_attachPanelController = [ PWSearchResultsAttachPanelController panelController ];
-    }
-
-- ( void ) popupAttachPanel
-    {
-    NSRect windowFrame = [ self convertRect: self.frame toView: nil ];
-    NSRect screenFrame = [ self.window convertRectToScreen: windowFrame ];
-
-    NSPoint origin = screenFrame.origin;
-    origin.x -= 3.5f;
-    origin.y -= NSHeight( self->_attachPanelController.window.frame ) - 4.f;
-
-    [ self->_attachPanelController popUpAttachPanelOnWindow: self.window at: origin ];
+    self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
     }
 
 #pragma mark Dynamic Properties

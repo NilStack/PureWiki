@@ -6,7 +6,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PWSearchResultsAttachPanelController">
             <connections>
-                <outlet property="searchResultsAttachPanel" destination="s7G-Nl-iBY" id="mWQ-UH-E8m"/>
                 <outlet property="searchResultsTableView" destination="weE-5Z-5VQ" id="Hwg-Gc-Reu"/>
                 <outlet property="window" destination="s7G-Nl-iBY" id="nPk-U9-JWa"/>
             </connections>

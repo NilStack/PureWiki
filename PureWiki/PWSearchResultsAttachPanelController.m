@@ -54,16 +54,20 @@ NSString* const kResultsColumnID = @"results-column";
 // PWSearchResultsAttachPanelController class
 @implementation PWSearchResultsAttachPanelController
 
+@dynamic searchResultsAttachPanel;
+
 #pragma mark Initializations
-+ ( instancetype ) panelController
++ ( instancetype ) controllerWithRelativeView: ( NSView* )_RelativeView
     {
-    return [ [ [ self class ] alloc ] init ];
+    return [ [ self alloc ] initWithRelativeView: _RelativeView ];
     }
 
-- ( instancetype ) init
+- ( instancetype ) initWithRelativeView: ( NSView* )_RelativeView
     {
     if ( self = [ super initWithWindowNibName: @"PWSearchResultsAttachPanel" owner: self ] )
         {
+        self.relativeView = _RelativeView;
+
         self->_fetchedWikiPages = [ NSMutableArray array ];
         self->_instantSearchWikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
 
@@ -101,11 +105,29 @@ NSString* const kResultsColumnID = @"results-column";
     }
 
 #pragma mark Controlling The Attach Panel
+- ( void ) popUpAttachPanel
+    {
+    if ( self.relativeView )
+        {
+        NSRect windowFrameOfRelativeView = [ self.relativeView convertRect: self.relativeView.frame toView: nil ];
+        NSRect screenFrameOfRelativeView = [ self.relativeView.window convertRectToScreen: windowFrameOfRelativeView ];
+
+        NSPoint attachPanelOrigin = screenFrameOfRelativeView.origin;
+        attachPanelOrigin.x -= 3.5f;
+        attachPanelOrigin.y -= NSHeight( self.searchResultsAttachPanel.frame ) - 4.f;
+
+        [ self popUpAttachPanelOnWindow: self.relativeView.window at: attachPanelOrigin ];
+        }
+
+    // TODO: Error Handling
+    }
+
 - ( void ) popUpAttachPanelOnWindow: ( NSWindow* )_ParentWindow
                                   at: ( NSPoint )_PointInScreen
     {
     if ( _ParentWindow )
         {
+        NSParameterAssert( _ParentWindow != self.searchResultsAttachPanel );
         [ self.searchResultsAttachPanel setFrameOrigin: _PointInScreen ];
         [ _ParentWindow addChildWindow: self.searchResultsAttachPanel ordered: NSWindowAbove ];
         [ self.searchResultsAttachPanel makeKeyAndOrderFront: nil ];
@@ -122,7 +144,7 @@ NSString* const kResultsColumnID = @"results-column";
 - ( void ) closeAttachPanelAndClearResults
     {
     [ self closeAttachPanel ];
-    [ self clearResults ];
+    [ self stopSearchingAndClearResults ];
     }
 
 #pragma mark Handling Search Results
@@ -133,12 +155,45 @@ NSString* const kResultsColumnID = @"results-column";
     return self->_fetchedWikiPages.count > 0;
     }
 
+- ( void ) searchValue: ( NSString* )SearchValue
+    {
+    // TODO:
+    if ( SearchValue.length > 0 )
+        {
+        [ self->_timer invalidate ];
+        self->_timer = [ NSTimer timerWithTimeInterval: ( NSTimeInterval ).6f
+                                                target: self
+                                              selector: @selector( _timerFireMethod: )
+                                              userInfo: @{ @"value" : SearchValue }
+                                               repeats: NO ];
+
+        [ [ NSRunLoop currentRunLoop ] addTimer: self->_timer forMode: NSDefaultRunLoopMode ];
+        }
+
+    // if user emptied the search field
+    else if ( SearchValue.length == 0 )
+        {
+        [ self stopSearching ];
+        [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidEmptySearchNotif
+                                                               object: self
+                                                             userInfo: nil ];
+        }
+    }
+
+// Stop searching but remains the search results
 - ( void ) stopSearching
     {
+    if ( self->_timer )
+        {
+        [ self->_timer invalidate ];
+        self->_timer = nil;
+        }
+
     [ self->_instantSearchWikiEngine cancelAll ];
     }
 
-- ( void ) clearResults
+// Stop searching and clears all the search results
+- ( void ) stopSearchingAndClearResults
     {
     [ self stopSearching ];
     [ self->_fetchedWikiPages removeAllObjects ];
@@ -181,19 +236,13 @@ NSString* const kResultsColumnID = @"results-column";
     return NO;
     }
 
-#pragma mark Private Interfaces
-- ( void ) _didSearchPages: ( NSNotification* )_Notif
+#pragma mark Dynamic Properties
+- ( PWSearchResultsAttachPanel* ) searchResultsAttachPanel
     {
-    NSArray* matchedPages = _Notif.userInfo[ kPages ];
-
-    if ( matchedPages )
-        {
-        [ self->_fetchedWikiPages removeAllObjects ];
-        [ self->_fetchedWikiPages addObjectsFromArray: matchedPages ];
-        [ self.searchResultsTableView reloadData ];
-        }
+    return ( PWSearchResultsAttachPanel* )( self.window );
     }
 
+#pragma mark Private Interfaces
 - ( void ) _didEmptySearchContent: ( NSNotification* )_Notif
     {
     [ self closeAttachPanelAndClearResults ];
@@ -233,9 +282,13 @@ NSString* const kResultsColumnID = @"results-column";
         ^( NSArray* _MatchedPages )
             {
             if ( _MatchedPages )
-                [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidSearchPagesNotif
-                                                                       object: self
-                                                                     userInfo: @{ kPages : _MatchedPages } ];
+                {
+                [ self->_fetchedWikiPages removeAllObjects ];
+                [ self->_fetchedWikiPages addObjectsFromArray: _MatchedPages ];
+                [ self.searchResultsTableView reloadData ];
+
+                [ self popUpAttachPanel ];
+                }
             } failure:
                 ^( NSError* _Error )
                     {

@@ -50,41 +50,17 @@
     NSTextView* fieldView = _Notif.userInfo[ @"NSFieldEditor" ];
     NSString* searchValue = fieldView.string;
 
-    // TODO:
-    if ( searchValue.length > 0 )
-        {
-        [ self->_timer invalidate ];
-        self->_timer = [ NSTimer timerWithTimeInterval: ( NSTimeInterval ).6f
-                                                target: self
-                                              selector: @selector( _timerFireMethod: )
-                                              userInfo: @{ @"value" : searchValue }
-                                               repeats: NO ];
-
-        [ [ NSRunLoop currentRunLoop ] addTimer: self->_timer forMode: NSDefaultRunLoopMode ];
-        }
-
-    // if user emptied the search field
-    else if ( searchValue.length == 0 )
-        {
-        [ self->_timer invalidate ];
-        self->_timer = nil;
-
-        [ self->_instantSearchWikiEngine cancelAll ];
-
-        [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidEmptySearchNotif
-                                                               object: self
-                                                             userInfo: nil ];
-        }
+    [ self.smartSearchBar.attachPanelController searchValue: searchValue ];
     }
 
 - ( void ) controlTextDidEndEditing: ( nonnull NSNotification* )_Notif
     {
-    #if DEBUG
-    NSLog( @">>> (Log) Instant search will be terminated by closing search results attach panel" );
-    #endif
-    [ self->_instantSearchWikiEngine cancelAll ];
-
-    [ self.smartSearchBar.attachPanelController closeAttachPanel ];
+//    #if DEBUG
+//    NSLog( @">>> (Log) Instant search will be terminated by closing search results attach panel" );
+//    #endif
+//    [ self->_instantSearchWikiEngine cancelAll ];
+//
+//    [ self.smartSearchBar.attachPanelController closeAttachPanel ];
     self.smartSearchBar.stringValue = @"";
     }
 

@@ -39,11 +39,15 @@
     NSTimer __strong* _timer;
     }
 
+@property ( weak, readonly ) PWSearchResultsAttachPanel* searchResultsAttachPanel;
+
 #pragma mark Outlets
-@property ( weak ) IBOutlet PWSearchResultsAttachPanel* searchResultsAttachPanel;
 @property ( weak ) IBOutlet PWSearchResultsTableView* searchResultsTableView;
 
 #pragma mark Controlling The Attach Panel
+@property ( strong, readwrite ) NSView* relativeView;
+
+- ( void ) popUpAttachPanel;
 - ( void ) popUpAttachPanelOnWindow: ( NSWindow* )_ParentWindow at: ( NSPoint )_PointInScreen;
 - ( void ) closeAttachPanel;
 - ( void ) closeAttachPanelAndClearResults;
@@ -51,11 +55,16 @@
 #pragma mark Handling Search Results
 @property ( assign, readonly ) BOOL isInUse;
 
+- ( void ) searchValue: ( NSString* )SearchValue;
+
+// Stop searching but remains the search results
 - ( void ) stopSearching;
-- ( void ) clearResults;
+
+// Stop searching and clears all the search results
+- ( void ) stopSearchingAndClearResults;
 
 #pragma mark Initializations
-+ ( instancetype ) panelController;
++ ( instancetype ) controllerWithRelativeView: ( NSView* )_RelativeView;
 
 @end // PWSearchResultsAttachPanelController class
 
