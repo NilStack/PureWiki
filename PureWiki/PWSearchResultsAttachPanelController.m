@@ -37,11 +37,9 @@ NSString* const kResultsColumnID = @"results-column";
 // Private Interfaces
 @interface PWSearchResultsAttachPanelController ()
 
-- ( void ) _didSearchPages: ( NSNotification* )_Notif;
 - ( void ) _didEmptySearchContent: ( NSNotification* )_Notif;
-- ( void ) _mainWindowDidMove: ( NSNotification* )_Notif;
-
 - ( void ) _applicationDidResignActive: ( NSNotification* )_Notif;
+- ( void ) _applicationDidBecomeActive: ( NSNotification* )_Notif;
 
 // Timer
 - ( void ) _timerFireMethod: ( NSTimer* )_Timer;
@@ -72,18 +70,8 @@ NSString* const kResultsColumnID = @"results-column";
         self->_instantSearchWikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
 
         [ [ NSNotificationCenter defaultCenter ] addObserver: self
-                                                    selector: @selector( _didSearchPages: )
-                                                        name: PureWikiDidSearchPagesNotif
-                                                      object: nil ];
-
-        [ [ NSNotificationCenter defaultCenter ] addObserver: self
                                                     selector: @selector( _didEmptySearchContent: )
                                                         name: PureWikiDidEmptySearchNotif
-                                                      object: nil ];
-
-        [ [ NSNotificationCenter defaultCenter ] addObserver: self
-                                                    selector: @selector( _mainWindowDidMove: )
-                                                        name: NSWindowDidMoveNotification
                                                       object: nil ];
         }
 
@@ -92,7 +80,6 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( void ) dealloc
     {
-    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidSearchPagesNotif object: nil ];
     [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidEmptySearchNotif object: nil ];
     }
 
@@ -101,6 +88,11 @@ NSString* const kResultsColumnID = @"results-column";
     [ [ NSNotificationCenter defaultCenter ] addObserver: self
                                                 selector: @selector( _applicationDidResignActive: )
                                                     name: NSApplicationDidResignActiveNotification
+                                                  object: nil ];
+
+    [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                selector: @selector( _applicationDidBecomeActive: )
+                                                    name: NSApplicationDidBecomeActiveNotification
                                                   object: nil ];
     }
 
@@ -248,11 +240,6 @@ NSString* const kResultsColumnID = @"results-column";
     [ self closeAttachPanelAndClearResults ];
     }
 
-- ( void ) _mainWindowDidMove: ( NSNotification* )_Notif
-    {
-    // NSLog( @"%@", _Notif );
-    }
-
 - ( void ) _applicationDidResignActive: ( NSNotification* )_Notif
     {
     #if DEBUG
@@ -260,6 +247,12 @@ NSString* const kResultsColumnID = @"results-column";
     #endif
 
     [ self closeAttachPanel ];
+    }
+
+- ( void ) _applicationDidBecomeActive: ( NSNotification* )_Notif
+    {
+    if ( self.isInUse )
+        [ self popUpAttachPanel ];
     }
 
 - ( void ) _timerFireMethod: ( NSTimer* )_Timer

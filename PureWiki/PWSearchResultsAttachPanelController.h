@@ -45,7 +45,7 @@
 @property ( weak ) IBOutlet PWSearchResultsTableView* searchResultsTableView;
 
 #pragma mark Controlling The Attach Panel
-@property ( strong, readwrite ) NSView* relativeView;
+@property ( weak, readwrite ) NSView* relativeView;
 
 - ( void ) popUpAttachPanel;
 - ( void ) popUpAttachPanelOnWindow: ( NSWindow* )_ParentWindow at: ( NSPoint )_PointInScreen;

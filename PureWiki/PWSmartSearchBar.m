@@ -25,6 +25,16 @@
 #import "PWSmartSearchBar.h"
 #import "PWSearchResultsAttachPanelController.h"
 #import "PWSearchResultsAttachPanel.h"
+#import "PWActionNotifications.h"
+
+#import "WikiPage.h"
+
+// Private Interfaces
+@interface PWSmartSearchBar ()
+
+- ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif;
+
+@end // Private Interfaces
 
 // PWSmartSearchBar class
 @implementation PWSmartSearchBar
@@ -34,6 +44,11 @@
 #pragma mark Initializations
 - ( void ) awakeFromNib
     {
+    [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                selector: @selector( _userDidPickUpAnSearchItem: )
+                                                    name: PureWikiDidPickUpSearchItemNotif
+                                                    object: nil ];
+
     self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
     }
 
@@ -41,6 +56,13 @@
 - ( PWSearchResultsAttachPanelController* ) attachPanelController
     {
     return self->_attachPanelController;
+    }
+
+#pragma mark Private Interfaces
+- ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif
+    {
+    [ self.attachPanelController closeAttachPanelAndClearResults ];
+    [ self.window makeFirstResponder: nil ];
     }
 
 @end // PWSmartSearchBar class

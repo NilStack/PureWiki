@@ -62,6 +62,7 @@
 //
 //    [ self.smartSearchBar.attachPanelController closeAttachPanel ];
     self.smartSearchBar.stringValue = @"";
+    [ self.smartSearchBar.attachPanelController closeAttachPanelAndClearResults ];
     }
 
 #pragma mark Dynamic Properties
