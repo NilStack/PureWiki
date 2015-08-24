@@ -39,7 +39,6 @@
 - ( void ) makeCurrentWikiContentViewFirstResponder
     {
     WebView* webView = self.stackContainerViewController.stackContainerView.currentWikiContentViewController.wikiContentView.webView;
-    NSLog( @"WebView: %@", webView );
     [ self makeFirstResponder: webView ];
     }
 
