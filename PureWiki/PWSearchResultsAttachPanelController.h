@@ -37,6 +37,8 @@
 
     WikiEngine __strong* _instantSearchWikiEngine;
     NSTimer __strong* _timer;
+
+    NSView __weak* _relativeView;
     }
 
 @property ( weak, readonly ) PWSearchResultsAttachPanel* searchResultsAttachPanel;

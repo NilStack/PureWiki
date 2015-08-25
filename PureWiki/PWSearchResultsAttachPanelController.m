@@ -47,12 +47,18 @@ NSString* const kResultsColumnID = @"results-column";
 // Searching
 - ( void ) _searchWikiPagesBasedThatHaveValue: ( NSString* )_Value;
 
+// Relative Window Notifications
+- ( void ) _relativeWindowStartLiveResize: ( NSNotification* )_Notif;
+- ( void ) _relativeWindowDidEndResize: ( NSNotification* )_Notif;
+
 @end // Private Interfaces
 
 // PWSearchResultsAttachPanelController class
 @implementation PWSearchResultsAttachPanelController
 
 @dynamic searchResultsAttachPanel;
+
+@dynamic relativeView;
 
 #pragma mark Initializations
 + ( instancetype ) controllerWithRelativeView: ( NSView* )_RelativeView
@@ -233,6 +239,37 @@ NSString* const kResultsColumnID = @"results-column";
     return ( PWSearchResultsAttachPanel* )( self.window );
     }
 
+- ( void ) setRelativeView: ( NSView* __nullable )_RelativeView
+    {
+    NSWindow* relativeWindow = self->_relativeView.window;
+    if ( self->_relativeView )
+        {
+        [ [ NSNotificationCenter defaultCenter ] removeObserver: self
+                                                           name: NSWindowWillStartLiveResizeNotification
+                                                         object: relativeWindow ];
+
+        [ [ NSNotificationCenter defaultCenter ] removeObserver: self
+                                                           name: NSWindowDidEndLiveResizeNotification
+                                                         object: relativeWindow ];
+        }
+
+    self->_relativeView = _RelativeView;
+    [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                selector: @selector( _relativeWindowStartLiveResize: )
+                                                    name: NSWindowWillStartLiveResizeNotification
+                                                  object: relativeWindow ];
+
+    [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                selector: @selector( _relativeWindowDidEndResize: )
+                                                    name: NSWindowDidEndLiveResizeNotification
+                                                  object: relativeWindow ];
+    }
+
+- ( NSView* ) relativeView
+    {
+    return self->_relativeView;
+    }
+
 #pragma mark Private Interfaces
 - ( void ) _didEmptySearchContent: ( NSNotification* )_Notif
     {
@@ -286,6 +323,26 @@ NSString* const kResultsColumnID = @"results-column";
                     NSLog( @"%@", _Error );
                     } stopAllOtherTasks: YES ];
     }
+
+- ( void ) _relativeWindowStartLiveResize: ( NSNotification* )_Notif
+    {
+    #if DEBUG
+    NSLog( @">>> (Log) Relative window of attach panel starts live resize: \n{\n%@\n}", _Notif );
+    #endif
+
+    [ self closeAttachPanel ];
+    }
+
+- ( void ) _relativeWindowDidEndResize: ( NSNotification* )_Notif
+    {
+    #if DEBUG
+    NSLog( @">>> (Log) Relative window of attach panel ends live resize: \n{\n%@\n}", _Notif );
+    #endif
+
+    if ( self.isInUse )
+        [ self popUpAttachPanel ];
+    }
+
 
 @end // PWSearchResultsAttachPanelController class
 
