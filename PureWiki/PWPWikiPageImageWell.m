@@ -22,8 +22,8 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "TWPUserAvatarWell.h"
-#import "TWPUserAvatarCell.h"
+#import "PWPWikiPageImageWell.h"
+#import "PWWikiPageImageCell.h"
 
 #import "AFNetworking.h"
 
@@ -32,12 +32,12 @@
 #import "WikiImage.h"
 
 // Private Interfaces
-@interface TWPUserAvatarWell ()
+@interface PWPWikiPageImageWell ()
 - ( BOOL ) _isEventUnderMyControl: ( NSEvent* )_Event;
 @end // Private Interfaces
 
-// TWPUserAvatarWell class
-@implementation TWPUserAvatarWell
+// PWPWikiPageImageWell class
+@implementation PWPWikiPageImageWell
 
 @dynamic wikiPage;
 
@@ -165,7 +165,7 @@
 
 - ( Class ) cellClass
     {
-    return [ TWPUserAvatarCell class ];
+    return [ PWWikiPageImageCell class ];
     }
 
 #pragma mark Private Interfaces
@@ -176,7 +176,7 @@
     return [ boundsPath containsPoint: eventLocation ];
     }
 
-@end // TWPUserAvatarWell class
+@end // PWPWikiPageImageWell class
 
 /*=============================================================================┐
 |                                                                              |

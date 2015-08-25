@@ -23,7 +23,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSidebarTabsTableCell.h"
-#import "TWPUserAvatarWell.h"
+#import "PWPWikiPageImageWell.h"
 
 #import "WikiPage.h"
 #import "WikiRevision.h"

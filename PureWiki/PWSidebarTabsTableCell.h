@@ -25,7 +25,7 @@
 @import Cocoa;
 @import WebKit;
 
-@class TWPUserAvatarWell;
+@class PWPWikiPageImageWell;
 
 @class WikiPage;
 
@@ -40,7 +40,7 @@
 @property ( strong, readwrite ) WikiPage* wikiPage;
 
 #pragma mark Outlets
-@property ( weak ) IBOutlet TWPUserAvatarWell* pageImageView;
+@property ( weak ) IBOutlet PWPWikiPageImageWell* pageImageView;
 @property ( weak ) IBOutlet NSTextField* pageTitleTextField;
 @property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
 

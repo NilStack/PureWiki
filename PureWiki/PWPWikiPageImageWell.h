@@ -29,8 +29,8 @@
 @class WikiEngine;
 @class WikiPage;
 
-// TWPUserAvatarWell class
-@interface TWPUserAvatarWell : NSImageView
+// PWPWikiPageImageWell class
+@interface PWPWikiPageImageWell : NSImageView
     {
 @private
     WikiEngine __strong* _wikiEngine;
@@ -45,7 +45,7 @@
 
 @property ( strong, readwrite ) WikiPage* wikiPage;
 
-@end // TWPUserAvatarWell class
+@end // PWPWikiPageImageWell class
 
 /*=============================================================================┐
 |                                                                              |

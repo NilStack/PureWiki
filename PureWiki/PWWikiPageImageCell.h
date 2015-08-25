@@ -24,8 +24,8 @@
 
 @import Cocoa;
 
-// TWPUserAvatarCell class
-@interface TWPUserAvatarCell : NSImageCell
+// PWWikiPageImageCell class
+@interface PWWikiPageImageCell : NSImageCell
     {
 @private
     NSBezierPath __strong* _avatarOutlinePath;
@@ -34,7 +34,7 @@
 
 @property ( strong, readonly ) NSBezierPath* avatarOutlinePath;
 
-@end // TWPUserAvatarCell class
+@end // PWWikiPageImageCell class
 
 /*=============================================================================┐
 |                                                                              |

@@ -22,10 +22,10 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "TWPUserAvatarCell.h"
+#import "PWWikiPageImageCell.h"
 
-// TWPUserAvatarCell class
-@implementation TWPUserAvatarCell
+// PWWikiPageImageCell class
+@implementation PWWikiPageImageCell
 
 @dynamic avatarOutlinePath;
 
@@ -66,7 +66,7 @@
     return self->_avatarOutlinePath;
     }
 
-@end // TWPUserAvatarCell class
+@end // PWWikiPageImageCell class
 
 /*=============================================================================┐
 |                                                                              |
