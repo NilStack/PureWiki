@@ -155,7 +155,7 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( BOOL ) isInUse
     {
-    return self->_fetchedWikiPages.count > 0;
+    return !self.hasCompletedInstantSearch || self->_fetchedWikiPages.count > 0;
     }
 
 - ( void ) searchValue: ( NSString* )SearchValue
@@ -345,7 +345,7 @@ NSString* const kResultsColumnID = @"results-column";
     NSLog( @">>> (Log) Relative window of attach panel ends live resize: \n{\n%@\n}", _Notif );
     #endif
 
-    if ( !self.hasCompletedInstantSearch || self.isInUse )
+    if ( self.isInUse )
         [ self popUpAttachPanel ];
     }
 

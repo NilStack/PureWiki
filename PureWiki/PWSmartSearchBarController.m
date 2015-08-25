@@ -55,12 +55,6 @@
 
 - ( void ) controlTextDidEndEditing: ( nonnull NSNotification* )_Notif
     {
-//    #if DEBUG
-//    NSLog( @">>> (Log) Instant search will be terminated by closing search results attach panel" );
-//    #endif
-//    [ self->_instantSearchWikiEngine cancelAll ];
-//
-//    [ self.smartSearchBar.attachPanelController closeAttachPanel ];
     self.smartSearchBar.stringValue = @"";
     [ self.smartSearchBar.attachPanelController closeAttachPanelAndClearResults ];
     }
