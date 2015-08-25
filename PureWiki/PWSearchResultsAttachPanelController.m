@@ -145,7 +145,13 @@ NSString* const kResultsColumnID = @"results-column";
     }
 
 #pragma mark Handling Search Results
+@dynamic hasCompletedInstantSearch;
 @dynamic isInUse;
+
+- ( BOOL ) hasCompletedInstantSearch
+    {
+    return self->_instantSearchWikiEngine.hasCompletedAllQueryThreads;
+    }
 
 - ( BOOL ) isInUse
     {
@@ -339,7 +345,7 @@ NSString* const kResultsColumnID = @"results-column";
     NSLog( @">>> (Log) Relative window of attach panel ends live resize: \n{\n%@\n}", _Notif );
     #endif
 
-    if ( self.isInUse )
+    if ( !self.hasCompletedInstantSearch || self.isInUse )
         [ self popUpAttachPanel ];
     }
 

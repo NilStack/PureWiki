@@ -55,6 +55,7 @@
 - ( void ) closeAttachPanelAndClearResults;
 
 #pragma mark Handling Search Results
+@property ( assign, readonly ) BOOL hasCompletedInstantSearch;
 @property ( assign, readonly ) BOOL isInUse;
 
 - ( void ) searchValue: ( NSString* )SearchValue;
