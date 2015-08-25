@@ -24,6 +24,7 @@
 
 #import "PWPWikiPageImageWell.h"
 #import "PWWikiPageImageCell.h"
+#import "PWArtworkConstants.h"
 
 #import "AFNetworking.h"
 
@@ -71,7 +72,7 @@
     {
     [ self.cell setHighlighted: NO ];
 
-    NSImage* normalDefaultContentPreview = [ NSImage imageNamed: @"content-preview-image-default-normal" ];
+    NSImage* normalDefaultContentPreview = [ NSImage imageNamed: PWArtworkWikiPageImageNormal ];
 
     if ( self->_wikiPage != _WikiPage )
         {
@@ -84,21 +85,24 @@
                                    success:
             ^( WikiImage* _WikiImage )
                 {
-                NSURL* avatarURL = _WikiImage.URL;
-                self->_dataTask = [ self->_HTTPSessionManager GET: avatarURL.absoluteString
-                                                       parameters: nil
-                                                          success:
-                  ^( NSURLSessionDataTask* _Task, id _ResponseObject )
-                        {
-                        NSImage* avatarImage = ( NSImage* )_ResponseObject;
-                        [ self performSelectorOnMainThread: @selector( setImage: ) withObject: avatarImage waitUntilDone: NO ];
-                        } failure:
-                            ^( NSURLSessionDataTask* _Task, NSError* _Error )
-                                {
+                if ( _WikiImage )
+                    {
+                    NSURL* imageURL = _WikiImage.URL;
+                    self->_dataTask = [ self->_HTTPSessionManager GET: imageURL.absoluteString
+                                                           parameters: nil
+                                                              success:
+                      ^( NSURLSessionDataTask* _Task, id _ResponseObject )
+                            {
+                            NSImage* avatarImage = ( NSImage* )_ResponseObject;
+                            [ self performSelectorOnMainThread: @selector( setImage: ) withObject: avatarImage waitUntilDone: NO ];
+                            } failure:
+                                ^( NSURLSessionDataTask* _Task, NSError* _Error )
+                                    {
 
-                                } ];
+                                    } ];
 
-                [ self->_dataTask resume ];
+                    [ self->_dataTask resume ];
+                    }
                 } failure:
                     ^( NSError* _Error )
                         {
@@ -172,7 +176,7 @@
 - ( BOOL ) _isEventUnderMyControl: ( NSEvent* )_Event
     {
     NSPoint eventLocation = [ self convertPoint: [ _Event locationInWindow ] fromView: nil ];
-    NSBezierPath* boundsPath = [ self.cell avatarOutlinePath ];
+    NSBezierPath* boundsPath = [ self.cell imageOutlinePath ];
     return [ boundsPath containsPoint: eventLocation ];
     }
 

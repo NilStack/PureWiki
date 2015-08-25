@@ -27,25 +27,25 @@
 // PWWikiPageImageCell class
 @implementation PWWikiPageImageCell
 
-@dynamic avatarOutlinePath;
+@dynamic imageOutlinePath;
 
 - ( void ) awakeFromNib
     {
-    self->_avatarFillColor = [ [ NSColor grayColor ] colorWithAlphaComponent: .4f ];
+    self->_imageFillColor = [ [ NSColor grayColor ] colorWithAlphaComponent: .4f ];
     }
 
 #pragma mark Custom Drawing
 - ( void ) drawWithFrame: ( NSRect )_CellFrame
                   inView: ( nonnull NSView* )_ControlView
     {
-    if ( !self->_avatarOutlinePath )
+    if ( !self->_imageOutlinePath )
         {
-        self->_avatarOutlinePath = [ NSBezierPath bezierPathWithOvalInRect: NSInsetRect( _ControlView.bounds, 1.f, 1.f ) ];
-//        self->_avatarOutlinePath = [ NSBezierPath bezierPathWithRoundedRect: NSInsetRect( _ControlView.bounds, 1.f, 1.f ) xRadius: 8.f yRadius: 8.f ];
-        [ self->_avatarOutlinePath setLineWidth: 1.f ];
+        self->_imageOutlinePath = [ NSBezierPath bezierPathWithOvalInRect: NSInsetRect( _ControlView.bounds, 1.f, 1.f ) ];
+//        self->_imageOutlinePath = [ NSBezierPath bezierPathWithRoundedRect: NSInsetRect( _ControlView.bounds, 1.f, 1.f ) xRadius: 8.f yRadius: 8.f ];
+        [ self->_imageOutlinePath setLineWidth: 1.f ];
         }
 
-    [ self->_avatarOutlinePath addClip ];
+    [ self->_imageOutlinePath addClip ];
     [ [ NSColor whiteColor ] set ];
 
     NSImage* image = ( NSImage* )[ self objectValue ];
@@ -56,14 +56,14 @@
 
     if ( self.isHighlighted )
         {
-        [ self->_avatarFillColor setFill ];
-        [ self->_avatarOutlinePath fill ];
+        [ self->_imageFillColor setFill ];
+        [ self->_imageOutlinePath fill ];
         }
     }
 
-- ( NSBezierPath* ) avatarOutlinePath
+- ( NSBezierPath* ) imageOutlinePath
     {
-    return self->_avatarOutlinePath;
+    return self->_imageOutlinePath;
     }
 
 @end // PWWikiPageImageCell class
