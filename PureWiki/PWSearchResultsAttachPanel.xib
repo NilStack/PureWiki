@@ -13,6 +13,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="s7G-Nl-iBY" customClass="PWSearchResultsAttachPanel">
+            <windowStyleMask key="styleMask" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="283" y="305" width="450" height="450"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
@@ -20,12 +21,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <visualEffectView appearanceType="vibrantLight" fixedFrame="YES" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="NEo-s5-ZXu" customClass="PWSearchResultsAttachPanelBlurBgView">
+                    <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="NEo-s5-ZXu" customClass="PWSearchResultsAttachPanelBlurBgView">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
-                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="90d-g9-3dd">
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="90d-g9-3dd">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -92,6 +93,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="450" id="lqF-84-wjZ"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="450" id="tfC-4I-Nva"/>
+                                </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Z7n-V9-iSR">
                                     <rect key="frame" x="0.0" y="-16" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -102,8 +107,22 @@
                                 </scroller>
                             </scrollView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="8cg-kx-gi9" firstAttribute="leading" secondItem="NEo-s5-ZXu" secondAttribute="leading" id="Pq4-5l-gjr"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="450" id="gRK-eU-VvB"/>
+                            <constraint firstAttribute="bottom" secondItem="8cg-kx-gi9" secondAttribute="bottom" id="npW-rl-OZi"/>
+                            <constraint firstItem="8cg-kx-gi9" firstAttribute="top" secondItem="NEo-s5-ZXu" secondAttribute="top" id="onL-db-k18"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="450" id="yO0-6N-tFN"/>
+                            <constraint firstAttribute="trailing" secondItem="8cg-kx-gi9" secondAttribute="trailing" id="yq6-4c-tO5"/>
+                        </constraints>
                     </visualEffectView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="NEo-s5-ZXu" firstAttribute="top" secondItem="nRr-2V-Obn" secondAttribute="top" id="Lgh-V8-beM"/>
+                    <constraint firstAttribute="trailing" secondItem="NEo-s5-ZXu" secondAttribute="trailing" id="VxJ-KX-LYj"/>
+                    <constraint firstItem="NEo-s5-ZXu" firstAttribute="leading" secondItem="nRr-2V-Obn" secondAttribute="leading" id="YNA-sZ-1Rj"/>
+                    <constraint firstAttribute="bottom" secondItem="NEo-s5-ZXu" secondAttribute="bottom" id="nPn-19-FKD"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="7xz-Lo-UNM"/>
