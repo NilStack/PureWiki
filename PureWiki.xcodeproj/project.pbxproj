@@ -10,6 +10,10 @@
 		8321EC7F1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8321EC7E1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.m */; };
 		8321EC841B8C0C940099C824 /* TWPUserAvatarWell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8321EC811B8C0C940099C824 /* TWPUserAvatarWell.m */; };
 		8321EC851B8C0C940099C824 /* TWPUserAvatarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8321EC831B8C0C940099C824 /* TWPUserAvatarCell.m */; };
+		8321EC8F1B8C30490099C824 /* content-preview-image-default-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 8321EC8B1B8C30490099C824 /* content-preview-image-default-highlighted.png */; };
+		8321EC901B8C30490099C824 /* content-preview-image-default-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8321EC8C1B8C30490099C824 /* content-preview-image-default-highlighted@2x.png */; };
+		8321EC911B8C30490099C824 /* content-preview-image-default-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8321EC8D1B8C30490099C824 /* content-preview-image-default-normal.png */; };
+		8321EC921B8C30490099C824 /* content-preview-image-default-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8321EC8E1B8C30490099C824 /* content-preview-image-default-normal@2x.png */; };
 		8322BF821B83812500A890C9 /* PWActionNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF811B83812500A890C9 /* PWActionNotifications.m */; };
 		8322BF961B83C6F400A890C9 /* PWSmartSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF951B83C6F400A890C9 /* PWSmartSearchBar.m */; };
 		8330E5CD1B88FFA800373760 /* NSURL+PureWiki.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330E5CC1B88FFA800373760 /* NSURL+PureWiki.m */; };
@@ -97,6 +101,10 @@
 		8321EC811B8C0C940099C824 /* TWPUserAvatarWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPUserAvatarWell.m; sourceTree = "<group>"; };
 		8321EC821B8C0C940099C824 /* TWPUserAvatarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPUserAvatarCell.h; sourceTree = "<group>"; };
 		8321EC831B8C0C940099C824 /* TWPUserAvatarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPUserAvatarCell.m; sourceTree = "<group>"; };
+		8321EC8B1B8C30490099C824 /* content-preview-image-default-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content-preview-image-default-highlighted.png"; sourceTree = "<group>"; };
+		8321EC8C1B8C30490099C824 /* content-preview-image-default-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content-preview-image-default-highlighted@2x.png"; sourceTree = "<group>"; };
+		8321EC8D1B8C30490099C824 /* content-preview-image-default-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content-preview-image-default-normal.png"; sourceTree = "<group>"; };
+		8321EC8E1B8C30490099C824 /* content-preview-image-default-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content-preview-image-default-normal@2x.png"; sourceTree = "<group>"; };
 		8322BF801B83812500A890C9 /* PWActionNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWActionNotifications.h; sourceTree = "<group>"; };
 		8322BF811B83812500A890C9 /* PWActionNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWActionNotifications.m; sourceTree = "<group>"; };
 		8322BF941B83C6F400A890C9 /* PWSmartSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchBar.h; sourceTree = "<group>"; };
@@ -249,6 +257,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8321EC861B8C1CE60099C824 /* artwork */ = {
+			isa = PBXGroup;
+			children = (
+				8321EC8B1B8C30490099C824 /* content-preview-image-default-highlighted.png */,
+				8321EC8C1B8C30490099C824 /* content-preview-image-default-highlighted@2x.png */,
+				8321EC8D1B8C30490099C824 /* content-preview-image-default-normal.png */,
+				8321EC8E1B8C30490099C824 /* content-preview-image-default-normal@2x.png */,
+			);
+			name = artwork;
+			path = PureWiki/artwork;
+			sourceTree = "<group>";
+		};
 		8322BF8C1B83AE7700A890C9 /* search-wikipedia */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				83B794111B7DCE5F00F4544E /* PureWiki */,
+				8321EC861B8C1CE60099C824 /* artwork */,
 				83B75CAD1B7DDB2C00E9C05E /* vendor */,
 				83B794251B7DCE5F00F4544E /* PureWikiTests */,
 				83B794301B7DCE5F00F4544E /* PureWikiUITests */,
@@ -675,12 +696,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8321EC921B8C30490099C824 /* content-preview-image-default-normal@2x.png in Resources */,
 				83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */,
 				83B7B0481B87A510002DE75A /* purewikied-css.css in Resources */,
 				83509BD11B862A0400C4F454 /* PWSearchResultsAttachPanel.xib in Resources */,
+				8321EC8F1B8C30490099C824 /* content-preview-image-default-highlighted.png in Resources */,
 				83A2FBCC1B830AC700939452 /* PWMainWindow.xib in Resources */,
+				8321EC911B8C30490099C824 /* content-preview-image-default-normal.png in Resources */,
 				83509BE61B8739FD00C4F454 /* PWWikiContentView.xib in Resources */,
 				83B7941C1B7DCE5F00F4544E /* PWMainMenu.xib in Resources */,
+				8321EC901B8C30490099C824 /* content-preview-image-default-highlighted@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,12 +916,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PureWiki/PureWiki.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = PureWiki/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.PureWiki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -906,12 +933,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PureWiki/PureWiki.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = PureWiki/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.bedroom.TongKuo.PureWiki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

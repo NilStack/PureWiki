@@ -25,6 +25,8 @@
 #import "TWPUserAvatarWell.h"
 #import "TWPUserAvatarCell.h"
 
+#import "AFNetworking.h"
+
 #import "WikiEngine.h"
 #import "WikiPage.h"
 #import "WikiImage.h"
@@ -69,35 +71,42 @@
     {
     [ self.cell setHighlighted: NO ];
 
+    NSImage* normalDefaultContentPreview = [ NSImage imageNamed: @"content-preview-image-default-normal" ];
+
     if ( self->_wikiPage != _WikiPage )
         {
         [ self setImage: nil ];
         self->_wikiPage = _WikiPage;
 
-        [ self->_wikiEngine fetchImage: self->_wikiPage.pageImageName
-                               success:
-        ^( WikiImage* _WikiImage )
+        if ( self->_wikiPage.pageImageName )
             {
-            NSURL* avatarURL = _WikiImage.URL;
-            self->_dataTask = [ self->_HTTPSessionManager GET: avatarURL.absoluteString
-                                                   parameters: nil
-                                                      success:
-              ^( NSURLSessionDataTask* _Task, id _ResponseObject )
-                    {
-                    NSImage* avatarImage = ( NSImage* )_ResponseObject;
-                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: avatarImage waitUntilDone: NO ];
-                    } failure:
-                        ^( NSURLSessionDataTask* _Task, NSError* _Error )
-                            {
+            [ self->_wikiEngine fetchImage: self->_wikiPage.pageImageName
+                                   success:
+            ^( WikiImage* _WikiImage )
+                {
+                NSURL* avatarURL = _WikiImage.URL;
+                self->_dataTask = [ self->_HTTPSessionManager GET: avatarURL.absoluteString
+                                                       parameters: nil
+                                                          success:
+                  ^( NSURLSessionDataTask* _Task, id _ResponseObject )
+                        {
+                        NSImage* avatarImage = ( NSImage* )_ResponseObject;
+                        [ self performSelectorOnMainThread: @selector( setImage: ) withObject: avatarImage waitUntilDone: NO ];
+                        } failure:
+                            ^( NSURLSessionDataTask* _Task, NSError* _Error )
+                                {
 
-                            } ];
+                                } ];
 
-            [ self->_dataTask resume ];
-            } failure:
-                ^( NSError* _Error )
-                    {
-
-                    } ];
+                [ self->_dataTask resume ];
+                } failure:
+                    ^( NSError* _Error )
+                        {
+                        [ self performSelectorOnMainThread: @selector( setImage: ) withObject: normalDefaultContentPreview waitUntilDone: NO ];
+                        } ];
+                }
+        else
+            [ self setImage: normalDefaultContentPreview ];
         }
     }
 
