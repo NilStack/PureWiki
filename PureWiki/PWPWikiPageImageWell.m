@@ -83,7 +83,7 @@
             ^( NSData* _ImageData, NSURLResponse* _Response, NSError* _Error )
                 {
                 if ( [ _Response.MIMEType isEqualToString: @"image/svg+xml" ] )
-                    // TODO: Looking forward to integrate with the SVG conventer tools like SVGKit
+                    // TODO: Looking forward to integrate with the SVG converter tools like SVGKit
                     [ self performSelectorOnMainThread: @selector( setImage: ) withObject: normalDefaultContentPreview waitUntilDone: NO ];
                 else
                     {
