@@ -48,7 +48,7 @@
     if ( self = [ super initWithCoder: coder ] )
         {
         self->_HTTPSessionManager = [ AFHTTPSessionManager manager ];
-        [ self->_HTTPSessionManager setResponseSerializer: [ [ AFImageResponseSerializer alloc ] init ] ];
+        [ self->_HTTPSessionManager setResponseSerializer: [ [ AFCompoundResponseSerializer alloc ] init ] ];
         self->_wikiEngine = [ WikiEngine commonsEngine ];
         }
 
@@ -79,6 +79,19 @@
         [ self setImage: nil ];
         self->_wikiPage = _WikiPage;
 
+        void (^__handleFetchedPageImageData)( NSData*, NSURLResponse*, NSError* ) =
+            ^( NSData* _ImageData, NSURLResponse* _Response, NSError* _Error )
+                {
+                if ( [ _Response.MIMEType isEqualToString: @"image/svg+xml" ] )
+                    // TODO: Looking forward to integrate with the SVG conventer tools like SVGKit
+                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: normalDefaultContentPreview waitUntilDone: NO ];
+                else
+                    {
+                    NSImage* wikiPageImage = [ [ NSImage alloc ] initWithData: _ImageData ];
+                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: wikiPageImage waitUntilDone: NO ];
+                    }
+                };
+
         if ( self->_wikiPage.pageImageName )
             {
             [ self->_wikiEngine fetchImage: self->_wikiPage.pageImageName
@@ -93,8 +106,7 @@
                                                               success:
                       ^( NSURLSessionDataTask* _Task, id _ResponseObject )
                             {
-                            NSImage* avatarImage = ( NSImage* )_ResponseObject;
-                            [ self performSelectorOnMainThread: @selector( setImage: ) withObject: avatarImage waitUntilDone: NO ];
+                            __handleFetchedPageImageData( ( NSData* )_ResponseObject, _Task.response, nil );
                             } failure:
                                 ^( NSURLSessionDataTask* _Task, NSError* _Error )
                                     {

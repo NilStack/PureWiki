@@ -150,7 +150,7 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( BOOL ) hasCompletedInstantSearch
     {
-    return self->_instantSearchWikiEngine.hasCompletedAllQueryThreads;
+    return self->_instantSearchWikiEngine.hasCompletedAllQueryTasks;
     }
 
 - ( BOOL ) isInUse
