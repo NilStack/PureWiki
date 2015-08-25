@@ -23,6 +23,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSidebarTabsTableCell.h"
+#import "TWPUserAvatarWell.h"
 
 #import "WikiPage.h"
 #import "WikiRevision.h"
@@ -45,7 +46,7 @@
     {
     self->_wikiPage = _WikiPage;
 
-    // self.pageImageView =
+    self.pageImageView.wikiPage = self->_wikiPage;
     self.pageTitleTextField.stringValue = self->_wikiPage.title;
     self.pageSnippetTextField.stringValue = [ self->_wikiPage.lastRevision.content substringToIndex: 100 ];
     }

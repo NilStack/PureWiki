@@ -56,9 +56,9 @@
                                                                     <rect key="frame" x="1" y="1" width="268" height="97"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GLP-7k-EMs">
+                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GLP-7k-EMs" customClass="TWPUserAvatarWell">
                                                                             <rect key="frame" x="20" y="27" width="60" height="60"/>
-                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="oKe-qZ-JwS"/>
+                                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="oKe-qZ-JwS" customClass="TWPUserAvatarCell"/>
                                                                         </imageView>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4R-PD-Bh5">
                                                                             <rect key="frame" x="86" y="70" width="164" height="17"/>
