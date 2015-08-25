@@ -52,55 +52,31 @@
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
-                                                                <tableCellView misplaced="YES" id="Mif-58-1Dc" customClass="PWSidebarTabsTableCell">
+                                                                <tableCellView id="Mif-58-1Dc" customClass="PWSidebarTabsTableCell">
                                                                     <rect key="frame" x="1" y="1" width="268" height="97"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GLP-7k-EMs" customClass="PWPWikiPageImageWell">
+                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GLP-7k-EMs" customClass="PWPWikiPageImageWell">
                                                                             <rect key="frame" x="20" y="27" width="60" height="60"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="60" id="HH8-oc-IeS"/>
-                                                                                <constraint firstAttribute="width" constant="60" id="dGL-ai-AGJ"/>
-                                                                            </constraints>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="oKe-qZ-JwS" customClass="PWWikiPageImageCell"/>
                                                                         </imageView>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4R-PD-Bh5">
+                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4R-PD-Bh5">
                                                                             <rect key="frame" x="86" y="70" width="164" height="17"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="i3L-QL-isS"/>
-                                                                                <constraint firstAttribute="height" constant="17" id="nHF-fn-uqf"/>
-                                                                            </constraints>
                                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C++" id="mKz-tc-hnG">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ABV-vJ-XpL">
+                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ABV-vJ-XpL">
                                                                             <rect key="frame" x="86" y="10" width="164" height="50"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="50" id="02p-YJ-sUp"/>
-                                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="hNM-Cq-Ha1"/>
-                                                                            </constraints>
-                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C++ (pronounced as cee plus plus, /ˈsiː plʌs plʌs/)…" id="dpe-SY-YLb">
+                                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="C++ (pronounced as cee plus plus, /ˈsiː plʌs plʌs/)…" id="dpe-SY-YLb">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
                                                                     </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="bottom" secondItem="ABV-vJ-XpL" secondAttribute="bottom" constant="10" id="02z-Ox-pub"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="GLP-7k-EMs" secondAttribute="bottom" constant="27" id="IcQ-t1-rPb"/>
-                                                                        <constraint firstItem="GLP-7k-EMs" firstAttribute="leading" secondItem="Mif-58-1Dc" secondAttribute="leading" constant="20" id="Nkk-ru-miv"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="ABV-vJ-XpL" secondAttribute="trailing" constant="20" id="RI2-H7-i8L"/>
-                                                                        <constraint firstItem="ABV-vJ-XpL" firstAttribute="leading" secondItem="GLP-7k-EMs" secondAttribute="trailing" constant="8" id="YsE-nO-DGI"/>
-                                                                        <constraint firstItem="v4R-PD-Bh5" firstAttribute="top" secondItem="Mif-58-1Dc" secondAttribute="top" constant="10" id="iNJ-y7-Ht4"/>
-                                                                        <constraint firstItem="ABV-vJ-XpL" firstAttribute="top" secondItem="v4R-PD-Bh5" secondAttribute="bottom" constant="10" id="oRB-I0-yZ1"/>
-                                                                        <constraint firstItem="v4R-PD-Bh5" firstAttribute="leading" secondItem="GLP-7k-EMs" secondAttribute="trailing" constant="8" id="pyn-NL-Z01"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="v4R-PD-Bh5" secondAttribute="trailing" constant="20" id="ssO-Mi-12i"/>
-                                                                        <constraint firstItem="GLP-7k-EMs" firstAttribute="top" secondItem="Mif-58-1Dc" secondAttribute="top" constant="10" id="xOa-l9-GNz"/>
-                                                                    </constraints>
                                                                     <connections>
                                                                         <outlet property="pageImageView" destination="GLP-7k-EMs" id="Mp3-uQ-fVH"/>
                                                                         <outlet property="pageSnippetTextField" destination="ABV-vJ-XpL" id="z1l-5H-TNV"/>
