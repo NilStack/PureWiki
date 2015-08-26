@@ -15,11 +15,11 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
             <rect key="contentRect" x="335" y="390" width="1338" height="1056"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-            <view key="contentView" id="gYk-FD-1cl" customClass="PWMainContentView">
+            <view key="contentView" wantsLayer="YES" id="gYk-FD-1cl" customClass="PWMainContentView">
                 <rect key="frame" x="0.0" y="0.0" width="1338" height="1056"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwD-Ap-aVJ" customClass="PWSplitView">
+                    <splitView wantsLayer="YES" arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwD-Ap-aVJ" customClass="PWSplitView">
                         <rect key="frame" x="0.0" y="0.0" width="1338" height="1056"/>
                         <subviews>
                             <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" state="followsWindowActiveState" id="KMR-gf-LRD">
@@ -132,7 +132,7 @@
                                     <constraint firstItem="dMc-KE-Bwg" firstAttribute="leading" secondItem="KMR-gf-LRD" secondAttribute="leading" id="qkg-wM-hSo"/>
                                 </constraints>
                             </visualEffectView>
-                            <customView fixedFrame="YES" id="QEV-J8-37j" customClass="PWStackContainerView">
+                            <customView wantsLayer="YES" fixedFrame="YES" id="QEV-J8-37j" customClass="PWStackContainerView">
                                 <rect key="frame" x="272" y="0.0" width="1066" height="1056"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <connections>

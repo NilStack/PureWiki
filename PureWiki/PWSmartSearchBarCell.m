@@ -34,11 +34,17 @@
 //    [ super drawWithFrame: _CellFrame inView: _ControlView ];
 //    }
 
-//- ( void ) drawLayer: ( nonnull CALayer* )_Layer
-//           inContext: ( nonnull CGContextRef )_Ctx
+//- ( void ) displayLayer: ( nonnull CALayer* )_Layer
 //    {
-//    [ super drawLayer: _Layer inContext: _Ctx ];
+//    NSLog( @"Display Layer: %@", _Layer );
 //    }
+
+- ( void ) drawLayer: ( nonnull CALayer* )_Layer
+           inContext: ( nonnull CGContextRef )_Ctx
+    {
+    NSLog( @"Draw Layer: %@", _Layer );
+    [ super drawLayer: _Layer inContext: _Ctx ];
+    }
 
 //- ( void ) drawInteriorWithFrame: ( NSRect )_CellFrame
 //                          inView: ( nonnull NSView* )_ControlView

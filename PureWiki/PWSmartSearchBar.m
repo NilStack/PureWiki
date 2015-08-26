@@ -51,6 +51,8 @@
                                                     object: nil ];
 
     self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
+    NSLog( @"Layer: %@", self.layer );
+    NSLog( @"Layer Delegate: %@", self.layer.delegate );
     }
 
 #pragma mark Dynamic Properties
