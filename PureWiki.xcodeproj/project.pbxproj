@@ -34,6 +34,7 @@
 		83509BE31B8738E800C4F454 /* PWWikiContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83509BE21B8738E800C4F454 /* PWWikiContentViewController.m */; };
 		83509BE61B8739FD00C4F454 /* PWWikiContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83509BE51B8739FD00C4F454 /* PWWikiContentView.xib */; };
 		837B975C1B8CB41B00BDDCF0 /* PWSmartSearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837B975B1B8CB41B00BDDCF0 /* PWSmartSearchBarCell.m */; };
+		837B975E1B8D7BCF00BDDCF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */; };
 		83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBC61B830AB000939452 /* PWMainWindow.m */; };
 		83A2FBCA1B830ABB00939452 /* PWMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBC91B830ABB00939452 /* PWMainWindowController.m */; };
 		83A2FBCC1B830AC700939452 /* PWMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A2FBCB1B830AC700939452 /* PWMainWindow.xib */; };
@@ -145,6 +146,7 @@
 		83509BE51B8739FD00C4F454 /* PWWikiContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PWWikiContentView.xib; sourceTree = "<group>"; };
 		837B975A1B8CB41B00BDDCF0 /* PWSmartSearchBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchBarCell.h; sourceTree = "<group>"; };
 		837B975B1B8CB41B00BDDCF0 /* PWSmartSearchBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchBarCell.m; sourceTree = "<group>"; };
+		837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83A2FBC51B830AB000939452 /* PWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWMainWindow.h; sourceTree = "<group>"; };
 		83A2FBC61B830AB000939452 /* PWMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWMainWindow.m; sourceTree = "<group>"; };
 		83A2FBC81B830ABB00939452 /* PWMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWMainWindowController.h; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837B975E1B8D7BCF00BDDCF0 /* QuartzCore.framework in Frameworks */,
 				83B75CAC1B7DDB0C00E9C05E /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +421,7 @@
 		83B794061B7DCE5F00F4544E = {
 			isa = PBXGroup;
 			children = (
+				837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */,
 				83B794111B7DCE5F00F4544E /* PureWiki */,
 				8321EC861B8C1CE60099C824 /* artwork */,
 				83B75CAD1B7DDB2C00E9C05E /* vendor */,
