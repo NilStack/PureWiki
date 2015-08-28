@@ -51,6 +51,12 @@
                                                     object: nil ];
 
     self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
+
+    NSButton* testButton = [ [ NSButton alloc ] initWithFrame: NSMakeRect( 20.f, -12.f, 20.f, 50.f ) ];
+    [ testButton setBezelStyle: NSHelpButtonBezelStyle ];
+    [ testButton setImagePosition: NSImageOnly ];
+//    [ testButton setTitle: @"Test" ];
+    [ self addSubview: testButton ];
     }
 
 #pragma mark Dynamic Properties

@@ -25,7 +25,7 @@
 @import Cocoa;
 
 // TKSafariSearchbarCell class
-@interface TKSafariSearchbarCell : NSSearchFieldCell
+@interface TKSafariSearchbarCell : NSTextFieldCell
 
 @end // TKSafariSearchbarCell class
 
