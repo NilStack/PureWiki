@@ -24,7 +24,7 @@
 
 @import Cocoa;
 
-@class PWSmartSearchBar;
+@class TKSafariSearchbar;
 
 // PWMainWindowController class
 @interface PWMainWindowController : NSWindowController 

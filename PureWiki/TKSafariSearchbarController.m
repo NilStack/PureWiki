@@ -22,82 +22,50 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSmartSearchBarCell.h"
+#import "TKSafariSearchbarController.h"
+#import "TKSafariSearchbar.h"
+#import "TKSafariSearchbar.h"
+#import "PWActionNotifications.h"
+#import "PWSearchResultsAttachPanelController.h"
 
-// PWSmartSearchBarCell class
-@implementation PWSmartSearchBarCell
+// Private Interfaces
+@interface TKSafariSearchbarController ()
+@end // Private Interfaces
 
-#pragma mark Custom Drawing
-//- ( void ) drawWithFrame: ( NSRect )_CellFrame
-//                  inView: ( nonnull NSView* )_ControlView
-//    {
-//    [ super drawWithFrame: _CellFrame inView: _ControlView ];
-//    }
+// TKSafariSearchbarController class
+@implementation TKSafariSearchbarController
 
-//- ( void ) displayLayer: ( nonnull CALayer* )_Layer
-//    {
-//    NSLog( @"Display Layer: %@", _Layer );
-//    }
+@dynamic smartSearchBar;
 
-- ( void ) drawLayer: ( nonnull CALayer* )_Layer
-           inContext: ( nonnull CGContextRef )_Ctx
+#pragma mark Initializations
+- ( void ) viewDidLoad
     {
-    NSLog( @"Draw Layer: %@", _Layer );
-    [ super drawLayer: _Layer inContext: _Ctx ];
+    [ super viewDidLoad ];
+    // Do view setup here.
     }
 
-//- ( void ) drawInteriorWithFrame: ( NSRect )_CellFrame
-//                          inView: ( nonnull NSView* )_ControlView
-//    {
-//    [ super drawInteriorWithFrame: _CellFrame inView: _ControlView ];
-//    }
+#pragma mark Conforms to <NSTextFieldDelegate>
+- ( void ) controlTextDidChange: ( nonnull NSNotification* )_Notif
+    {
+    NSTextView* fieldView = _Notif.userInfo[ @"NSFieldEditor" ];
+    NSString* searchValue = fieldView.string;
 
-//- ( void ) selectWithFrame: ( NSRect )_CellFrame
-//                    inView: ( NSView* )_ControlView
-//                    editor: ( NSText* )_FieldEditor
-//                  delegate: ( id )_DelegateObject
-//                     start: ( NSInteger )_SelStart
-//                    length: ( NSInteger )_SelLength
-//    {
-//    NSLog( @"%s", __PRETTY_FUNCTION__ );
-//    [ super selectWithFrame: [ self titleRectForBounds: _CellFrame ]
-//                     inView: _ControlView
-//                     editor: _FieldEditor
-//                   delegate: _DelegateObject
-//                      start: _SelStart
-//                     length: _SelLength ];
-//    }
-//
-//
-//- ( void ) editWithFrame: ( NSRect )_CellFrame
-//                  inView: ( NSView* )_ControlView
-//                  editor: ( NSText* )_FieldEditor
-//                delegate: ( id )_DelegateObject
-//                   event: ( NSEvent* )_Event
-//    {
-//    NSLog( @"%s", __PRETTY_FUNCTION__ );
-//    [ super editWithFrame: [ self titleRectForBounds: _CellFrame ]
-//                   inView: _ControlView
-//                   editor: _FieldEditor
-//                 delegate: _DelegateObject
-//                    event: _Event ];
-//    }
-//
-//- ( void ) endEditing: ( NSText* )_FieldEditor
-//    {
-//    NSLog( @"%s", __PRETTY_FUNCTION__ );
-//    [ super endEditing: _FieldEditor ];
-//    [ self.controlView.superview setNeedsDisplay: YES ];
-//    }
-//
-//- ( void ) highlight: ( BOOL )_Flag
-//           withFrame: ( NSRect )_CellFrame
-//              inView: ( nonnull NSView* )_ControlView
-//    {
-//
-//    }
+    [ self.smartSearchBar.attachPanelController searchValue: searchValue ];
+    }
 
-@end // PWSmartSearchBarCell class
+- ( void ) controlTextDidEndEditing: ( nonnull NSNotification* )_Notif
+    {
+    self.smartSearchBar.stringValue = @"";
+    [ self.smartSearchBar.attachPanelController closeAttachPanelAndClearResults ];
+    }
+
+#pragma mark Dynamic Properties
+- ( TKSafariSearchbar* ) smartSearchBar
+    {
+    return ( TKSafariSearchbar* )( self.view );
+    }
+
+@end // TKSafariSearchbarController class
 
 /*===============================================================================┐
 |                                                                                | 

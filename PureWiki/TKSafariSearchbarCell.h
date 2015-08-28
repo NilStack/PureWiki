@@ -24,16 +24,10 @@
 
 @import Cocoa;
 
-@class PWSmartSearchBar;
+// TKSafariSearchbarCell class
+@interface TKSafariSearchbarCell : NSSearchFieldCell
 
-@class FBKVOController;
-
-// PWSmartSearchBarController class
-@interface PWSmartSearchBarController : NSViewController <NSTextFieldDelegate>
-
-@property ( weak ) PWSmartSearchBar* smartSearchBar;
-
-@end // PWSmartSearchBarController class
+@end // TKSafariSearchbarCell class
 
 /*===============================================================================┐
 |                                                                                | 

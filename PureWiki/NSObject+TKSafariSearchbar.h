@@ -23,7 +23,7 @@
 
 @import Foundation;
 
-@interface NSObject ( PWSmartSearchBar )
+@interface NSObject ( TKSafariSearchbar )
 
 - ( id ) performSelector: ( SEL )_Selector asClass: ( Class )_Class;
 

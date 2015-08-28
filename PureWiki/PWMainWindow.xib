@@ -171,10 +171,10 @@
             </connections>
             <point key="canvasLocation" x="831" y="651"/>
         </window>
-        <searchField wantsLayer="YES" verticalHuggingPriority="750" id="34m-hF-hQH" customClass="PWSmartSearchBar">
+        <searchField wantsLayer="YES" verticalHuggingPriority="750" id="34m-hF-hQH" customClass="TKSafariSearchbar">
             <rect key="frame" x="0.0" y="0.0" width="450" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search Wikipedia" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="arw-B2-6hx" customClass="PWSmartSearchBarCell">
+            <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search Wikipedia" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="arw-B2-6hx" customClass="TKSafariSearchbarCell">
                 <font key="font" metaFont="system"/>
                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -242,7 +242,7 @@
                 <outlet property="sidebarTabsTable" destination="wU4-4o-6Ew" id="imY-PQ-Bim"/>
             </connections>
         </viewController>
-        <viewController id="5bj-cO-UF5" customClass="PWSmartSearchBarController">
+        <viewController id="5bj-cO-UF5" customClass="TKSafariSearchbarController">
             <connections>
                 <outlet property="view" destination="34m-hF-hQH" id="R7j-kW-3hW"/>
             </connections>

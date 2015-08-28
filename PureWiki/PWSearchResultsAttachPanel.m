@@ -23,7 +23,7 @@
 
 #import "PWSearchResultsAttachPanel.h"
 #import "PWSearchResultsAttachPanelBlurBgView.h"
-#import "NSObject+PWSmartSearchBar.h"
+#import "NSObject+TKSafariSearchbar.h"
 
 // Private Interfaces
 @interface PWSearchResultsAttachPanel ()

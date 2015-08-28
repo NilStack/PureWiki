@@ -22,58 +22,75 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSmartSearchBar.h"
-#import "PWMainWindow.h"
-#import "PWSearchResultsAttachPanelController.h"
-#import "PWSearchResultsAttachPanel.h"
-#import "PWActionNotifications.h"
+#import "TKSafariSearchbarCell.h"
 
-#import "WikiPage.h"
+// TKSafariSearchbarCell class
+@implementation TKSafariSearchbarCell
 
-// Private Interfaces
-@interface PWSmartSearchBar ()
+#pragma mark Custom Drawing
+//- ( void ) drawWithFrame: ( NSRect )_CellFrame
+//                  inView: ( nonnull NSView* )_ControlView
+//    {
+//    [ super drawWithFrame: _CellFrame inView: _ControlView ];
+//    }
 
-- ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif;
+//- ( void ) displayLayer: ( nonnull CALayer* )_Layer
+//    {
+//    NSLog( @"Display Layer: %@", _Layer );
+//    }
 
-@end // Private Interfaces
+//- ( void ) drawInteriorWithFrame: ( NSRect )_CellFrame
+//                          inView: ( nonnull NSView* )_ControlView
+//    {
+//    [ super drawInteriorWithFrame: _CellFrame inView: _ControlView ];
+//    }
 
-// PWSmartSearchBar class
-@implementation PWSmartSearchBar
+//- ( void ) selectWithFrame: ( NSRect )_CellFrame
+//                    inView: ( NSView* )_ControlView
+//                    editor: ( NSText* )_FieldEditor
+//                  delegate: ( id )_DelegateObject
+//                     start: ( NSInteger )_SelStart
+//                    length: ( NSInteger )_SelLength
+//    {
+//    NSLog( @"%s", __PRETTY_FUNCTION__ );
+//    [ super selectWithFrame: [ self titleRectForBounds: _CellFrame ]
+//                     inView: _ControlView
+//                     editor: _FieldEditor
+//                   delegate: _DelegateObject
+//                      start: _SelStart
+//                     length: _SelLength ];
+//    }
+//
+//
+//- ( void ) editWithFrame: ( NSRect )_CellFrame
+//                  inView: ( NSView* )_ControlView
+//                  editor: ( NSText* )_FieldEditor
+//                delegate: ( id )_DelegateObject
+//                   event: ( NSEvent* )_Event
+//    {
+//    NSLog( @"%s", __PRETTY_FUNCTION__ );
+//    [ super editWithFrame: [ self titleRectForBounds: _CellFrame ]
+//                   inView: _ControlView
+//                   editor: _FieldEditor
+//                 delegate: _DelegateObject
+//                    event: _Event ];
+//    }
+//
+//- ( void ) endEditing: ( NSText* )_FieldEditor
+//    {
+//    NSLog( @"%s", __PRETTY_FUNCTION__ );
+//    [ super endEditing: _FieldEditor ];
+//    [ self.controlView.superview setNeedsDisplay: YES ];
+//    }
+//
+//- ( void ) highlight: ( BOOL )_Flag
+//           withFrame: ( NSRect )_CellFrame
+//              inView: ( nonnull NSView* )_ControlView
+//    {
+//
+//    }
 
-@dynamic attachPanelController;
-
-#pragma mark Initializations
-- ( void ) awakeFromNib
-    {
-    [ [ NSNotificationCenter defaultCenter ] addObserver: self
-                                                selector: @selector( _userDidPickUpAnSearchItem: )
-                                                    name: PureWikiDidPickUpSearchItemNotif
-                                                    object: nil ];
-
-    self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
-    NSLog( @"Layer: %@", self.layer );
-    NSLog( @"Layer Delegate: %@", self.layer.delegate );
-    }
-
-- ( void ) updateLayer
-    {
-//    [ super updateLayer ];
-    }
-
-#pragma mark Dynamic Properties
-- ( PWSearchResultsAttachPanelController* ) attachPanelController
-    {
-    return self->_attachPanelController;
-    }
-
-#pragma mark Private Interfaces
-- ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif
-    {
-    [ self.attachPanelController closeAttachPanelAndClearResults ];
-    [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
-    }
-
-@end // PWSmartSearchBar class
+@end // TKSafariSearchbarCell class
 
 /*===============================================================================┐
 |                                                                                | 

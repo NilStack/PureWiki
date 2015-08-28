@@ -22,50 +22,18 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSmartSearchBarController.h"
-#import "PWSmartSearchBar.h"
-#import "PWSmartSearchBar.h"
-#import "PWActionNotifications.h"
-#import "PWSearchResultsAttachPanelController.h"
+@import Cocoa;
 
-// Private Interfaces
-@interface PWSmartSearchBarController ()
-@end // Private Interfaces
+@class TKSafariSearchbar;
 
-// PWSmartSearchBarController class
-@implementation PWSmartSearchBarController
+@class FBKVOController;
 
-@dynamic smartSearchBar;
+// TKSafariSearchbarController class
+@interface TKSafariSearchbarController : NSViewController <NSTextFieldDelegate>
 
-#pragma mark Initializations
-- ( void ) viewDidLoad
-    {
-    [ super viewDidLoad ];
-    // Do view setup here.
-    }
+@property ( weak ) TKSafariSearchbar* smartSearchBar;
 
-#pragma mark Conforms to <NSTextFieldDelegate>
-- ( void ) controlTextDidChange: ( nonnull NSNotification* )_Notif
-    {
-    NSTextView* fieldView = _Notif.userInfo[ @"NSFieldEditor" ];
-    NSString* searchValue = fieldView.string;
-
-    [ self.smartSearchBar.attachPanelController searchValue: searchValue ];
-    }
-
-- ( void ) controlTextDidEndEditing: ( nonnull NSNotification* )_Notif
-    {
-    self.smartSearchBar.stringValue = @"";
-    [ self.smartSearchBar.attachPanelController closeAttachPanelAndClearResults ];
-    }
-
-#pragma mark Dynamic Properties
-- ( PWSmartSearchBar* ) smartSearchBar
-    {
-    return ( PWSmartSearchBar* )( self.view );
-    }
-
-@end // PWSmartSearchBarController class
+@end // TKSafariSearchbarController class
 
 /*===============================================================================┐
 |                                                                                | 
