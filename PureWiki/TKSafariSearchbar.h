@@ -27,7 +27,7 @@
 @class PWSearchResultsAttachPanelController;
 
 // TKSafariSearchbar class
-@interface TKSafariSearchbar : NSSearchField
+@interface TKSafariSearchbar : NSTextField
     {
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;

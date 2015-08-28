@@ -179,9 +179,6 @@
                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
             </searchFieldCell>
-            <connections>
-                <outlet property="delegate" destination="5bj-cO-UF5" id="SMG-PO-jCV"/>
-            </connections>
             <point key="canvasLocation" x="990" y="-2"/>
         </searchField>
         <customView id="cjA-YO-b28" customClass="PWNavButtonsPairView">
@@ -227,7 +224,7 @@
         <viewController id="0YV-qA-Xbw" customClass="PWToolbarController">
             <connections>
                 <outlet property="navButtons" destination="cjA-YO-b28" id="biS-I6-nb7"/>
-                <outlet property="searchWikipediaBar" destination="34m-hF-hQH" id="Q88-4X-yM9"/>
+                <outlet property="searchWikipediaBar" destination="gLE-8L-vyo" id="ql9-wP-7ob"/>
                 <outlet property="sidebarStyleButton" destination="nVW-V1-1tx" id="Ney-Pn-95i"/>
                 <outlet property="toolbar" destination="Nqb-Bc-t9B" id="Zex-gV-vgl"/>
             </connections>
@@ -244,7 +241,7 @@
         </viewController>
         <viewController id="5bj-cO-UF5" customClass="TKSafariSearchbarController">
             <connections>
-                <outlet property="view" destination="34m-hF-hQH" id="R7j-kW-3hW"/>
+                <outlet property="view" destination="gLE-8L-vyo" id="DPo-wq-8og"/>
             </connections>
         </viewController>
         <textField verticalHuggingPriority="750" id="wj0-kW-YUg">
@@ -256,6 +253,19 @@
                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
             </textFieldCell>
             <point key="canvasLocation" x="453" y="-4"/>
+        </textField>
+        <textField verticalHuggingPriority="750" id="gLE-8L-vyo" customClass="TKSafariSearchbar">
+            <rect key="frame" x="0.0" y="0.0" width="450" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="6JW-n2-uzW" customClass="TKSafariSearchbarCell">
+                <font key="font" metaFont="system"/>
+                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+            </textFieldCell>
+            <connections>
+                <outlet property="delegate" destination="5bj-cO-UF5" id="Dx5-c2-mef"/>
+            </connections>
+            <point key="canvasLocation" x="451" y="81"/>
         </textField>
     </objects>
     <resources>

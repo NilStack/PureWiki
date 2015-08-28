@@ -25,6 +25,7 @@
 @import Cocoa;
 
 @class PWNavButtonsPairView;
+@class TKSafariSearchbar;
 
 // PWToolbarController class
 @interface PWToolbarController : NSViewController <NSToolbarDelegate>
@@ -32,7 +33,7 @@
 @property ( weak ) IBOutlet PWNavButtonsPairView* navButtons;
 @property ( weak ) IBOutlet NSButton* sidebarStyleButton;
 
-@property ( weak ) IBOutlet NSSearchField* searchWikipediaBar;
+@property ( weak ) IBOutlet TKSafariSearchbar* searchWikipediaBar;
 
 @property ( weak ) IBOutlet NSToolbar* toolbar;
 
