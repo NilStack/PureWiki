@@ -33,6 +33,7 @@
 		83509BE01B870D0500C4F454 /* PWSmartSearchBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83509BDF1B870D0500C4F454 /* PWSmartSearchBarController.m */; };
 		83509BE31B8738E800C4F454 /* PWWikiContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83509BE21B8738E800C4F454 /* PWWikiContentViewController.m */; };
 		83509BE61B8739FD00C4F454 /* PWWikiContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83509BE51B8739FD00C4F454 /* PWWikiContentView.xib */; };
+		83580CCD1B90669A00FC6E08 /* TKSafariSearchbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 83580CCC1B90669A00FC6E08 /* TKSafariSearchbar.m */; };
 		837B975C1B8CB41B00BDDCF0 /* PWSmartSearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837B975B1B8CB41B00BDDCF0 /* PWSmartSearchBarCell.m */; };
 		837B975E1B8D7BCF00BDDCF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */; };
 		83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBC61B830AB000939452 /* PWMainWindow.m */; };
@@ -144,6 +145,8 @@
 		83509BE11B8738E800C4F454 /* PWWikiContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentViewController.h; sourceTree = "<group>"; };
 		83509BE21B8738E800C4F454 /* PWWikiContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentViewController.m; sourceTree = "<group>"; };
 		83509BE51B8739FD00C4F454 /* PWWikiContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PWWikiContentView.xib; sourceTree = "<group>"; };
+		83580CCB1B90669A00FC6E08 /* TKSafariSearchbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKSafariSearchbar.h; path = PureWiki/TKSafariSearchbar.h; sourceTree = "<group>"; };
+		83580CCC1B90669A00FC6E08 /* TKSafariSearchbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TKSafariSearchbar.m; path = PureWiki/TKSafariSearchbar.m; sourceTree = "<group>"; };
 		837B975A1B8CB41B00BDDCF0 /* PWSmartSearchBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSmartSearchBarCell.h; sourceTree = "<group>"; };
 		837B975B1B8CB41B00BDDCF0 /* PWSmartSearchBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSmartSearchBarCell.m; sourceTree = "<group>"; };
 		837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -355,6 +358,15 @@
 			name = xib;
 			sourceTree = "<group>";
 		};
+		83580CCA1B90667500FC6E08 /* TKSafariSearchbar */ = {
+			isa = PBXGroup;
+			children = (
+				83580CCB1B90669A00FC6E08 /* TKSafariSearchbar.h */,
+				83580CCC1B90669A00FC6E08 /* TKSafariSearchbar.m */,
+			);
+			name = TKSafariSearchbar;
+			sourceTree = "<group>";
+		};
 		83A2FBCD1B830ACD00939452 /* main-window */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +421,7 @@
 		83B75CAD1B7DDB2C00E9C05E /* vendor */ = {
 			isa = PBXGroup;
 			children = (
+				837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */,
 				83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */,
 				83D591101B89EC910018BC1C /* FBKVOController */,
 				83B7AEF51B878EAB002DE75A /* Wikikit */,
@@ -421,7 +434,7 @@
 		83B794061B7DCE5F00F4544E = {
 			isa = PBXGroup;
 			children = (
-				837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */,
+				83580CCA1B90667500FC6E08 /* TKSafariSearchbar */,
 				83B794111B7DCE5F00F4544E /* PureWiki */,
 				8321EC861B8C1CE60099C824 /* artwork */,
 				83B75CAD1B7DDB2C00E9C05E /* vendor */,
@@ -770,6 +783,7 @@
 				83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */,
 				8330E5CD1B88FFA800373760 /* NSURL+PureWiki.m in Sources */,
 				83B7AFC11B878EAC002DE75A /* NSDate+Wikikit.m in Sources */,
+				83580CCD1B90669A00FC6E08 /* TKSafariSearchbar.m in Sources */,
 				8321EC7F1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.m in Sources */,
 				83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */,
 				83B7B0241B878EAC002DE75A /* WikiHTTPSessionManager.m in Sources */,
