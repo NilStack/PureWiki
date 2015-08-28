@@ -55,6 +55,11 @@
     NSLog( @"Layer Delegate: %@", self.layer.delegate );
     }
 
+- ( void ) updateLayer
+    {
+//    [ super updateLayer ];
+    }
+
 #pragma mark Dynamic Properties
 - ( PWSearchResultsAttachPanelController* ) attachPanelController
     {
