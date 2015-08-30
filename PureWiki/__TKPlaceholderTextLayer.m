@@ -39,6 +39,13 @@
         {
         self.content = _Content ?: @"";
         [ self setName: @"placeholder-text-layer" ];
+
+        CABasicAnimation* hiddenAnim = [ CABasicAnimation animationWithKeyPath: @"hidden" ];
+        [ hiddenAnim setFromValue: @( self.hidden ) ];
+        [ hiddenAnim setToValue: @( !self.hidden ) ];
+        [ hiddenAnim setDuration: 4.f ];
+
+        [ self setActions: @{ @"hidden" : hiddenAnim } ];
         }
 
     return self;

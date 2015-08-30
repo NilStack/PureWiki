@@ -84,6 +84,9 @@
                                                                               attribute: kCAConstraintMidX ] ];
 
         [ self addSublayer: self->_placeholderLayer ];
+
+//        [ self->_placeholderLayer addAnimation: hiddenAnim forKey: @"hidden" ];
+//        [ self->_placeholderLayer setHidden: !self->_placeholderLayer.hidden ];
         }
 
     return self;

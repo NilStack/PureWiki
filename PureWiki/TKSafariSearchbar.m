@@ -30,6 +30,7 @@
 
 #import "__TKSafariSearchbar.h"
 #import "__TKSearchbarBackingLayer.h"
+#import "__TKPlaceholderTextLayer.h"
 
 #import "WikiPage.h"
 
@@ -44,6 +45,27 @@
     {
     self->_isFocusing = _YesOrNo;
     [ self setNeedsDisplay ];
+
+    NSArray* sublayers = self.sublayers;
+    NSLog( @"%@", sublayers );
+    if ( sublayers.count == 2 )
+        {
+//        [ self->_placeholderLayer removeFromSuperlayer ];
+        [ self addSublayer: self->_placeholderLayer ];
+        }
+//
+    if ( sublayers.count == 3 )
+        {
+//        [ sublayers.lastObject removeFromSuperlayer ];
+        CALayer* clipViewBackingLayer = sublayers.lastObject;
+
+        CALayer* layer = [ CALayer layer ];
+        layer.backgroundColor = [ NSColor orangeColor ].CGColor;
+        layer.bounds = NSMakeRect( 0, 0, 50, 20 );
+        layer.position = NSMakePoint( 0, 0 );
+
+        [ clipViewBackingLayer addSublayer: self->_placeholderLayer ];
+        }
     }
 
 @end // __TKSearchbarBackingLayer + TKPrivate
@@ -83,36 +105,6 @@
     [ self setLayerContentsRedrawPolicy: NSViewLayerContentsRedrawOnSetNeedsDisplay ];
     [ self setWantsLayer: YES ];
     }
-
-- ( BOOL ) wantsUpdateLayer
-    {
-    return YES;
-    }
-
-//- ( BOOL ) wantsUpdateLayer
-//    {
-//    return YES;
-//    }
-
-//- ( void ) updateLayer
-//    {
-//    [ super updateLayer ];
-////
-////    NSUInteger sublayersCount = self.layer.sublayers.count;
-////    if ( sublayersCount == 2 )
-////        {
-////        NSLog( @"🍓" );
-//        CALayer* parentLayer = self.layer.sublayers.lastObject;
-//
-//        [ parentLayer setPosition: NSMakePoint( 20.f, 2.f ) ];
-//        [ self->_placeholderLayer setPosition: NSMakePoint( 5.f, 4.5f ) ];
-//        [ parentLayer addSublayer: self->_placeholderLayer ];
-//
-//        self->_placeholderLayer.hidden = self->_inputting;
-////        }
-//
-////    NSLog( @"%@", self.layer.sublayers.lastObject.sublayers );
-//    }
 
 #pragma mark Dynamic Properties
 - ( PWSearchResultsAttachPanelController* ) attachPanelController
