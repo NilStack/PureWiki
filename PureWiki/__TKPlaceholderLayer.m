@@ -21,6 +21,7 @@
 └==============================================================================┘██
   ██████████████████████████████████████████████████████████████████████████████*/
 
+#import "NSColor+TKSafariSearchbar.h"
 #import "__TKPlaceholderLayer.h"
 
 // __TKPlaceholderLayer class
@@ -38,8 +39,8 @@
     {
     if ( self = [ super init ] )
         {
-        self->_fontAttr = [ NSFont systemFontOfSize: 15.f ];
-        self->_foregroundColorAttr = [ NSColor redColor ];
+        self->_fontAttr = [ NSFont systemFontOfSize: 12.f ];
+        self->_foregroundColorAttr = [ NSColor colorWithHTMLColor: @"B2B2B2" ];
 
         self.placeholderContent = _Content ?: @"";
 
@@ -47,6 +48,8 @@
 
         // This's very important to get text in receiver to be clear
         [ self setContentsScale: 2.f ];
+        [ self setName: @"placeholder-text-layer" ];
+        [ self setWrapped: YES ];
         }
 
     return self;
@@ -76,6 +79,11 @@
 - ( NSString* ) placeholderContent
     {
     return self->_placeholderContent;
+    }
+
+- ( NSSize ) contentSizeWithAttributes
+    {
+    return [ self->_placeholderContent sizeWithAttributes: @{ NSFontAttributeName : self->_fontAttr } ];
     }
 
 @end // __TKPlaceholderLayer class

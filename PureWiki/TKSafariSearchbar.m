@@ -60,17 +60,33 @@
 
     self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
 
+    self->_placeholderLayer = [ __TKPlaceholderLayer layerWithContent: @"Search Wikipedia" ];
+
 //    NSButton* testButton = [ [ NSButton alloc ] initWithFrame: NSMakeRect( 20.f, -12.f, 20.f, 50.f ) ];
 //    [ testButton setBezelStyle: NSHelpButtonBezelStyle ];
 //    [ testButton setImagePosition: NSImageOnly ];
 //    [ self addSubview: testButton ];
 
-    self->_placeholderLayer = [ __TKPlaceholderLayer layerWithContent: @"Test" ];
-//    [ self->_placeholderLayer setBounds: NSMakeRect( 0, 0, 50, 60 ) ];
-//    [ self->_placeholderLayer setAnchorPoint: NSMakePoint( 0, 0 ) ];
-//    [ self->_placeholderLayer setBackgroundColor: [ NSColor redColor ].CGColor ];
-    NSLog( @"%@", self->_placeholderLayer.placeholderContent );
-    [ self.layer addSublayer: self->_placeholderLayer ];
+    }
+
+- ( BOOL ) wantsUpdateLayer
+    {
+    return YES;
+    }
+
+- ( void ) updateLayer
+    {
+    [ super updateLayer ];
+
+    if ( self.layer.sublayers.count == 2 )
+        {
+        CALayer* parentLayer = self.layer.sublayers.lastObject;
+
+        [ self->_placeholderLayer setPosition: NSMakePoint( 5.f, 4.f ) ];
+        [ parentLayer addSublayer: self->_placeholderLayer ];
+        }
+
+    NSLog( @"%@", self.layer.sublayers.lastObject.sublayers );
     }
 
 #pragma mark Dynamic Properties

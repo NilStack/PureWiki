@@ -35,6 +35,7 @@
     }
 
 @property ( strong, readwrite ) NSString* placeholderContent;
+@property ( assign, readonly ) NSSize contentSizeWithAttributes;
 
 #pragma mark Initializations
 + ( instancetype ) layerWithContent: ( NSString* )_Content;
