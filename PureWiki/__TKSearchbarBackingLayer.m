@@ -29,6 +29,7 @@
 @interface __TKSearchbarBackingLayer ()
 
 @property ( assign, readwrite, setter = setActive: ) BOOL isActive;
+//@property ( assign, readwrite, setter = setFocusing: ) BOOL isFocusing;
 
 - ( void ) _appDidBecomeActive: ( NSNotification* )_Notif;
 - ( void ) _appDidResignActive: ( NSNotification* )_Notif;
@@ -89,7 +90,9 @@
     if ( self->_isActive )
         {
         CGColorRef cgShadowColor = [ [ NSColor blackColor ] colorWithAlphaComponent: .2f ].CGColor;
-        CGContextSetShadowWithColor( _cgCtx, CGSizeMake( 0.f, .3f ), .7f, cgShadowColor );
+
+        if ( !self->_isFocusing )
+            CGContextSetShadowWithColor( _cgCtx, CGSizeMake( 0.f, .3f ), .7f, cgShadowColor );
         }
     else
         {
@@ -100,7 +103,6 @@
         }
 
     CGContextFillPath( _cgCtx );
-
     CFRelease( cgPath );
     }
 
@@ -114,6 +116,17 @@
 - ( BOOL ) isActive
     {
     return self->_isActive;
+    }
+
+- ( void ) setFocusing: ( BOOL )_YesOrNo
+    {
+    self->_isFocusing = _YesOrNo;
+    [ self setNeedsDisplay ];
+    }
+
+- ( BOOL ) isFocusing
+    {
+    return self->_isFocusing;
     }
 
 #pragma mark Private Interfaces

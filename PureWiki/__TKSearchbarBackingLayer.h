@@ -30,10 +30,13 @@
     {
 @protected
     NSView __weak* _hostView;
+
     BOOL _isActive;
+    BOOL _isFocusing;
     }
 
 @property ( assign, readonly ) BOOL isActive;
+@property ( assign, readwrite, setter = setFocusing: ) BOOL isFocusing;
 
 #pragma mark Initializations
 + ( instancetype ) layerWithHostView: ( NSView* )_HostView;

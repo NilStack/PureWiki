@@ -23,11 +23,27 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "TKSafariSearchbarCell.h"
+#import "TKSafariSearchbar.h"
+
+// Private Interfaces
+@interface TKSafariSearchbarCell ()
+@property ( assign, readwrite, setter = setFocusing: ) BOOL isFocusing;
+@end // Private Interfaces
 
 // TKSafariSearchbarCell class
 @implementation TKSafariSearchbarCell
 
+@dynamic isFocusing;
+
 #pragma mark Custom Drawing
+- ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Decoder
+    {
+    if ( self = [ super initWithCoder: _Decoder ] )
+        self->_isFocusing = NO;
+
+    return self;
+    }
+
 //- ( void ) drawWithFrame: ( NSRect )_CellFrame
 //                  inView: ( nonnull NSView* )_ControlView
 //    {
@@ -45,21 +61,22 @@
 //    [ super drawInteriorWithFrame: _CellFrame inView: _ControlView ];
 //    }
 
-//- ( void ) selectWithFrame: ( NSRect )_CellFrame
-//                    inView: ( NSView* )_ControlView
-//                    editor: ( NSText* )_FieldEditor
-//                  delegate: ( id )_DelegateObject
-//                     start: ( NSInteger )_SelStart
-//                    length: ( NSInteger )_SelLength
-//    {
-//    NSLog( @"%s", __PRETTY_FUNCTION__ );
-//    [ super selectWithFrame: [ self titleRectForBounds: _CellFrame ]
-//                     inView: _ControlView
-//                     editor: _FieldEditor
-//                   delegate: _DelegateObject
-//                      start: _SelStart
-//                     length: _SelLength ];
-//    }
+- ( void ) selectWithFrame: ( NSRect )_CellFrame
+                    inView: ( NSView* )_ControlView
+                    editor: ( NSText* )_FieldEditor
+                  delegate: ( id )_DelegateObject
+                     start: ( NSInteger )_SelStart
+                    length: ( NSInteger )_SelLength
+    {
+    [ super selectWithFrame: [ self titleRectForBounds: _CellFrame ]
+                     inView: _ControlView
+                     editor: _FieldEditor
+                   delegate: _DelegateObject
+                      start: _SelStart
+                     length: _SelLength ];
+
+    [ self.hostControl setFocusing: YES ];
+    }
 //
 //
 //- ( void ) editWithFrame: ( NSRect )_CellFrame
@@ -76,12 +93,13 @@
 //                    event: _Event ];
 //    }
 //
-//- ( void ) endEditing: ( NSText* )_FieldEditor
-//    {
-//    NSLog( @"%s", __PRETTY_FUNCTION__ );
-//    [ super endEditing: _FieldEditor ];
-//    [ self.controlView.superview setNeedsDisplay: YES ];
-//    }
+- ( void ) endEditing: ( NSText* )_FieldEditor
+    {
+    [ super endEditing: _FieldEditor ];
+    [ self.controlView.superview setNeedsDisplay: YES ];
+
+    [ self.hostControl setFocusing: NO ];
+    }
 //
 //- ( void ) highlight: ( BOOL )_Flag
 //           withFrame: ( NSRect )_CellFrame
@@ -89,6 +107,18 @@
 //    {
 //
 //    }
+
+#pragma mark Dynmaic Properties
+- ( void ) setFocusing: ( BOOL )_YesOrNo
+    {
+    self->_isFocusing = _YesOrNo;
+    self.hostControl.isFocusing = self->_isFocusing;
+    }
+
+- ( BOOL ) isFocusing
+    {
+    return self->_isFocusing;
+    }
 
 @end // TKSafariSearchbarCell class
 

@@ -24,8 +24,17 @@
 
 @import Cocoa;
 
+@class TKSafariSearchbar;
+
 // TKSafariSearchbarCell class
 @interface TKSafariSearchbarCell : NSTextFieldCell
+    {
+@protected
+    BOOL _isFocusing;
+    }
+
+@property ( weak ) IBOutlet TKSafariSearchbar* hostControl;
+@property ( assign, readonly ) BOOL isFocusing;
 
 @end // TKSafariSearchbarCell class
 

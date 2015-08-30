@@ -37,6 +37,8 @@
 // Private Interfaces
 @interface TKSafariSearchbar ()
 
+//@property ( assign, readwrite, setter = setFocusing: ) BOOL isFocusing;
+
 - ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif;
 - ( void ) __updateInputState: ( NSText* )_FieldEditor;
 
@@ -46,10 +48,12 @@
 @implementation TKSafariSearchbar
     {
 @protected
+    __TKSearchbarBackingLayer __strong* _backingLayer;
     __TKPlaceholderTextLayer __strong* _placeholderLayer;
     __TKFrozenTitleTextLayer __strong* _frozenTitleTextLayer;
     }
 
+@dynamic isFocusing;
 @dynamic attachPanelController;
 
 #pragma mark Initializations
@@ -66,9 +70,9 @@
     self->_placeholderLayer = [ __TKPlaceholderTextLayer layerWithContent: @"Search Wikipedia" ];
     self->_frozenTitleTextLayer = [ __TKFrozenTitleTextLayer layerWithContent: @"Search Wikipedia" ];
 
-    __TKSearchbarBackingLayer* layer = [ __TKSearchbarBackingLayer layerWithHostView: self ];
+    self->_backingLayer = [ __TKSearchbarBackingLayer layerWithHostView: self ];
 
-    [ self setLayer: layer ];
+    [ self setLayer: self->_backingLayer ];
     [ self setLayerContentsRedrawPolicy: NSViewLayerContentsRedrawOnSetNeedsDisplay ];
     [ self setWantsLayer: YES ];
     }
@@ -104,6 +108,17 @@
 //    }
 
 #pragma mark Dynamic Properties
+- ( void ) setFocusing: ( BOOL )_YesOrNo
+    {
+    self->_isFocusing = _YesOrNo;
+    self->_backingLayer.isFocusing = self->_isFocusing;
+    }
+
+- ( BOOL ) isFocusing
+    {
+    return self->_isFocusing;
+    }
+
 - ( PWSearchResultsAttachPanelController* ) attachPanelController
     {
     return self->_attachPanelController;

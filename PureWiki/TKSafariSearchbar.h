@@ -31,8 +31,12 @@
     {
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
+
     BOOL _inputting;
+    BOOL _isFocusing;
     }
+
+@property ( assign, readwrite, setter = setFocusing: ) BOOL isFocusing;
 
 #pragma mark Ivar Properties
 @property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;
