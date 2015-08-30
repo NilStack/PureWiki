@@ -40,13 +40,7 @@
     if ( self = [ super initWithContent: _Content ] )
         {
         self.placeholderContent = _Content ?: @"";
-
-        [ self setAnchorPoint: NSMakePoint( 0, 0 ) ];
-
-        // This's very important to get text in receiver to be clear
-        [ self setContentsScale: 2.f ];
         [ self setName: @"placeholder-text-layer" ];
-        [ self setWrapped: YES ];
         }
 
     return self;
