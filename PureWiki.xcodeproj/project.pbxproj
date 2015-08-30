@@ -45,7 +45,7 @@
 		83A2FBDF1B833B2A00939452 /* PWStackContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBDE1B833B2A00939452 /* PWStackContainerView.m */; };
 		83A2FBE21B833B8E00939452 /* PWStackContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBE11B833B8E00939452 /* PWStackContainerViewController.m */; };
 		83A6CC761B91FAB80048AE73 /* __TKPlaceholderTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A6CC751B91FAB80048AE73 /* __TKPlaceholderTextLayer.m */; };
-		83A6CC791B91FAFF0048AE73 /* __TKFrozenTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A6CC781B91FAFF0048AE73 /* __TKFrozenTitleLayer.m */; };
+		83A6CC791B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A6CC781B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.m */; };
 		83B75CAC1B7DDB0C00E9C05E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */; };
 		83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794131B7DCE5F00F4544E /* PWAppDelegate.m */; };
 		83B794171B7DCE5F00F4544E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794161B7DCE5F00F4544E /* main.m */; };
@@ -169,8 +169,8 @@
 		83A2FBE11B833B8E00939452 /* PWStackContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWStackContainerViewController.m; sourceTree = "<group>"; };
 		83A6CC741B91FAB80048AE73 /* __TKPlaceholderTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __TKPlaceholderTextLayer.h; sourceTree = "<group>"; };
 		83A6CC751B91FAB80048AE73 /* __TKPlaceholderTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __TKPlaceholderTextLayer.m; sourceTree = "<group>"; };
-		83A6CC771B91FAFF0048AE73 /* __TKFrozenTitleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __TKFrozenTitleLayer.h; sourceTree = "<group>"; };
-		83A6CC781B91FAFF0048AE73 /* __TKFrozenTitleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __TKFrozenTitleLayer.m; sourceTree = "<group>"; };
+		83A6CC771B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __TKFrozenTitleTextLayer.h; sourceTree = "<group>"; };
+		83A6CC781B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __TKFrozenTitleTextLayer.m; sourceTree = "<group>"; };
 		83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		83B7940F1B7DCE5F00F4544E /* PureWiki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PureWiki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B794121B7DCE5F00F4544E /* PWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PWAppDelegate.h; sourceTree = "<group>"; };
@@ -297,8 +297,8 @@
 				8322BF951B83C6F400A890C9 /* TKSafariSearchbar.m */,
 				837B975A1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.h */,
 				837B975B1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m */,
-				83A6CC771B91FAFF0048AE73 /* __TKFrozenTitleLayer.h */,
-				83A6CC781B91FAFF0048AE73 /* __TKFrozenTitleLayer.m */,
+				83A6CC771B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.h */,
+				83A6CC781B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.m */,
 				83A6CC741B91FAB80048AE73 /* __TKPlaceholderTextLayer.h */,
 				83A6CC751B91FAB80048AE73 /* __TKPlaceholderTextLayer.m */,
 				839585DF1B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.h */,
@@ -817,7 +817,7 @@
 				83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */,
 				839585E11B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m in Sources */,
 				83480E9D1B83589900A33030 /* PWSplitView.m in Sources */,
-				83A6CC791B91FAFF0048AE73 /* __TKFrozenTitleLayer.m in Sources */,
+				83A6CC791B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.m in Sources */,
 				83509BDA1B864A9100C4F454 /* PWSearchResultsTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

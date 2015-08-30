@@ -21,12 +21,12 @@
 └==============================================================================┘██
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "__TKFrozenTitleLayer.h"
+@import Cocoa;
 
-// __TKFrozenTitleLayer class
-@implementation __TKFrozenTitleLayer
+// __TKFrozenTitleTextLayer class
+@interface __TKFrozenTitleTextLayer : CALayer
 
-@end // __TKFrozenTitleLayer class
+@end // __TKFrozenTitleTextLayer class
 
 /*===============================================================================┐
 |                                                                                | 
