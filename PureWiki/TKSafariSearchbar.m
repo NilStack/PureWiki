@@ -28,7 +28,7 @@
 #import "PWSearchResultsAttachPanel.h"
 #import "PWActionNotifications.h"
 
-#import "__TKPlaceholderLayer.h"
+#import "__TKPlaceholderTextLayer.h"
 
 #import "WikiPage.h"
 
@@ -44,7 +44,7 @@
 @implementation TKSafariSearchbar
     {
 @protected
-    __TKPlaceholderLayer __strong* _placeholderLayer;
+    __TKPlaceholderTextLayer __strong* _placeholderLayer;
     }
 
 @dynamic attachPanelController;
@@ -61,7 +61,7 @@
 
     self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
     self->_inputting = NO;
-    self->_placeholderLayer = [ __TKPlaceholderLayer layerWithContent: @"Search Wikipedia" ];
+    self->_placeholderLayer = [ __TKPlaceholderTextLayer layerWithContent: @"Search Wikipedia" ];
 
 //    NSButton* testButton = [ [ NSButton alloc ] initWithFrame: NSMakeRect( 20.f, -12.f, 20.f, 50.f ) ];
 //    [ testButton setBezelStyle: NSHelpButtonBezelStyle ];

@@ -21,72 +21,27 @@
 └==============================================================================┘██
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "NSColor+TKSafariSearchbar.h"
-#import "__TKPlaceholderLayer.h"
+@import Cocoa;
+@import QuartzCore;
 
-// __TKPlaceholderLayer class
-@implementation __TKPlaceholderLayer
+// __TKPlaceholderTextLayer class
+@interface __TKPlaceholderTextLayer : CATextLayer
+    {
+@protected
+    NSFont __strong* _fontAttr;
+    NSColor __strong* _foregroundColorAttr;
 
-@dynamic placeholderContent;
+    NSString __strong* _placeholderContent;
+    }
+
+@property ( strong, readwrite ) NSString* placeholderContent;
+@property ( assign, readonly ) NSSize contentSizeWithAttributes;
 
 #pragma mark Initializations
-+ ( instancetype ) layerWithContent: ( NSString* )_Content
-    {
-    return [ [ self alloc ] initWithContent: _Content ];
-    }
++ ( instancetype ) layerWithContent: ( NSString* )_Content;
+- ( instancetype ) initWithContent: ( NSString* )_Content;
 
-- ( instancetype ) initWithContent: ( NSString* )_Content
-    {
-    if ( self = [ super init ] )
-        {
-        self->_fontAttr = [ NSFont systemFontOfSize: 12.f ];
-        self->_foregroundColorAttr = [ NSColor colorWithHTMLColor: @"B2B2B2" ];
-
-        self.placeholderContent = _Content ?: @"";
-
-        [ self setAnchorPoint: NSMakePoint( 0, 0 ) ];
-
-        // This's very important to get text in receiver to be clear
-        [ self setContentsScale: 2.f ];
-        [ self setName: @"placeholder-text-layer" ];
-        [ self setWrapped: YES ];
-        }
-
-    return self;
-    }
-
-#pragma mark Dynamic Properties
-- ( void ) setPlaceholderContent: ( NSString* )_PlaceholderContent
-    {
-    if ( self->_placeholderContent != _PlaceholderContent )
-        {
-        self->_placeholderContent = _PlaceholderContent;
-
-        NSDictionary* attributes = @{ NSFontAttributeName : self->_fontAttr
-                                    , NSForegroundColorAttributeName : self->_foregroundColorAttr
-                                    };
-
-        NSAttributedString* attredString = [ [ NSAttributedString alloc ] initWithString: _PlaceholderContent
-                                                                              attributes: attributes ];
-
-        [ self setString: attredString ];
-
-        NSSize sizeWithAttributes = [ attredString.string sizeWithAttributes: attributes ];
-        [ self setBounds: NSMakeRect( 0, 0, sizeWithAttributes.width, sizeWithAttributes.height ) ];
-        }
-    }
-
-- ( NSString* ) placeholderContent
-    {
-    return self->_placeholderContent;
-    }
-
-- ( NSSize ) contentSizeWithAttributes
-    {
-    return [ self->_placeholderContent sizeWithAttributes: @{ NSFontAttributeName : self->_fontAttr } ];
-    }
-
-@end // __TKPlaceholderLayer class
+@end // __TKPlaceholderTextLayer class
 
 /*===============================================================================┐
 |                                                                                | 
