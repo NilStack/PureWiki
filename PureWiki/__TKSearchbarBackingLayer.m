@@ -22,131 +22,48 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "TKSafariSearchbar.h"
-#import "PWMainWindow.h"
-#import "PWSearchResultsAttachPanelController.h"
-#import "PWSearchResultsAttachPanel.h"
-#import "PWActionNotifications.h"
-
+#import "NSColor+TKSafariSearchbar.h"
 #import "__TKSearchbarBackingLayer.h"
-#import "__TKPlaceholderTextLayer.h"
-#import "__TKFrozenTitleTextLayer.h"
 
-#import "WikiPage.h"
-
-// Private Interfaces
-@interface TKSafariSearchbar ()
-
-- ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif;
-- ( void ) __updateInputState: ( NSText* )_FieldEditor;
-
-@end // Private Interfaces
-
-// TKSafariSearchbar class
-@implementation TKSafariSearchbar
-    {
-@protected
-    __TKPlaceholderTextLayer __strong* _placeholderLayer;
-    __TKFrozenTitleTextLayer __strong* _frozenTitleTextLayer;
-    }
-
-@dynamic attachPanelController;
+@implementation __TKSearchbarBackingLayer
 
 #pragma mark Initializations
-- ( void ) awakeFromNib
++ ( instancetype ) layerWithHostView: ( NSView* )_HostView
     {
-    [ [ NSNotificationCenter defaultCenter ] addObserver: self
-                                                selector: @selector( _userDidPickUpAnSearchItem: )
-                                                    name: PureWikiDidPickUpSearchItemNotif
-                                                    object: nil ];
-
-    self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
-    self->_inputting = NO;
-
-    self->_placeholderLayer = [ __TKPlaceholderTextLayer layerWithContent: @"Search Wikipedia" ];
-    self->_frozenTitleTextLayer = [ __TKFrozenTitleTextLayer layerWithContent: @"Search Wikipedia" ];
-
-    __TKSearchbarBackingLayer* layer = [ __TKSearchbarBackingLayer layerWithHostView: self ];
-
-    [ self setLayer: layer ];
-    [ self setLayerContentsRedrawPolicy: NSViewLayerContentsRedrawOnSetNeedsDisplay ];
-    [ self setWantsLayer: YES ];
+    return [ [ self alloc ] initWithHostView: _HostView ];
     }
 
-- ( BOOL ) wantsUpdateLayer
+- ( instancetype ) initWithHostView: ( NSView* )_HostView
     {
-    return YES;
+    if ( self = [ super init ] )
+        {
+        self->_hostView = _HostView;
+
+        [ self setBounds: _HostView.bounds ];
+        [ self setPosition: CGPointMake( NSMinX( self.frame ), NSMinY( self.frame ) ) ];
+        [ self setContentsScale: 2.f ];
+        }
+
+    return self;
     }
 
-//- ( BOOL ) wantsUpdateLayer
-//    {
-//    return YES;
-//    }
-
-//- ( void ) updateLayer
-//    {
-//    [ super updateLayer ];
-////
-////    NSUInteger sublayersCount = self.layer.sublayers.count;
-////    if ( sublayersCount == 2 )
-////        {
-////        NSLog( @"🍓" );
-//        CALayer* parentLayer = self.layer.sublayers.lastObject;
-//
-//        [ parentLayer setPosition: NSMakePoint( 20.f, 2.f ) ];
-//        [ self->_placeholderLayer setPosition: NSMakePoint( 5.f, 4.5f ) ];
-//        [ parentLayer addSublayer: self->_placeholderLayer ];
-//
-//        self->_placeholderLayer.hidden = self->_inputting;
-////        }
-//
-////    NSLog( @"%@", self.layer.sublayers.lastObject.sublayers );
-//    }
-
-#pragma mark Dynamic Properties
-- ( PWSearchResultsAttachPanelController* ) attachPanelController
+- ( void ) drawInContext: ( nonnull CGContextRef )_cgCtx
     {
-    return self->_attachPanelController;
+    CGMutablePathRef cgPath = CGPathCreateMutable();
+
+    CGPathAddRoundedRect( cgPath, NULL, NSInsetRect( self.bounds, 1.f, 1.f ), 4.f, 4.f );
+
+    CGContextAddPath( _cgCtx, cgPath );
+
+    CGContextSetFillColorWithColor( _cgCtx, [ NSColor whiteColor ].CGColor );
+    CGContextSetLineWidth( _cgCtx, 3.f );
+    CGContextSetShadowWithColor( _cgCtx, CGSizeMake( 0.f, .3f ), .7f, [ [ NSColor blackColor ] colorWithAlphaComponent: .2f ].CGColor );
+    CGContextFillPath( _cgCtx );
+
+    CFRelease( cgPath );
     }
 
-#pragma mark Conforms to <NSTextViewDelegate>
-- ( void ) textDidChange: ( nonnull NSNotification* )_Notif
-    {
-    [ super textDidChange: _Notif ];
-
-    NSTextView* fieldEditor = _Notif.object;
-    [ self __updateInputState: fieldEditor ];
-
-    NSString* textContent = [ fieldEditor string ];
-    [ self.attachPanelController searchValue: textContent ];
-    }
-
-- ( void ) textDidEndEditing: ( nonnull NSNotification* )_Notif
-    {
-    [ super textDidEndEditing: _Notif ];
-
-    [ self setStringValue: @"" ];
-    [ self.attachPanelController closeAttachPanelAndClearResults ];
-
-    [ self __updateInputState: _Notif.object ];
-    }
-
-#pragma mark Private Interfaces
-- ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif
-    {
-    [ self.attachPanelController closeAttachPanelAndClearResults ];
-    [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
-    }
-
-- ( void ) __updateInputState: ( NSText* )_FieldEditor
-    {
-    NSString* textContent = [ _FieldEditor string ];
-    self->_inputting = ( BOOL )( textContent.length );
-
-    [ self setNeedsDisplay ];
-    }
-
-@end // TKSafariSearchbar class
+@end
 
 /*===============================================================================┐
 |                                                                                | 

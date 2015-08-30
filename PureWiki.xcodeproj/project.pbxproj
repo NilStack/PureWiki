@@ -37,6 +37,7 @@
 		837B975E1B8D7BCF00BDDCF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */; };
 		839585E11B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 839585E01B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m */; };
 		839585E41B9312CF00F6CBB3 /* __TKTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 839585E31B9312CF00F6CBB3 /* __TKTextLayer.m */; };
+		839585E81B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 839585E71B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m */; };
 		83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBC61B830AB000939452 /* PWMainWindow.m */; };
 		83A2FBCA1B830ABB00939452 /* PWMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2FBC91B830ABB00939452 /* PWMainWindowController.m */; };
 		83A2FBCC1B830AC700939452 /* PWMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A2FBCB1B830AC700939452 /* PWMainWindow.xib */; };
@@ -155,6 +156,8 @@
 		839585E01B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+TKSafariSearchbar.m"; sourceTree = "<group>"; };
 		839585E21B9312CF00F6CBB3 /* __TKTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __TKTextLayer.h; sourceTree = "<group>"; };
 		839585E31B9312CF00F6CBB3 /* __TKTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __TKTextLayer.m; sourceTree = "<group>"; };
+		839585E61B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __TKSearchbarBackingLayer.h; sourceTree = "<group>"; };
+		839585E71B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __TKSearchbarBackingLayer.m; sourceTree = "<group>"; };
 		83A2FBC51B830AB000939452 /* PWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWMainWindow.h; sourceTree = "<group>"; };
 		83A2FBC61B830AB000939452 /* PWMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWMainWindow.m; sourceTree = "<group>"; };
 		83A2FBC81B830ABB00939452 /* PWMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWMainWindowController.h; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 				8322BF951B83C6F400A890C9 /* TKSafariSearchbar.m */,
 				837B975A1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.h */,
 				837B975B1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m */,
+				839585E61B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.h */,
+				839585E71B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m */,
 				839585E21B9312CF00F6CBB3 /* __TKTextLayer.h */,
 				839585E31B9312CF00F6CBB3 /* __TKTextLayer.m */,
 				83A6CC771B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.h */,
@@ -814,6 +819,7 @@
 				83509BE31B8738E800C4F454 /* PWWikiContentViewController.m in Sources */,
 				8321EC841B8C0C940099C824 /* PWPWikiPageImageWell.m in Sources */,
 				8322BF961B83C6F400A890C9 /* TKSafariSearchbar.m in Sources */,
+				839585E81B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m in Sources */,
 				83B7AFC71B878EAC002DE75A /* AFHTTPSessionManager.m in Sources */,
 				83B7B02A1B878EAC002DE75A /* WikiSessionDataTask.m in Sources */,
 				83B7AFC81B878EAC002DE75A /* AFNetworkReachabilityManager.m in Sources */,
