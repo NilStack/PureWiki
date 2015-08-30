@@ -28,16 +28,30 @@
 #import "PWSearchResultsAttachPanel.h"
 #import "PWActionNotifications.h"
 
+#import "__TKSafariSearchbar.h"
 #import "__TKSearchbarBackingLayer.h"
 #import "__TKPlaceholderTextLayer.h"
 #import "__TKFrozenTitleTextLayer.h"
 
 #import "WikiPage.h"
 
+// __TKSearchbarBackingLayer + TKPrivate
+@interface __TKSearchbarBackingLayer ( TKPrivate )
+@property ( assign, readwrite, setter = setFocusing: ) BOOL isFocusing;
+@end
+
+@implementation __TKSearchbarBackingLayer ( TKPrivate )
+
+- ( void ) setFocusing: ( BOOL )_YesOrNo
+    {
+    self->_isFocusing = _YesOrNo;
+    [ self setNeedsDisplay ];
+    }
+
+@end // __TKSearchbarBackingLayer + TKPrivate
+
 // Private Interfaces
 @interface TKSafariSearchbar ()
-
-//@property ( assign, readwrite, setter = setFocusing: ) BOOL isFocusing;
 
 - ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif;
 - ( void ) __updateInputState: ( NSText* )_FieldEditor;
@@ -53,8 +67,8 @@
     __TKFrozenTitleTextLayer __strong* _frozenTitleTextLayer;
     }
 
-@dynamic isFocusing;
 @dynamic attachPanelController;
+@dynamic isFocusing;
 
 #pragma mark Initializations
 - ( void ) awakeFromNib
@@ -108,21 +122,15 @@
 //    }
 
 #pragma mark Dynamic Properties
-- ( void ) setFocusing: ( BOOL )_YesOrNo
+- ( PWSearchResultsAttachPanelController* ) attachPanelController
     {
-    self->_isFocusing = _YesOrNo;
-    self->_backingLayer.isFocusing = self->_isFocusing;
+    return self->_attachPanelController;
     }
 
 - ( BOOL ) isFocusing
     {
     return self->_isFocusing;
-    }
-
-- ( PWSearchResultsAttachPanelController* ) attachPanelController
-    {
-    return self->_attachPanelController;
-    }
+    }    
 
 #pragma mark Conforms to <NSTextViewDelegate>
 - ( void ) textDidChange: ( nonnull NSNotification* )_Notif
@@ -162,6 +170,16 @@
     }
 
 @end // TKSafariSearchbar class
+
+@implementation TKSafariSearchbar ( TKPrivate )
+
+- ( void ) setFocusing: ( BOOL )_YesOrNo
+    {
+    self->_isFocusing = _YesOrNo;
+    [ self->_backingLayer setFocusing: self->_isFocusing ];
+    }
+
+@end
 
 /*===============================================================================┐
 |                                                                                | 

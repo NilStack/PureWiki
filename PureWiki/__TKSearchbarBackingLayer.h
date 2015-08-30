@@ -36,7 +36,7 @@
     }
 
 @property ( assign, readonly ) BOOL isActive;
-@property ( assign, readwrite, setter = setFocusing: ) BOOL isFocusing;
+@property ( assign, readonly ) BOOL isFocusing;
 
 #pragma mark Initializations
 + ( instancetype ) layerWithHostView: ( NSView* )_HostView;

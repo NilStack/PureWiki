@@ -22,26 +22,13 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+#import "TKSafariSearchbar.h"
 
-@class PWSearchResultsAttachPanelController;
+@interface TKSafariSearchbar ( TKPrivate )
 
-// TKSafariSearchbar class
-@interface TKSafariSearchbar : NSTextField <NSTextViewDelegate /* As a field editor delegate */>
-    {
-@private
-    PWSearchResultsAttachPanelController __strong* _attachPanelController;
+@property ( assign, readwrite, setter = setFocusing: ) BOOL isFocusing;
 
-    BOOL _inputting;
-    BOOL _isFocusing;
-    }
-
-@property ( assign, readonly ) BOOL isFocusing;
-
-#pragma mark Ivar Properties
-@property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;
-
-@end // TKSafariSearchbar class
+@end
 
 /*===============================================================================┐
 |                                                                                | 

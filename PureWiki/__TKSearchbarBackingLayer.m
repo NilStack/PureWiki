@@ -29,7 +29,6 @@
 @interface __TKSearchbarBackingLayer ()
 
 @property ( assign, readwrite, setter = setActive: ) BOOL isActive;
-//@property ( assign, readwrite, setter = setFocusing: ) BOOL isFocusing;
 
 - ( void ) _appDidBecomeActive: ( NSNotification* )_Notif;
 - ( void ) _appDidResignActive: ( NSNotification* )_Notif;
@@ -40,6 +39,7 @@
 @implementation __TKSearchbarBackingLayer
 
 @dynamic isActive;
+@dynamic isFocusing;
 
 #pragma mark Initializations
 + ( instancetype ) layerWithHostView: ( NSView* )_HostView
@@ -116,12 +116,6 @@
 - ( BOOL ) isActive
     {
     return self->_isActive;
-    }
-
-- ( void ) setFocusing: ( BOOL )_YesOrNo
-    {
-    self->_isFocusing = _YesOrNo;
-    [ self setNeedsDisplay ];
     }
 
 - ( BOOL ) isFocusing
