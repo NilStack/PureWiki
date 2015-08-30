@@ -235,7 +235,7 @@
             </connections>
         </viewController>
         <textField verticalHuggingPriority="750" id="gLE-8L-vyo" customClass="TKSafariSearchbar">
-            <rect key="frame" x="0.0" y="0.0" width="450" height="22"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="6JW-n2-uzW" customClass="TKSafariSearchbarCell">
                 <font key="font" metaFont="system"/>
