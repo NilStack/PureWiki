@@ -21,25 +21,17 @@
 └==============================================================================┘██
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
-@import QuartzCore;
+#import "__TKTextLayer.h"
 
 // __TKPlaceholderTextLayer class
-@interface __TKPlaceholderTextLayer : CATextLayer
+@interface __TKPlaceholderTextLayer : __TKTextLayer
     {
 @protected
-    NSFont __strong* _fontAttr;
-    NSColor __strong* _foregroundColorAttr;
-
     NSString __strong* _placeholderContent;
     }
 
 @property ( strong, readwrite ) NSString* placeholderContent;
 @property ( assign, readonly ) NSSize contentSizeWithAttributes;
-
-#pragma mark Initializations
-+ ( instancetype ) layerWithContent: ( NSString* )_Content;
-- ( instancetype ) initWithContent: ( NSString* )_Content;
 
 @end // __TKPlaceholderTextLayer class
 

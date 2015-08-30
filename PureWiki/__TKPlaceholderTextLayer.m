@@ -37,11 +37,8 @@
 
 - ( instancetype ) initWithContent: ( NSString* )_Content
     {
-    if ( self = [ super init ] )
+    if ( self = [ super initWithContent: _Content ] )
         {
-        self->_fontAttr = [ NSFont systemFontOfSize: 12.f ];
-        self->_foregroundColorAttr = [ NSColor colorWithHTMLColor: @"B2B2B2" ];
-
         self.placeholderContent = _Content ?: @"";
 
         [ self setAnchorPoint: NSMakePoint( 0, 0 ) ];
