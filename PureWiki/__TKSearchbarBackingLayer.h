@@ -25,17 +25,21 @@
 @import QuartzCore;
 @import Cocoa;
 
+// __TKSearchbarBackingLayer class
 @interface __TKSearchbarBackingLayer : CALayer
     {
 @protected
     NSView __weak* _hostView;
+    BOOL _isActive;
     }
+
+@property ( assign, readonly ) BOOL isActive;
 
 #pragma mark Initializations
 + ( instancetype ) layerWithHostView: ( NSView* )_HostView;
 - ( instancetype ) initWithHostView: ( NSView* )_HostView;
 
-@end
+@end // __TKSearchbarBackingLayer class
 
 /*===============================================================================┐
 |                                                                                | 

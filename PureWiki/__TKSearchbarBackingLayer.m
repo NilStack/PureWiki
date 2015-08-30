@@ -25,7 +25,20 @@
 #import "NSColor+TKSafariSearchbar.h"
 #import "__TKSearchbarBackingLayer.h"
 
+// Private Interfaces
+@interface __TKSearchbarBackingLayer ()
+
+@property ( assign, readwrite, setter = setActive: ) BOOL isActive;
+
+- ( void ) _appDidBecomeActive: ( NSNotification* )_Notif;
+- ( void ) _appDidResignActive: ( NSNotification* )_Notif;
+
+@end // Private Interfaces
+
+// __TKSearchbarBackingLayer class
 @implementation __TKSearchbarBackingLayer
+
+@dynamic isActive;
 
 #pragma mark Initializations
 + ( instancetype ) layerWithHostView: ( NSView* )_HostView
@@ -38,13 +51,30 @@
     if ( self = [ super init ] )
         {
         self->_hostView = _HostView;
+        self->_isActive = NO;
 
         [ self setBounds: _HostView.bounds ];
         [ self setPosition: CGPointMake( NSMinX( self.frame ), NSMinY( self.frame ) ) ];
         [ self setContentsScale: 2.f ];
+
+        [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                    selector: @selector( _appDidBecomeActive: )
+                                                        name: NSApplicationDidBecomeActiveNotification
+                                                      object: nil ];
+
+        [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                    selector: @selector( _appDidResignActive: )
+                                                        name: NSApplicationDidResignActiveNotification
+                                                      object: nil ];
         }
 
     return self;
+    }
+
+- ( void ) dealloc
+    {
+    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: NSApplicationDidBecomeActiveNotification object: nil ];
+    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: NSApplicationDidResignActiveNotification object: nil ];
     }
 
 - ( void ) drawInContext: ( nonnull CGContextRef )_cgCtx
@@ -52,18 +82,52 @@
     CGMutablePathRef cgPath = CGPathCreateMutable();
 
     CGPathAddRoundedRect( cgPath, NULL, NSInsetRect( self.bounds, 1.f, 1.f ), 4.f, 4.f );
-
     CGContextAddPath( _cgCtx, cgPath );
 
     CGContextSetFillColorWithColor( _cgCtx, [ NSColor whiteColor ].CGColor );
-    CGContextSetLineWidth( _cgCtx, 3.f );
-    CGContextSetShadowWithColor( _cgCtx, CGSizeMake( 0.f, .3f ), .7f, [ [ NSColor blackColor ] colorWithAlphaComponent: .2f ].CGColor );
+
+    if ( self->_isActive )
+        {
+        CGColorRef cgShadowColor = [ [ NSColor blackColor ] colorWithAlphaComponent: .2f ].CGColor;
+        CGContextSetShadowWithColor( _cgCtx, CGSizeMake( 0.f, .3f ), .7f, cgShadowColor );
+        }
+    else
+        {
+        CGColorRef cgStrokeColor = [ [ NSColor blackColor ] colorWithAlphaComponent: .36f ].CGColor;
+        CGContextSetStrokeColorWithColor( _cgCtx, cgStrokeColor );
+        CGContextSetLineWidth( _cgCtx, .2f );
+        CGContextStrokePath( _cgCtx );
+        }
+
     CGContextFillPath( _cgCtx );
 
     CFRelease( cgPath );
     }
 
-@end
+#pragma mark Dynamic Properties
+- ( void ) setActive: ( BOOL )_YesOrNo
+    {
+    self->_isActive = _YesOrNo;
+    [ self setNeedsDisplay ];
+    }
+
+- ( BOOL ) isActive
+    {
+    return self->_isActive;
+    }
+
+#pragma mark Private Interfaces
+- ( void ) _appDidBecomeActive: ( NSNotification* )_Notif
+    {
+    self.isActive = YES;
+    }
+
+- ( void ) _appDidResignActive: ( NSNotification* )_Notif
+    {
+    self.isActive = NO;
+    }
+
+@end // __TKSearchbarBackingLayer class
 
 /*===============================================================================┐
 |                                                                                | 
