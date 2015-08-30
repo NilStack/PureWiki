@@ -32,6 +32,8 @@
     NSColor __strong* _foregroundColorAttr;
     }
 
+@property ( strong, readwrite ) NSString* content;
+
 #pragma mark Initializations
 + ( instancetype ) layerWithContent: ( NSString* )_Content;
 - ( instancetype ) initWithContent: ( NSString* )_Content;

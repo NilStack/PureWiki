@@ -25,13 +25,6 @@
 
 // __TKPlaceholderTextLayer class
 @interface __TKPlaceholderTextLayer : __TKTextLayer
-    {
-@protected
-    NSString __strong* _placeholderContent;
-    }
-
-@property ( strong, readwrite ) NSString* placeholderContent;
-@property ( assign, readonly ) NSSize contentSizeWithAttributes;
 
 @end // __TKPlaceholderTextLayer class
 

@@ -27,8 +27,6 @@
 // __TKPlaceholderTextLayer class
 @implementation __TKPlaceholderTextLayer
 
-@dynamic placeholderContent;
-
 #pragma mark Initializations
 + ( instancetype ) layerWithContent: ( NSString* )_Content
     {
@@ -39,42 +37,11 @@
     {
     if ( self = [ super initWithContent: _Content ] )
         {
-        self.placeholderContent = _Content ?: @"";
+        self.content = _Content ?: @"";
         [ self setName: @"placeholder-text-layer" ];
         }
 
     return self;
-    }
-
-#pragma mark Dynamic Properties
-- ( void ) setPlaceholderContent: ( NSString* )_PlaceholderContent
-    {
-    if ( self->_placeholderContent != _PlaceholderContent )
-        {
-        self->_placeholderContent = _PlaceholderContent;
-
-        NSDictionary* attributes = @{ NSFontAttributeName : self->_fontAttr
-                                    , NSForegroundColorAttributeName : self->_foregroundColorAttr
-                                    };
-
-        NSAttributedString* attredString = [ [ NSAttributedString alloc ] initWithString: _PlaceholderContent
-                                                                              attributes: attributes ];
-
-        [ self setString: attredString ];
-
-        NSSize sizeWithAttributes = [ attredString.string sizeWithAttributes: attributes ];
-        [ self setBounds: NSMakeRect( 0, 0, sizeWithAttributes.width, sizeWithAttributes.height ) ];
-        }
-    }
-
-- ( NSString* ) placeholderContent
-    {
-    return self->_placeholderContent;
-    }
-
-- ( NSSize ) contentSizeWithAttributes
-    {
-    return [ self->_placeholderContent sizeWithAttributes: @{ NSFontAttributeName : self->_fontAttr } ];
     }
 
 @end // __TKPlaceholderTextLayer class

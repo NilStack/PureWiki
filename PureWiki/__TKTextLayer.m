@@ -27,6 +27,8 @@
 
 @implementation __TKTextLayer
 
+@dynamic content;
+
 #pragma mark Initializations
 + ( instancetype ) layerWithContent: ( NSString* )_Content
     {
@@ -48,6 +50,36 @@
         }
 
     return self;
+    }
+
+#pragma mark Dynamic Properties
+- ( void ) setContent: ( NSString* )_Content
+    {
+    NSDictionary* attributes = @{ NSFontAttributeName : self->_fontAttr
+                                , NSForegroundColorAttributeName : self->_foregroundColorAttr
+                                };
+
+    NSAttributedString* attredString = [ [ NSAttributedString alloc ] initWithString: _Content
+                                                                          attributes: attributes ];
+
+    [ self setString: attredString ];
+
+    NSSize sizeWithAttributes = [ attredString.string sizeWithAttributes: attributes ];
+    [ self setBounds: NSMakeRect( 0, 0, sizeWithAttributes.width, sizeWithAttributes.height ) ];
+    }
+
+- ( NSString* ) content
+    {
+    NSString* content = nil;
+    id string = [ self string ];
+
+    if ( [ string isKindOfClass: [ NSAttributedString class ] ] )
+        content = [ ( NSAttributedString* )string string ];
+
+    else if ( [ string isKindOfClass: [ NSString class ] ] )
+        content = string;
+
+    return content;
     }
 
 @end
