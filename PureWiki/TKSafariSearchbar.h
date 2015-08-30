@@ -32,7 +32,7 @@
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
 
-    BOOL _inputting;
+//    BOOL _inputting;
     BOOL _isFocusing;
     }
 

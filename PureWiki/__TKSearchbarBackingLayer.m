@@ -23,7 +23,10 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "NSColor+TKSafariSearchbar.h"
+
 #import "__TKSearchbarBackingLayer.h"
+#import "__TKPlaceholderTextLayer.h"
+#import "__TKFrozenTitleTextLayer.h"
 
 // Private Interfaces
 @interface __TKSearchbarBackingLayer ()
@@ -57,6 +60,7 @@
         [ self setBounds: _HostView.bounds ];
         [ self setPosition: CGPointMake( NSMinX( self.frame ), NSMinY( self.frame ) ) ];
         [ self setContentsScale: 2.f ];
+        [ self setLayoutManager: [ CAConstraintLayoutManager layoutManager ] ];
 
         [ [ NSNotificationCenter defaultCenter ] addObserver: self
                                                     selector: @selector( _appDidBecomeActive: )
@@ -67,6 +71,19 @@
                                                     selector: @selector( _appDidResignActive: )
                                                         name: NSApplicationDidResignActiveNotification
                                                       object: nil ];
+
+        self->_placeholderLayer = [ __TKPlaceholderTextLayer layerWithContent: @"Search Wikipedia" ];
+        self->_frozenTitleTextLayer = [ __TKFrozenTitleTextLayer layerWithContent: @"Search Wikipedia" ];
+
+        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
+                                                                             relativeTo: @"superlayer"
+                                                                              attribute: kCAConstraintMidY ] ];
+
+        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
+                                                                             relativeTo: @"superlayer"
+                                                                              attribute: kCAConstraintMidX ] ];
+
+        [ self addSublayer: self->_placeholderLayer ];
         }
 
     return self;

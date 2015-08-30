@@ -30,8 +30,6 @@
 
 #import "__TKSafariSearchbar.h"
 #import "__TKSearchbarBackingLayer.h"
-#import "__TKPlaceholderTextLayer.h"
-#import "__TKFrozenTitleTextLayer.h"
 
 #import "WikiPage.h"
 
@@ -54,7 +52,7 @@
 @interface TKSafariSearchbar ()
 
 - ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif;
-- ( void ) __updateInputState: ( NSText* )_FieldEditor;
+//- ( void ) __updateInputState: ( NSText* )_FieldEditor;
 
 @end // Private Interfaces
 
@@ -63,8 +61,6 @@
     {
 @protected
     __TKSearchbarBackingLayer __strong* _backingLayer;
-    __TKPlaceholderTextLayer __strong* _placeholderLayer;
-    __TKFrozenTitleTextLayer __strong* _frozenTitleTextLayer;
     }
 
 @dynamic attachPanelController;
@@ -79,10 +75,7 @@
                                                     object: nil ];
 
     self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
-    self->_inputting = NO;
-
-    self->_placeholderLayer = [ __TKPlaceholderTextLayer layerWithContent: @"Search Wikipedia" ];
-    self->_frozenTitleTextLayer = [ __TKFrozenTitleTextLayer layerWithContent: @"Search Wikipedia" ];
+//    self->_inputting = NO;
 
     self->_backingLayer = [ __TKSearchbarBackingLayer layerWithHostView: self ];
 
@@ -138,7 +131,7 @@
     [ super textDidChange: _Notif ];
 
     NSTextView* fieldEditor = _Notif.object;
-    [ self __updateInputState: fieldEditor ];
+//    [ self __updateInputState: fieldEditor ];
 
     NSString* textContent = [ fieldEditor string ];
     [ self.attachPanelController searchValue: textContent ];
@@ -151,7 +144,7 @@
     [ self setStringValue: @"" ];
     [ self.attachPanelController closeAttachPanelAndClearResults ];
 
-    [ self __updateInputState: _Notif.object ];
+//    [ self __updateInputState: _Notif.object ];
     }
 
 #pragma mark Private Interfaces
@@ -161,13 +154,13 @@
     [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
     }
 
-- ( void ) __updateInputState: ( NSText* )_FieldEditor
-    {
-    NSString* textContent = [ _FieldEditor string ];
-    self->_inputting = ( BOOL )( textContent.length );
-
-    [ self setNeedsDisplay ];
-    }
+//- ( void ) __updateInputState: ( NSText* )_FieldEditor
+//    {
+//    NSString* textContent = [ _FieldEditor string ];
+//    self->_inputting = ( BOOL )( textContent.length );
+//
+//    [ self setNeedsDisplay ];
+//    }
 
 @end // TKSafariSearchbar class
 

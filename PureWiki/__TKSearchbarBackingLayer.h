@@ -25,6 +25,9 @@
 @import QuartzCore;
 @import Cocoa;
 
+@class __TKPlaceholderTextLayer;
+@class __TKFrozenTitleTextLayer;
+
 // __TKSearchbarBackingLayer class
 @interface __TKSearchbarBackingLayer : CALayer
     {
@@ -33,6 +36,9 @@
 
     BOOL _isActive;
     BOOL _isFocusing;
+
+    __TKPlaceholderTextLayer __strong* _placeholderLayer;
+    __TKFrozenTitleTextLayer __strong* _frozenTitleTextLayer;
     }
 
 @property ( assign, readonly ) BOOL isActive;

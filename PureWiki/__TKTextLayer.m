@@ -28,6 +28,7 @@
 @implementation __TKTextLayer
 
 @dynamic content;
+@dynamic size;
 
 #pragma mark Initializations
 + ( instancetype ) layerWithContent: ( NSString* )_Content
@@ -42,11 +43,10 @@
         self->_fontAttr = [ NSFont systemFontOfSize: 12.f ];
         self->_foregroundColorAttr = [ NSColor colorWithHTMLColor: @"B2B2B2" ];
 
-        [ self setAnchorPoint: NSMakePoint( 0, 0 ) ];
+        [ self setContent: _Content ];
 
         // This's very important to get text in receiver to be clear
         [ self setContentsScale: 2.f ];
-        [ self setWrapped: YES ];
         }
 
     return self;
@@ -63,9 +63,7 @@
                                                                           attributes: attributes ];
 
     [ self setString: attredString ];
-
-    NSSize sizeWithAttributes = [ attredString.string sizeWithAttributes: attributes ];
-    [ self setBounds: NSMakeRect( 0, 0, sizeWithAttributes.width, sizeWithAttributes.height ) ];
+    [ self setBounds: NSMakeRect( 0, 0, self.size.width, self.size.height ) ];
     }
 
 - ( NSString* ) content
@@ -80,6 +78,15 @@
         content = string;
 
     return content;
+    }
+
+- ( NSSize ) size
+    {
+    NSString* string = [ [ self string ] string ];
+    NSDictionary* attributes = [ self.string attributesAtIndex: 0 effectiveRange: NULL ];
+    NSLog( @"%@", attributes );
+
+    return [ string sizeWithAttributes: attributes ];
     }
 
 @end

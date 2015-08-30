@@ -33,6 +33,7 @@
     }
 
 @property ( strong, readwrite ) NSString* content;
+@property ( assign, readonly ) NSSize size;
 
 #pragma mark Initializations
 + ( instancetype ) layerWithContent: ( NSString* )_Content;
