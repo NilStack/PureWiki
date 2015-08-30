@@ -19,74 +19,66 @@
 |                             ALL RIGHTS RESERVED.                             |██
 |                                                                              |██
 └==============================================================================┘██
-  ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
-
-#import "TKSafariSearchbar.h"
-#import "PWMainWindow.h"
-#import "PWSearchResultsAttachPanelController.h"
-#import "PWSearchResultsAttachPanel.h"
-#import "PWActionNotifications.h"
 
 #import "__TKPlaceholderLayer.h"
 
-#import "WikiPage.h"
+// __TKPlaceholderLayer class
+@implementation __TKPlaceholderLayer
 
-// Private Interfaces
-@interface TKSafariSearchbar ()
-
-- ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif;
-
-@end // Private Interfaces
-
-// TKSafariSearchbar class
-@implementation TKSafariSearchbar
-    {
-@protected
-    __TKPlaceholderLayer __strong* _placeholderLayer;
-    }
-
-@dynamic attachPanelController;
+@dynamic placeholderContent;
 
 #pragma mark Initializations
-- ( void ) awakeFromNib
++ ( instancetype ) layerWithContent: ( NSString* )_Content
     {
-    [ self setWantsLayer: YES ];
+    return [ [ self alloc ] initWithContent: _Content ];
+    }
 
-    [ [ NSNotificationCenter defaultCenter ] addObserver: self
-                                                selector: @selector( _userDidPickUpAnSearchItem: )
-                                                    name: PureWikiDidPickUpSearchItemNotif
-                                                    object: nil ];
+- ( instancetype ) initWithContent: ( NSString* )_Content
+    {
+    if ( self = [ super init ] )
+        {
+        self->_fontAttr = [ NSFont systemFontOfSize: 15.f ];
+        self->_foregroundColorAttr = [ NSColor redColor ];
 
-    self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
+        self.placeholderContent = _Content ?: @"";
 
-//    NSButton* testButton = [ [ NSButton alloc ] initWithFrame: NSMakeRect( 20.f, -12.f, 20.f, 50.f ) ];
-//    [ testButton setBezelStyle: NSHelpButtonBezelStyle ];
-//    [ testButton setImagePosition: NSImageOnly ];
-//    [ self addSubview: testButton ];
+        [ self setAnchorPoint: NSMakePoint( 0, 0 ) ];
 
-    self->_placeholderLayer = [ __TKPlaceholderLayer layerWithContent: @"Test" ];
-//    [ self->_placeholderLayer setBounds: NSMakeRect( 0, 0, 50, 60 ) ];
-//    [ self->_placeholderLayer setAnchorPoint: NSMakePoint( 0, 0 ) ];
-//    [ self->_placeholderLayer setBackgroundColor: [ NSColor redColor ].CGColor ];
-    NSLog( @"%@", self->_placeholderLayer.placeholderContent );
-    [ self.layer addSublayer: self->_placeholderLayer ];
+        // This's very important to get text in receiver to be clear
+        [ self setContentsScale: 2.f ];
+        }
+
+    return self;
     }
 
 #pragma mark Dynamic Properties
-- ( PWSearchResultsAttachPanelController* ) attachPanelController
+- ( void ) setPlaceholderContent: ( NSString* )_PlaceholderContent
     {
-    return self->_attachPanelController;
+    if ( self->_placeholderContent != _PlaceholderContent )
+        {
+        self->_placeholderContent = _PlaceholderContent;
+
+        NSDictionary* attributes = @{ NSFontAttributeName : self->_fontAttr
+                                    , NSForegroundColorAttributeName : self->_foregroundColorAttr
+                                    };
+
+        NSAttributedString* attredString = [ [ NSAttributedString alloc ] initWithString: _PlaceholderContent
+                                                                              attributes: attributes ];
+
+        [ self setString: attredString ];
+
+        NSSize sizeWithAttributes = [ attredString.string sizeWithAttributes: attributes ];
+        [ self setBounds: NSMakeRect( 0, 0, sizeWithAttributes.width, sizeWithAttributes.height ) ];
+        }
     }
 
-#pragma mark Private Interfaces
-- ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif
+- ( NSString* ) placeholderContent
     {
-    [ self.attachPanelController closeAttachPanelAndClearResults ];
-    [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
+    return self->_placeholderContent;
     }
 
-@end // TKSafariSearchbar class
+@end // __TKPlaceholderLayer class
 
 /*===============================================================================┐
 |                                                                                | 
