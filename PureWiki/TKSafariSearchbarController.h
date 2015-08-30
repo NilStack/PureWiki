@@ -29,7 +29,7 @@
 @class FBKVOController;
 
 // TKSafariSearchbarController class
-@interface TKSafariSearchbarController : NSViewController <NSTextFieldDelegate>
+@interface TKSafariSearchbarController : NSViewController
 
 @property ( weak ) TKSafariSearchbar* smartSearchBar;
 

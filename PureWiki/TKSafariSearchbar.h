@@ -27,11 +27,10 @@
 @class PWSearchResultsAttachPanelController;
 
 // TKSafariSearchbar class
-@interface TKSafariSearchbar : NSTextField <NSTextViewDelegate>
+@interface TKSafariSearchbar : NSTextField <NSTextViewDelegate /* As a field editor delegate */>
     {
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
-
     BOOL _inputting;
     }
 

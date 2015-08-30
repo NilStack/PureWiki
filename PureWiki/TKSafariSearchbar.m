@@ -36,6 +36,7 @@
 @interface TKSafariSearchbar ()
 
 - ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif;
+- ( void ) __updateInputState: ( NSText* )_FieldEditor;
 
 @end // Private Interfaces
 
@@ -66,7 +67,6 @@
 //    [ testButton setBezelStyle: NSHelpButtonBezelStyle ];
 //    [ testButton setImagePosition: NSImageOnly ];
 //    [ self addSubview: testButton ];
-
     }
 
 - ( BOOL ) wantsUpdateLayer
@@ -82,8 +82,8 @@
         {
         CALayer* parentLayer = self.layer.sublayers.lastObject;
 
-        [ parentLayer setPosition: NSMakePoint( 10.f, 2.f ) ];
-        [ self->_placeholderLayer setPosition: NSMakePoint( 5.f, 5.f ) ];
+        [ parentLayer setPosition: NSMakePoint( 20.f, 2.f ) ];
+        [ self->_placeholderLayer setPosition: NSMakePoint( 5.f, 4.5f ) ];
         [ parentLayer addSublayer: self->_placeholderLayer ];
 
         self->_placeholderLayer.hidden = self->_inputting;
@@ -98,6 +98,28 @@
     return self->_attachPanelController;
     }
 
+#pragma mark Conforms to <NSTextViewDelegate>
+- ( void ) textDidChange: ( nonnull NSNotification* )_Notif
+    {
+    [ super textDidChange: _Notif ];
+
+    NSTextView* fieldEditor = _Notif.object;
+    [ self __updateInputState: fieldEditor ];
+
+    NSString* textContent = [ fieldEditor string ];
+    [ self.attachPanelController searchValue: textContent ];
+    }
+
+- ( void ) textDidEndEditing: ( nonnull NSNotification* )_Notif
+    {
+    [ super textDidEndEditing: _Notif ];
+
+    [ self setStringValue: @"" ];
+    [ self.attachPanelController closeAttachPanelAndClearResults ];
+
+    [ self __updateInputState: _Notif.object ];
+    }
+
 #pragma mark Private Interfaces
 - ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif
     {
@@ -105,12 +127,9 @@
     [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
     }
 
-#pragma mark Conforms to <NSTextViewDelegate>
-- ( void ) textDidChange: ( nonnull NSNotification* )_Notif
+- ( void ) __updateInputState: ( NSText* )_FieldEditor
     {
-    NSLog( @"%@", _Notif );
-    NSTextView* fieldEditor = _Notif.object;
-    NSString* textContent = [ fieldEditor string ];
+    NSString* textContent = [ _FieldEditor string ];
     self->_inputting = ( BOOL )( textContent.length );
 
     [ self setNeedsDisplay ];

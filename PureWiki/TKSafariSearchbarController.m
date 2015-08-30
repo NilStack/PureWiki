@@ -44,21 +44,6 @@
     // Do view setup here.
     }
 
-#pragma mark Conforms to <NSTextFieldDelegate>
-- ( void ) controlTextDidChange: ( nonnull NSNotification* )_Notif
-    {
-    NSTextView* fieldView = _Notif.userInfo[ @"NSFieldEditor" ];
-    NSString* searchValue = fieldView.string;
-
-    [ self.smartSearchBar.attachPanelController searchValue: searchValue ];
-    }
-
-- ( void ) controlTextDidEndEditing: ( nonnull NSNotification* )_Notif
-    {
-    self.smartSearchBar.stringValue = @"";
-    [ self.smartSearchBar.attachPanelController closeAttachPanelAndClearResults ];
-    }
-
 #pragma mark Dynamic Properties
 - ( TKSafariSearchbar* ) smartSearchBar
     {
