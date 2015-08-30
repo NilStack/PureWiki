@@ -46,26 +46,27 @@
     self->_isFocusing = _YesOrNo;
     [ self setNeedsDisplay ];
 
-    NSArray* sublayers = self.sublayers;
-    NSLog( @"%@", sublayers );
-    if ( sublayers.count == 2 )
-        {
-//        [ self->_placeholderLayer removeFromSuperlayer ];
-        [ self addSublayer: self->_placeholderLayer ];
-        }
+    // FIXME
+//    NSArray* sublayers = self.sublayers;
+//    NSLog( @"%@", sublayers );
+//    if ( sublayers.count == 2 )
+//        {
+////        [ self->_placeholderLayer removeFromSuperlayer ];
+//        [ self addSublayer: self->_placeholderLayer ];
+//        }
+////
+//    if ( sublayers.count == 3 )
+//        {
+////        [ sublayers.lastObject removeFromSuperlayer ];
+//        CALayer* clipViewBackingLayer = sublayers.lastObject;
 //
-    if ( sublayers.count == 3 )
-        {
-//        [ sublayers.lastObject removeFromSuperlayer ];
-        CALayer* clipViewBackingLayer = sublayers.lastObject;
-
-        CALayer* layer = [ CALayer layer ];
-        layer.backgroundColor = [ NSColor orangeColor ].CGColor;
-        layer.bounds = NSMakeRect( 0, 0, 50, 20 );
-        layer.position = NSMakePoint( 0, 0 );
-
-        [ clipViewBackingLayer addSublayer: self->_placeholderLayer ];
-        }
+//        CALayer* layer = [ CALayer layer ];
+//        layer.backgroundColor = [ NSColor orangeColor ].CGColor;
+//        layer.bounds = NSMakeRect( 0, 0, 50, 20 );
+//        layer.position = NSMakePoint( 0, 0 );
+//
+//        [ clipViewBackingLayer addSublayer: self->_placeholderLayer ];
+//        }
     }
 
 @end // __TKSearchbarBackingLayer + TKPrivate
