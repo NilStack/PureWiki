@@ -61,7 +61,6 @@
     self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
     self->_inputting = NO;
     self->_placeholderLayer = [ __TKPlaceholderLayer layerWithContent: @"Search Wikipedia" ];
-    [ self setDelegate: self ];
 
 //    NSButton* testButton = [ [ NSButton alloc ] initWithFrame: NSMakeRect( 20.f, -12.f, 20.f, 50.f ) ];
 //    [ testButton setBezelStyle: NSHelpButtonBezelStyle ];
@@ -83,13 +82,14 @@
         {
         CALayer* parentLayer = self.layer.sublayers.lastObject;
 
-        [ self->_placeholderLayer setPosition: NSMakePoint( 5.f, 4.f ) ];
+        [ parentLayer setPosition: NSMakePoint( 10.f, 2.f ) ];
+        [ self->_placeholderLayer setPosition: NSMakePoint( 5.f, 5.f ) ];
         [ parentLayer addSublayer: self->_placeholderLayer ];
 
         self->_placeholderLayer.hidden = self->_inputting;
         }
 
-    NSLog( @"%@", self.layer.sublayers.lastObject.sublayers );
+//    NSLog( @"%@", self.layer.sublayers.lastObject.sublayers );
     }
 
 #pragma mark Dynamic Properties
@@ -105,10 +105,12 @@
     [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
     }
 
-#pragma mark Conforms to <NSTextFieldDelegate>
-- ( void ) controlTextDidChange: ( nonnull NSNotification* )_Notif
+#pragma mark Conforms to <NSTextViewDelegate>
+- ( void ) textDidChange: ( nonnull NSNotification* )_Notif
     {
-    NSString* textContent = [ ( NSTextView* )( _Notif.userInfo[ @"NSFieldEditor" ] ) string ];
+    NSLog( @"%@", _Notif );
+    NSTextView* fieldEditor = _Notif.object;
+    NSString* textContent = [ fieldEditor string ];
     self->_inputting = ( BOOL )( textContent.length );
 
     [ self setNeedsDisplay ];
