@@ -59,8 +59,9 @@
                                                     object: nil ];
 
     self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
-
+    self->_inputting = NO;
     self->_placeholderLayer = [ __TKPlaceholderLayer layerWithContent: @"Search Wikipedia" ];
+    [ self setDelegate: self ];
 
 //    NSButton* testButton = [ [ NSButton alloc ] initWithFrame: NSMakeRect( 20.f, -12.f, 20.f, 50.f ) ];
 //    [ testButton setBezelStyle: NSHelpButtonBezelStyle ];
@@ -84,6 +85,8 @@
 
         [ self->_placeholderLayer setPosition: NSMakePoint( 5.f, 4.f ) ];
         [ parentLayer addSublayer: self->_placeholderLayer ];
+
+        self->_placeholderLayer.hidden = self->_inputting;
         }
 
     NSLog( @"%@", self.layer.sublayers.lastObject.sublayers );
@@ -100,6 +103,15 @@
     {
     [ self.attachPanelController closeAttachPanelAndClearResults ];
     [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
+    }
+
+#pragma mark Conforms to <NSTextFieldDelegate>
+- ( void ) controlTextDidChange: ( nonnull NSNotification* )_Notif
+    {
+    NSString* textContent = [ ( NSTextView* )( _Notif.userInfo[ @"NSFieldEditor" ] ) string ];
+    self->_inputting = ( BOOL )( textContent.length );
+
+    [ self setNeedsDisplay ];
     }
 
 @end // TKSafariSearchbar class

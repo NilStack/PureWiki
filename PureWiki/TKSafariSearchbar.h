@@ -27,10 +27,12 @@
 @class PWSearchResultsAttachPanelController;
 
 // TKSafariSearchbar class
-@interface TKSafariSearchbar : NSTextField
+@interface TKSafariSearchbar : NSTextField <NSTextFieldDelegate>
     {
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
+
+    BOOL _inputting;
     }
 
 #pragma mark Ivar Properties
