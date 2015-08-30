@@ -85,7 +85,7 @@
     CGPathAddRoundedRect( cgPath, NULL, NSInsetRect( self.bounds, 1.f, 1.f ), 4.f, 4.f );
     CGContextAddPath( _cgCtx, cgPath );
 
-    CGContextSetFillColorWithColor( _cgCtx, [ NSColor whiteColor ].CGColor );
+    CGContextSetFillColorWithColor( _cgCtx, [ NSColor colorWithHTMLColor: @"FCFBFC" ].CGColor );
 
     if ( self->_isActive )
         {
