@@ -51,7 +51,7 @@
 //    NSLog( @"%@", sublayers );
 //    if ( sublayers.count == 2 )
 //        {
-////        [ self->_placeholderLayer removeFromSuperlayer ];
+//        [ self->_placeholderLayer removeFromSuperlayer ];
 //        [ self addSublayer: self->_placeholderLayer ];
 //        }
 ////
@@ -65,6 +65,8 @@
 //        layer.bounds = NSMakeRect( 0, 0, 50, 20 );
 //        layer.position = NSMakePoint( 0, 0 );
 //
+//        NSLog( @"%@", self->_placeholderLayer );
+//        [ self->_placeholderLayer removeFromSuperlayer ];
 //        [ clipViewBackingLayer addSublayer: self->_placeholderLayer ];
 //        }
     }

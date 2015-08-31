@@ -24,6 +24,7 @@
 
 #import "TKSafariSearchbarCell.h"
 #import "TKSafariSearchbar.h"
+#import "NSColor+TKSafariSearchbar.h"
 
 #import "__TKSafariSearchbar.h"
 
@@ -41,7 +42,17 @@
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Decoder
     {
     if ( self = [ super initWithCoder: _Decoder ] )
+        {
         self->_isFocusing = NO;
+        [ self setPlaceholderString: @"Search Wikipedia" ];
+//        NSLog( @"🍍%@", self.font );
+//        NSLog( @"🍍%@", [ NSColor textBackgroundColor ] );
+//        [ self setPlaceholderAttributedString:
+//            [ [ NSAttributedString alloc ] initWithString: @"Search Wikipedia"
+//                                               attributes: @{ NSFontAttributeName : [ NSFont systemFontOfSize: 13.f ]
+//                                                            , NSForegroundColorAttributeName : [ NSColor colorWithHTMLColor: @"B2B2B2" ]
+//                                                            } ] ];
+        }
 
     return self;
     }
@@ -53,7 +64,7 @@
                      start: ( NSInteger )_SelStart
                     length: ( NSInteger )_SelLength
     {
-    [ super selectWithFrame: [ self titleRectForBounds: _CellFrame ]
+    [ super selectWithFrame: NSInsetRect( _CellFrame, 5.f, 0.f )
                      inView: _ControlView
                      editor: _FieldEditor
                    delegate: _DelegateObject
@@ -82,6 +93,21 @@
     {
     return self->_isFocusing;
     }
+
+#pragma mark Conforms to <CALayerDelegate> Informal Protocol
+- ( void ) drawLayer: ( nonnull CALayer* )_Layer
+           inContext: ( nonnull CGContextRef )_cgCtx
+    {
+    NSLog( @"🍎: %s:%@", __PRETTY_FUNCTION__, _Layer );
+//    [ super drawLayer: _Layer inContext: _cgCtx ];
+    }
+
+- ( void ) displayLayer: ( nonnull CALayer* )_Layer
+    {
+    NSLog( @"🍎: %s:%@", __PRETTY_FUNCTION__, _Layer );
+//    [ super displayLayer: _Layer ];
+    }
+
 
 @end // TKSafariSearchbarCell class
 

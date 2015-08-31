@@ -40,7 +40,7 @@
     {
     if ( self = [ super init ] )
         {
-        self->_fontAttr = [ NSFont systemFontOfSize: 12.f ];
+        self->_fontAttr = [ NSFont systemFontOfSize: 13.f ];
         self->_foregroundColorAttr = [ NSColor colorWithHTMLColor: @"B2B2B2" ];
 
         [ self setContent: _Content ];
@@ -84,7 +84,6 @@
     {
     NSString* string = [ [ self string ] string ];
     NSDictionary* attributes = [ self.string attributesAtIndex: 0 effectiveRange: NULL ];
-    NSLog( @"%@", attributes );
 
     return [ string sizeWithAttributes: attributes ];
     }

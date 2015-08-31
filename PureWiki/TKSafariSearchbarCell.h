@@ -23,6 +23,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 @import Cocoa;
+@import QuartzCore;
 
 @class TKSafariSearchbar;
 
