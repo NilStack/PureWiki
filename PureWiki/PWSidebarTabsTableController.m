@@ -27,6 +27,7 @@
 #import "PWSidebarTabsTableCell.h"
 #import "PWActionNotifications.h"
 #import "PWActionNotifications.h"
+#import "PWWikiContentView.h"
 
 #import "WikiPage.h"
 
@@ -38,6 +39,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 @interface PWSidebarTabsTableController ()
 
 - ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif;
+- ( void ) _wikiContentViewWillNavigate: ( NSNotification* )_Notif;
 
 @end // Private Interfaces
 
@@ -56,6 +58,11 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
                                                     selector: @selector( _userDidPickUpSearchItem: )
                                                         name: PureWikiDidPickUpSearchItemNotif
                                                       object: nil ];
+
+        [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                    selector: @selector( _wikiContentViewWillNavigate: )
+                                                        name: PureWikiContentViewWillNavigateNotif
+                                                      object: nil ];
         }
 
     return self;
@@ -64,6 +71,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 - ( void ) dealloc
     {
     [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidPickUpSearchItemNotif object: nil ];
+    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiContentViewWillNavigateNotif object: nil ];
     }
 
 #pragma mark Conforms to <NSTableViewDataSource>
@@ -120,6 +128,11 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 
     NSIndexSet* selectRowIndexes = [ NSIndexSet indexSetWithIndex: self->_openedWikiPages.count - 1 ];
     [ self.sidebarTabsTable selectRowIndexes: selectRowIndexes byExtendingSelection: NO ];
+    }
+
+- ( void ) _wikiContentViewWillNavigate: ( NSNotification* )_Notif
+    {
+    NSLog( @"🍌%@", _Notif );
     }
 
 @end // PWSidebarTabsTableController class

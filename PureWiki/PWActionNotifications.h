@@ -29,8 +29,11 @@ NSString extern* const PureWikiDidEmptySearchNotif;
 NSString extern* const PureWikiDidPickUpSearchItemNotif;
 NSString extern* const PureWikiTabsSelectionDidChangeNotif;
 
+NSString extern* const PureWikiContentViewWillNavigateNotif;
+
 NSString extern* const kPage;
 NSString extern* const kPages;
+NSString extern* const kRequest;
 
 /*===============================================================================┐
 |                                                                                | 

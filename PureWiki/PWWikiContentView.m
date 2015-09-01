@@ -26,6 +26,7 @@
 #import "PWCastrateFactory.h"
 #import "PWStackContainerView.h"
 #import "PWNavButtonsPairView.h"
+#import "PWActionNotifications.h"
 
 #import "WikiPage.h"
 
@@ -102,6 +103,7 @@
             if ( !error )
                 {
                 [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
+//                [ [ NSNotificationCenter defaultCenter ] postNotificationName: PWWikiContentViewWillNavigateNotif object: self ];
 
                 // Resume routing navigation action
                 [ self.webView setPolicyDelegate: self ];
@@ -131,6 +133,10 @@
                               frame: ( WebFrame* )_Frame
                    decisionListener: ( id <WebPolicyDecisionListener> )_Listener
     {
+        [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiContentViewWillNavigateNotif
+                                                               object: self
+                                                             userInfo: @{ kRequest : _Request } ];
+
     if ( _WebView == self.webView )
         {
         // Pause routing navigation action to avoid the infinite recursion

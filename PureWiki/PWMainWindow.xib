@@ -36,8 +36,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="271" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                    <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" red="0.4114178361217497" green="0.58301217862016241" blue="0.79220000000000002" alpha="0.0" colorSpace="deviceRGB"/>
+                                                    <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
+                                                    <color key="gridColor" red="0.75686274509803919" green="0.75686274509803919" blue="0.75686274509803919" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <tableColumns>
                                                         <tableColumn identifier="tabs-column" width="268" minWidth="40" maxWidth="1000" id="3TS-qS-qu2">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
