@@ -25,12 +25,16 @@
 @import Foundation;
 @import WebKit;
 
+@class PWWikiPageArchive;
+
 // PWCastrateFactory class
 @interface PWCastrateFactory : NSObject <NSFileManagerDelegate>
     {
 @protected
     NSURL __strong* _cssLabURL;
     NSMutableArray __strong* _toBeCastrated;
+
+    NSString __strong* _firstHeading;
 
     DOMHTMLHeadElement __strong* _headElement;
     DOMHTMLStyleElement __strong* _styleElement;

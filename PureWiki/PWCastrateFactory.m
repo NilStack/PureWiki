@@ -24,6 +24,7 @@
 
 #import "PWCastrateFactory.h"
 #import "PWUtilities.h"
+#import "PWWikiPageArchive.h"
 
 #import "NSURL+PureWiki.h"
 
@@ -268,6 +269,13 @@ id sDefaultFactory = nil;
                     || [ idName isEqualToString: @"mw-head-base" ]
                     || [ idName isEqualToString: @"mw-page-base" ] )
                 [ self->_toBeCastrated addObject: node ];
+
+            if ( [ idName isEqualToString: @"firstHeading" ]
+                    && [ className isEqualToString: @"firstHeading" ] )
+                {
+                DOMNodeList* htmlCollection = [ node childNodes ];
+                self->_firstHeading = [ ( DOMText* )[ htmlCollection item: 0 ] wholeText ];
+                }
             }
 
         // <head>
