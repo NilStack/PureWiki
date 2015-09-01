@@ -30,6 +30,7 @@
 #import "PWWikiPageArchive.h"
 
 #import "WikiPage.h"
+#import "WikiEngine.h"
 
 // Private Interfaces
 @interface PWWikiContentView ()
@@ -44,7 +45,11 @@
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
     {
     if ( self = [ super initWithCoder: _Coder ] )
+        {
+        self->_wikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
+
         self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
+        }
 
     return self;
     }
@@ -103,13 +108,32 @@
 
             NSURL* archiveURL =
                 [ [ PWCastrateFactory defaultFactory ] castrateFrameOnDisk: _Frame error: &error archive: &castratedWikiPageArchive ];
-            NSLog( @"🍔%@", castratedWikiPageArchive.wikiPageTitle );
+
             if ( !error )
                 {
-                [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
+                [ self->_wikiEngine searchAllPagesThatHaveValue: castratedWikiPageArchive.wikiPageTitle
+                                                   inNamespaces: nil
+                                                           what: WikiEngineSearchWhatPageText
+                                                          limit: 1
+                                                        success:
+                    ^( NSArray* _MatchedPages )
+                        {
+                        if ( _MatchedPages )
+                            {
+                            self->_wikiPage = _MatchedPages.firstObject;
+                            [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
 
-                // Resume routing navigation action
-                [ self.webView setPolicyDelegate: self ];
+                            // Resume routing navigation action
+                            [ self.webView setPolicyDelegate: self ];
+//                            [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiContentViewWillNavigateNotif
+//                                                                                   object: self
+//                                                                                 userInfo: @{ kPage : self->_wikiPage } ];
+                            }
+                        } failure:
+                            ^( NSError* _Error )
+                                {
+                                NSLog( @"%@", _Error );
+                                } stopAllOtherTasks: YES ];
                 }
             else
                 NSLog( @"%@", error );
@@ -136,9 +160,6 @@
                               frame: ( WebFrame* )_Frame
                    decisionListener: ( id <WebPolicyDecisionListener> )_Listener
     {
-    [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiContentViewWillNavigateNotif
-                                                           object: self
-                                                         userInfo: @{ kRequest : _Request } ];
     if ( _WebView == self.webView )
         {
         // Pause routing navigation action to avoid the infinite recursion

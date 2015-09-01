@@ -25,10 +25,12 @@
 @import Cocoa;
 @import WebKit;
 
-@class WikiPage;
 @class PWCastrateFactory;
 @class PWStackContainerView;
 @class PWNavButtonsPairView;
+
+@class WikiPage;
+@class WikiEngine;
 
 @protocol PWWikiContentViewOwner;
 
@@ -36,7 +38,9 @@
 @interface PWWikiContentView : NSView <WebFrameLoadDelegate, WebPolicyDelegate>
     {
 @private
-    WikiPage __strong* _wikiPage;
+    WikiEngine __strong* _wikiEngine;
+
+    WikiPage __strong __block* _wikiPage;
     WebView __strong* _backingWebView;
     }
 
