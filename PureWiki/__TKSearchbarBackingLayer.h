@@ -45,7 +45,7 @@
 @property ( assign, readonly ) BOOL isFocusing;
 
 @property ( strong, readwrite ) NSString* placeholderString;
-@property ( strong, readwrite ) NSString* title;
+@property ( strong, readwrite ) NSString* frozenTitle;
 
 #pragma mark Initializations
 + ( instancetype ) layerWithHostView: ( NSView* )_HostView;

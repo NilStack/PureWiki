@@ -25,6 +25,7 @@
 #import "NSColor+TKSafariSearchbar.h"
 #import "__TKTextLayer.h"
 
+// __TKTextLayer class
 @implementation __TKTextLayer
 
 @dynamic content;
@@ -40,10 +41,8 @@
     {
     if ( self = [ super init ] )
         {
-        self->_fontAttr = [ NSFont systemFontOfSize: 13.f ];
-        self->_foregroundColorAttr = [ NSColor colorWithHTMLColor: @"B2B2B2" ];
-
-        [ self setContent: _Content ];
+        self.content = _Content ?: @"";
+        [ self setContent: self.content ];
 
         // This's very important to get text in receiver to be clear
         [ self setContentsScale: 2.f ];
@@ -55,15 +54,7 @@
 #pragma mark Dynamic Properties
 - ( void ) setContent: ( NSString* )_Content
     {
-    NSDictionary* attributes = @{ NSFontAttributeName : self->_fontAttr
-                                , NSForegroundColorAttributeName : self->_foregroundColorAttr
-                                };
-
-    NSAttributedString* attredString = [ [ NSAttributedString alloc ] initWithString: _Content
-                                                                          attributes: attributes ];
-
-    [ self setString: attredString ];
-    [ self setBounds: NSMakeRect( 0, 0, self.size.width, self.size.height ) ];
+    // TODO: Throw an exception here
     }
 
 - ( NSString* ) content
@@ -83,12 +74,18 @@
 - ( NSSize ) size
     {
     NSString* string = [ [ self string ] string ];
-    NSDictionary* attributes = [ self.string attributesAtIndex: 0 effectiveRange: NULL ];
+    NSSize resultSize = NSZeroSize;
 
-    return [ string sizeWithAttributes: attributes ];
+    if ( string.length > 0 )
+        {
+        NSDictionary* attributes = [ self.string attributesAtIndex: 0 effectiveRange: NULL ];
+        resultSize = [ string sizeWithAttributes: attributes ];
+        }
+
+    return resultSize;
     }
 
-@end
+@end // __TKTextLayer class
 
 /*===============================================================================┐
 |                                                                                | 

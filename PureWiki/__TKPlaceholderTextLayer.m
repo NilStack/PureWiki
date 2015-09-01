@@ -28,20 +28,26 @@
 @implementation __TKPlaceholderTextLayer
 
 #pragma mark Initializations
-+ ( instancetype ) layerWithContent: ( NSString* )_Content
-    {
-    return [ [ self alloc ] initWithContent: _Content ];
-    }
-
 - ( instancetype ) initWithContent: ( NSString* )_Content
     {
     if ( self = [ super initWithContent: _Content ] )
-        {
-        self.content = _Content ?: @"";
         [ self setName: @"placeholder-text-layer" ];
-        }
 
     return self;
+    }
+
+#pragma mark Dynamic Properties
+- ( void ) setContent: ( NSString* )_Content
+    {
+    NSDictionary* attributes = @{ NSFontAttributeName : [ NSFont systemFontOfSize: 13.f ]
+                                , NSForegroundColorAttributeName : [ NSColor colorWithHTMLColor: @"B2B2B2" ]
+                                };
+
+    NSAttributedString* attredString = [ [ NSAttributedString alloc ] initWithString: _Content
+                                                                          attributes: attributes ];
+
+    [ self setString: attredString ];
+    [ self setBounds: NSMakeRect( 0, 0, self.size.width, self.size.height ) ];
     }
 
 @end // __TKPlaceholderTextLayer class

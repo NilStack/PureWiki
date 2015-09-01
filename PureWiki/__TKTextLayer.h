@@ -25,12 +25,8 @@
 @import QuartzCore;
 @import Cocoa;
 
+// __TKTextLayer class
 @interface __TKTextLayer : CATextLayer
-    {
-@protected
-    NSFont __strong* _fontAttr;
-    NSColor __strong* _foregroundColorAttr;
-    }
 
 @property ( strong, readwrite ) NSString* content;
 @property ( assign, readonly ) NSSize size;
@@ -39,7 +35,7 @@
 + ( instancetype ) layerWithContent: ( NSString* )_Content;
 - ( instancetype ) initWithContent: ( NSString* )_Content;
 
-@end
+@end // __TKTextLayer class
 
 /*===============================================================================┐
 |                                                                                | 

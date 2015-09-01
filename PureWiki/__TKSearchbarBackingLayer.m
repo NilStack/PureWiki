@@ -44,6 +44,9 @@
 @dynamic isActive;
 @dynamic isFocusing;
 
+@dynamic placeholderString;
+@dynamic frozenTitle;
+
 #pragma mark Initializations
 + ( instancetype ) layerWithHostView: ( NSView* )_HostView
     {
@@ -72,18 +75,18 @@
                                                         name: NSApplicationDidResignActiveNotification
                                                       object: nil ];
 
-        self->_placeholderLayer = [ __TKPlaceholderTextLayer layerWithContent: @"Search Wikipedia" ];
-        self->_frozenTitleTextLayer = [ __TKFrozenTitleTextLayer layerWithContent: @"Search Wikipedia" ];
+        self->_placeholderLayer = [ __TKPlaceholderTextLayer layerWithContent: nil ];
+        self->_frozenTitleTextLayer = [ __TKFrozenTitleTextLayer layerWithContent: nil ];
 
-        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
-                                                                             relativeTo: @"superlayer"
-                                                                              attribute: kCAConstraintMidY ] ];
+        [ self setPlaceholderString: @"Search Wikipedia" ];
 
-        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
-                                                                             relativeTo: @"superlayer"
-                                                                              attribute: kCAConstraintMidX ] ];
-
-        [ self addSublayer: self->_placeholderLayer ];
+//        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
+//                                                                             relativeTo: @"superlayer"
+//                                                                              attribute: kCAConstraintMidY ] ];
+//
+//        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
+//                                                                             relativeTo: @"superlayer"
+//                                                                              attribute: kCAConstraintMidX ] ];
         }
 
     return self;
@@ -139,6 +142,52 @@
 - ( BOOL ) isFocusing
     {
     return self->_isFocusing;
+    }
+
+- ( void ) setPlaceholderString: ( NSString* )_Placeholder
+    {
+    [ self->_placeholderLayer setContent: _Placeholder ];
+
+    if ( _Placeholder.length > 0 )
+        {
+        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
+                                                                             relativeTo: @"superlayer"
+                                                                              attribute: kCAConstraintMidY ] ];
+
+        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
+                                                                             relativeTo: @"superlayer"
+                                                                              attribute: kCAConstraintMidX ] ];
+        [ self->_frozenTitleTextLayer removeFromSuperlayer ];
+        [ self addSublayer: self->_placeholderLayer ];
+        }
+    }
+
+- ( NSString* ) placeholderString
+    {
+    return self->_placeholderLayer.content;
+    }
+
+- ( void ) setFrozenTitle: ( NSString* )_FrozenTitle
+    {
+    [ self->_frozenTitleTextLayer setContent: _FrozenTitle ];
+
+    if ( _FrozenTitle.length > 0 )
+        {
+        [ self->_frozenTitleTextLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
+                                                                                 relativeTo: @"superlayer"
+                                                                                  attribute: kCAConstraintMidY ] ];
+
+        [ self->_frozenTitleTextLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
+                                                                                 relativeTo: @"superlayer"
+                                                                                  attribute: kCAConstraintMidX ] ];
+        [ self->_placeholderLayer removeFromSuperlayer ];
+        [ self addSublayer: self->_frozenTitleTextLayer ];
+        }
+    }
+
+- ( NSString* ) frozenTitle
+    {
+    return self->_frozenTitleTextLayer.content;
     }
 
 #pragma mark Private Interfaces

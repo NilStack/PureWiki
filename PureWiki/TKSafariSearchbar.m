@@ -124,7 +124,7 @@
     [ self.attachPanelController closeAttachPanelAndClearResults ];
     [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
 
-//    [ self->_backingLayer setString: [ _Notif.userInfo[ kPage ] title ] ];
+    [ self->_backingLayer setFrozenTitle: [ _Notif.userInfo[ kPage ] title ] ];
     }
 
 //- ( void ) __updateInputState: ( NSText* )_FieldEditor
