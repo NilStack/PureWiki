@@ -103,7 +103,6 @@
             if ( !error )
                 {
                 [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
-//                [ [ NSNotificationCenter defaultCenter ] postNotificationName: PWWikiContentViewWillNavigateNotif object: self ];
 
                 // Resume routing navigation action
                 [ self.webView setPolicyDelegate: self ];
@@ -136,7 +135,6 @@
     [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiContentViewWillNavigateNotif
                                                            object: self
                                                          userInfo: @{ kRequest : _Request } ];
-
     if ( _WebView == self.webView )
         {
         // Pause routing navigation action to avoid the infinite recursion
