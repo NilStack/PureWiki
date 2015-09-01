@@ -67,7 +67,7 @@
             ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change)
                 {
                 #if DEBUG
-                NSLog( @">>> (Log) Current selected page has been changed: \n%@", _Change );
+                NSLog( @">>> (Log:%s) Current selected page has been changed: \n%@", __PRETTY_FUNCTION__, _Change );
                 #endif
 
                 WikiPage* newSelectedPage = _Change[ @"new" ];

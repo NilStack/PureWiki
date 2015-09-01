@@ -245,6 +245,9 @@
                     <outlet property="hostControl" destination="gLE-8L-vyo" id="J2b-lw-iYi"/>
                 </connections>
             </textFieldCell>
+            <connections>
+                <outlet property="sidebarTabsTableController" destination="TDW-Eg-TgK" id="pNH-GI-SdX"/>
+            </connections>
             <point key="canvasLocation" x="451" y="81"/>
         </textField>
     </objects>

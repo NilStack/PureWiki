@@ -26,8 +26,6 @@
 
 @class TKSafariSearchbar;
 
-@class FBKVOController;
-
 // TKSafariSearchbarController class
 @interface TKSafariSearchbarController : NSViewController
 

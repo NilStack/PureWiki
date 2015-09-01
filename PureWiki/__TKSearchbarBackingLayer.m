@@ -80,13 +80,21 @@
 
         [ self setPlaceholderString: @"Search Wikipedia" ];
 
-//        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
-//                                                                             relativeTo: @"superlayer"
-//                                                                              attribute: kCAConstraintMidY ] ];
-//
-//        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
-//                                                                             relativeTo: @"superlayer"
-//                                                                              attribute: kCAConstraintMidX ] ];
+        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
+                                                                             relativeTo: @"superlayer"
+                                                                              attribute: kCAConstraintMidY ] ];
+
+        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
+                                                                             relativeTo: @"superlayer"
+                                                                              attribute: kCAConstraintMidX ] ];
+
+        [ self->_frozenTitleTextLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
+                                                                             relativeTo: @"superlayer"
+                                                                              attribute: kCAConstraintMidY ] ];
+
+        [ self->_frozenTitleTextLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
+                                                                             relativeTo: @"superlayer"
+                                                                              attribute: kCAConstraintMidX ] ];
         }
 
     return self;
@@ -150,13 +158,6 @@
 
     if ( _Placeholder.length > 0 )
         {
-        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
-                                                                             relativeTo: @"superlayer"
-                                                                              attribute: kCAConstraintMidY ] ];
-
-        [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
-                                                                             relativeTo: @"superlayer"
-                                                                              attribute: kCAConstraintMidX ] ];
         [ self->_frozenTitleTextLayer removeFromSuperlayer ];
         [ self addSublayer: self->_placeholderLayer ];
         }
@@ -173,13 +174,6 @@
 
     if ( _FrozenTitle.length > 0 )
         {
-        [ self->_frozenTitleTextLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
-                                                                                 relativeTo: @"superlayer"
-                                                                                  attribute: kCAConstraintMidY ] ];
-
-        [ self->_frozenTitleTextLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
-                                                                                 relativeTo: @"superlayer"
-                                                                                  attribute: kCAConstraintMidX ] ];
         [ self->_placeholderLayer removeFromSuperlayer ];
         [ self addSublayer: self->_frozenTitleTextLayer ];
         }

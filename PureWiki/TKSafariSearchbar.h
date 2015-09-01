@@ -26,22 +26,26 @@
 @import QuartzCore;
 
 @class PWSearchResultsAttachPanelController;
+@class PWSidebarTabsTableController;
+@class FBKVOController;
 
 // TKSafariSearchbar class
 @interface TKSafariSearchbar : NSTextField <NSTextViewDelegate /* As a field editor delegate */>
     {
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
+    FBKVOController __strong* _KVOController;
 
     BOOL _isFocusing;
     }
 
-@property ( assign, readonly ) BOOL isFocusing;
-
-@property ( strong, readwrite ) NSString* frozenTitle;
+#pragma mark Outlets
+@property ( weak ) IBOutlet PWSidebarTabsTableController* sidebarTabsTableController;
 
 #pragma mark Ivar Properties
 @property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;
+@property ( assign, readonly ) BOOL isFocusing;
+@property ( strong, readwrite ) NSString* frozenTitle;
 
 @end // TKSafariSearchbar class
 
