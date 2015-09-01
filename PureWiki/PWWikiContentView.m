@@ -133,9 +133,9 @@
                               frame: ( WebFrame* )_Frame
                    decisionListener: ( id <WebPolicyDecisionListener> )_Listener
     {
-        [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiContentViewWillNavigateNotif
-                                                               object: self
-                                                             userInfo: @{ kRequest : _Request } ];
+    [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiContentViewWillNavigateNotif
+                                                           object: self
+                                                         userInfo: @{ kRequest : _Request } ];
 
     if ( _WebView == self.webView )
         {
