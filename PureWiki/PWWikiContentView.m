@@ -27,6 +27,7 @@
 #import "PWStackContainerView.h"
 #import "PWNavButtonsPairView.h"
 #import "PWActionNotifications.h"
+#import "PWWikiPageArchive.h"
 
 #import "WikiPage.h"
 
@@ -98,9 +99,11 @@
         {
         if ( _WebView == self->_backingWebView )
             {
-            NSLog( @"🐠" );
-            NSURL* archiveURL = [ [ PWCastrateFactory defaultFactory ] castrateFrameOnDisk: _Frame error: &error ];
+            PWWikiPageArchive* castratedWikiPageArchive = nil;
 
+            NSURL* archiveURL =
+                [ [ PWCastrateFactory defaultFactory ] castrateFrameOnDisk: _Frame error: &error archive: &castratedWikiPageArchive ];
+            NSLog( @"🍔%@", castratedWikiPageArchive.wikiPageTitle );
             if ( !error )
                 {
                 [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
@@ -114,7 +117,6 @@
 
         else if ( _WebView == self.webView )
             {
-            NSLog( @"🐙" );
             [ self.owner.navButtonsPairView reload ];
             [ self.webView setPolicyDelegate: self ];
 

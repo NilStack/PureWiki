@@ -48,8 +48,11 @@
 + ( instancetype ) defaultFactory;
 
 #pragma mark Actions
-- ( WebArchive* ) castrateFrameInMemory: ( WebFrame* )_Frame;
-- ( NSURL* ) castrateFrameOnDisk: ( WebFrame* )_Frame error: ( NSError** )_Error;
+- ( PWWikiPageArchive* ) castrateFrameInMemory: ( WebFrame* )_Frame;
+
+- ( NSURL* ) castrateFrameOnDisk: ( WebFrame* )_Frame
+                           error: ( NSError* __autoreleasing* )_Error
+                         archive: ( PWWikiPageArchive* __autoreleasing* )_WikiPageArchive;
 
 - ( void ) cleanUpCache;
 

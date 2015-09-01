@@ -69,7 +69,7 @@ id sDefaultFactory = nil;
     return self;
     }
 
-- ( WebArchive* ) castrateFrameInMemory: ( WebFrame* )_Frame
+- ( PWWikiPageArchive* ) castrateFrameInMemory: ( WebFrame* )_Frame
     {
     DOMHTMLDocument* document = ( DOMHTMLDocument* )( _Frame.DOMDocument );
 
@@ -118,13 +118,14 @@ id sDefaultFactory = nil;
     WebArchive* oldWebArchive = _Frame.dataSource.webArchive;
     WebArchive* castratedWebArchive = [ [ WebArchive alloc ] initWithMainResource: newMainResource subresources: [ oldWebArchive subresources ] subframeArchives: oldWebArchive.subframeArchives ];
 
-    return castratedWebArchive;
+    return [ PWWikiPageArchive wikiPageArchiveWithTitle: self->_firstHeading webArchive: castratedWebArchive ];
     }
 
 - ( NSURL* ) castrateFrameOnDisk: ( WebFrame* )_Frame
-                           error: ( NSError** )_Error
+                           error: ( NSError* __autoreleasing* )_Error
+                         archive: ( PWWikiPageArchive* __autoreleasing* )_WikiPageArchive
     {
-    WebArchive* castratedArchive = [ self castrateFrameInMemory: _Frame ];
+    PWWikiPageArchive* castratedArchive = [ self castrateFrameInMemory: _Frame ];
 
     NSString* lastPathComponent = [ NSString stringWithFormat: @"%@-%@", _Frame.dataSource.request.URL.absoluteString, PWTimestamp() ];
     lastPathComponent = PWSignWithHMACSHA1( lastPathComponent, PWNonce() );
@@ -136,7 +137,10 @@ id sDefaultFactory = nil;
 
     NSURL* resultURL = [ self._archiveBaseURL URLByAppendingPathComponent: lastPathComponent ];
     resultURL = [ resultURL URLByAppendingPathExtension: @"webarchive" ];
-    [ castratedArchive.data writeToURL: resultURL options: NSDataWritingAtomic error: _Error ];
+    [ castratedArchive.wikiPageWebArchive.data writeToURL: resultURL options: NSDataWritingAtomic error: _Error ];
+
+    if ( _WikiPageArchive )
+        *_WikiPageArchive = castratedArchive;
 
     return resultURL;
     }
