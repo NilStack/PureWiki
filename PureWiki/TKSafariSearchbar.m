@@ -45,30 +45,6 @@
     {
     self->_isFocusing = _YesOrNo;
     [ self setNeedsDisplay ];
-
-    // FIXME
-//    NSArray* sublayers = self.sublayers;
-//    NSLog( @"%@", sublayers );
-//    if ( sublayers.count == 2 )
-//        {
-//        [ self->_placeholderLayer removeFromSuperlayer ];
-//        [ self addSublayer: self->_placeholderLayer ];
-//        }
-////
-//    if ( sublayers.count == 3 )
-//        {
-////        [ sublayers.lastObject removeFromSuperlayer ];
-//        CALayer* clipViewBackingLayer = sublayers.lastObject;
-//
-//        CALayer* layer = [ CALayer layer ];
-//        layer.backgroundColor = [ NSColor orangeColor ].CGColor;
-//        layer.bounds = NSMakeRect( 0, 0, 50, 20 );
-//        layer.position = NSMakePoint( 0, 0 );
-//
-//        NSLog( @"%@", self->_placeholderLayer );
-//        [ self->_placeholderLayer removeFromSuperlayer ];
-//        [ clipViewBackingLayer addSublayer: self->_placeholderLayer ];
-//        }
     }
 
 @end // __TKSearchbarBackingLayer + TKPrivate
@@ -136,7 +112,7 @@
     {
     [ super textDidEndEditing: _Notif ];
 
-    [ self setStringValue: @"" ];
+//    [ self setStringValue: @"" ];
     [ self.attachPanelController closeAttachPanelAndClearResults ];
 
 //    [ self __updateInputState: _Notif.object ];
@@ -147,6 +123,8 @@
     {
     [ self.attachPanelController closeAttachPanelAndClearResults ];
     [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
+
+//    [ self->_backingLayer setString: [ _Notif.userInfo[ kPage ] title ] ];
     }
 
 //- ( void ) __updateInputState: ( NSText* )_FieldEditor

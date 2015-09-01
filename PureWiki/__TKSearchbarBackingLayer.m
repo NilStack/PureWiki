@@ -84,9 +84,6 @@
                                                                               attribute: kCAConstraintMidX ] ];
 
         [ self addSublayer: self->_placeholderLayer ];
-
-//        [ self->_placeholderLayer addAnimation: hiddenAnim forKey: @"hidden" ];
-//        [ self->_placeholderLayer setHidden: !self->_placeholderLayer.hidden ];
         }
 
     return self;
@@ -98,6 +95,7 @@
     [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: NSApplicationDidResignActiveNotification object: nil ];
     }
 
+#pragma mark Custom Drawing
 - ( void ) drawInContext: ( nonnull CGContextRef )_cgCtx
     {
     CGMutablePathRef cgPath = CGPathCreateMutable();
