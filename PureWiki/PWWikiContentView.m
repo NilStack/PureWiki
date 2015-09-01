@@ -98,6 +98,7 @@
         {
         if ( _WebView == self->_backingWebView )
             {
+            NSLog( @"🐠" );
             NSURL* archiveURL = [ [ PWCastrateFactory defaultFactory ] castrateFrameOnDisk: _Frame error: &error ];
 
             if ( !error )
@@ -113,6 +114,7 @@
 
         else if ( _WebView == self.webView )
             {
+            NSLog( @"🐙" );
             [ self.owner.navButtonsPairView reload ];
             [ self.webView setPolicyDelegate: self ];
 
