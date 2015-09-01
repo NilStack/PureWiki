@@ -39,7 +39,7 @@
 - ( void ) setContent: ( NSString* )_Content
     {
     NSDictionary* attributes = @{ NSFontAttributeName : [ NSFont systemFontOfSize: 13.f ]
-                                , NSForegroundColorAttributeName : [ NSColor textColor ]
+                                , NSForegroundColorAttributeName : [ [ NSColor textColor ] colorWithAlphaComponent: .6f ]
                                 };
 
     NSAttributedString* attredString = [ [ NSAttributedString alloc ] initWithString: _Content

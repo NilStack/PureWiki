@@ -33,11 +33,12 @@
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
 
-//    BOOL _inputting;
     BOOL _isFocusing;
     }
 
 @property ( assign, readonly ) BOOL isFocusing;
+
+@property ( strong, readwrite ) NSString* frozenTitle;
 
 #pragma mark Ivar Properties
 @property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;

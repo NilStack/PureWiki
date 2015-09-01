@@ -51,10 +51,7 @@
 
 // Private Interfaces
 @interface TKSafariSearchbar ()
-
 - ( void ) _userDidPickUpAnSearchItem: ( NSNotification* )_Notif;
-//- ( void ) __updateInputState: ( NSText* )_FieldEditor;
-
 @end // Private Interfaces
 
 // TKSafariSearchbar class
@@ -67,6 +64,9 @@
 @dynamic attachPanelController;
 @dynamic isFocusing;
 
+@dynamic placeholderString;
+@dynamic frozenTitle;
+
 #pragma mark Initializations
 - ( void ) awakeFromNib
     {
@@ -76,8 +76,6 @@
                                                     object: nil ];
 
     self->_attachPanelController = [ PWSearchResultsAttachPanelController controllerWithRelativeView: self ];
-//    self->_inputting = NO;
-
     self->_backingLayer = [ __TKSearchbarBackingLayer layerWithHostView: self ];
 
     [ self setLayer: self->_backingLayer ];
@@ -94,7 +92,27 @@
 - ( BOOL ) isFocusing
     {
     return self->_isFocusing;
-    }    
+    }
+
+- ( void ) setPlaceholderString: ( NSString* )_PlaceholderString
+    {
+    self->_backingLayer.placeholderString = _PlaceholderString;
+    }
+
+- ( NSString* ) placeholderString
+    {
+    return self->_backingLayer.placeholderString;
+    }
+
+- ( void ) setFrozenTitle: ( NSString* )_FrozenTitle
+    {
+    self->_backingLayer.frozenTitle = _FrozenTitle;
+    }
+
+- ( NSString* ) frozenTitle
+    {
+    return self->_backingLayer.frozenTitle;
+    }
 
 #pragma mark Conforms to <NSTextViewDelegate>
 - ( void ) textDidChange: ( nonnull NSNotification* )_Notif
@@ -102,8 +120,6 @@
     [ super textDidChange: _Notif ];
 
     NSTextView* fieldEditor = _Notif.object;
-//    [ self __updateInputState: fieldEditor ];
-
     NSString* textContent = [ fieldEditor string ];
     [ self.attachPanelController searchValue: textContent ];
     }
@@ -111,11 +127,7 @@
 - ( void ) textDidEndEditing: ( nonnull NSNotification* )_Notif
     {
     [ super textDidEndEditing: _Notif ];
-
-//    [ self setStringValue: @"" ];
     [ self.attachPanelController closeAttachPanelAndClearResults ];
-
-//    [ self __updateInputState: _Notif.object ];
     }
 
 #pragma mark Private Interfaces
@@ -124,16 +136,8 @@
     [ self.attachPanelController closeAttachPanelAndClearResults ];
     [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
 
-    [ self->_backingLayer setFrozenTitle: [ _Notif.userInfo[ kPage ] title ] ];
+    [ self setFrozenTitle: [ _Notif.userInfo[ kPage ] title ] ];
     }
-
-//- ( void ) __updateInputState: ( NSText* )_FieldEditor
-//    {
-//    NSString* textContent = [ _FieldEditor string ];
-//    self->_inputting = ( BOOL )( textContent.length );
-//
-//    [ self setNeedsDisplay ];
-//    }
 
 @end // TKSafariSearchbar class
 
