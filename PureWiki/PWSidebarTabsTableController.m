@@ -52,7 +52,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     {
     if ( self = [ super initWithCoder: _Coder ] )
         {
-        self->_openedWikiPages = [ NSMutableArray array ];
+        self->_openedWikiPages = [ NSMutableDictionary dictionary ];
 
 //        [ [ NSNotificationCenter defaultCenter ] addObserver: self
 //                                                    selector: @selector( _userDidPickUpSearchItem: )

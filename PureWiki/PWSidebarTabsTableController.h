@@ -24,8 +24,10 @@
 
 @import Cocoa;
 
-@class WikiPage;
 @class PWSidebarTabsTable;
+@class PWOpenedWikiPage;
+
+@class WikiPage;
 
 NSString extern* const PWSidebarCurrentSelectedPageKVOPath;
 

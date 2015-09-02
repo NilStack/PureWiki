@@ -86,8 +86,8 @@
 
 - ( void ) awakeFromNib
     {
-    if ( self.sidebarTabsTableController )
-        {
+//    if ( self.sidebarTabsTableController )
+//        {
 //        [ self->_KVOController observe: self.sidebarTabsTableController
 //                               keyPath: PWSidebarCurrentSelectedPageKVOPath
 //                               options: NSKeyValueObservingOptionNew
@@ -117,7 +117,7 @@
 //                [ self addSubview: contentViewController.view ];
 //                [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
 //                } ];
-        }
+//        }
     }
 
 - ( BOOL ) acceptsFirstResponder
