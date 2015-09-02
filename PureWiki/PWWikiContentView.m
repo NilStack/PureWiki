@@ -74,20 +74,15 @@
 #pragma mark Dynamic Properties
 - ( void ) setWikiPage: ( WikiPage* )_WikiPage
     {
-    if ( self->_wikiPage != _WikiPage )
-        {
-        self->_wikiPage = _WikiPage;
+    [ self->_backingWebView.mainFrame stopLoading ];
 
-        [ self->_backingWebView.mainFrame stopLoading ];
-
-        NSURLRequest* request = [ NSURLRequest requestWithURL: self->_wikiPage.URL ];
-        [ self->_backingWebView.mainFrame loadRequest: request ];
-        }
+    NSURLRequest* request = [ NSURLRequest requestWithURL: _WikiPage.URL ];
+    [ self->_backingWebView.mainFrame loadRequest: request ];
     }
 
 - ( WikiPage* ) wikiPage
     {
-    return self->_wikiPage;
+    return [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) openedWikiPage ];
     }
 
 - ( NSString* ) UUID
@@ -148,7 +143,6 @@
                         {
                         if ( _MatchedPages )
                             {
-                            self->_wikiPage = _MatchedPages.firstObject;
                             [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
 
                             // Resume routing navigation action

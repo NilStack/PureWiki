@@ -41,7 +41,6 @@
 @private
     WikiEngine __strong* _wikiEngine;
 
-    WikiPage __strong __block* _wikiPage;
     PWWikiPageBackForwardList __strong* _backForwardList;
     WebView __strong* _backingWebView;
 
