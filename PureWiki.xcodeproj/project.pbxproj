@@ -49,6 +49,7 @@
 		83A6CC761B91FAB80048AE73 /* __TKPlaceholderTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A6CC751B91FAB80048AE73 /* __TKPlaceholderTextLayer.m */; };
 		83A6CC791B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A6CC781B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.m */; };
 		83B4051B1B96FCDF009C5FF1 /* PWOpenedWikiPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B4051A1B96FCDF009C5FF1 /* PWOpenedWikiPage.m */; };
+		83B4051E1B974231009C5FF1 /* PWWikiPageBackForwardList.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B4051D1B974231009C5FF1 /* PWWikiPageBackForwardList.m */; };
 		83B75CAC1B7DDB0C00E9C05E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */; };
 		83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794131B7DCE5F00F4544E /* PWAppDelegate.m */; };
 		83B794171B7DCE5F00F4544E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B794161B7DCE5F00F4544E /* main.m */; };
@@ -181,6 +182,8 @@
 		83A6CC781B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __TKFrozenTitleTextLayer.m; sourceTree = "<group>"; };
 		83B405191B96FCDF009C5FF1 /* PWOpenedWikiPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWOpenedWikiPage.h; sourceTree = "<group>"; };
 		83B4051A1B96FCDF009C5FF1 /* PWOpenedWikiPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWOpenedWikiPage.m; sourceTree = "<group>"; };
+		83B4051C1B974231009C5FF1 /* PWWikiPageBackForwardList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiPageBackForwardList.h; sourceTree = "<group>"; };
+		83B4051D1B974231009C5FF1 /* PWWikiPageBackForwardList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiPageBackForwardList.m; sourceTree = "<group>"; };
 		83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		83B7940F1B7DCE5F00F4544E /* PureWiki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PureWiki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83B794121B7DCE5F00F4544E /* PWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PWAppDelegate.h; sourceTree = "<group>"; };
@@ -380,6 +383,8 @@
 				83B81DD41B95FDF100858BAB /* PWWikiPageArchive.m */,
 				83B405191B96FCDF009C5FF1 /* PWOpenedWikiPage.h */,
 				83B4051A1B96FCDF009C5FF1 /* PWOpenedWikiPage.m */,
+				83B4051C1B974231009C5FF1 /* PWWikiPageBackForwardList.h */,
+				83B4051D1B974231009C5FF1 /* PWWikiPageBackForwardList.m */,
 			);
 			name = "wiki-content";
 			sourceTree = "<group>";
@@ -832,6 +837,7 @@
 				83B7AFCC1B878EAC002DE75A /* AFURLResponseSerialization.m in Sources */,
 				83509BE31B8738E800C4F454 /* PWWikiContentViewController.m in Sources */,
 				8321EC841B8C0C940099C824 /* PWPWikiPageImageWell.m in Sources */,
+				83B4051E1B974231009C5FF1 /* PWWikiPageBackForwardList.m in Sources */,
 				8322BF961B83C6F400A890C9 /* TKSafariSearchbar.m in Sources */,
 				839585E81B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m in Sources */,
 				83B7AFC71B878EAC002DE75A /* AFHTTPSessionManager.m in Sources */,

@@ -154,6 +154,16 @@
 
         #if DEBUG
             NSLog( @">>> (Info) 🌰Current back-forward list: %@", self.webView.backForwardList );
+
+            WebHistoryItem* currentItem = self.webView.backForwardList.currentItem;
+            NSLog( @">>> (Info) 🍉Current back-forward item: %@"
+                 , @{ @"URL" : currentItem.URLString ?: [ NSNull null ]
+                    , @"Original URL" : currentItem.originalURLString ?: [ NSNull null ]
+                    , @"Title" : currentItem.title ?: [ NSNull null ]
+                    , @"Alternate Title" : currentItem.alternateTitle ?: [ NSNull null ]
+                    , @"Last Visited Time Interval" : @( currentItem.lastVisitedTimeInterval )
+                    }
+                 );
         #endif
             }
         }
