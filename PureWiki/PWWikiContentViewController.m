@@ -35,6 +35,7 @@
 @implementation PWWikiContentViewController
 
 @dynamic wikiContentView;
+@dynamic UUID;
 
 #pragma mark Initializations
 + ( instancetype ) controllerWithWikiPage: ( WikiPage* )_WikiPage
@@ -59,6 +60,11 @@
 - ( PWWikiContentView* ) wikiContentView
     {
     return ( PWWikiContentView* )( self.view );
+    }
+
+- ( NSString* ) UUID
+    {
+    return self.wikiContentView.UUID;
     }
 
 @end // PWWikiContentViewController class

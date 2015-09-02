@@ -75,6 +75,7 @@
                 if ( !( self->_pagesStack[ newSelectedPage ] ) )
                     {
                     PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: newSelectedPage owner: self ];
+                    NSLog( @"%@", wikiContentViewController.UUID );
 
                     if ( wikiContentViewController )
                         [ self->_pagesStack addEntriesFromDictionary: @{ newSelectedPage : wikiContentViewController } ];

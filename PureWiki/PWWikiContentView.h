@@ -42,6 +42,8 @@
 
     WikiPage __strong __block* _wikiPage;
     WebView __strong* _backingWebView;
+
+    NSString __strong* _UUID;
     }
 
 #pragma mark Outlets
@@ -50,6 +52,12 @@
 #pragma mark Ivar Properties
 @property ( strong, readwrite ) WikiPage* wikiPage;
 @property ( weak, readwrite ) id <PWWikiContentViewOwner> owner;
+
+@property ( strong, readonly ) NSString* UUID;
+
+#pragma mark IBActions
+- ( IBAction ) goBackAction: ( id )_Sender;
+- ( IBAction ) goForwardAction: ( id )_Sender;
 
 @end // PWWikiContentView class
 

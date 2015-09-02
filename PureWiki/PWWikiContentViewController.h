@@ -35,6 +35,7 @@
 
 #pragma mark Ivar Properties
 @property ( weak, readonly ) PWWikiContentView* wikiContentView;
+@property ( strong, readonly ) NSString* UUID;
 
 #pragma mark Initializations
 + ( instancetype ) controllerWithWikiPage: ( WikiPage* )_WikiPage owner: ( id <PWWikiContentViewOwner> )_Owner;

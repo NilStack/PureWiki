@@ -28,6 +28,7 @@
 #import "PWNavButtonsPairView.h"
 #import "PWActionNotifications.h"
 #import "PWWikiPageArchive.h"
+#import "PWUtilities.h"
 
 #import "WikiPage.h"
 #import "WikiEngine.h"
@@ -40,6 +41,9 @@
 @implementation PWWikiContentView
 
 @dynamic wikiPage;
+@synthesize owner;
+
+@dynamic UUID;
 
 #pragma mark Initializations
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
@@ -49,6 +53,7 @@
         self->_wikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
 
         self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
+        self->_UUID = [ @"🐠" stringByAppendingString: PWNonce() ];
         }
 
     return self;
@@ -82,6 +87,12 @@
     return self->_wikiPage;
     }
 
+- ( NSString* ) UUID
+    {
+    return self->_UUID;
+    }
+
+#pragma mark IBActions
 - ( IBAction ) goBackAction: ( id )_Sender
     {
     [ self->_backingWebView goBack: _Sender ];
