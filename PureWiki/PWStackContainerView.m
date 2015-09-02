@@ -51,44 +51,72 @@
         {
         self->_pagesStack = [ NSMutableDictionary dictionary ];
         self->_KVOController = [ FBKVOController controllerWithObserver: self ];
+
+        [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                    selector: @selector( _userDidPickUpSearchItem: )
+                                                        name: PureWikiDidPickUpSearchItemNotif
+                                                      object: nil ];
         }
 
     return self;
+    }
+
+#pragma mark Private Interfaces
+- ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif
+    {
+    WikiPage* pickedWikiPage = _Notif.userInfo[ kPage ];
+
+    if ( !( self->_pagesStack[ pickedWikiPage ] ) )
+        {
+        PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: pickedWikiPage owner: self ];
+        NSLog( @"%@", wikiContentViewController.UUID );
+
+        if ( wikiContentViewController )
+            [ self->_pagesStack addEntriesFromDictionary: @{ pickedWikiPage : wikiContentViewController } ];
+        }
+
+    [ self setSubviews: @[] ];
+    PWWikiContentViewController* contentViewController = self->_pagesStack[ pickedWikiPage ];
+    [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
+    self->_currentWikiContentViewController = contentViewController;
+
+    [ self addSubview: contentViewController.view ];
+    [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
     }
 
 - ( void ) awakeFromNib
     {
     if ( self.sidebarTabsTableController )
         {
-        [ self->_KVOController observe: self.sidebarTabsTableController
-                               keyPath: PWSidebarCurrentSelectedPageKVOPath
-                               options: NSKeyValueObservingOptionNew
-                                 block:
-            ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change)
-                {
-                #if DEBUG
-                NSLog( @">>> (Log:%s) Current selected page has been changed: \n%@", __PRETTY_FUNCTION__, _Change );
-                #endif
-
-                WikiPage* newSelectedPage = _Change[ @"new" ];
-
-                if ( !( self->_pagesStack[ newSelectedPage ] ) )
-                    {
-                    PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: newSelectedPage owner: self ];
-                    NSLog( @"%@", wikiContentViewController.UUID );
-
-                    if ( wikiContentViewController )
-                        [ self->_pagesStack addEntriesFromDictionary: @{ newSelectedPage : wikiContentViewController } ];
-                    }
-
-                [ self setSubviews: @[] ];
-                PWWikiContentViewController* contentViewController = self->_pagesStack[ newSelectedPage ];
-                [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
-                self->_currentWikiContentViewController = contentViewController;
-
-                [ self addSubview: contentViewController.view ];
-                [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
-                } ];
+//        [ self->_KVOController observe: self.sidebarTabsTableController
+//                               keyPath: PWSidebarCurrentSelectedPageKVOPath
+//                               options: NSKeyValueObservingOptionNew
+//                                 block:
+//            ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change)
+//                {
+//                #if DEBUG
+//                NSLog( @">>> (Log:%s) Current selected page has been changed: \n%@", __PRETTY_FUNCTION__, _Change );
+//                #endif
+//
+//                WikiPage* newSelectedPage = _Change[ @"new" ];
+//
+//                if ( !( self->_pagesStack[ newSelectedPage ] ) )
+//                    {
+//                    PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: newSelectedPage owner: self ];
+//                    NSLog( @"%@", wikiContentViewController.UUID );
+//
+//                    if ( wikiContentViewController )
+//                        [ self->_pagesStack addEntriesFromDictionary: @{ newSelectedPage : wikiContentViewController } ];
+//                    }
+//
+//                [ self setSubviews: @[] ];
+//                PWWikiContentViewController* contentViewController = self->_pagesStack[ newSelectedPage ];
+//                [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
+//                self->_currentWikiContentViewController = contentViewController;
+//
+//                [ self addSubview: contentViewController.view ];
+//                [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
+//                } ];
         }
     }
 

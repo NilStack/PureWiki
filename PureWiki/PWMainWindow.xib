@@ -22,17 +22,18 @@
                     <splitView wantsLayer="YES" arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwD-Ap-aVJ" customClass="PWSplitView">
                         <rect key="frame" x="0.0" y="0.0" width="1338" height="1056"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantLight" ambiguous="YES" misplaced="YES" blendingMode="behindWindow" state="followsWindowActiveState" id="KMR-gf-LRD">
+                            <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" state="followsWindowActiveState" id="KMR-gf-LRD">
+                                <rect key="frame" x="0.0" y="0.0" width="271.5" height="1056"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <scrollView ambiguous="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMc-KE-Bwg">
+                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMc-KE-Bwg">
                                         <rect key="frame" x="0.0" y="-1056" width="271" height="970"/>
-                                        <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="ZIl-WM-q3A">
+                                        <clipView key="contentView" drawsBackground="NO" id="ZIl-WM-q3A">
                                             <rect key="frame" x="0.0" y="0.0" width="271" height="970"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="97" rowSizeStyle="automatic" viewBased="YES" id="wU4-4o-6Ew" customClass="PWSidebarTabsTable">
-                                                    <rect key="frame" x="0.0" y="0.0" width="271" height="0.0"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="271" height="970"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" red="0.4114178361217497" green="0.58301217862016241" blue="0.79220000000000002" alpha="0.0" colorSpace="deviceRGB"/>
@@ -107,7 +108,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-PV-CRz">
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-PV-CRz">
                                         <rect key="frame" x="20" y="-73" width="231" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="Io0-ET-7OH"/>
@@ -133,6 +134,7 @@
                                 </constraints>
                             </visualEffectView>
                             <customView wantsLayer="YES" fixedFrame="YES" id="QEV-J8-37j" customClass="PWStackContainerView">
+                                <rect key="frame" x="272.5" y="0.0" width="1065.5" height="1056"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <connections>
                                     <outlet property="navButtonsPairView" destination="cjA-YO-b28" id="3eg-lP-Ibf"/>
