@@ -50,7 +50,9 @@
     {
     if ( self = [ super initWithCoder: _Coder ] )
         {
-        self->_pagesStack = [ NSMutableDictionary dictionary ];
+        self->_pagesStack = [ NSMutableArray array ];
+        self->_contentViewControllers = [ NSMutableDictionary dictionary ];
+
         self->_KVOController = [ FBKVOController controllerWithObserver: self ];
 
         [ [ NSNotificationCenter defaultCenter ] addObserver: self
@@ -68,22 +70,15 @@
     WikiPage* pickedWikiPage = _Notif.userInfo[ kPage ];
     PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: pickedWikiPage owner: self ];
 
-    PWOpenedWikiPage* openedWikiPage = [ PWOpenedWikiPage openedWikiPageWithContentViewUUID: wikiContentViewController.UUID
-                                                                      currentOpenedWikiPage: pickedWikiPage ];
     if ( wikiContentViewController )
-        [ self->_pagesStack addEntriesFromDictionary: @{ openedWikiPage : wikiContentViewController } ];
+        {
+        PWOpenedWikiPage* openedWikiPage = [ PWOpenedWikiPage openedWikiPageWithContentViewUUID: wikiContentViewController.UUID
+                                                                          currentOpenedWikiPage: pickedWikiPage ];
+        [ self->_pagesStack addObject: openedWikiPage ];
+        self->_contentViewControllers[ wikiContentViewController.UUID ] = wikiContentViewController;
 
-    [ self setSubviews: @[] ];
-    PWWikiContentViewController* contentViewController = self->_pagesStack[ pickedWikiPage ];
-    [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
-    self->_currentWikiContentViewController = contentViewController;
-
-    [ self addSubview: contentViewController.view ];
-    [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
-
-    PWOpenedWikiPage* openedWikiPage = [ PWOpenedWikiPage openedWikiPageWithContentViewUUID: contentViewController.UUID
-                                                                      currentOpenedWikiPage: pickedWikiPage ];
-    [ self.sidebarTabsTableController pushOpenedWikiPage: openedWikiPage ];
+        [ self.sidebarTabsTableController pushOpenedWikiPage: openedWikiPage ];
+        }
     }
 
 - ( void ) awakeFromNib
@@ -102,22 +97,17 @@
 
                 PWOpenedWikiPage* newSelectedPage = _Change[ @"new" ];
 
-                if ( !( self->_pagesStack[ newSelectedPage ] ) )
-                    {
-                    PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: newSelectedPage owner: self ];
-                    NSLog( @"%@", wikiContentViewController.UUID );
-
-                    if ( wikiContentViewController )
-                        [ self->_pagesStack addEntriesFromDictionary: @{ newSelectedPage : wikiContentViewController } ];
-                    }
-
                 [ self setSubviews: @[] ];
-                PWWikiContentViewController* contentViewController = self->_pagesStack[ newSelectedPage ];
-                [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
-                self->_currentWikiContentViewController = contentViewController;
+                PWWikiContentViewController* contentViewController = self->_contentViewControllers[ newSelectedPage.contentViewUUID ];
 
-                [ self addSubview: contentViewController.view ];
-                [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
+                if ( contentViewController )
+                    {
+                    [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
+                    self->_currentWikiContentViewController = contentViewController;
+
+                    [ self addSubview: contentViewController.view ];
+                    [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
+                    }
                 } ];
         }
     }
