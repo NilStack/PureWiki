@@ -25,6 +25,7 @@
 #import "PWNavButtonsPairView.h"
 #import "PWWikiContentViewController.h"
 #import "PWWikiContentView.h"
+#import "PWWikiPageBackForwardList.h"
 
 // PWNavButtonsPairView class
 @implementation PWNavButtonsPairView
@@ -55,10 +56,15 @@
 #pragma mark Actions
 - ( void ) reload
     {
-    WebView* theWebView = self->_bindingContentViewController.wikiContentView.webView;
+//    WebView* theWebView = self->_bindingContentViewController.wikiContentView.webView;
+//
+//    [ self.goBackButton setEnabled: theWebView.canGoBack ];
+//    [ self.goForwardButton setEnabled: theWebView.canGoForward ];
 
-    [ self.goBackButton setEnabled: theWebView.canGoBack ];
-    [ self.goForwardButton setEnabled: theWebView.canGoForward ];
+    PWWikiPageBackForwardList* theWebView = self->_bindingContentViewController.wikiContentView.backForwardList;
+
+    [ self.goBackButton setEnabled: theWebView.backListCount > 0 ];
+    [ self.goForwardButton setEnabled: theWebView.forwardListCount > 0 ];
     }
 
 @end // PWNavButtonsPairView class

@@ -69,6 +69,7 @@
 
     [ self.webView setPolicyDelegate: self ];
     [ self.webView setFrameLoadDelegate: self ];
+    [ self.webView setMaintainsBackForwardList: NO ];
     }
 
 #pragma mark Dynamic Properties
@@ -85,6 +86,11 @@
     return [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) openedWikiPage ];
     }
 
+- ( PWWikiPageBackForwardList* ) backForwardList
+    {
+    return self->_backForwardList;
+    }
+
 - ( NSString* ) UUID
     {
     return self->_UUID;
@@ -93,8 +99,8 @@
 #pragma mark IBActions
 - ( IBAction ) goBackAction: ( id )_Sender
     {
-    [ self.webView goBack: _Sender ];
     [ self->_backForwardList goBack ];
+    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
 
     #if DEBUG
     NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
@@ -106,8 +112,8 @@
 
 - ( IBAction ) goForwardAction: ( id )_Sender
     {
-    [ self.webView goForward: _Sender ];
     [ self->_backForwardList goForward ];
+    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
 
     #if DEBUG
     NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
@@ -160,8 +166,9 @@
                             [ self.webView setPolicyDelegate: self ];
 
                             PWOpenedWikiPage* openedWikiPage =
-                                [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: self.UUID openedWikiPage: _MatchedPages.firstObject ];
-
+                                [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: self.UUID
+                                                                          openedWikiPage: _MatchedPages.firstObject
+                                                                                     URL: archiveURL ];
                             [ self->_backForwardList addItem: openedWikiPage ];
                             }
                         } failure:

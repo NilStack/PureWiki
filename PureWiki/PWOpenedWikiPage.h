@@ -34,13 +34,16 @@
 
 @property ( strong, readwrite ) NSString* hostContentViewUUID;
 @property ( strong, readwrite ) WikiPage* openedWikiPage;
+@property ( strong, readonly ) NSURL* URL;
 
 #pragma mark Initializations
 + ( instancetype ) openedWikiPageWithHostContentViewUUID: ( NSString* )_UUID
-                                          openedWikiPage: ( WikiPage* )_WikiPage;
+                                          openedWikiPage: ( WikiPage* )_WikiPage
+                                                     URL: ( NSURL* )_URL;
 
 - ( instancetype ) initWithHostContentViewUUID: ( NSString* )_UUID
-                                openedWikiPage: ( WikiPage* )_WikiPage;
+                                openedWikiPage: ( WikiPage* )_WikiPage
+                                           URL: ( NSURL* )_URL;
 
 #pragma mark Comparing
 - ( BOOL ) isEqualToOpendedWikiPage: ( PWOpenedWikiPage* )_Rhs;

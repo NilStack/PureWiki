@@ -53,6 +53,7 @@
 #pragma mark Ivar Properties
 @property ( strong, readwrite ) WikiPage* wikiPage;
 @property ( weak, readwrite ) id <PWWikiContentViewOwner> owner;
+@property ( strong, readonly ) PWWikiPageBackForwardList* backForwardList;
 
 @property ( strong, readonly ) NSString* UUID;
 

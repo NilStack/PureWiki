@@ -29,6 +29,10 @@
 // PWOpenedWikiPage class
 @implementation PWOpenedWikiPage
 
+@synthesize hostContentViewUUID;
+@synthesize openedWikiPage;
+@dynamic URL;
+
 - ( NSString* ) description
     {
     return [ NSString stringWithFormat: @"%@ : %@", self.hostContentViewUUID, self.openedWikiPage.URL ];
@@ -37,14 +41,16 @@
 #pragma mark Initializations
 + ( instancetype ) openedWikiPageWithHostContentViewUUID: ( NSString* )_UUID
                                           openedWikiPage: ( WikiPage* )_WikiPage
+                                                     URL: ( NSURL* )_URL
     {
-    return [ [ self alloc ] initWithHostContentViewUUID: _UUID openedWikiPage: _WikiPage ];
+    return [ [ self alloc ] initWithHostContentViewUUID: _UUID openedWikiPage: _WikiPage URL: _URL ];
     }
 
 - ( instancetype ) initWithHostContentViewUUID: ( NSString* )_UUID
                                 openedWikiPage: ( WikiPage* )_WikiPage
+                                           URL: ( NSURL* )_URL
     {
-    if ( self = [ super initWithURLString: _WikiPage.URL.absoluteString
+    if ( self = [ super initWithURLString: _URL.absoluteString
                                     title: _WikiPage.title
                   lastVisitedTimeInterval: 0.f ] )
         {
@@ -73,6 +79,12 @@
         return [ self isEqualToOpendedWikiPage: ( PWOpenedWikiPage* )_Rhs ];
 
     return [ super isEqual: _Rhs ];
+    }
+
+#pragma mark Dynamic Properties
+- ( NSURL* ) URL
+    {
+    return [ NSURL URLWithString: self.URLString ];
     }
 
 @end // PWOpenedWikiPage class
