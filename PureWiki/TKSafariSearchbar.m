@@ -28,6 +28,7 @@
 #import "PWSearchResultsAttachPanel.h"
 #import "PWActionNotifications.h"
 #import "PWSidebarTabsTableController.h"
+#import "PWOpenedWikiPage.h"
 
 #import "__TKSafariSearchbar.h"
 #import "__TKSearchbarBackingLayer.h"
@@ -99,15 +100,15 @@
                                keyPath: PWSidebarCurrentSelectedPageKVOPath
                                options: NSKeyValueObservingOptionNew
                                  block:
-            ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change)
+            ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change )
                 {
                 #if DEBUG
                 NSLog( @">>> (Log:%s) Current selected page has been changed: \n%@", __PRETTY_FUNCTION__, _Change );
                 #endif
 
-                WikiPage* newSelectedPage = _Change[ @"new" ];
-                [ self setFrozenTitle: [ newSelectedPage title ] ];
-                [ self setStringValue: [ newSelectedPage title ] ];
+                PWOpenedWikiPage* newSelectedPage = _Change[ @"new" ];
+                [ self setFrozenTitle: [ newSelectedPage.currentOpenedWikiPage title ] ];
+                [ self setStringValue: [ newSelectedPage.currentOpenedWikiPage title ] ];
                 } ];
         }
     }

@@ -32,4 +32,24 @@
     return self;
     }
 
+#pragma mark Comparing
+- ( BOOL ) isEqualToOpendedWikiPage: ( PWOpenedWikiPage* )_Rhs
+    {
+    if ( self == _Rhs )
+        return YES;
+
+    return [ self.contentViewUUID isEqualToString: _Rhs.contentViewUUID ];
+    }
+
+- ( BOOL ) isEqual: ( id )_Rhs
+    {
+    if ( self == _Rhs )
+        return YES;
+
+    if ( [ _Rhs isKindOfClass: [ self class ] ] )
+        return [ self isEqualToOpendedWikiPage: ( PWOpenedWikiPage* )_Rhs ];
+
+    return [ super isEqual: _Rhs ];
+    }
+
 @end // PWOpenedWikiPage class

@@ -28,6 +28,7 @@
 #import "PWActionNotifications.h"
 #import "PWActionNotifications.h"
 #import "PWWikiContentView.h"
+#import "PWOpenedWikiPage.h"
 
 #import "WikiPage.h"
 
@@ -38,7 +39,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 // Private Interfaces
 @interface PWSidebarTabsTableController ()
 
-- ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif;
+//- ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif;
 - ( void ) _wikiContentViewWillNavigate: ( NSNotification* )_Notif;
 
 @end // Private Interfaces
@@ -52,7 +53,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     {
     if ( self = [ super initWithCoder: _Coder ] )
         {
-        self->_openedWikiPages = [ NSMutableDictionary dictionary ];
+        self->_openedWikiPages = [ NSMutableArray array ];
 
 //        [ [ NSNotificationCenter defaultCenter ] addObserver: self
 //                                                    selector: @selector( _userDidPickUpSearchItem: )
@@ -72,6 +73,31 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     {
     [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidPickUpSearchItemNotif object: nil ];
     [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiContentViewWillNavigateNotif object: nil ];
+    }
+
+#pragma mark Handling Data Source
+- ( void ) pushOpenedWikiPage: ( PWOpenedWikiPage* )_OpendedWikiPage
+    {
+    if ( _OpendedWikiPage )
+        {
+        NSUInteger index = [ self->_openedWikiPages indexOfObject: _OpendedWikiPage ];
+
+        if ( index == NSNotFound )
+            [ self->_openedWikiPages addObject: _OpendedWikiPage ];
+        else
+            {
+            PWOpenedWikiPage* opendedWikiPage = self->_openedWikiPages[ index ];
+            if ( opendedWikiPage.currentOpenedWikiPage != _OpendedWikiPage.currentOpenedWikiPage )
+                {
+                opendedWikiPage.currentOpenedWikiPage = _OpendedWikiPage.currentOpenedWikiPage;
+                [ self.sidebarTabsTable reloadData ];
+                }
+            }
+
+        [ self.sidebarTabsTable reloadData ];
+        NSIndexSet* selectRowIndexes = [ NSIndexSet indexSetWithIndex: self->_openedWikiPages.count - 1 ];
+        [ self.sidebarTabsTable selectRowIndexes: selectRowIndexes byExtendingSelection: NO ];
+        }
     }
 
 #pragma mark Conforms to <NSTableViewDataSource>
@@ -98,8 +124,8 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
                     row: ( NSInteger )_Row
     {
     PWSidebarTabsTableCell* resultCellView = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
-    WikiPage* wikiPage = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
-    [ resultCellView setWikiPage: wikiPage ];
+    PWOpenedWikiPage* opendedWikiPage = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
+    [ resultCellView setWikiPage: opendedWikiPage.currentOpenedWikiPage ];
 
     return resultCellView;
     }
@@ -114,7 +140,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     }
 
 #pragma mark Dynamic Properties
-- ( WikiPage* ) currentSelectedPage
+- ( PWOpenedWikiPage* ) currentSelectedPage
     {
     return self->_currentSelectedPage;
     }

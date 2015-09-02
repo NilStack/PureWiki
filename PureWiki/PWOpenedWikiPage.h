@@ -24,4 +24,7 @@
 - ( instancetype ) initWithContentViewUUID: ( NSString* )_UUID
                      currentOpenedWikiPage: ( WikiPage* )_WikiPage;
 
+#pragma mark Comparing
+- ( BOOL ) isEqualToOpendedWikiPage: ( PWOpenedWikiPage* )_Rhs;
+
 @end // PWOpenedWikiPage class

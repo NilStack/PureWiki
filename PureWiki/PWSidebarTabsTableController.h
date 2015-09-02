@@ -35,12 +35,16 @@ NSString extern* const PWSidebarCurrentSelectedPageKVOPath;
 @interface PWSidebarTabsTableController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
     {
 @protected
+    // @[ PWOpenedWikiPage. … ]
     NSMutableArray __strong* _openedWikiPages;
-    WikiPage __weak* _currentSelectedPage;
+    PWOpenedWikiPage __weak* _currentSelectedPage;
     }
 
 @property ( weak ) IBOutlet PWSidebarTabsTable* sidebarTabsTable;
-@property ( weak, readonly ) WikiPage* currentSelectedPage;
+@property ( weak, readonly ) PWOpenedWikiPage* currentSelectedPage;
+
+#pragma mark Handling Data Source
+- ( void ) pushOpenedWikiPage: ( PWOpenedWikiPage* )_OpendedWikiPage;
 
 @end // PWSidebarTabsTableController class
 

@@ -37,7 +37,7 @@
 @interface PWStackContainerView : NSView <PWWikiContentViewOwner>
     {
 @protected
-    // @{ WikiPage : PWWikiContentViewController }
+    // @{ PWOpendedWikiPage : PWWikiContentViewController }
     NSMutableDictionary __strong* _pagesStack;
     FBKVOController __strong* _KVOController;
 
