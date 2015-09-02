@@ -28,6 +28,7 @@
 @class PWCastrateFactory;
 @class PWStackContainerView;
 @class PWNavButtonsPairView;
+@class PWWikiPageBackForwardList;
 
 @class WikiPage;
 @class WikiEngine;
@@ -41,6 +42,7 @@
     WikiEngine __strong* _wikiEngine;
 
     WikiPage __strong __block* _wikiPage;
+    PWWikiPageBackForwardList __strong* _backForwardList;
     WebView __strong* _backingWebView;
 
     NSString __strong* _UUID;

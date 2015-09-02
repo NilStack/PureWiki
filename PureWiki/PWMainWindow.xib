@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="271.5" height="1056"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMc-KE-Bwg">
+                                    <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMc-KE-Bwg">
                                         <rect key="frame" x="0.0" y="-1056" width="271" height="970"/>
                                         <clipView key="contentView" drawsBackground="NO" id="ZIl-WM-q3A">
                                             <rect key="frame" x="0.0" y="0.0" width="271" height="970"/>
@@ -108,7 +108,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-PV-CRz">
+                                    <searchField wantsLayer="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-PV-CRz">
                                         <rect key="frame" x="20" y="-73" width="231" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="Io0-ET-7OH"/>
@@ -201,7 +201,7 @@
                 <outlet property="goBackButton" destination="ZEs-0h-fYF" id="ORI-RM-nwh"/>
                 <outlet property="goForwardButton" destination="qms-6d-6Oy" id="uTL-Tc-FFP"/>
             </connections>
-            <point key="canvasLocation" x="368" y="57"/>
+            <point key="canvasLocation" x="303" y="-17"/>
         </customView>
         <button verticalHuggingPriority="750" id="nVW-V1-1tx">
             <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>

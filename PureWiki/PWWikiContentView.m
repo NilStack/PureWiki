@@ -29,6 +29,8 @@
 #import "PWActionNotifications.h"
 #import "PWWikiPageArchive.h"
 #import "PWUtilities.h"
+#import "PWWikiPageBackForwardList.h"
+#import "PWOpenedWikiPage.h"
 
 #import "WikiPage.h"
 #import "WikiEngine.h"
@@ -52,6 +54,7 @@
         {
         self->_wikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
 
+        self->_backForwardList = [ [ PWWikiPageBackForwardList alloc ] init ];
         self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
         self->_UUID = [ @"🐠" stringByAppendingString: PWNonce() ];
         }
@@ -95,14 +98,16 @@
 #pragma mark IBActions
 - ( IBAction ) goBackAction: ( id )_Sender
     {
-    [ self->_backingWebView goBack: _Sender ];
-    [ self.webView.mainFrame loadArchive: self->_backingWebView.mainFrame.dataSource.webArchive ];
+//    [ self->_backingWebView goBack: _Sender ];
+//    [ self->_backForwardList goBack ];
+//    [ self.webView.mainFrame loadArchive: self->_backingWebView.mainFrame.dataSource.webArchive ];
     }
 
 - ( IBAction ) goForwardAction: ( id )_Sender
     {
-    [ self->_backingWebView goForward: _Sender ];
-    [ self.webView.mainFrame loadArchive: self->_backingWebView.mainFrame.dataSource.webArchive ];
+//    [ self->_backingWebView goForward: _Sender ];
+//    [ self->_backForwardList goForward ];
+//    [ self.webView.mainFrame loadArchive: self->_backingWebView.mainFrame.dataSource.webArchive ];
     }
 
 #pragma mark Conforms to <WebFrameLoadDelegate>
@@ -136,6 +141,12 @@
 
                             // Resume routing navigation action
                             [ self.webView setPolicyDelegate: self ];
+
+                            PWOpenedWikiPage* openedWikiPage =
+                                [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: self.UUID openedWikiPage: _MatchedPages.firstObject ];
+
+                            [ self->_backForwardList addItem: openedWikiPage ];
+                            NSLog( @"🐏%@", self->_backForwardList );
                             }
                         } failure:
                             ^( NSError* _Error )
