@@ -38,9 +38,6 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 
 // Private Interfaces
 @interface PWSidebarTabsTableController ()
-
-- ( void ) _wikiContentViewWillNavigate: ( NSNotification* )_Notif;
-
 @end // Private Interfaces
 
 // PWSidebarTabsTableController class
@@ -51,21 +48,9 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
     {
     if ( self = [ super initWithCoder: _Coder ] )
-        {
         self->_openedWikiPages = [ NSMutableArray array ];
 
-        [ [ NSNotificationCenter defaultCenter ] addObserver: self
-                                                    selector: @selector( _wikiContentViewWillNavigate: )
-                                                        name: PureWikiContentViewWillNavigateNotif
-                                                      object: nil ];
-        }
-
     return self;
-    }
-
-- ( void ) dealloc
-    {
-    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiContentViewWillNavigateNotif object: nil ];
     }
 
 #pragma mark Handling Data Source
@@ -136,12 +121,6 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 - ( PWOpenedWikiPage* ) currentSelectedPage
     {
     return self->_currentSelectedPage;
-    }
-
-#pragma mark Private Interfaces
-- ( void ) _wikiContentViewWillNavigate: ( NSNotification* )_Notif
-    {
-    NSLog( @"🍌%@", _Notif );
     }
 
 @end // PWSidebarTabsTableController class

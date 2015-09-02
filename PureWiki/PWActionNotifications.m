@@ -29,11 +29,9 @@ NSString* const PureWikiDidEmptySearchNotif = @"PureWikiDidEmptySearchNotif";
 NSString* const PureWikiDidPickUpSearchItemNotif = @"PureWikiDidPickUpSearchItemNotif";
 NSString* const PureWikiTabsSelectionDidChangeNotif = @"PureWikiTabsSelectionDidChangeNotif";
 
-NSString* const PureWikiContentViewWillNavigateNotif = @"PureWikiContentViewWillNavigateNotif";
-
 NSString* const kPage = @"kPage";
 NSString* const kPages = @"kPages";
-NSString* const kRequest = @"kRequest";
+NSString* const kOpenedPage = @"kOpenedPage";
 
 /*===============================================================================┐
 |                                                                                | 

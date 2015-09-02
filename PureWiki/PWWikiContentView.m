@@ -136,9 +136,6 @@
 
                             // Resume routing navigation action
                             [ self.webView setPolicyDelegate: self ];
-//                            [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiContentViewWillNavigateNotif
-//                                                                                   object: self
-//                                                                                 userInfo: @{ kPage : self->_wikiPage } ];
                             }
                         } failure:
                             ^( NSError* _Error )
