@@ -106,9 +106,9 @@
                 NSLog( @">>> (Log:%s) Current selected page has been changed: \n%@", __PRETTY_FUNCTION__, _Change );
                 #endif
 
-                PWOpenedWikiPage* newSelectedPage = _Change[ @"new" ];
-                [ self setFrozenTitle: [ newSelectedPage.currentOpenedWikiPage title ] ];
-                [ self setStringValue: [ newSelectedPage.currentOpenedWikiPage title ] ];
+                PWOpenedWikiPage* newSelectedOpenedPage = _Change[ @"new" ];
+                [ self setFrozenTitle: [ newSelectedOpenedPage.currentOpenedWikiPage title ] ];
+                [ self setStringValue: [ newSelectedOpenedPage.currentOpenedWikiPage title ] ];
                 } ];
         }
     }

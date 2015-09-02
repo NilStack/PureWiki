@@ -29,6 +29,11 @@
 // PWOpenedWikiPage class
 @implementation PWOpenedWikiPage
 
+- ( NSString* ) description
+    {
+    return [ NSString stringWithFormat: @"%@ : %@", self.contentViewUUID, self.currentOpenedWikiPage.URL ];
+    }
+
 #pragma mark Initializations
 + ( instancetype ) openedWikiPageWithContentViewUUID: ( NSString* )_UUID
                                currentOpenedWikiPage: ( WikiPage* )_WikiPage

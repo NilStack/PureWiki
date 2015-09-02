@@ -75,12 +75,16 @@
                                  block:
             ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change)
                 {
-                #if DEBUG
-                NSLog( @">>> (Log:%s) Current selected page has been changed: \n%@", __PRETTY_FUNCTION__, _Change );
-                #endif
+                PWOpenedWikiPage* newSelectedOpenedPage = _Change[ @"new" ];
+                PWWikiContentViewController* contentViewController = self->_contentViewControllers[ newSelectedOpenedPage.contentViewUUID ];
 
-                PWOpenedWikiPage* newSelectedPage = _Change[ @"new" ];
-                PWWikiContentViewController* contentViewController = self->_contentViewControllers[ newSelectedPage.contentViewUUID ];
+                #if DEBUG
+                NSLog( @">>> (Log:%s) Current selected page hosting in %@ (%@) has been changed: \n%@"
+                     , __PRETTY_FUNCTION__
+                     , contentViewController, contentViewController.UUID
+                     , _Change
+                     );
+                #endif
 
                 if ( contentViewController )
                     {
