@@ -32,15 +32,15 @@
 // and sub item of PWWikiPageBackForwardList
 @interface PWOpenedWikiPage : WebHistoryItem
 
-@property ( strong, readwrite ) NSString* contentViewUUID;
+@property ( strong, readwrite ) NSString* hostContentViewUUID;
 @property ( strong, readwrite ) WikiPage* currentOpenedWikiPage;
 
 #pragma mark Initializations
-+ ( instancetype ) openedWikiPageWithContentViewUUID: ( NSString* )_UUID
-                               currentOpenedWikiPage: ( WikiPage* )_WikiPage;
++ ( instancetype ) openedWikiPageWithHostContentViewUUID: ( NSString* )_UUID
+                                   currentOpenedWikiPage: ( WikiPage* )_WikiPage;
 
-- ( instancetype ) initWithContentViewUUID: ( NSString* )_UUID
-                     currentOpenedWikiPage: ( WikiPage* )_WikiPage;
+- ( instancetype ) initWithHostContentViewUUID: ( NSString* )_UUID
+                         currentOpenedWikiPage: ( WikiPage* )_WikiPage;
 
 #pragma mark Comparing
 - ( BOOL ) isEqualToOpendedWikiPage: ( PWOpenedWikiPage* )_Rhs;

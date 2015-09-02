@@ -31,24 +31,24 @@
 
 - ( NSString* ) description
     {
-    return [ NSString stringWithFormat: @"%@ : %@", self.contentViewUUID, self.currentOpenedWikiPage.URL ];
+    return [ NSString stringWithFormat: @"%@ : %@", self.hostContentViewUUID, self.currentOpenedWikiPage.URL ];
     }
 
 #pragma mark Initializations
-+ ( instancetype ) openedWikiPageWithContentViewUUID: ( NSString* )_UUID
-                               currentOpenedWikiPage: ( WikiPage* )_WikiPage
++ ( instancetype ) openedWikiPageWithHostContentViewUUID: ( NSString* )_UUID
+                                   currentOpenedWikiPage: ( WikiPage* )_WikiPage
     {
-    return [ [ self alloc ] initWithContentViewUUID: _UUID currentOpenedWikiPage: _WikiPage ];
+    return [ [ self alloc ] initWithHostContentViewUUID: _UUID currentOpenedWikiPage: _WikiPage ];
     }
 
-- ( instancetype ) initWithContentViewUUID: ( NSString* )_UUID
-                     currentOpenedWikiPage: ( WikiPage* )_WikiPage
+- ( instancetype ) initWithHostContentViewUUID: ( NSString* )_UUID
+                         currentOpenedWikiPage: ( WikiPage* )_WikiPage
     {
     if ( self = [ super initWithURLString: _WikiPage.URL.absoluteString
                                     title: _WikiPage.title
                   lastVisitedTimeInterval: 0.f ] )
         {
-        self.contentViewUUID = _UUID;
+        self.hostContentViewUUID = _UUID;
         self.currentOpenedWikiPage = _WikiPage;
         }
 
@@ -61,7 +61,7 @@
     if ( self == _Rhs )
         return YES;
 
-    return [ self.contentViewUUID isEqualToString: _Rhs.contentViewUUID ];
+    return [ self.hostContentViewUUID isEqualToString: _Rhs.hostContentViewUUID ];
     }
 
 - ( BOOL ) isEqual: ( id )_Rhs

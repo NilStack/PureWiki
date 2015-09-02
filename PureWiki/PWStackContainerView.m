@@ -76,7 +76,7 @@
             ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change)
                 {
                 PWOpenedWikiPage* newSelectedOpenedPage = _Change[ @"new" ];
-                PWWikiContentViewController* contentViewController = self->_contentViewControllers[ newSelectedOpenedPage.contentViewUUID ];
+                PWWikiContentViewController* contentViewController = self->_contentViewControllers[ newSelectedOpenedPage.hostContentViewUUID ];
 
                 #if DEBUG
                 NSLog( @">>> (Log:%s) Current selected page hosting in %@ (%@) has been changed: \n%@"
@@ -127,8 +127,8 @@
 
     if ( wikiContentViewController )
         {
-        PWOpenedWikiPage* openedWikiPage = [ PWOpenedWikiPage openedWikiPageWithContentViewUUID: wikiContentViewController.UUID
-                                                                          currentOpenedWikiPage: pickedWikiPage ];
+        PWOpenedWikiPage* openedWikiPage = [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: wikiContentViewController.UUID
+                                                                              currentOpenedWikiPage: pickedWikiPage ];
         [ self->_pagesStack addObject: openedWikiPage ];
         self->_contentViewControllers[ wikiContentViewController.UUID ] = wikiContentViewController;
 
