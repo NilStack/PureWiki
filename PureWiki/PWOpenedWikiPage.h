@@ -33,14 +33,14 @@
 @interface PWOpenedWikiPage : WebHistoryItem
 
 @property ( strong, readwrite ) NSString* hostContentViewUUID;
-@property ( strong, readwrite ) WikiPage* currentOpenedWikiPage;
+@property ( strong, readwrite ) WikiPage* openedWikiPage;
 
 #pragma mark Initializations
 + ( instancetype ) openedWikiPageWithHostContentViewUUID: ( NSString* )_UUID
-                                   currentOpenedWikiPage: ( WikiPage* )_WikiPage;
+                                          openedWikiPage: ( WikiPage* )_WikiPage;
 
 - ( instancetype ) initWithHostContentViewUUID: ( NSString* )_UUID
-                         currentOpenedWikiPage: ( WikiPage* )_WikiPage;
+                                openedWikiPage: ( WikiPage* )_WikiPage;
 
 #pragma mark Comparing
 - ( BOOL ) isEqualToOpendedWikiPage: ( PWOpenedWikiPage* )_Rhs;

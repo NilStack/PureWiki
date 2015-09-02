@@ -128,7 +128,7 @@
     if ( wikiContentViewController )
         {
         PWOpenedWikiPage* openedWikiPage = [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: wikiContentViewController.UUID
-                                                                              currentOpenedWikiPage: pickedWikiPage ];
+                                                                                     openedWikiPage: pickedWikiPage ];
         [ self->_pagesStack addObject: openedWikiPage ];
         self->_contentViewControllers[ wikiContentViewController.UUID ] = wikiContentViewController;
 

@@ -107,8 +107,8 @@
                 #endif
 
                 PWOpenedWikiPage* newSelectedOpenedPage = _Change[ @"new" ];
-                [ self setFrozenTitle: [ newSelectedOpenedPage.currentOpenedWikiPage title ] ];
-                [ self setStringValue: [ newSelectedOpenedPage.currentOpenedWikiPage title ] ];
+                [ self setFrozenTitle: [ newSelectedOpenedPage.openedWikiPage title ] ];
+                [ self setStringValue: [ newSelectedOpenedPage.openedWikiPage title ] ];
                 } ];
         }
     }

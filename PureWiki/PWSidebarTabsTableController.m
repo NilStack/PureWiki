@@ -65,9 +65,9 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
         else
             {
             PWOpenedWikiPage* opendedWikiPage = self->_openedWikiPages[ index ];
-            if ( opendedWikiPage.currentOpenedWikiPage != _OpendedWikiPage.currentOpenedWikiPage )
+            if ( opendedWikiPage.openedWikiPage != _OpendedWikiPage.openedWikiPage )
                 {
-                opendedWikiPage.currentOpenedWikiPage = _OpendedWikiPage.currentOpenedWikiPage;
+                opendedWikiPage.openedWikiPage = _OpendedWikiPage.openedWikiPage;
                 [ self.sidebarTabsTable reloadData ];
                 }
             }
@@ -103,7 +103,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     {
     PWSidebarTabsTableCell* resultCellView = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
     PWOpenedWikiPage* opendedWikiPage = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
-    [ resultCellView setWikiPage: opendedWikiPage.currentOpenedWikiPage ];
+    [ resultCellView setWikiPage: opendedWikiPage.openedWikiPage ];
 
     return resultCellView;
     }

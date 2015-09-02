@@ -31,25 +31,25 @@
 
 - ( NSString* ) description
     {
-    return [ NSString stringWithFormat: @"%@ : %@", self.hostContentViewUUID, self.currentOpenedWikiPage.URL ];
+    return [ NSString stringWithFormat: @"%@ : %@", self.hostContentViewUUID, self.openedWikiPage.URL ];
     }
 
 #pragma mark Initializations
 + ( instancetype ) openedWikiPageWithHostContentViewUUID: ( NSString* )_UUID
-                                   currentOpenedWikiPage: ( WikiPage* )_WikiPage
+                                          openedWikiPage: ( WikiPage* )_WikiPage
     {
-    return [ [ self alloc ] initWithHostContentViewUUID: _UUID currentOpenedWikiPage: _WikiPage ];
+    return [ [ self alloc ] initWithHostContentViewUUID: _UUID openedWikiPage: _WikiPage ];
     }
 
 - ( instancetype ) initWithHostContentViewUUID: ( NSString* )_UUID
-                         currentOpenedWikiPage: ( WikiPage* )_WikiPage
+                                openedWikiPage: ( WikiPage* )_WikiPage
     {
     if ( self = [ super initWithURLString: _WikiPage.URL.absoluteString
                                     title: _WikiPage.title
                   lastVisitedTimeInterval: 0.f ] )
         {
         self.hostContentViewUUID = _UUID;
-        self.currentOpenedWikiPage = _WikiPage;
+        self.openedWikiPage = _WikiPage;
         }
 
     return self;
