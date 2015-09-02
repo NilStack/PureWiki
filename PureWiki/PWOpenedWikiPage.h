@@ -22,13 +22,15 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Foundation;
+@import WebKit;
 
 @class WikiPage;
 
 // PWOpenedWikiPage class
-// Be used as data item of PWSidebarTabsTable table view
-@interface PWOpenedWikiPage : NSObject
+
+// Will be used as data item of PWSidebarTabsTable table view
+// and sub item of PWWikiPageBackForwardList
+@interface PWOpenedWikiPage : WebHistoryItem
 
 @property ( strong, readwrite ) NSString* contentViewUUID;
 @property ( strong, readwrite ) WikiPage* currentOpenedWikiPage;

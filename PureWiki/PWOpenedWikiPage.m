@@ -44,7 +44,9 @@
 - ( instancetype ) initWithContentViewUUID: ( NSString* )_UUID
                      currentOpenedWikiPage: ( WikiPage* )_WikiPage
     {
-    if ( self = [ super init ] )
+    if ( self = [ super initWithURLString: _WikiPage.URL.absoluteString
+                                    title: _WikiPage.title
+                  lastVisitedTimeInterval: 0.f ] )
         {
         self.contentViewUUID = _UUID;
         self.currentOpenedWikiPage = _WikiPage;
