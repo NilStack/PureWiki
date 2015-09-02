@@ -96,8 +96,6 @@
                 #endif
 
                 PWOpenedWikiPage* newSelectedPage = _Change[ @"new" ];
-
-                [ self setSubviews: @[] ];
                 PWWikiContentViewController* contentViewController = self->_contentViewControllers[ newSelectedPage.contentViewUUID ];
 
                 if ( contentViewController )
@@ -105,6 +103,7 @@
                     [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
                     self->_currentWikiContentViewController = contentViewController;
 
+                    [ self setSubviews: @[] ];
                     [ self addSubview: contentViewController.view ];
                     [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
                     }
