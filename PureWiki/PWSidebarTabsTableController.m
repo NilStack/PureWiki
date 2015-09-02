@@ -39,7 +39,6 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 // Private Interfaces
 @interface PWSidebarTabsTableController ()
 
-//- ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif;
 - ( void ) _wikiContentViewWillNavigate: ( NSNotification* )_Notif;
 
 @end // Private Interfaces
@@ -55,11 +54,6 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
         {
         self->_openedWikiPages = [ NSMutableArray array ];
 
-//        [ [ NSNotificationCenter defaultCenter ] addObserver: self
-//                                                    selector: @selector( _userDidPickUpSearchItem: )
-//                                                        name: PureWikiDidPickUpSearchItemNotif
-//                                                      object: nil ];
-
         [ [ NSNotificationCenter defaultCenter ] addObserver: self
                                                     selector: @selector( _wikiContentViewWillNavigate: )
                                                         name: PureWikiContentViewWillNavigateNotif
@@ -71,7 +65,6 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 
 - ( void ) dealloc
     {
-    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidPickUpSearchItemNotif object: nil ];
     [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiContentViewWillNavigateNotif object: nil ];
     }
 
@@ -145,17 +138,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     return self->_currentSelectedPage;
     }
 
-//#pragma mark Private Interfaces
-//- ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif
-//    {
-//    WikiPage* wikiPage = _Notif.userInfo[ kPage ];
-//    [ self->_openedWikiPages addObject: wikiPage ];
-//    [ self.sidebarTabsTable reloadData ];
-//
-//    NSIndexSet* selectRowIndexes = [ NSIndexSet indexSetWithIndex: self->_openedWikiPages.count - 1 ];
-//    [ self.sidebarTabsTable selectRowIndexes: selectRowIndexes byExtendingSelection: NO ];
-//    }
-
+#pragma mark Private Interfaces
 - ( void ) _wikiContentViewWillNavigate: ( NSNotification* )_Notif
     {
     NSLog( @"🍌%@", _Notif );

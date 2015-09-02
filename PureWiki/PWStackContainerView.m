@@ -38,6 +38,7 @@
 
 // Private Interfaces
 @interface PWStackContainerView ()
+- ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif;
 @end // Private Interfaces
 
 // PWStackContainerView class
@@ -62,23 +63,6 @@
         }
 
     return self;
-    }
-
-#pragma mark Private Interfaces
-- ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif
-    {
-    WikiPage* pickedWikiPage = _Notif.userInfo[ kPage ];
-    PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: pickedWikiPage owner: self ];
-
-    if ( wikiContentViewController )
-        {
-        PWOpenedWikiPage* openedWikiPage = [ PWOpenedWikiPage openedWikiPageWithContentViewUUID: wikiContentViewController.UUID
-                                                                          currentOpenedWikiPage: pickedWikiPage ];
-        [ self->_pagesStack addObject: openedWikiPage ];
-        self->_contentViewControllers[ wikiContentViewController.UUID ] = wikiContentViewController;
-
-        [ self.sidebarTabsTableController pushOpenedWikiPage: openedWikiPage ];
-        }
     }
 
 - ( void ) awakeFromNib
@@ -129,6 +113,23 @@
 - ( PWWikiContentViewController* ) currentWikiContentViewController
     {
     return self->_currentWikiContentViewController;
+    }
+
+#pragma mark Private Interfaces
+- ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif
+    {
+    WikiPage* pickedWikiPage = _Notif.userInfo[ kPage ];
+    PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: pickedWikiPage owner: self ];
+
+    if ( wikiContentViewController )
+        {
+        PWOpenedWikiPage* openedWikiPage = [ PWOpenedWikiPage openedWikiPageWithContentViewUUID: wikiContentViewController.UUID
+                                                                          currentOpenedWikiPage: pickedWikiPage ];
+        [ self->_pagesStack addObject: openedWikiPage ];
+        self->_contentViewControllers[ wikiContentViewController.UUID ] = wikiContentViewController;
+
+        [ self.sidebarTabsTableController pushOpenedWikiPage: openedWikiPage ];
+        }
     }
 
 @end // PWStackContainerView class
