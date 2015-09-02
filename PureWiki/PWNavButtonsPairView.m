@@ -36,13 +36,13 @@
     {
     self->_bindingContentViewController = _BindingContentViewController;
 
-    WebView* theWebView = self->_bindingContentViewController.wikiContentView.webView;
+    PWWikiContentView* wikiContentView = self->_bindingContentViewController.wikiContentView;
 
-    [ self.goBackButton setTarget: theWebView ];
-    [ self.goBackButton setAction: @selector( goBack: ) ];
+    [ self.goBackButton setTarget: wikiContentView ];
+    [ self.goBackButton setAction: @selector( goBackAction: ) ];
 
-    [ self.goForwardButton setTarget: theWebView ];
-    [ self.goForwardButton setAction: @selector( goForward: ) ];
+    [ self.goForwardButton setTarget: wikiContentView ];
+    [ self.goForwardButton setAction: @selector( goForwardAction: ) ];
 
     [ self reload ];
     }

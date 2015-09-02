@@ -98,16 +98,28 @@
 #pragma mark IBActions
 - ( IBAction ) goBackAction: ( id )_Sender
     {
-//    [ self->_backingWebView goBack: _Sender ];
-//    [ self->_backForwardList goBack ];
-//    [ self.webView.mainFrame loadArchive: self->_backingWebView.mainFrame.dataSource.webArchive ];
+    [ self.webView goBack: _Sender ];
+    [ self->_backForwardList goBack ];
+
+    #if DEBUG
+    NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
+         , self.webView.backForwardList
+         , self->_backForwardList
+         );
+    #endif
     }
 
 - ( IBAction ) goForwardAction: ( id )_Sender
     {
-//    [ self->_backingWebView goForward: _Sender ];
-//    [ self->_backForwardList goForward ];
-//    [ self.webView.mainFrame loadArchive: self->_backingWebView.mainFrame.dataSource.webArchive ];
+    [ self.webView goForward: _Sender ];
+    [ self->_backForwardList goForward ];
+
+    #if DEBUG
+    NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
+         , self.webView.backForwardList
+         , self->_backForwardList
+         );
+    #endif
     }
 
 #pragma mark Conforms to <WebFrameLoadDelegate>
@@ -146,7 +158,6 @@
                                 [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: self.UUID openedWikiPage: _MatchedPages.firstObject ];
 
                             [ self->_backForwardList addItem: openedWikiPage ];
-                            NSLog( @"🐏%@", self->_backForwardList );
                             }
                         } failure:
                             ^( NSError* _Error )
