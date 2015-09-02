@@ -174,8 +174,11 @@
             [ self.owner.navButtonsPairView reload ];
             [ self.webView setPolicyDelegate: self ];
 
-        #if DEBUG
-            NSLog( @">>> (Info) 🌰Current back-forward list: %@", self.webView.backForwardList );
+            #if DEBUG
+            NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
+                 , self.webView.backForwardList
+                 , self->_backForwardList
+                 );
 
             WebHistoryItem* currentItem = self.webView.backForwardList.currentItem;
             NSLog( @">>> (Info) 🍉Current back-forward item: %@"
@@ -186,7 +189,7 @@
                     , @"Last Visited Time Interval" : @( currentItem.lastVisitedTimeInterval )
                     }
                  );
-        #endif
+            #endif
             }
         }
     }
