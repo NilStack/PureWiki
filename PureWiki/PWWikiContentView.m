@@ -42,6 +42,9 @@
 // PWWikiContentView class
 @implementation PWWikiContentView
 
+@dynamic canGoBack;
+@dynamic canGoForward;
+
 @dynamic wikiPage;
 @synthesize owner;
 
@@ -73,6 +76,16 @@
     }
 
 #pragma mark Dynamic Properties
+- ( BOOL ) canGoBack
+    {
+    return ( self->_backForwardList.backListCount > 0 );
+    }
+
+- ( BOOL ) canGoForward
+    {
+    return ( self->_backForwardList.forwardListCount > 0 );
+    }
+
 - ( void ) setWikiPage: ( WikiPage* )_WikiPage
     {
     [ self->_backingWebView.mainFrame stopLoading ];
@@ -84,11 +97,6 @@
 - ( WikiPage* ) wikiPage
     {
     return [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) openedWikiPage ];
-    }
-
-- ( PWWikiPageBackForwardList* ) backForwardList
-    {
-    return self->_backForwardList;
     }
 
 - ( NSString* ) UUID
@@ -124,13 +132,6 @@
     }
 
 #pragma mark Conforms to <WebFrameLoadDelegate>
-//- ( void )        webView: ( WebView* )_WebView
-//    didCommitLoadForFrame: ( WebFrame* )_Frame
-//    {
-//    if ( _WebView == self.webView )
-//        NSLog( @"🍇%@", self.webView.backForwardList );
-//    }
-
 - ( void )        webView: ( WebView* )_WebView
     didFinishLoadForFrame: ( WebFrame* )_Frame
     {
@@ -156,11 +157,7 @@
                         {
                         if ( _MatchedPages )
                             {
-//                            NSLog( @"%@", _Frame.dataSource.response );
-//                            NSLog( @"%@", self.webView.backForwardList );
-                            NSLog( @"🍇%@", archiveURL );
                             [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
-//                            NSLog( @"%@", self.webView.backForwardList );
 
                             // Resume routing navigation action
                             [ self.webView setPolicyDelegate: self ];

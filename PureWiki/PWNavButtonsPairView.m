@@ -56,15 +56,10 @@
 #pragma mark Actions
 - ( void ) reload
     {
-//    WebView* theWebView = self->_bindingContentViewController.wikiContentView.webView;
-//
-//    [ self.goBackButton setEnabled: theWebView.canGoBack ];
-//    [ self.goForwardButton setEnabled: theWebView.canGoForward ];
+    PWWikiContentView* wikiContentView = self->_bindingContentViewController.wikiContentView;
 
-    PWWikiPageBackForwardList* theWebView = self->_bindingContentViewController.wikiContentView.backForwardList;
-
-    [ self.goBackButton setEnabled: theWebView.backListCount > 0 ];
-    [ self.goForwardButton setEnabled: theWebView.forwardListCount > 0 ];
+    [ self.goBackButton setEnabled: wikiContentView.canGoBack ];
+    [ self.goForwardButton setEnabled: wikiContentView.canGoForward ];
     }
 
 @end // PWNavButtonsPairView class

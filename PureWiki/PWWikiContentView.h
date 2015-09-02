@@ -51,9 +51,11 @@
 @property ( weak ) IBOutlet WebView* webView;
 
 #pragma mark Ivar Properties
+@property ( assign, readonly ) BOOL canGoBack;
+@property ( assign, readonly ) BOOL canGoForward;
+
 @property ( strong, readwrite ) WikiPage* wikiPage;
 @property ( weak, readwrite ) id <PWWikiContentViewOwner> owner;
-@property ( strong, readonly ) PWWikiPageBackForwardList* backForwardList;
 
 @property ( strong, readonly ) NSString* UUID;
 
