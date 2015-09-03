@@ -83,22 +83,18 @@
 - ( BOOL ) canGoBack
     {
     #if DEBUG
-    NSLog( @">>> (Log%s) 🐙Back List Count: %d vs. %ld", __PRETTY_FUNCTION__
-         , self->_debuggingBFList.backListCount
-         , self->_backForwardList.backListCount
-         );
+     NSLog( @">>> (Log%s) 🐙Back List Count: %d vs. %ld", __PRETTY_FUNCTION__, _debuggingBFList.backListCount, _backForwardList.backListCount );
     #endif
+
     return ( self->_backForwardList.backListCount > 0 );
     }
 
 - ( BOOL ) canGoForward
     {
     #if DEBUG
-    NSLog( @">>> (Log%s) 🐙Forward List Count: %d vs. %ld", __PRETTY_FUNCTION__
-         , self->_debuggingBFList.forwardListCount
-         , self->_backForwardList.forwardListCount
-         );
+    NSLog( @">>> (Log%s) 🐙Forward List Count: %d vs. %ld", __PRETTY_FUNCTION__, _debuggingBFList.forwardListCount, _backForwardList.forwardListCount );
     #endif
+
     return ( self->_backForwardList.forwardListCount > 0 );
     }
 
@@ -138,20 +134,9 @@
 
     #if DEBUG
     NSLog( @"%@", self->_backForwardList );
-    NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
-         , self->_debuggingBFList
-         , self->_backForwardList
-         );
-
-    NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
-         , self->_debuggingBFList.backItem
-         , self->_backForwardList.backItem
-         );
-
-    NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
-         , self->_debuggingBFList.forwardItem
-         , self->_backForwardList.forwardItem
-         );
+    NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, self->_debuggingBFList, self->_backForwardList );
+    NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, self->_debuggingBFList.backItem, self->_backForwardList.backItem );
+    NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, self->_debuggingBFList.forwardItem, self->_backForwardList.forwardItem );
     #endif
     }
 
@@ -171,20 +156,9 @@
     [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
 
     #if DEBUG
-    NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
-         , self->_debuggingBFList
-         , self->_backForwardList
-         );
-
-    NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
-         , self->_debuggingBFList.backItem
-         , self->_backForwardList.backItem
-         );
-
-    NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
-         , self->_debuggingBFList.forwardItem
-         , self->_backForwardList.forwardItem
-         );
+    NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, self->_debuggingBFList, self->_backForwardList );
+    NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, self->_debuggingBFList.backItem, self->_backForwardList.backItem );
+    NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, self->_debuggingBFList.forwardItem, self->_backForwardList.forwardItem );
     #endif
     }
 
@@ -253,30 +227,9 @@
                 [ NSString stringWithFormat:@"window.scrollTo(%g, %g)", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
 
             #if DEBUG
-            NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
-                 , self->_debuggingBFList
-                 , self->_backForwardList
-                 );
-
-            NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
-                 , self->_debuggingBFList.backItem
-                 , self->_backForwardList.backItem
-                 );
-
-            NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
-                 , self->_debuggingBFList.forwardItem
-                 , self->_backForwardList.forwardItem
-                 );
-
-            WebHistoryItem* currentItem = self.webView.backForwardList.currentItem;
-            NSLog( @">>> (Info) 🍉Current back-forward item: %@"
-                 , @{ @"URL" : currentItem.URLString ?: [ NSNull null ]
-                    , @"Original URL" : currentItem.originalURLString ?: [ NSNull null ]
-                    , @"Title" : currentItem.title ?: [ NSNull null ]
-                    , @"Alternate Title" : currentItem.alternateTitle ?: [ NSNull null ]
-                    , @"Last Visited Time Interval" : @( currentItem.lastVisitedTimeInterval )
-                    }
-                 );
+            NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, _debuggingBFList, _backForwardList );
+            NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, _debuggingBFList.backItem, _backForwardList.backItem );
+            NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, _debuggingBFList.forwardItem, _backForwardList.forwardItem );
             #endif
             }
         }
