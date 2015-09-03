@@ -41,7 +41,7 @@
 @private
     WikiEngine __strong* _wikiEngine;
 
-    WebBackForwardList __strong* _backForwardList;
+    WebBackForwardList __strong* _debuggingBFList;
     PWWikiPageBackForwardList __strong* _fuckingBFList;
     WebView __strong* _backingWebView;
 

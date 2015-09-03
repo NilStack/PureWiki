@@ -57,7 +57,7 @@
         {
         self->_wikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
 
-        self->_backForwardList = [ [ WebBackForwardList alloc ] init ];
+        self->_debuggingBFList = [ [ WebBackForwardList alloc ] init ];
         self->_fuckingBFList = [ PWWikiPageBackForwardList backForwardList ];
         self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
         self->_UUID = [ @"🐠" stringByAppendingString: PWNonce() ];
@@ -79,14 +79,14 @@
 #pragma mark Dynamic Properties
 - ( BOOL ) canGoBack
     {
-    NSLog( @"🐙Back List Count: %d vs. %ld", self->_backForwardList.backListCount, self->_fuckingBFList.backListCount );
-    return ( self->_backForwardList.backListCount > 0 );
+    NSLog( @"🐙Back List Count: %d vs. %ld", self->_debuggingBFList.backListCount, self->_fuckingBFList.backListCount );
+    return ( self->_debuggingBFList.backListCount > 0 );
     }
 
 - ( BOOL ) canGoForward
     {
-    NSLog( @"🐙Forward List Count: %d vs. %ld", self->_backForwardList.forwardListCount, self->_fuckingBFList.forwardListCount );
-    return ( self->_backForwardList.forwardListCount > 0 );
+    NSLog( @"🐙Forward List Count: %d vs. %ld", self->_debuggingBFList.forwardListCount, self->_fuckingBFList.forwardListCount );
+    return ( self->_debuggingBFList.forwardListCount > 0 );
     }
 
 - ( void ) setWikiPage: ( WikiPage* )_WikiPage
@@ -99,7 +99,7 @@
 
 - ( WikiPage* ) wikiPage
     {
-    return [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) openedWikiPage ];
+    return [ ( PWOpenedWikiPage* )( self->_debuggingBFList.currentItem ) openedWikiPage ];
     }
 
 - ( NSString* ) UUID
@@ -110,14 +110,14 @@
 #pragma mark IBActions
 - ( IBAction ) goBackAction: ( id )_Sender
     {
-    [ self->_backForwardList goBack ];
+    [ self->_debuggingBFList goBack ];
     [ self->_fuckingBFList goBack ];
-    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
+    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_debuggingBFList.currentItem ) URL ] ] ];
 
     #if DEBUG
     NSLog( @"%@", self->_fuckingBFList );
     NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
-         , self->_backForwardList
+         , self->_debuggingBFList
          , self->_fuckingBFList
          );
     #endif
@@ -125,13 +125,13 @@
 
 - ( IBAction ) goForwardAction: ( id )_Sender
     {
-    [ self->_backForwardList goForward ];
+    [ self->_debuggingBFList goForward ];
     [ self->_fuckingBFList goForward ];
-    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
+    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_debuggingBFList.currentItem ) URL ] ] ];
 
     #if DEBUG
     NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
-         , self->_backForwardList
+         , self->_debuggingBFList
          , self->_fuckingBFList
          );
     #endif
@@ -172,7 +172,7 @@
                                 [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: self.UUID
                                                                           openedWikiPage: _MatchedPages.firstObject
                                                                                      URL: archiveURL ];
-                            [ self->_backForwardList addItem: openedWikiPage ];
+                            [ self->_debuggingBFList addItem: openedWikiPage ];
                             [ self->_fuckingBFList addItem: openedWikiPage ];
                             }
                         } failure:
@@ -192,7 +192,7 @@
 
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
-                 , self->_backForwardList
+                 , self->_debuggingBFList
                  , self->_fuckingBFList
                  );
 
