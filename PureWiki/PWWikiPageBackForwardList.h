@@ -68,6 +68,18 @@
   */
 - ( PWOpenedWikiPage* ) currentItem;
 
+/** Returns the number of pages that precede the current page in the back-forward list.
+
+  @discussion The number of pages that precede the current page in the back-forward list.
+  */
+- ( NSInteger ) backListCount;
+
+/** Returns the number of pages that follow the current page in the back-forward list.
+
+  @discussion The number of pages that follow the current page.
+  */
+- ( NSInteger ) forwardListCount;
+
 @end // PWWikiPageBackForwardList class
 
 /*===============================================================================┐

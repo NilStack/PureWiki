@@ -79,11 +79,13 @@
 #pragma mark Dynamic Properties
 - ( BOOL ) canGoBack
     {
+    NSLog( @"🐙Back List Count: %d vs. %ld", self->_backForwardList.backListCount, self->_fuckingBFList.backListCount );
     return ( self->_backForwardList.backListCount > 0 );
     }
 
 - ( BOOL ) canGoForward
     {
+    NSLog( @"🐙Forward List Count: %d vs. %ld", self->_backForwardList.forwardListCount, self->_fuckingBFList.forwardListCount );
     return ( self->_backForwardList.forwardListCount > 0 );
     }
 

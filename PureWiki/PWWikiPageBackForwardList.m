@@ -116,6 +116,18 @@
     return result;
     }
 
+// Returns the number of pages that precede the current page in the back-forward list.
+- ( NSInteger ) backListCount
+    {
+    return ( self->__cursor > -1 ) ? ( self->__cursor /* + 1 - 1 */ ) : 0;
+    }
+
+// Returns the number of pages that follow the current page in the back-forward list.
+- ( NSInteger ) forwardListCount
+    {
+    return self->__backingStore.count - ( self->__cursor + 1 );
+    }
+
 @end // PWWikiPageBackForwardList class
 
 /*===============================================================================┐
