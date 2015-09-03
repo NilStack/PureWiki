@@ -57,8 +57,11 @@
         {
         self->_wikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
 
+        self->_backForwardList = [ PWWikiPageBackForwardList backForwardList ];
+        #if DEBUG
         self->_debuggingBFList = [ [ WebBackForwardList alloc ] init ];
-        self->_fuckingBFList = [ PWWikiPageBackForwardList backForwardList ];
+        #endif
+
         self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
         self->_UUID = [ @"🐠" stringByAppendingString: PWNonce() ];
         }
@@ -79,14 +82,24 @@
 #pragma mark Dynamic Properties
 - ( BOOL ) canGoBack
     {
-    NSLog( @"🐙Back List Count: %d vs. %ld", self->_debuggingBFList.backListCount, self->_fuckingBFList.backListCount );
-    return ( self->_debuggingBFList.backListCount > 0 );
+    #if DEBUG
+    NSLog( @">>> (Log%s) 🐙Back List Count: %d vs. %ld", __PRETTY_FUNCTION__
+         , self->_debuggingBFList.backListCount
+         , self->_backForwardList.backListCount
+         );
+    #endif
+    return ( self->_backForwardList.backListCount > 0 );
     }
 
 - ( BOOL ) canGoForward
     {
-    NSLog( @"🐙Forward List Count: %d vs. %ld", self->_debuggingBFList.forwardListCount, self->_fuckingBFList.forwardListCount );
-    return ( self->_debuggingBFList.forwardListCount > 0 );
+    #if DEBUG
+    NSLog( @">>> (Log%s) 🐙Forward List Count: %d vs. %ld", __PRETTY_FUNCTION__
+         , self->_debuggingBFList.forwardListCount
+         , self->_backForwardList.forwardListCount
+         );
+    #endif
+    return ( self->_backForwardList.forwardListCount > 0 );
     }
 
 - ( void ) setWikiPage: ( WikiPage* )_WikiPage
@@ -99,7 +112,7 @@
 
 - ( WikiPage* ) wikiPage
     {
-    return [ ( PWOpenedWikiPage* )( self->_debuggingBFList.currentItem ) openedWikiPage ];
+    return [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) openedWikiPage ];
     }
 
 - ( NSString* ) UUID
@@ -110,29 +123,35 @@
 #pragma mark IBActions
 - ( IBAction ) goBackAction: ( id )_Sender
     {
+    [ self->_backForwardList goBack ];
+    #if DEBUG
     [ self->_debuggingBFList goBack ];
-    [ self->_fuckingBFList goBack ];
-    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_debuggingBFList.currentItem ) URL ] ] ];
+    #endif
+
+    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
 
     #if DEBUG
-    NSLog( @"%@", self->_fuckingBFList );
+    NSLog( @"%@", self->_backForwardList );
     NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
          , self->_debuggingBFList
-         , self->_fuckingBFList
+         , self->_backForwardList
          );
     #endif
     }
 
 - ( IBAction ) goForwardAction: ( id )_Sender
     {
+    [ self->_backForwardList goForward ];
+    #if DEBUG
     [ self->_debuggingBFList goForward ];
-    [ self->_fuckingBFList goForward ];
-    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_debuggingBFList.currentItem ) URL ] ] ];
+    #endif
+
+    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
 
     #if DEBUG
     NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
          , self->_debuggingBFList
-         , self->_fuckingBFList
+         , self->_backForwardList
          );
     #endif
     }
@@ -172,8 +191,10 @@
                                 [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: self.UUID
                                                                           openedWikiPage: _MatchedPages.firstObject
                                                                                      URL: archiveURL ];
+                            [ self->_backForwardList addItem: openedWikiPage ];
+                            #if DEBUG
                             [ self->_debuggingBFList addItem: openedWikiPage ];
-                            [ self->_fuckingBFList addItem: openedWikiPage ];
+                            #endif
                             }
                         } failure:
                             ^( NSError* _Error )
@@ -193,7 +214,7 @@
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
                  , self->_debuggingBFList
-                 , self->_fuckingBFList
+                 , self->_backForwardList
                  );
 
             WebHistoryItem* currentItem = self.webView.backForwardList.currentItem;

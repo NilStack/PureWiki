@@ -41,8 +41,11 @@
 @private
     WikiEngine __strong* _wikiEngine;
 
+    PWWikiPageBackForwardList __strong* _backForwardList;
+    #if DEBUG
     WebBackForwardList __strong* _debuggingBFList;
-    PWWikiPageBackForwardList __strong* _fuckingBFList;
+    #endif
+
     WebView __strong* _backingWebView;
 
     NSString __strong* _UUID;
