@@ -224,7 +224,7 @@
             [ self.webView setPolicyDelegate: self ];
 
             [ self.webView stringByEvaluatingJavaScriptFromString:
-                [ NSString stringWithFormat:@"window.scrollTo(%g, %g)", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
+                [ NSString stringWithFormat:@"window.scrollTo( %g, %g )", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
 
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, _debuggingBFList, _backForwardList );
