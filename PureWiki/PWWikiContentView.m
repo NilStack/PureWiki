@@ -136,6 +136,16 @@
          , self->_debuggingBFList
          , self->_backForwardList
          );
+
+    NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
+         , self->_debuggingBFList.backItem
+         , self->_backForwardList.backItem
+         );
+
+    NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
+         , self->_debuggingBFList.forwardItem
+         , self->_backForwardList.forwardItem
+         );
     #endif
     }
 
@@ -152,6 +162,16 @@
     NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
          , self->_debuggingBFList
          , self->_backForwardList
+         );
+
+    NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
+         , self->_debuggingBFList.backItem
+         , self->_backForwardList.backItem
+         );
+
+    NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
+         , self->_debuggingBFList.forwardItem
+         , self->_backForwardList.forwardItem
          );
     #endif
     }
@@ -215,6 +235,16 @@
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
                  , self->_debuggingBFList
                  , self->_backForwardList
+                 );
+
+            NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
+                 , self->_debuggingBFList.backItem
+                 , self->_backForwardList.backItem
+                 );
+
+            NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__
+                 , self->_debuggingBFList.forwardItem
+                 , self->_backForwardList.forwardItem
                  );
 
             WebHistoryItem* currentItem = self.webView.backForwardList.currentItem;

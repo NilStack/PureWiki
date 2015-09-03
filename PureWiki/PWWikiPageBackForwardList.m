@@ -105,6 +105,17 @@
     }
 
 #pragma mark Querying the Back-Forward List
+// Returns the page that precedes the current page in the back-forward list.
+- ( PWOpenedWikiPage* ) backItem
+    {
+    PWOpenedWikiPage* result = nil;
+
+    if ( ( self->__cursor - 1 ) > -1 )
+        result = self->__backingStore[ self->__cursor - 1 ];
+
+    return result;
+    }
+
 // Returns the current page in the back-forward list.
 - ( PWOpenedWikiPage* ) currentItem
     {
@@ -112,6 +123,17 @@
 
     if ( self->__cursor > -1 )
         result = self->__backingStore[ self->__cursor ];
+
+    return result;
+    }
+
+// Returns the page that follows the current page in the back-forward list.
+- ( PWOpenedWikiPage* ) forwardItem
+    {
+    PWOpenedWikiPage* result = nil;
+
+    if ( ( self->__cursor + 1 ) < self->__backingStore.count )
+        result = self->__backingStore[ self->__cursor + 1 ];
 
     return result;
     }

@@ -62,21 +62,33 @@
 - ( void ) goForward;
 
 #pragma mark Querying the Back-Forward List
+/** Returns the page that precedes the current page in the back-forward list.
+
+  @return The page that precedes the current page in the back-forward list, or nil if none precedes it.
+  */
+- ( PWOpenedWikiPage* ) backItem;
+
 /** Returns the current page in the back-forward list.
 
-  @discussion The current page, or nil if the back-forward list is empty.
+  @return The current page, or nil if the back-forward list is empty.
   */
 - ( PWOpenedWikiPage* ) currentItem;
 
+/** Returns the page that follows the current page in the back-forward list.
+
+  @return The page that follows the current page in the back-forward list, or nil if none follows it.
+  */
+- ( PWOpenedWikiPage* ) forwardItem;
+
 /** Returns the number of pages that precede the current page in the back-forward list.
 
-  @discussion The number of pages that precede the current page in the back-forward list.
+  @return The number of pages that precede the current page in the back-forward list.
   */
 - ( NSInteger ) backListCount;
 
 /** Returns the number of pages that follow the current page in the back-forward list.
 
-  @discussion The number of pages that follow the current page.
+  @return The number of pages that follow the current page.
   */
 - ( NSInteger ) forwardListCount;
 
