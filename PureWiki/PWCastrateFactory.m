@@ -271,7 +271,8 @@ id sDefaultFactory = nil;
                     || [ idName isEqualToString: @"footer" ]
                     || [ idName isEqualToString: @"siteSub" ]
                     || [ idName isEqualToString: @"mw-head-base" ]
-                    || [ idName isEqualToString: @"mw-page-base" ] )
+                    || [ idName isEqualToString: @"mw-page-base" ]
+                    || [ idName isEqualToString: @"toc" ] )
                 [ self->_toBeCastrated addObject: node ];
 
             if ( [ idName isEqualToString: @"firstHeading" ]
