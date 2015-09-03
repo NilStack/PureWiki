@@ -36,6 +36,9 @@
 @property ( strong, readwrite ) WikiPage* openedWikiPage;
 @property ( strong, readonly ) NSURL* URL;
 
+@property ( assign, readwrite ) CGFloat xOffset;
+@property ( assign, readwrite ) CGFloat yOffset;
+
 #pragma mark Initializations
 + ( instancetype ) openedWikiPageWithHostContentViewUUID: ( NSString* )_UUID
                                           openedWikiPage: ( WikiPage* )_WikiPage

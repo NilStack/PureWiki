@@ -33,9 +33,12 @@
 @synthesize openedWikiPage;
 @dynamic URL;
 
+@synthesize xOffset;
+@synthesize yOffset;
+
 - ( NSString* ) description
     {
-    return [ NSString stringWithFormat: @"%@ : %@", self.hostContentViewUUID, self.openedWikiPage.URL ];
+    return [ NSString stringWithFormat: @"(%p)%@ : %@", self, self.hostContentViewUUID, self.openedWikiPage.URL ];
     }
 
 #pragma mark Initializations
@@ -56,6 +59,9 @@
         {
         self.hostContentViewUUID = _UUID;
         self.openedWikiPage = _WikiPage;
+
+        self.xOffset = 0.f;
+        self.yOffset = 0.f;
         }
 
     return self;
@@ -85,6 +91,13 @@
 - ( NSURL* ) URL
     {
     return [ NSURL URLWithString: self.URLString ];
+    }
+
+#pragma mark Conforms to <NSCopying>
+- ( id ) copyWithZone: ( nullable NSZone* )_Zone
+    {
+    NSLog( @"🐓" );
+    return [ super copyWithZone: _Zone ];
     }
 
 @end // PWOpenedWikiPage class
