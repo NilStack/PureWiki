@@ -57,7 +57,8 @@
         {
         self->_wikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
 
-        self->_backForwardList = [ [ PWWikiPageBackForwardList alloc ] init ];
+        self->_backForwardList = [ [ WebBackForwardList alloc ] init ];
+        self->_fuckingBFList = [ PWWikiPageBackForwardList backForwardList ];
         self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
         self->_UUID = [ @"🐠" stringByAppendingString: PWNonce() ];
         }
@@ -167,6 +168,7 @@
                                                                           openedWikiPage: _MatchedPages.firstObject
                                                                                      URL: archiveURL ];
                             [ self->_backForwardList addItem: openedWikiPage ];
+                            [ self->_fuckingBFList addItem: openedWikiPage ];
                             }
                         } failure:
                             ^( NSError* _Error )
