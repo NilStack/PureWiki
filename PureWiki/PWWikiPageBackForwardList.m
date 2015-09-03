@@ -23,9 +23,36 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWWikiPageBackForwardList.h"
+#import "PWOpenedWikiPage.h"
+
+#import "WikiPage.h"
 
 // PWWikiPageBackForwardList class
 @implementation PWWikiPageBackForwardList
+
+- ( NSString* ) description
+    {
+    NSString* splitter = @"\n--------------------------------------------\n";
+    NSMutableString* logString = [ NSMutableString stringWithFormat: @"%@Wiki Page Back-Forward List:\n", splitter ];
+
+    NSUInteger index = 0U;
+    for ( PWOpenedWikiPage* _OpenedWikiPage in self->__backingStore )
+        {
+        [ logString appendFormat: @" %@ %lu) %@\n"
+                                , ( self.currentItem == _OpenedWikiPage ) ? @">>>" : @"   "
+                                , index
+                                , [ NSString stringWithFormat: @"(%p)🐠%@ => %@"
+                                                             , _OpenedWikiPage
+                                                             , _OpenedWikiPage.openedWikiPage.URL
+                                                             , _OpenedWikiPage.simplifiedURLString
+                                                             ]
+                                ];
+        index++;
+        }
+
+    [ logString appendString: splitter ];
+    return [ logString copy ];
+    }
 
 #pragma mark Initializations
 + ( instancetype ) backForwardList

@@ -32,6 +32,7 @@
 @synthesize hostContentViewUUID;
 @synthesize openedWikiPage;
 @dynamic URL;
+@dynamic simplifiedURLString;
 
 @synthesize xOffset;
 @synthesize yOffset;
@@ -91,6 +92,11 @@
 - ( NSURL* ) URL
     {
     return [ NSURL URLWithString: self.URLString ];
+    }
+
+- ( NSString* ) simplifiedURLString
+    {
+    return [ NSString stringWithFormat: @"%@://…/%@", self.URL.scheme, self.URL.lastPathComponent ];
     }
 
 #pragma mark Conforms to <NSCopying>

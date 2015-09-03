@@ -109,12 +109,14 @@
 - ( IBAction ) goBackAction: ( id )_Sender
     {
     [ self->_backForwardList goBack ];
+    [ self->_fuckingBFList goBack ];
     [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
 
     #if DEBUG
+    NSLog( @"%@", self->_fuckingBFList );
     NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
-         , self.webView.backForwardList
          , self->_backForwardList
+         , self->_fuckingBFList
          );
     #endif
     }
@@ -122,12 +124,13 @@
 - ( IBAction ) goForwardAction: ( id )_Sender
     {
     [ self->_backForwardList goForward ];
+    [ self->_fuckingBFList goForward ];
     [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
 
     #if DEBUG
     NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
-         , self.webView.backForwardList
          , self->_backForwardList
+         , self->_fuckingBFList
          );
     #endif
     }
@@ -187,8 +190,8 @@
 
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__
-                 , self.webView.backForwardList
                  , self->_backForwardList
+                 , self->_fuckingBFList
                  );
 
             WebHistoryItem* currentItem = self.webView.backForwardList.currentItem;

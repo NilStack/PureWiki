@@ -35,6 +35,7 @@
 @property ( strong, readwrite ) NSString* hostContentViewUUID;
 @property ( strong, readwrite ) WikiPage* openedWikiPage;
 @property ( strong, readonly ) NSURL* URL;
+@property ( strong, readonly ) NSString* simplifiedURLString;
 
 @property ( assign, readwrite ) CGFloat xOffset;
 @property ( assign, readwrite ) CGFloat yOffset;
