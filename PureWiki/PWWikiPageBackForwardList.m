@@ -150,6 +150,12 @@
     return self->__backingStore.count - ( self->__cursor + 1 );
     }
 
+// Returns a Boolean value indicating whether the back-forward list contains the specified page.
+- ( BOOL ) containsItem: ( PWOpenedWikiPage* )_OpenedPage
+    {
+    return [ self->__backingStore containsObject: _OpenedPage ];
+    }
+
 @end // PWWikiPageBackForwardList class
 
 /*===============================================================================┐

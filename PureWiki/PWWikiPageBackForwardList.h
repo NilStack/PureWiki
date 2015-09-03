@@ -92,6 +92,14 @@
   */
 - ( NSInteger ) forwardListCount;
 
+/** Returns a Boolean value indicating whether the back-forward list contains the specified page.
+
+  @param _OpenedPage The page to find in the back-forward list.
+
+  @return YES if the specified page is in the back-forward list; otherwise, NO.
+  */
+- ( BOOL ) containsItem: ( PWOpenedWikiPage* )_OpenedPage;
+
 @end // PWWikiPageBackForwardList class
 
 /*===============================================================================┐
