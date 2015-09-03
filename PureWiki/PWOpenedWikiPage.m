@@ -102,8 +102,12 @@
 #pragma mark Conforms to <NSCopying>
 - ( id ) copyWithZone: ( nullable NSZone* )_Zone
     {
-    NSLog( @"🐓" );
-    return [ super copyWithZone: _Zone ];
+    PWOpenedWikiPage* copy = [ super copyWithZone: _Zone ];
+
+    [ copy setHostContentViewUUID: [ self.hostContentViewUUID copy ] ];
+    [ copy setOpenedWikiPage: [ self.openedWikiPage copy ] ];
+
+    return copy;
     }
 
 @end // PWOpenedWikiPage class
