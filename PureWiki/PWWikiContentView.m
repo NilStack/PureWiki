@@ -37,6 +37,10 @@
 
 // Private Interfaces
 @interface PWWikiContentView ()
+
+- ( void ) __saveScrollPosition;
+- ( void ) __restoreScrollPosition;
+
 @end // Private Interfaces
 
 // PWWikiContentView class
@@ -119,12 +123,7 @@
 #pragma mark IBActions
 - ( IBAction ) goBackAction: ( id )_Sender
     {
-    NSString* xOffset = [ self.webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageXOffset" ] ];
-    NSString* yOffset = [ self.webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageYOffset" ] ];
-
-    [ self->_backForwardList.currentItem setXOffset: xOffset.doubleValue ];
-    [ self->_backForwardList.currentItem setYOffset: yOffset.doubleValue ];
-
+    [ self __saveScrollPosition ];
     [ self->_backForwardList goBack ];
     #if DEBUG
     [ self->_debuggingBFList goBack ];
@@ -142,12 +141,7 @@
 
 - ( IBAction ) goForwardAction: ( id )_Sender
     {
-    NSString* xOffset = [ self.webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageXOffset" ] ];
-    NSString* yOffset = [ self.webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageYOffset" ] ];
-
-    [ self->_backForwardList.currentItem setXOffset: xOffset.doubleValue ];
-    [ self->_backForwardList.currentItem setYOffset: yOffset.doubleValue ];
-
+    [ self __saveScrollPosition ];
     [ self->_backForwardList goForward ];
     #if DEBUG
     [ self->_debuggingBFList goForward ];
@@ -188,12 +182,7 @@
                         {
                         if ( _MatchedPages )
                             {
-                            NSString* xOffset = [ self.webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageXOffset" ] ];
-                            NSString* yOffset = [ self.webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageYOffset" ] ];
-
-                            [ self->_backForwardList.currentItem setXOffset: xOffset.doubleValue ];
-                            [ self->_backForwardList.currentItem setYOffset: yOffset.doubleValue ];
-
+                            [ self __saveScrollPosition ];
                             [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
 
                             // Resume routing navigation action
@@ -223,8 +212,7 @@
             [ self.owner.navButtonsPairView reload ];
             [ self.webView setPolicyDelegate: self ];
 
-            [ self.webView stringByEvaluatingJavaScriptFromString:
-                [ NSString stringWithFormat:@"window.scrollTo( %g, %g )", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
+            [ self __restoreScrollPosition ];
 
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, _debuggingBFList, _backForwardList );
@@ -257,6 +245,22 @@
             [ _Listener ignore ];
             }
         }
+    }
+
+#pragma mark Private Interfaces
+- ( void ) __saveScrollPosition
+    {
+    NSString* xOffset = [ self.webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageXOffset" ] ];
+    NSString* yOffset = [ self.webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageYOffset" ] ];
+
+    [ self->_backForwardList.currentItem setXOffset: xOffset.doubleValue ];
+    [ self->_backForwardList.currentItem setYOffset: yOffset.doubleValue ];
+    }
+
+- ( void ) __restoreScrollPosition
+    {
+    [ self.webView stringByEvaluatingJavaScriptFromString:
+        [ NSString stringWithFormat:@"window.scrollTo( %g, %g )", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
     }
 
 @end // PWWikiContentView class
