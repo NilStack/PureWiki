@@ -29,6 +29,8 @@
 #import "PWActionNotifications.h"
 #import "PWSidebarTabsTableController.h"
 #import "PWOpenedWikiPage.h"
+#import "PWWikiContentViewController.h"
+#import "PWWikiContentView.h"
 
 #import "__TKSafariSearchbar.h"
 #import "__TKSearchbarBackingLayer.h"
@@ -66,6 +68,7 @@
     }
 
 @dynamic attachPanelController;
+@dynamic bindingContentViewController;
 @dynamic isFocusing;
 
 @dynamic placeholderString;
@@ -117,6 +120,27 @@
 - ( PWSearchResultsAttachPanelController* ) attachPanelController
     {
     return self->_attachPanelController;
+    }
+
+- ( void ) setBindingContentViewController: ( PWWikiContentViewController* __nullable )_BindingContentViewController
+    {
+    self->_bindingContentViewController = _BindingContentViewController;
+//    [ self reload ];
+    }
+
+- ( PWWikiContentViewController* ) bindingContentViewController
+    {
+    return self->_bindingContentViewController;
+    }
+
+#pragma mark Actions
+- ( void ) reload
+    {
+    PWWikiContentView* wikiContentView = self->_bindingContentViewController.wikiContentView;
+    WikiPage* currentPage = wikiContentView.wikiPage;
+
+    if ( currentPage.title )
+        [ self setFrozenTitle: currentPage.title ];
     }
 
 - ( BOOL ) isFocusing

@@ -138,6 +138,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <connections>
                                     <outlet property="navButtonsPairView" destination="cjA-YO-b28" id="3eg-lP-Ibf"/>
+                                    <outlet property="safariSearchbarController" destination="5bj-cO-UF5" id="wED-dg-BXy"/>
                                     <outlet property="sidebarTabsTableController" destination="TDW-Eg-TgK" id="A3I-Vy-rHv"/>
                                 </connections>
                             </customView>

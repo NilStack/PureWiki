@@ -25,11 +25,13 @@
 @import Cocoa;
 
 @class TKSafariSearchbar;
+@class PWWikiContentViewController;
 
 // TKSafariSearchbarController class
 @interface TKSafariSearchbarController : NSViewController
 
 @property ( weak ) TKSafariSearchbar* smartSearchBar;
+@property ( weak, readwrite ) PWWikiContentViewController* bindingContentViewController;
 
 @end // TKSafariSearchbarController class
 

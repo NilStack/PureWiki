@@ -29,6 +29,7 @@
 @class PWStackContainerView;
 @class PWNavButtonsPairView;
 @class PWWikiPageBackForwardList;
+@class TKSafariSearchbarController;
 
 @class WikiPage;
 @class WikiEngine;
@@ -73,6 +74,7 @@
 @protocol PWWikiContentViewOwner <NSObject>
 
 @property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
+@property ( weak ) IBOutlet TKSafariSearchbarController* safariSearchbarController;
 
 @end // PWWikiContentViewOwner protocol
 

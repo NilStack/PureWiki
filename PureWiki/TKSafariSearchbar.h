@@ -27,6 +27,7 @@
 
 @class PWSearchResultsAttachPanelController;
 @class PWSidebarTabsTableController;
+@class PWWikiContentViewController;
 @class FBKVOController;
 
 // TKSafariSearchbar class
@@ -34,6 +35,7 @@
     {
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
+    PWWikiContentViewController __weak* _bindingContentViewController;
     FBKVOController __strong* _KVOController;
 
     BOOL _isFocusing;
@@ -44,8 +46,12 @@
 
 #pragma mark Ivar Properties
 @property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;
+@property ( weak, readwrite ) PWWikiContentViewController* bindingContentViewController;
 @property ( assign, readonly ) BOOL isFocusing;
 @property ( strong, readwrite ) NSString* frozenTitle;
+
+#pragma mark Actions
+- ( void ) reload;
 
 @end // TKSafariSearchbar class
 

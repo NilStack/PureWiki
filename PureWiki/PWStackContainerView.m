@@ -29,6 +29,8 @@
 #import "PWNavButtonsPairView.h"
 #import "PWSidebarTabsTableController.h"
 #import "PWOpenedWikiPage.h"
+#import "TKSafariSearchbar.h"
+#import "TKSafariSearchbarController.h"
 
 #import "WikiPage.h"
 
@@ -67,6 +69,8 @@
 
 - ( void ) awakeFromNib
     {
+    NSLog( @"%@", self.safariSearchbarController.smartSearchBar );
+
     if ( self.sidebarTabsTableController )
         {
         [ self->_KVOController observe: self.sidebarTabsTableController
@@ -89,6 +93,8 @@
                 if ( contentViewController )
                     {
                     [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
+                    [ self.safariSearchbarController setBindingContentViewController: contentViewController ];
+
                     self->_currentWikiContentViewController = contentViewController;
 
                     [ self setSubviews: @[] ];

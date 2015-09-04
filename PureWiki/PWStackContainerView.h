@@ -30,6 +30,7 @@
 @class PWWikiContentViewController;
 @class PWNavButtonsPairView;
 @class PWSidebarTabsTableController;
+@class TKSafariSearchbarController;
 
 @class FBKVOController;
 
@@ -50,6 +51,7 @@
 
 #pragma mark Conforms to <PWWikiContentViewOwner>
 @property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
+@property ( weak ) IBOutlet TKSafariSearchbarController* safariSearchbarController;
 
 @property ( weak, readonly ) PWWikiContentViewController* currentWikiContentViewController;
 
