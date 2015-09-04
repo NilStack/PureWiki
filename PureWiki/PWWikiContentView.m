@@ -40,6 +40,9 @@
 // Private Interfaces
 @interface PWWikiContentView ()
 
+@property ( weak ) IBOutlet WebView* __webView;
+@property ( strong ) WebView* __backingWebView;
+
 - ( void ) __saveScrollPosition;
 - ( void ) __restoreScrollPosition;
 - ( void ) __reloadAllStatusConsumers;
@@ -70,7 +73,7 @@
         self->_debuggingBFList = [ [ WebBackForwardList alloc ] init ];
         #endif
 
-        self->_backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
+        self.__backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
         self->_UUID = [ @"🐠" stringByAppendingString: PWNonce() ];
         }
 
@@ -79,12 +82,12 @@
 
 - ( void ) awakeFromNib
     {
-    [ self->_backingWebView setFrameLoadDelegate: self ];
-    [ self->_backingWebView setMaintainsBackForwardList: NO ];
+    [ self.__backingWebView setFrameLoadDelegate: self ];
+    [ self.__backingWebView setMaintainsBackForwardList: NO ];
 
-    [ self.webView setPolicyDelegate: self ];
-    [ self.webView setFrameLoadDelegate: self ];
-    [ self.webView setMaintainsBackForwardList: NO ];
+    [ self.__webView setPolicyDelegate: self ];
+    [ self.__webView setFrameLoadDelegate: self ];
+    [ self.__webView setMaintainsBackForwardList: NO ];
     }
 
 #pragma mark Dynamic Properties
@@ -112,13 +115,13 @@
         {
         self->_originalWikiPage = _WikiPage;
 
-        [ self.webView.mainFrame stopLoading ];
-        [ self->_backingWebView.mainFrame stopLoading ];
+        [ self.__webView.mainFrame stopLoading ];
+        [ self.__backingWebView.mainFrame stopLoading ];
 
         [ self->_backForwardList cleanUp ];
 
         NSURLRequest* request = [ NSURLRequest requestWithURL: self->_originalWikiPage.URL ];
-        [ self->_backingWebView.mainFrame loadRequest: request ];
+        [ self.__backingWebView.mainFrame loadRequest: request ];
         }
     }
 
@@ -146,7 +149,7 @@
     [ self->_debuggingBFList goBack ];
     #endif
 
-    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
+    [ self.__webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
 
     #if DEBUG
     NSLog( @"%@", self->_backForwardList );
@@ -164,13 +167,18 @@
     [ self->_debuggingBFList goForward ];
     #endif
 
-    [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
+    [ self.__webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
 
     #if DEBUG
     NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, self->_debuggingBFList, self->_backForwardList );
     NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, self->_debuggingBFList.backItem, self->_backForwardList.backItem );
     NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, self->_debuggingBFList.forwardItem, self->_backForwardList.forwardItem );
     #endif
+    }
+
+- ( void ) askToBecomeFirstResponder
+    {
+    [ self.__webView.window makeFirstResponder: self.__webView ];
     }
 
 #pragma mark Conforms to <WebFrameLoadDelegate>
@@ -181,7 +189,7 @@
 
     if ( _Frame == [ _WebView mainFrame ] )
         {
-        if ( _WebView == self->_backingWebView )
+        if ( _WebView == self.__backingWebView )
             {
             PWWikiPageArchive* castratedWikiPageArchive = nil;
 
@@ -200,10 +208,10 @@
                         if ( _MatchedPages )
                             {
                             [ self __saveScrollPosition ];
-                            [ self.webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
+                            [ self.__webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
 
                             // Resume routing navigation action
-                            [ self.webView setPolicyDelegate: self ];
+                            [ self.__webView setPolicyDelegate: self ];
 
                             PWOpenedWikiPage* openedWikiPage =
                                 [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: self.UUID
@@ -224,14 +232,14 @@
                 NSLog( @"%@", error );
             }
 
-        else if ( _WebView == self.webView )
+        else if ( _WebView == self.__webView )
             {
-            [ self.webView setPolicyDelegate: self ];
+            [ self.__webView setPolicyDelegate: self ];
 
             [ self __reloadAllStatusConsumers ];
             [ self __restoreScrollPosition ];
 
-            [ self.webView.window makeFirstResponder: self.webView ];
+            [ self askToBecomeFirstResponder ];
 
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, _debuggingBFList, _backForwardList );
@@ -244,23 +252,23 @@
 
 #pragma mark Conforms to <WebPolicyDelegate>
 
-// Routes all the navigation action that occured in self.webView
+// Routes all the navigation action that occured in self.__webView
 - ( void )                  webView: ( WebView* )_WebView
     decidePolicyForNavigationAction: ( NSDictionary* )_ActionInformation
                             request: ( NSURLRequest* )_Request
                               frame: ( WebFrame* )_Frame
                    decisionListener: ( id <WebPolicyDecisionListener> )_Listener
     {
-    if ( _WebView == self.webView )
+    if ( _WebView == self.__webView )
         {
         // Pause routing navigation action to avoid the infinite recursion
-        [ self.webView setPolicyDelegate: nil ];
+        [ self.__webView setPolicyDelegate: nil ];
 
         if ( [ _Request.URL.scheme isEqualToString: @"file" ] )
             [ _Listener use ];
         else
             {
-            [ self->_backingWebView.mainFrame loadRequest: _Request ];
+            [ self.__backingWebView.mainFrame loadRequest: _Request ];
             [ _Listener ignore ];
             }
         }
@@ -269,8 +277,8 @@
 #pragma mark Private Interfaces
 - ( void ) __saveScrollPosition
     {
-    NSString* xOffset = [ self.webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageXOffset" ] ];
-    NSString* yOffset = [ self.webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageYOffset" ] ];
+    NSString* xOffset = [ self.__webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageXOffset" ] ];
+    NSString* yOffset = [ self.__webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageYOffset" ] ];
 
     [ self->_backForwardList.currentItem setXOffset: xOffset.doubleValue ];
     [ self->_backForwardList.currentItem setYOffset: yOffset.doubleValue ];
@@ -278,7 +286,7 @@
 
 - ( void ) __restoreScrollPosition
     {
-    [ self.webView stringByEvaluatingJavaScriptFromString:
+    [ self.__webView stringByEvaluatingJavaScriptFromString:
         [ NSString stringWithFormat:@"window.scrollTo( %g, %g )", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
     }
 

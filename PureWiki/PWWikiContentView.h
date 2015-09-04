@@ -50,13 +50,8 @@
     WebBackForwardList __strong* _debuggingBFList;
     #endif
 
-    WebView __strong* _backingWebView;
-
     NSString __strong* _UUID;
     }
-
-#pragma mark Outlets
-@property ( weak ) IBOutlet WebView* webView;
 
 #pragma mark Ivar Properties
 @property ( weak, readwrite ) id <PWWikiContentViewOwner> owner;
@@ -72,6 +67,8 @@
 #pragma mark IBActions
 - ( IBAction ) goBackAction: ( id )_Sender;
 - ( IBAction ) goForwardAction: ( id )_Sender;
+
+- ( void ) askToBecomeFirstResponder;
 
 @end // PWWikiContentView class
 

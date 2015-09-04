@@ -38,8 +38,11 @@
 
 - ( void ) makeCurrentWikiContentViewFirstResponder
     {
-    WebView* webView = self.stackContainerViewController.stackContainerView.currentWikiContentViewController.wikiContentView.webView;
-    [ self makeFirstResponder: webView ];
+    [ self.stackContainerViewController
+        .stackContainerView
+        .currentWikiContentViewController
+        .wikiContentView askToBecomeFirstResponder
+        ];
     }
 
 @end
