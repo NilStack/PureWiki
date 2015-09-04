@@ -125,7 +125,7 @@
 - ( void ) setBindingContentViewController: ( PWWikiContentViewController* __nullable )_BindingContentViewController
     {
     self->_bindingContentViewController = _BindingContentViewController;
-//    [ self reload ];
+    NSLog( @"🐞%@", self->_bindingContentViewController.wikiContentView.wikiPage.title );
     }
 
 - ( PWWikiContentViewController* ) bindingContentViewController
