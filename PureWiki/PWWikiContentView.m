@@ -225,7 +225,7 @@
 
         else if ( _WebView == self.webView )
             {
-            if ( self.owner.navButtonsPairView.statusProducer.wikiContentView == self )
+            if ( self.owner.navButtonsPairView.statusProducer == self )
                 {
                 NSLog( @"🐔0" );
                 [ self.owner.navButtonsPairView reload ];
@@ -234,7 +234,7 @@
                 NSLog( @"🐝0" );
 
 
-            if ( self.owner.safariSearchbarController.statusProducer.wikiContentView == self )
+            if ( self.owner.safariSearchbarController.statusProducer == self )
                 {
                 NSLog( @"🐔1" );
                 [ self.owner.safariSearchbarController reload ];

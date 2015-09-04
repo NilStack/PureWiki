@@ -24,17 +24,15 @@
 
 @import Cocoa;
 
+#import "PWWikiContentView.h"
+
 @class TKSafariSearchbar;
 @class PWWikiContentViewController;
 
 // TKSafariSearchbarController class
-@interface TKSafariSearchbarController : NSViewController
+@interface TKSafariSearchbarController : NSViewController <PWWikiContentViewStatusConsumer>
 
 @property ( weak ) TKSafariSearchbar* smartSearchBar;
-@property ( weak, readwrite ) PWWikiContentViewController* statusProducer;
-
-#pragma mark Actions
-- ( void ) reload;
 
 @end // TKSafariSearchbarController class
 

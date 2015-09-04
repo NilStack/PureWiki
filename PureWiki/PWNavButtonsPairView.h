@@ -22,24 +22,22 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
 @import WebKit;
+
+#import "PWWikiContentView.h"
 
 @class PWWikiContentViewController;
 
 // PWNavButtonsPairView class
-@interface PWNavButtonsPairView : NSView
+@interface PWNavButtonsPairView : NSView <PWWikiContentViewStatusConsumer>
     {
 @protected
-    PWWikiContentViewController __weak* _statusProducer;
+    PWWikiContentView __weak* _statusProducer;
     }
 
 #pragma mark Outlets
 @property ( weak ) IBOutlet NSButton* goBackButton;
 @property ( weak ) IBOutlet NSButton* goForwardButton;
-
-#pragma mark Ivar Properties
-@property ( weak, readwrite ) PWWikiContentViewController* statusProducer;
 
 #pragma mark Actions
 - ( void ) reload;

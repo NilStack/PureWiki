@@ -90,8 +90,8 @@
 
                 if ( contentViewController )
                     {
-                    [ self.navButtonsPairView setStatusProducer: contentViewController ];
-                    [ self.safariSearchbarController setStatusProducer: contentViewController ];
+                    [ self.navButtonsPairView setStatusProducer: contentViewController.wikiContentView ];
+                    [ self.safariSearchbarController setStatusProducer: contentViewController.wikiContentView ];
 
                     self->_currentWikiContentViewController = contentViewController;
 

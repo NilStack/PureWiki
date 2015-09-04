@@ -68,7 +68,6 @@
     }
 
 @dynamic attachPanelController;
-@dynamic statusProducer;
 @dynamic isFocusing;
 
 @dynamic placeholderString;
@@ -102,40 +101,6 @@
 - ( PWSearchResultsAttachPanelController* ) attachPanelController
     {
     return self->_attachPanelController;
-    }
-
-- ( void ) setStatusProducer: ( PWWikiContentViewController* __nullable )_StatusProducer
-    {
-    self->_statusProducer = _StatusProducer;
-    [ self reload ];
-    NSLog( @"🐞%@", self.frozenTitle );
-    }
-
-- ( PWWikiContentViewController* ) statusProducer
-    {
-    return self->_statusProducer;
-    }
-
-#pragma mark Actions
-- ( void ) reload
-    {
-    PWWikiContentView* wikiContentView = self->_statusProducer.wikiContentView;
-
-    PWOpenedWikiPage* currentOpenedPage = wikiContentView.currentOpenedWikiPage;
-    if ( currentOpenedPage.openedWikiPage.title )
-        {
-        [ self setFrozenTitle: currentOpenedPage.openedWikiPage.title ];
-        [ self setStringValue: currentOpenedPage.openedWikiPage.title ];
-        }
-    else
-        {
-        WikiPage* originalWikiPage = wikiContentView.originalWikiPage;
-        if ( originalWikiPage.title )
-            {
-            [ self setFrozenTitle: originalWikiPage.title ];
-            [ self setStringValue: originalWikiPage.title ];
-            }
-        }
     }
 
 - ( BOOL ) isFocusing
@@ -177,6 +142,41 @@
     {
     [ super textDidEndEditing: _Notif ];
     [ self.attachPanelController closeAttachPanelAndClearResults ];
+    }
+
+#pragma mark Conforms to <PWWikiContentViewStatusConsumer>
+@dynamic statusProducer;
+
+- ( void ) setStatusProducer: ( PWWikiContentView* __nullable )_StatusProducer
+    {
+    self->_statusProducer = _StatusProducer;
+    [ self reload ];
+    }
+
+- ( PWWikiContentView* ) statusProducer
+    {
+    return self->_statusProducer;
+    }
+
+- ( void ) reload
+    {
+    PWWikiContentView* wikiContentView = self->_statusProducer;
+
+    PWOpenedWikiPage* currentOpenedPage = wikiContentView.currentOpenedWikiPage;
+    if ( currentOpenedPage.openedWikiPage.title )
+        {
+        [ self setFrozenTitle: currentOpenedPage.openedWikiPage.title ];
+        [ self setStringValue: currentOpenedPage.openedWikiPage.title ];
+        }
+    else
+        {
+        WikiPage* originalWikiPage = wikiContentView.originalWikiPage;
+        if ( originalWikiPage.title )
+            {
+            [ self setFrozenTitle: originalWikiPage.title ];
+            [ self setStringValue: originalWikiPage.title ];
+            }
+        }
     }
 
 #pragma mark Private Interfaces

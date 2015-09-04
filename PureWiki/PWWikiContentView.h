@@ -35,7 +35,7 @@
 @class WikiPage;
 @class WikiEngine;
 
-@protocol PWWikiContentViewStatusConsumer;
+@protocol PWWikiContentViewOwner;
 
 // PWWikiContentView class
 @interface PWWikiContentView : NSView <WebFrameLoadDelegate, WebPolicyDelegate>
@@ -58,12 +58,13 @@
 @property ( weak ) IBOutlet WebView* webView;
 
 #pragma mark Ivar Properties
+@property ( weak, readwrite ) id <PWWikiContentViewOwner> owner;
+
 @property ( assign, readonly ) BOOL canGoBack;
 @property ( assign, readonly ) BOOL canGoForward;
 
 @property ( strong, readwrite ) WikiPage* originalWikiPage;
 @property ( strong, readonly ) PWOpenedWikiPage* currentOpenedWikiPage;
-@property ( weak, readwrite ) id <PWWikiContentViewStatusConsumer> owner;
 
 @property ( strong, readonly ) NSString* UUID;
 
@@ -73,11 +74,20 @@
 
 @end // PWWikiContentView class
 
+// PWWikiContentViewOwner protocol
+@protocol PWWikiContentViewOwner <NSObject>
+
+@property ( weak ) PWNavButtonsPairView* navButtonsPairView;
+@property ( weak ) TKSafariSearchbarController* safariSearchbarController;
+
+@end // PWWikiContentViewOwner protocol
+
 // PWWikiContentViewStatusConsumer protocol
 @protocol PWWikiContentViewStatusConsumer <NSObject>
 
-@property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
-@property ( weak ) IBOutlet TKSafariSearchbarController* safariSearchbarController;
+@property ( weak, readwrite ) PWWikiContentView* statusProducer;
+
+- ( void ) reload;
 
 @end // PWWikiContentViewStatusConsumer protocol
 

@@ -36,7 +36,6 @@
 @implementation TKSafariSearchbarController
 
 @dynamic smartSearchBar;
-@dynamic statusProducer;
 
 #pragma mark Initializations
 - ( void ) viewDidLoad
@@ -45,23 +44,24 @@
     // Do view setup here.
     }
 
-#pragma mark Dynamic Properties
+#pragma mark Conforms to <PWWikiContentViewStatusConsumer>
+@dynamic statusProducer;
+
 - ( TKSafariSearchbar* ) smartSearchBar
     {
     return ( TKSafariSearchbar* )( self.view );
     }
 
-- ( void ) setStatusProducer: ( PWWikiContentViewController* __nullable )_StatusProducer
+- ( void ) setStatusProducer: ( PWWikiContentView* __nullable )_StatusProducer
     {
     [ self.smartSearchBar setStatusProducer: _StatusProducer ];
     }
 
-- ( PWWikiContentViewController* ) statusProducer
+- ( PWWikiContentView* ) statusProducer
     {
     return self.smartSearchBar.statusProducer;
     }
 
-#pragma mark Actions
 - ( void ) reload
     {
     [ self.smartSearchBar reload ];

@@ -22,20 +22,23 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
 @import QuartzCore;
+
+#import "PWWikiContentView.h"
 
 @class PWSearchResultsAttachPanelController;
 @class PWSidebarTabsTableController;
-@class PWWikiContentViewController;
+@class PWWikiContentView;
 @class FBKVOController;
 
 // TKSafariSearchbar class
-@interface TKSafariSearchbar : NSTextField <NSTextViewDelegate /* As a field editor delegate */>
+@interface TKSafariSearchbar : NSTextField
+    < NSTextViewDelegate /* As a field editor delegate */
+    , PWWikiContentViewStatusConsumer >
     {
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
-    PWWikiContentViewController __weak* _statusProducer;
+    PWWikiContentView __weak* _statusProducer;
 
     BOOL _isFocusing;
     }
@@ -45,7 +48,6 @@
 
 #pragma mark Ivar Properties
 @property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;
-@property ( weak, readwrite ) PWWikiContentViewController* statusProducer;
 @property ( assign, readonly ) BOOL isFocusing;
 @property ( strong, readwrite ) NSString* frozenTitle;
 
