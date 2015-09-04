@@ -78,7 +78,7 @@
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
     {
     if ( self = [ super initWithCoder: _Coder ] )
-        self->_KVOController = [ FBKVOController controllerWithObserver: self ];
+        ; // TODO: Nothing
 
     return self;
     }
@@ -96,24 +96,6 @@
     [ self setLayer: self->_backingLayer ];
     [ self setLayerContentsRedrawPolicy: NSViewLayerContentsRedrawOnSetNeedsDisplay ];
     [ self setWantsLayer: YES ];
-
-    if ( self.sidebarTabsTableController )
-        {
-        [ self->_KVOController observe: self.sidebarTabsTableController
-                               keyPath: PWSidebarCurrentSelectedPageKVOPath
-                               options: NSKeyValueObservingOptionNew
-                                 block:
-            ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change )
-                {
-                #if DEBUG
-                NSLog( @">>> (Log:%s) Current selected page has been changed: \n%@", __PRETTY_FUNCTION__, _Change );
-                #endif
-
-                PWOpenedWikiPage* newSelectedOpenedPage = _Change[ @"new" ];
-                [ self setFrozenTitle: [ newSelectedOpenedPage.openedWikiPage title ] ];
-                [ self setStringValue: [ newSelectedOpenedPage.openedWikiPage title ] ];
-                } ];
-        }
     }
 
 #pragma mark Dynamic Properties
@@ -141,12 +123,18 @@
 
     PWOpenedWikiPage* currentOpenedPage = wikiContentView.currentOpenedWikiPage;
     if ( currentOpenedPage.openedWikiPage.title )
+        {
         [ self setFrozenTitle: currentOpenedPage.openedWikiPage.title ];
+        [ self setStringValue: currentOpenedPage.openedWikiPage.title ];
+        }
     else
         {
         WikiPage* originalWikiPage = wikiContentView.originalWikiPage;
         if ( originalWikiPage.title )
+            {
             [ self setFrozenTitle: originalWikiPage.title ];
+            [ self setStringValue: originalWikiPage.title ];
+            }
         }
     }
 
@@ -196,8 +184,6 @@
     {
     [ self.attachPanelController closeAttachPanelAndClearResults ];
     [ ( PWMainWindow* )( self.window ) makeCurrentWikiContentViewFirstResponder ];
-
-//    [ self setFrozenTitle: [ _Notif.userInfo[ kPage ] title ] ];
     }
 
 @end // TKSafariSearchbar class

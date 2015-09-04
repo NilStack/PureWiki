@@ -36,7 +36,6 @@
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
     PWWikiContentViewController __weak* _stateUpdateSource;
-    FBKVOController __strong* _KVOController;
 
     BOOL _isFocusing;
     }
