@@ -225,22 +225,33 @@
 
         else if ( _WebView == self.webView )
             {
-            if ( self.owner.navButtonsPairView.statusProducer == self )
+            for ( id <PWWikiContentViewStatusConsumer> _Consumer in self.owner.currentConsumers )
                 {
-                NSLog( @"🐔0" );
-                [ self.owner.navButtonsPairView reload ];
+                if ( _Consumer.statusProducer == self )
+                    {
+                    [ _Consumer reload ];
+                    NSLog( @"🐔0" );
+                    }
+                else
+                    NSLog( @"🐝0" );
                 }
-            else
-                NSLog( @"🐝0" );
 
-
-            if ( self.owner.safariSearchbarController.statusProducer == self )
-                {
-                NSLog( @"🐔1" );
-                [ self.owner.safariSearchbarController reload ];
-                }
-            else
-                NSLog( @"🐝1" );
+//            if ( self.owner.navButtonsPairView.statusProducer == self )
+//                {
+//                NSLog( @"🐔0" );
+//                [ self.owner.navButtonsPairView reload ];
+//                }
+//            else
+//                NSLog( @"🐝0" );
+//
+//
+//            if ( self.owner.safariSearchbarController.statusProducer == self )
+//                {
+//                NSLog( @"🐔1" );
+//                [ self.owner.safariSearchbarController reload ];
+//                }
+//            else
+//                NSLog( @"🐝1" );
 
             [ self.webView setPolicyDelegate: self ];
 

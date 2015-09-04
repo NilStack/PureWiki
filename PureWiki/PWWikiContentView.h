@@ -36,6 +36,7 @@
 @class WikiEngine;
 
 @protocol PWWikiContentViewOwner;
+@protocol PWWikiContentViewStatusConsumer;
 
 // PWWikiContentView class
 @interface PWWikiContentView : NSView <WebFrameLoadDelegate, WebPolicyDelegate>
@@ -79,6 +80,9 @@
 
 @property ( weak ) PWNavButtonsPairView* navButtonsPairView;
 @property ( weak ) TKSafariSearchbarController* safariSearchbarController;
+
+@required
+@property ( weak, readonly ) NSMutableSet <__kindof id <PWWikiContentViewStatusConsumer> >* currentConsumers;
 
 @end // PWWikiContentViewOwner protocol
 
