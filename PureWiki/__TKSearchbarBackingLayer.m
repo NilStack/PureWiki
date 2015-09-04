@@ -116,24 +116,25 @@
 
     CGMutablePathRef cgPath = CGPathCreateMutable();
 
-    CGPathAddRoundedRect( cgPath, NULL, NSInsetRect( self.bounds, 1.f, 1.f ), 4.f, 4.f );
+    NSRect suitableBounds = NSInsetRect( self.bounds, 1.f, 1.f );
+    suitableBounds.size.height -= 1.f;  // fine tuning
+
+    CGPathAddRoundedRect( cgPath, NULL, suitableBounds, 4.f, 4.f );
     CGContextAddPath( _cgCtx, cgPath );
 
-    CGContextSetFillColorWithColor( _cgCtx, [ NSColor colorWithHTMLColor: isEICapitanAndLater ? @"F6F6F6" : @"FCFBFC" ].CGColor );
+    CGContextSetFillColorWithColor( _cgCtx, [ NSColor colorWithHTMLColor: isEICapitanAndLater ? @"F9F9F9" : @"FCFBFC" ].CGColor );
 
     if ( self->_isActive )
         {
         CGColorRef cgShadowColor = [ [ NSColor blackColor ] colorWithAlphaComponent: .2f ].CGColor;
 
         if ( !self->_isFocusing )
-            {
-            if ( isEICapitanAndLater )
-                {
-                CGContextSetStrokeColorWithColor( _cgCtx, [ NSColor blackColor ] .CGColor );
-                CGContextSetLineWidth( _cgCtx, .03f );
-                }
-
             CGContextSetShadowWithColor( _cgCtx, CGSizeMake( 0.f, .3f ), .7f, cgShadowColor );
+
+        if ( isEICapitanAndLater )
+            {
+            CGContextSetStrokeColorWithColor( _cgCtx, [ NSColor blackColor ] .CGColor );
+            CGContextSetLineWidth( _cgCtx, .03f );
             }
         }
     else
