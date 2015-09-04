@@ -31,7 +31,7 @@
 @interface PWNavButtonsPairView : NSView
     {
 @protected
-    PWWikiContentViewController __weak* _bindingContentViewController;
+    PWWikiContentViewController __weak* _statusProducer;
     }
 
 #pragma mark Outlets
@@ -39,7 +39,7 @@
 @property ( weak ) IBOutlet NSButton* goForwardButton;
 
 #pragma mark Ivar Properties
-@property ( weak, readwrite ) PWWikiContentViewController* bindingContentViewController;
+@property ( weak, readwrite ) PWWikiContentViewController* statusProducer;
 
 #pragma mark Actions
 - ( void ) reload;

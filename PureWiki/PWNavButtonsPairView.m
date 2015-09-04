@@ -30,14 +30,14 @@
 // PWNavButtonsPairView class
 @implementation PWNavButtonsPairView
 
-@dynamic bindingContentViewController;
+@dynamic statusProducer;
 
 #pragma mark Dynmaic Properties
-- ( void ) setBindingContentViewController: ( PWWikiContentViewController* __nullable )_BindingContentViewController
+- ( void ) setStatusProducer: ( PWWikiContentViewController* __nullable )_StatusProducer
     {
-    self->_bindingContentViewController = _BindingContentViewController;
+    self->_statusProducer = _StatusProducer;
 
-    PWWikiContentView* wikiContentView = self->_bindingContentViewController.wikiContentView;
+    PWWikiContentView* wikiContentView = self->_statusProducer.wikiContentView;
 
     [ self.goBackButton setTarget: wikiContentView ];
     [ self.goBackButton setAction: @selector( goBackAction: ) ];
@@ -48,15 +48,15 @@
     [ self reload ];
     }
 
-- ( PWWikiContentViewController* ) bindingContentViewController
+- ( PWWikiContentViewController* ) statusProducer
     {
-    return self->_bindingContentViewController;
+    return self->_statusProducer;
     }
 
 #pragma mark Actions
 - ( void ) reload
     {
-    PWWikiContentView* wikiContentView = self->_bindingContentViewController.wikiContentView;
+    PWWikiContentView* wikiContentView = self->_statusProducer.wikiContentView;
 
     [ self.goBackButton setEnabled: wikiContentView.canGoBack ];
     [ self.goForwardButton setEnabled: wikiContentView.canGoForward ];

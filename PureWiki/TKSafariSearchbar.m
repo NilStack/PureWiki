@@ -104,9 +104,9 @@
     return self->_attachPanelController;
     }
 
-- ( void ) setStateUpdateSource: ( PWWikiContentViewController* __nullable )_BindingContentViewController
+- ( void ) setStateUpdateSource: ( PWWikiContentViewController* __nullable )_StatusProducer
     {
-    self->_stateUpdateSource = _BindingContentViewController;
+    self->_stateUpdateSource = _StatusProducer;
     [ self reload ];
     NSLog( @"🐞%@", self.frozenTitle );
     }

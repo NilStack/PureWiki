@@ -90,7 +90,7 @@
 
                 if ( contentViewController )
                     {
-                    [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
+                    [ self.navButtonsPairView setStatusProducer: contentViewController ];
                     [ self.safariSearchbarController setStateUpdateSource: contentViewController ];
 
                     self->_currentWikiContentViewController = contentViewController;

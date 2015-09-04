@@ -51,9 +51,9 @@
     return ( TKSafariSearchbar* )( self.view );
     }
 
-- ( void ) setStateUpdateSource: ( PWWikiContentViewController* __nullable )_BindingContentViewController
+- ( void ) setStateUpdateSource: ( PWWikiContentViewController* __nullable )_StatusProducer
     {
-    [ self.smartSearchBar setStateUpdateSource: _BindingContentViewController ];
+    [ self.smartSearchBar setStateUpdateSource: _StatusProducer ];
     }
 
 - ( PWWikiContentViewController* ) stateUpdateSource

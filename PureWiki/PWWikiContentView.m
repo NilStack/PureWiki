@@ -225,7 +225,7 @@
 
         else if ( _WebView == self.webView )
             {
-            if ( self.owner.navButtonsPairView.bindingContentViewController.wikiContentView == self )
+            if ( self.owner.navButtonsPairView.statusProducer.wikiContentView == self )
                 {
                 NSLog( @"🐔0" );
                 [ self.owner.navButtonsPairView reload ];
