@@ -82,7 +82,8 @@
 
         [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
                                                                              relativeTo: @"superlayer"
-                                                                              attribute: kCAConstraintMidY ] ];
+                                                                              attribute: kCAConstraintMidY
+                                                                                 offset: -.4f ] ];
 
         [ self->_placeholderLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
                                                                              relativeTo: @"superlayer"
@@ -90,7 +91,8 @@
 
         [ self->_frozenTitleTextLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidY
                                                                              relativeTo: @"superlayer"
-                                                                              attribute: kCAConstraintMidY ] ];
+                                                                              attribute: kCAConstraintMidY
+                                                                                 offset: -.4f ] ];
 
         [ self->_frozenTitleTextLayer addConstraint: [ CAConstraint constraintWithAttribute: kCAConstraintMidX
                                                                              relativeTo: @"superlayer"
