@@ -36,7 +36,7 @@
 @implementation TKSafariSearchbarController
 
 @dynamic smartSearchBar;
-@dynamic stateUpdateSource;
+@dynamic statusProducer;
 
 #pragma mark Initializations
 - ( void ) viewDidLoad
@@ -51,14 +51,14 @@
     return ( TKSafariSearchbar* )( self.view );
     }
 
-- ( void ) setStateUpdateSource: ( PWWikiContentViewController* __nullable )_StatusProducer
+- ( void ) setStatusProducer: ( PWWikiContentViewController* __nullable )_StatusProducer
     {
-    [ self.smartSearchBar setStateUpdateSource: _StatusProducer ];
+    [ self.smartSearchBar setStatusProducer: _StatusProducer ];
     }
 
-- ( PWWikiContentViewController* ) stateUpdateSource
+- ( PWWikiContentViewController* ) statusProducer
     {
-    return self.smartSearchBar.stateUpdateSource;
+    return self.smartSearchBar.statusProducer;
     }
 
 #pragma mark Actions

@@ -31,7 +31,7 @@
 @interface TKSafariSearchbarController : NSViewController
 
 @property ( weak ) TKSafariSearchbar* smartSearchBar;
-@property ( weak, readwrite ) PWWikiContentViewController* stateUpdateSource;
+@property ( weak, readwrite ) PWWikiContentViewController* statusProducer;
 
 #pragma mark Actions
 - ( void ) reload;

@@ -68,7 +68,7 @@
     }
 
 @dynamic attachPanelController;
-@dynamic stateUpdateSource;
+@dynamic statusProducer;
 @dynamic isFocusing;
 
 @dynamic placeholderString;
@@ -104,22 +104,22 @@
     return self->_attachPanelController;
     }
 
-- ( void ) setStateUpdateSource: ( PWWikiContentViewController* __nullable )_StatusProducer
+- ( void ) setStatusProducer: ( PWWikiContentViewController* __nullable )_StatusProducer
     {
-    self->_stateUpdateSource = _StatusProducer;
+    self->_statusProducer = _StatusProducer;
     [ self reload ];
     NSLog( @"🐞%@", self.frozenTitle );
     }
 
-- ( PWWikiContentViewController* ) stateUpdateSource
+- ( PWWikiContentViewController* ) statusProducer
     {
-    return self->_stateUpdateSource;
+    return self->_statusProducer;
     }
 
 #pragma mark Actions
 - ( void ) reload
     {
-    PWWikiContentView* wikiContentView = self->_stateUpdateSource.wikiContentView;
+    PWWikiContentView* wikiContentView = self->_statusProducer.wikiContentView;
 
     PWOpenedWikiPage* currentOpenedPage = wikiContentView.currentOpenedWikiPage;
     if ( currentOpenedPage.openedWikiPage.title )

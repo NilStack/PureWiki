@@ -234,7 +234,7 @@
                 NSLog( @"🐝0" );
 
 
-            if ( self.owner.safariSearchbarController.stateUpdateSource.wikiContentView == self )
+            if ( self.owner.safariSearchbarController.statusProducer.wikiContentView == self )
                 {
                 NSLog( @"🐔1" );
                 [ self.owner.safariSearchbarController reload ];
