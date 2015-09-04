@@ -68,7 +68,7 @@
     }
 
 @dynamic attachPanelController;
-@dynamic bindingContentViewController;
+@dynamic stateUpdateSource;
 @dynamic isFocusing;
 
 @dynamic placeholderString;
@@ -122,21 +122,21 @@
     return self->_attachPanelController;
     }
 
-- ( void ) setBindingContentViewController: ( PWWikiContentViewController* __nullable )_BindingContentViewController
+- ( void ) setStateUpdateSource: ( PWWikiContentViewController* __nullable )_BindingContentViewController
     {
-    self->_bindingContentViewController = _BindingContentViewController;
-    NSLog( @"🐞%@", self->_bindingContentViewController.wikiContentView.wikiPage.title );
+    self->_stateUpdateSource = _BindingContentViewController;
+    NSLog( @"🐞%@", self->_stateUpdateSource.wikiContentView.wikiPage.title );
     }
 
-- ( PWWikiContentViewController* ) bindingContentViewController
+- ( PWWikiContentViewController* ) stateUpdateSource
     {
-    return self->_bindingContentViewController;
+    return self->_stateUpdateSource;
     }
 
 #pragma mark Actions
 - ( void ) reload
     {
-    PWWikiContentView* wikiContentView = self->_bindingContentViewController.wikiContentView;
+    PWWikiContentView* wikiContentView = self->_stateUpdateSource.wikiContentView;
     WikiPage* currentPage = wikiContentView.wikiPage;
 
     if ( currentPage.title )

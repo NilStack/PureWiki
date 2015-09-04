@@ -31,7 +31,7 @@
 @interface TKSafariSearchbarController : NSViewController
 
 @property ( weak ) TKSafariSearchbar* smartSearchBar;
-@property ( weak, readwrite ) PWWikiContentViewController* bindingContentViewController;
+@property ( weak, readwrite ) PWWikiContentViewController* stateUpdateSource;
 
 @end // TKSafariSearchbarController class
 

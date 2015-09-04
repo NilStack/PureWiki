@@ -36,7 +36,7 @@
 @implementation TKSafariSearchbarController
 
 @dynamic smartSearchBar;
-@dynamic bindingContentViewController;
+@dynamic stateUpdateSource;
 
 #pragma mark Initializations
 - ( void ) viewDidLoad
@@ -51,14 +51,14 @@
     return ( TKSafariSearchbar* )( self.view );
     }
 
-- ( void ) setBindingContentViewController: ( PWWikiContentViewController* __nullable )_BindingContentViewController
+- ( void ) setStateUpdateSource: ( PWWikiContentViewController* __nullable )_BindingContentViewController
     {
-    [ self.smartSearchBar setBindingContentViewController: _BindingContentViewController ];
+    [ self.smartSearchBar setStateUpdateSource: _BindingContentViewController ];
     }
 
-- ( PWWikiContentViewController* ) bindingContentViewController
+- ( PWWikiContentViewController* ) stateUpdateSource
     {
-    return self.smartSearchBar.bindingContentViewController;
+    return self.smartSearchBar.stateUpdateSource;
     }
 
 @end // TKSafariSearchbarController class

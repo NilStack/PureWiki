@@ -35,7 +35,7 @@
     {
 @private
     PWSearchResultsAttachPanelController __strong* _attachPanelController;
-    PWWikiContentViewController __weak* _bindingContentViewController;
+    PWWikiContentViewController __weak* _stateUpdateSource;
     FBKVOController __strong* _KVOController;
 
     BOOL _isFocusing;
@@ -46,7 +46,7 @@
 
 #pragma mark Ivar Properties
 @property ( strong, readonly ) PWSearchResultsAttachPanelController* attachPanelController;
-@property ( weak, readwrite ) PWWikiContentViewController* bindingContentViewController;
+@property ( weak, readwrite ) PWWikiContentViewController* stateUpdateSource;
 @property ( assign, readonly ) BOOL isFocusing;
 @property ( strong, readwrite ) NSString* frozenTitle;
 

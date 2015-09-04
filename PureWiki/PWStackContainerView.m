@@ -69,8 +69,6 @@
 
 - ( void ) awakeFromNib
     {
-    NSLog( @"%@", self.safariSearchbarController.smartSearchBar );
-
     if ( self.sidebarTabsTableController )
         {
         [ self->_KVOController observe: self.sidebarTabsTableController
@@ -93,7 +91,7 @@
                 if ( contentViewController )
                     {
                     [ self.navButtonsPairView setBindingContentViewController: contentViewController ];
-                    [ self.safariSearchbarController setBindingContentViewController: contentViewController ];
+                    [ self.safariSearchbarController setStateUpdateSource: contentViewController ];
 
                     self->_currentWikiContentViewController = contentViewController;
 

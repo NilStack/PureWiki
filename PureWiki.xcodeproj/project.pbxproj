@@ -147,8 +147,8 @@
 		83509BD91B864A9100C4F454 /* PWSearchResultsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSearchResultsTableView.m; sourceTree = "<group>"; };
 		83509BDB1B864B1300C4F454 /* PWSearchResultsTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSearchResultsTableCellView.h; sourceTree = "<group>"; };
 		83509BDC1B864B1300C4F454 /* PWSearchResultsTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSearchResultsTableCellView.m; sourceTree = "<group>"; };
-		83509BDE1B870D0500C4F454 /* TKSafariSearchbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSafariSearchbarController.h; sourceTree = "<group>"; };
-		83509BDF1B870D0500C4F454 /* TKSafariSearchbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSafariSearchbarController.m; sourceTree = "<group>"; };
+		83509BDE1B870D0500C4F454 /* TKSafariSearchbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKSafariSearchbarController.h; path = PureWiki/TKSafariSearchbarController.h; sourceTree = "<group>"; };
+		83509BDF1B870D0500C4F454 /* TKSafariSearchbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TKSafariSearchbarController.m; path = PureWiki/TKSafariSearchbarController.m; sourceTree = "<group>"; };
 		83509BE11B8738E800C4F454 /* PWWikiContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentViewController.h; sourceTree = "<group>"; };
 		83509BE21B8738E800C4F454 /* PWWikiContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentViewController.m; sourceTree = "<group>"; };
 		83509BE51B8739FD00C4F454 /* PWWikiContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PWWikiContentView.xib; sourceTree = "<group>"; };
@@ -309,8 +309,6 @@
 				8322BF8D1B83AE9100A890C9 /* xib */,
 				839585DF1B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.h */,
 				839585E01B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m */,
-				83509BDE1B870D0500C4F454 /* TKSafariSearchbarController.h */,
-				83509BDF1B870D0500C4F454 /* TKSafariSearchbarController.m */,
 				83509BCD1B8629DF00C4F454 /* PWSearchResultsAttachPanel.h */,
 				83509BCE1B8629DF00C4F454 /* PWSearchResultsAttachPanel.m */,
 				83509BD21B862A1400C4F454 /* PWSearchResultsAttachPanelController.h */,
@@ -635,6 +633,8 @@
 				83E372501B999B16002E55F1 /* internal */,
 				83509BD51B86388E00C4F454 /* NSObject+TKSafariSearchbar.h */,
 				83509BD61B86388E00C4F454 /* NSObject+TKSafariSearchbar.m */,
+				83509BDE1B870D0500C4F454 /* TKSafariSearchbarController.h */,
+				83509BDF1B870D0500C4F454 /* TKSafariSearchbarController.m */,
 				8322BF941B83C6F400A890C9 /* TKSafariSearchbar.h */,
 				8322BF951B83C6F400A890C9 /* TKSafariSearchbar.m */,
 				837B975A1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.h */,
