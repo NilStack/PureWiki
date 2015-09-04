@@ -42,6 +42,7 @@
 
 - ( void ) __saveScrollPosition;
 - ( void ) __restoreScrollPosition;
+- ( void ) __reloadAllStatusConsumers;
 
 @end // Private Interfaces
 
@@ -225,36 +226,9 @@
 
         else if ( _WebView == self.webView )
             {
-            for ( id <PWWikiContentViewStatusConsumer> _Consumer in self.owner.currentConsumers )
-                {
-                if ( _Consumer.statusProducer == self )
-                    {
-                    [ _Consumer reload ];
-                    NSLog( @"🐔0" );
-                    }
-                else
-                    NSLog( @"🐝0" );
-                }
-
-//            if ( self.owner.navButtonsPairView.statusProducer == self )
-//                {
-//                NSLog( @"🐔0" );
-//                [ self.owner.navButtonsPairView reload ];
-//                }
-//            else
-//                NSLog( @"🐝0" );
-//
-//
-//            if ( self.owner.safariSearchbarController.statusProducer == self )
-//                {
-//                NSLog( @"🐔1" );
-//                [ self.owner.safariSearchbarController reload ];
-//                }
-//            else
-//                NSLog( @"🐝1" );
-
             [ self.webView setPolicyDelegate: self ];
 
+            [ self __reloadAllStatusConsumers ];
             [ self __restoreScrollPosition ];
 
             #if DEBUG
@@ -304,6 +278,13 @@
     {
     [ self.webView stringByEvaluatingJavaScriptFromString:
         [ NSString stringWithFormat:@"window.scrollTo( %g, %g )", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
+    }
+
+- ( void ) __reloadAllStatusConsumers
+    {
+    for ( id <PWWikiContentViewStatusConsumer> _Consumer in self.owner.currentConsumers )
+        if ( _Consumer.statusProducer == self )
+            [ _Consumer reload ];
     }
 
 @end // PWWikiContentView class

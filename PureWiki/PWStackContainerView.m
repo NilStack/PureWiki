@@ -58,6 +58,9 @@
 
         self->_KVOController = [ FBKVOController controllerWithObserver: self ];
 
+        // Conforms to <PWWikiContentViewOwner>
+        self->_currentConsumers = ( PWWikiContentViewStatusConsumers* )[ NSMutableSet set ];
+
         [ [ NSNotificationCenter defaultCenter ] addObserver: self
                                                     selector: @selector( _userDidPickUpSearchItem: )
                                                         name: PureWikiDidPickUpSearchItemNotif
@@ -69,38 +72,39 @@
 
 - ( void ) awakeFromNib
     {
-    if ( self.sidebarTabsTableController )
-        {
-        [ self->_KVOController observe: self.sidebarTabsTableController
-                               keyPath: PWSidebarCurrentSelectedPageKVOPath
-                               options: NSKeyValueObservingOptionNew
-                                 block:
-            ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change)
+    [ self->_KVOController observe: self.sidebarTabsTableController
+                           keyPath: PWSidebarCurrentSelectedPageKVOPath
+                           options: NSKeyValueObservingOptionNew
+                             block:
+        ( FBKVONotificationBlock )^( id _Observer, id _Object, NSDictionary* _Change)
+            {
+            PWOpenedWikiPage* newSelectedOpenedPage = _Change[ @"new" ];
+            PWWikiContentViewController* contentViewController = self->_contentViewControllers[ newSelectedOpenedPage.hostContentViewUUID ];
+
+            #if DEBUG
+            NSLog( @">>> (Log:%s) Current selected page hosting in %@ (%@) has been changed: \n%@"
+                 , __PRETTY_FUNCTION__
+                 , contentViewController, contentViewController.UUID
+                 , _Change
+                 );
+            #endif
+
+            if ( contentViewController )
                 {
-                PWOpenedWikiPage* newSelectedOpenedPage = _Change[ @"new" ];
-                PWWikiContentViewController* contentViewController = self->_contentViewControllers[ newSelectedOpenedPage.hostContentViewUUID ];
+                [ self.navButtonsPairView setStatusProducer: contentViewController.wikiContentView ];
+                [ self.safariSearchbarController setStatusProducer: contentViewController.wikiContentView ];
 
-                #if DEBUG
-                NSLog( @">>> (Log:%s) Current selected page hosting in %@ (%@) has been changed: \n%@"
-                     , __PRETTY_FUNCTION__
-                     , contentViewController, contentViewController.UUID
-                     , _Change
-                     );
-                #endif
+                self->_currentWikiContentViewController = contentViewController;
 
-                if ( contentViewController )
-                    {
-                    [ self.navButtonsPairView setStatusProducer: contentViewController.wikiContentView ];
-                    [ self.safariSearchbarController setStatusProducer: contentViewController.wikiContentView ];
+                [ self setSubviews: @[] ];
+                [ self addSubview: contentViewController.view ];
+                [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
+                }
+            } ];
 
-                    self->_currentWikiContentViewController = contentViewController;
-
-                    [ self setSubviews: @[] ];
-                    [ self addSubview: contentViewController.view ];
-                    [ contentViewController.view autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsZero ];
-                    }
-                } ];
-        }
+    [ self->_currentConsumers addObjectsFromArray:@[ self.navButtonsPairView
+                                                   , self.safariSearchbarController
+                                                   ] ];
     }
 
 - ( BOOL ) acceptsFirstResponder
@@ -121,6 +125,14 @@
 - ( PWWikiContentViewController* ) currentWikiContentViewController
     {
     return self->_currentWikiContentViewController;
+    }
+
+#pragma mark Conforms to <PWWikiContentViewOwner>
+@dynamic currentConsumers;
+
+- ( PWWikiContentViewStatusConsumers* ) currentConsumers
+    {
+    return self->_currentConsumers;
     }
 
 #pragma mark Private Interfaces

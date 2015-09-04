@@ -76,13 +76,12 @@
 @end // PWWikiContentView class
 
 // PWWikiContentViewOwner protocol
+typedef NSMutableSet <__kindof id <PWWikiContentViewStatusConsumer> > PWWikiContentViewStatusConsumers;
+
 @protocol PWWikiContentViewOwner <NSObject>
 
-@property ( weak ) PWNavButtonsPairView* navButtonsPairView;
-@property ( weak ) TKSafariSearchbarController* safariSearchbarController;
-
 @required
-@property ( weak, readonly ) NSMutableSet <__kindof id <PWWikiContentViewStatusConsumer> >* currentConsumers;
+@property ( strong, readonly ) PWWikiContentViewStatusConsumers* currentConsumers;
 
 @end // PWWikiContentViewOwner protocol
 

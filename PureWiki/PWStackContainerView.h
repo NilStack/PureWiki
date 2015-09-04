@@ -44,12 +44,14 @@
     FBKVOController __strong* _KVOController;
 
     PWWikiContentViewController __weak* _currentWikiContentViewController;
+
+    // Conforms to <PWWikiContentViewOwner>
+    PWWikiContentViewStatusConsumers __strong* _currentConsumers;
     }
 
 #pragma mark Outlets
 @property ( weak ) IBOutlet PWSidebarTabsTableController* sidebarTabsTableController;
 
-#pragma mark Conforms to <PWWikiContentViewOwner>
 @property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
 @property ( weak ) IBOutlet TKSafariSearchbarController* safariSearchbarController;
 
