@@ -239,7 +239,7 @@
             [ self __reloadAllStatusConsumers ];
             [ self __restoreScrollPosition ];
 
-//            [ self askToBecomeFirstResponder ];
+            [ self askToBecomeFirstResponder ];
 
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, _debuggingBFList, _backForwardList );
