@@ -23,6 +23,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWWikiContentView.h"
+#import "PWWikiContentViewController.h"
 #import "PWCastrateFactory.h"
 #import "PWStackContainerView.h"
 #import "PWNavButtonsPairView.h"
@@ -31,6 +32,7 @@
 #import "PWUtilities.h"
 #import "PWWikiPageBackForwardList.h"
 #import "PWOpenedWikiPage.h"
+#import "TKSafariSearchbarController.h"
 
 #import "WikiPage.h"
 #import "WikiEngine.h"
@@ -223,7 +225,23 @@
 
         else if ( _WebView == self.webView )
             {
-            [ self.owner.navButtonsPairView reload ];
+            if ( self.owner.navButtonsPairView.bindingContentViewController.wikiContentView == self )
+                {
+                NSLog( @"🐔0" );
+                [ self.owner.navButtonsPairView reload ];
+                }
+            else
+                NSLog( @"🐝0" );
+
+
+            if ( self.owner.safariSearchbarController.stateUpdateSource.wikiContentView == self )
+                {
+                NSLog( @"🐔1" );
+                [ self.owner.safariSearchbarController reload ];
+                }
+            else
+                NSLog( @"🐝1" );
+
             [ self.webView setPolicyDelegate: self ];
 
             [ self __restoreScrollPosition ];

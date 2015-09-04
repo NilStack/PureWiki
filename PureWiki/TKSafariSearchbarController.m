@@ -61,6 +61,12 @@
     return self.smartSearchBar.stateUpdateSource;
     }
 
+#pragma mark Actions
+- ( void ) reload
+    {
+    [ self.smartSearchBar reload ];
+    }
+
 @end // TKSafariSearchbarController class
 
 /*===============================================================================┐

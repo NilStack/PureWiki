@@ -33,6 +33,9 @@
 @property ( weak ) TKSafariSearchbar* smartSearchBar;
 @property ( weak, readwrite ) PWWikiContentViewController* stateUpdateSource;
 
+#pragma mark Actions
+- ( void ) reload;
+
 @end // TKSafariSearchbarController class
 
 /*===============================================================================┐
