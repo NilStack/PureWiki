@@ -35,7 +35,7 @@
 @class FBKVOController;
 
 // PWStackContainerView class
-@interface PWStackContainerView : NSView <PWWikiContentViewOwner>
+@interface PWStackContainerView : NSView <PWWikiContentViewStatusConsumer>
     {
 @protected
     NSMutableArray __strong* _pagesStack;                   // @{ PWOpendedWikiPage, … }
@@ -49,7 +49,7 @@
 #pragma mark Outlets
 @property ( weak ) IBOutlet PWSidebarTabsTableController* sidebarTabsTableController;
 
-#pragma mark Conforms to <PWWikiContentViewOwner>
+#pragma mark Conforms to <PWWikiContentViewStatusConsumer>
 @property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
 @property ( weak ) IBOutlet TKSafariSearchbarController* safariSearchbarController;
 

@@ -35,7 +35,7 @@
 @class WikiPage;
 @class WikiEngine;
 
-@protocol PWWikiContentViewOwner;
+@protocol PWWikiContentViewStatusConsumer;
 
 // PWWikiContentView class
 @interface PWWikiContentView : NSView <WebFrameLoadDelegate, WebPolicyDelegate>
@@ -63,7 +63,7 @@
 
 @property ( strong, readwrite ) WikiPage* originalWikiPage;
 @property ( strong, readonly ) PWOpenedWikiPage* currentOpenedWikiPage;
-@property ( weak, readwrite ) id <PWWikiContentViewOwner> owner;
+@property ( weak, readwrite ) id <PWWikiContentViewStatusConsumer> owner;
 
 @property ( strong, readonly ) NSString* UUID;
 
@@ -73,13 +73,13 @@
 
 @end // PWWikiContentView class
 
-// PWWikiContentViewOwner protocol
-@protocol PWWikiContentViewOwner <NSObject>
+// PWWikiContentViewStatusConsumer protocol
+@protocol PWWikiContentViewStatusConsumer <NSObject>
 
 @property ( weak ) IBOutlet PWNavButtonsPairView* navButtonsPairView;
 @property ( weak ) IBOutlet TKSafariSearchbarController* safariSearchbarController;
 
-@end // PWWikiContentViewOwner protocol
+@end // PWWikiContentViewStatusConsumer protocol
 
 /*===============================================================================┐
 |                                                                                | 
