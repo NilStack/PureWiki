@@ -49,7 +49,7 @@
     {
     if ( self = [ super initWithNibName: @"PWWikiContentView" bundle: [ NSBundle mainBundle ] ] )
         {
-        [ self.wikiContentView setWikiPage: _WikiPage ];
+        [ self.wikiContentView setOriginalWikiPage: _WikiPage ];
         [ self.wikiContentView setOwner: _Owner ];
         }
 

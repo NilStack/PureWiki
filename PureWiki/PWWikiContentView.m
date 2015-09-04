@@ -49,7 +49,8 @@
 @dynamic canGoBack;
 @dynamic canGoForward;
 
-@dynamic wikiPage;
+@dynamic originalWikiPage;
+@dynamic currentOpenedWikiPage;
 @synthesize owner;
 
 @dynamic UUID;
@@ -102,17 +103,30 @@
     return ( self->_backForwardList.forwardListCount > 0 );
     }
 
-- ( void ) setWikiPage: ( WikiPage* )_WikiPage
+- ( void ) setOriginalWikiPage: ( WikiPage* )_WikiPage
     {
-    [ self->_backingWebView.mainFrame stopLoading ];
+    if ( _WikiPage && _WikiPage != self->_originalWikiPage )
+        {
+        self->_originalWikiPage = _WikiPage;
 
-    NSURLRequest* request = [ NSURLRequest requestWithURL: _WikiPage.URL ];
-    [ self->_backingWebView.mainFrame loadRequest: request ];
+        [ self.webView.mainFrame stopLoading ];
+        [ self->_backingWebView.mainFrame stopLoading ];
+
+        [ self->_backForwardList cleanUp ];
+
+        NSURLRequest* request = [ NSURLRequest requestWithURL: self->_originalWikiPage.URL ];
+        [ self->_backingWebView.mainFrame loadRequest: request ];
+        }
     }
 
-- ( WikiPage* ) wikiPage
+- ( WikiPage* ) originalWikiPage
     {
-    return [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) openedWikiPage ];
+    return self->_originalWikiPage;
+    }
+
+- ( PWOpenedWikiPage* ) currentOpenedWikiPage
+    {
+    return self->_backForwardList.currentItem;
     }
 
 - ( NSString* ) UUID

@@ -125,7 +125,8 @@
 - ( void ) setStateUpdateSource: ( PWWikiContentViewController* __nullable )_BindingContentViewController
     {
     self->_stateUpdateSource = _BindingContentViewController;
-    NSLog( @"🐞%@", self->_stateUpdateSource.wikiContentView.wikiPage.title );
+    [ self reload ];
+    NSLog( @"🐞%@", self.frozenTitle );
     }
 
 - ( PWWikiContentViewController* ) stateUpdateSource
@@ -137,10 +138,16 @@
 - ( void ) reload
     {
     PWWikiContentView* wikiContentView = self->_stateUpdateSource.wikiContentView;
-    WikiPage* currentPage = wikiContentView.wikiPage;
 
-    if ( currentPage.title )
-        [ self setFrozenTitle: currentPage.title ];
+    PWOpenedWikiPage* currentOpenedPage = wikiContentView.currentOpenedWikiPage;
+    if ( currentOpenedPage.openedWikiPage.title )
+        [ self setFrozenTitle: currentOpenedPage.openedWikiPage.title ];
+    else
+        {
+        WikiPage* originalWikiPage = wikiContentView.originalWikiPage;
+        if ( originalWikiPage.title )
+            [ self setFrozenTitle: originalWikiPage.title ];
+        }
     }
 
 - ( BOOL ) isFocusing

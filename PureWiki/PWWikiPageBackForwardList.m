@@ -89,6 +89,12 @@
         }
     }
 
+- ( void ) cleanUp
+    {
+    [ self->__backingStore removeAllObjects ];
+    self->__cursor = -1;
+    }
+
 #pragma mark Moving Backward and Forward
 // Moves backward one page in the back-forward list.
 - ( void ) goBack

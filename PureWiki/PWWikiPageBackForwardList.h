@@ -46,6 +46,8 @@
   */
 - ( void ) addItem: ( PWOpenedWikiPage* )_OpendedWikiPage;
 
+- ( void ) cleanUp;
+
 #pragma mark Moving Backward and Forward
 /** Moves backward one page in the back-forward list.
 

@@ -29,6 +29,7 @@
 @class PWStackContainerView;
 @class PWNavButtonsPairView;
 @class PWWikiPageBackForwardList;
+@class PWOpenedWikiPage;
 @class TKSafariSearchbarController;
 
 @class WikiPage;
@@ -42,6 +43,7 @@
 @private
     WikiEngine __strong* _wikiEngine;
 
+    WikiPage __strong* _originalWikiPage;
     PWWikiPageBackForwardList __strong* _backForwardList;
     #if DEBUG
     WebBackForwardList __strong* _debuggingBFList;
@@ -59,7 +61,8 @@
 @property ( assign, readonly ) BOOL canGoBack;
 @property ( assign, readonly ) BOOL canGoForward;
 
-@property ( strong, readwrite ) WikiPage* wikiPage;
+@property ( strong, readwrite ) WikiPage* originalWikiPage;
+@property ( strong, readonly ) PWOpenedWikiPage* currentOpenedWikiPage;
 @property ( weak, readwrite ) id <PWWikiContentViewOwner> owner;
 
 @property ( strong, readonly ) NSString* UUID;
