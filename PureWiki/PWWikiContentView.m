@@ -231,6 +231,8 @@
             [ self __reloadAllStatusConsumers ];
             [ self __restoreScrollPosition ];
 
+            [ self.webView.window makeFirstResponder: self.webView ];
+
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, _debuggingBFList, _backForwardList );
             NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, _debuggingBFList.backItem, _backForwardList.backItem );
