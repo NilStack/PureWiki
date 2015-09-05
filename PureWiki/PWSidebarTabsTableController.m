@@ -65,14 +65,13 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
         else
             {
             PWOpenedWikiPage* opendedWikiPage = self->_openedWikiPages[ index ];
+
             if ( opendedWikiPage.openedWikiPage != _OpendedWikiPage.openedWikiPage )
-                {
                 opendedWikiPage.openedWikiPage = _OpendedWikiPage.openedWikiPage;
-                [ self.sidebarTabsTable reloadData ];
-                }
             }
 
         [ self.sidebarTabsTable reloadData ];
+
         NSIndexSet* selectRowIndexes = [ NSIndexSet indexSetWithIndex: self->_openedWikiPages.count - 1 ];
         [ self.sidebarTabsTable selectRowIndexes: selectRowIndexes byExtendingSelection: NO ];
         }

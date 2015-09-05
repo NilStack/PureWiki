@@ -33,6 +33,7 @@
 #import "PWWikiPageBackForwardList.h"
 #import "PWOpenedWikiPage.h"
 #import "TKSafariSearchbarController.h"
+#import "PWSidebarTabsTableController.h"
 
 #import "WikiPage.h"
 #import "WikiEngine.h"
@@ -240,6 +241,7 @@
             [ self __restoreScrollPosition ];
 
             [ self askToBecomeFirstResponder ];
+            [ [ ( PWStackContainerView* )( self.owner ) sidebarTabsTableController ] pushOpenedWikiPage: self.currentOpenedWikiPage ];
 
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, _debuggingBFList, _backForwardList );
