@@ -59,9 +59,13 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     if ( _OpendedWikiPage )
         {
         NSUInteger index = [ self->_openedWikiPages indexOfObject: _OpendedWikiPage ];
+        BOOL isPushing = NO;
 
         if ( index == NSNotFound )
+            {
             [ self->_openedWikiPages addObject: _OpendedWikiPage ];
+            isPushing = YES;
+            }
         else
             {
             PWOpenedWikiPage* opendedWikiPage = self->_openedWikiPages[ index ];
@@ -72,7 +76,10 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 
         [ self.sidebarTabsTable reloadData ];
 
-        NSIndexSet* selectRowIndexes = [ NSIndexSet indexSetWithIndex: self->_openedWikiPages.count - 1 ];
+        NSIndexSet* selectRowIndexes =
+            [ NSIndexSet indexSetWithIndex: isPushing ? ( self->_openedWikiPages.count - 1 )
+                                                      : [ self->_openedWikiPages indexOfObject: self->_currentSelectedPage ] ];
+
         [ self.sidebarTabsTable selectRowIndexes: selectRowIndexes byExtendingSelection: NO ];
         }
     }

@@ -76,7 +76,6 @@
 
     if ( self->_wikiPage != _WikiPage )
         {
-        [ self setImage: nil ];
         self->_wikiPage = _WikiPage;
 
         void (^__handleFetchedPageImageData)( NSData*, NSURLResponse*, NSError* ) =
@@ -101,19 +100,37 @@
                 if ( _WikiImage )
                     {
                     NSURL* imageURL = _WikiImage.URL;
-                    self->_dataTask = [ self->_HTTPSessionManager GET: imageURL.absoluteString
-                                                           parameters: nil
-                                                              success:
-                      ^( NSURLSessionDataTask* _Task, id _ResponseObject )
-                            {
-                            __handleFetchedPageImageData( ( NSData* )_ResponseObject, _Task.response, nil );
-                            } failure:
-                                ^( NSURLSessionDataTask* _Task, NSError* _Error )
-                                    {
 
-                                    } ];
+                    NSURLRequest* imageRequest = [ NSURLRequest requestWithURL: imageURL ];
+                    NSCachedURLResponse* cachedRequest = [ [ NSURLCache sharedURLCache ] cachedResponseForRequest: imageRequest ];
 
-                    [ self->_dataTask resume ];
+                    if ( cachedRequest )
+                        __handleFetchedPageImageData( cachedRequest.data, cachedRequest.response, nil );
+                    else
+                        {
+
+                        self->_dataTask = [ self->_HTTPSessionManager GET: imageURL.absoluteString
+                                                               parameters: nil
+                                                                  success:
+                          ^( NSURLSessionDataTask* _Task, id _ResponseObject )
+                                {
+                                __handleFetchedPageImageData( ( NSData* )_ResponseObject, _Task.response, nil );
+
+                                NSCachedURLResponse* cache =
+                                    [ [ NSCachedURLResponse alloc ] initWithResponse: _Task.response
+                                                                                data: ( NSData* )_ResponseObject
+                                                                            userInfo: nil
+                                                                       storagePolicy: NSURLCacheStorageAllowed ];
+
+                            [ [ NSURLCache sharedURLCache ] storeCachedResponse: cache forRequest: imageRequest ];
+                                } failure:
+                                    ^( NSURLSessionDataTask* _Task, NSError* _Error )
+                                        {
+
+                                        } ];
+
+                        [ self->_dataTask resume ];
+                        }
                     }
                 } failure:
                     ^( NSError* _Error )
