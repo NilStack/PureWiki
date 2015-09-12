@@ -4,3 +4,6 @@
 [submodule "PureWiki/vendor/KVOController"]
 	path = PureWiki/vendor/KVOController
 	url = https://github.com/PureWiki/KVOController.git
+[submodule "PureWiki/vendor/SugarWiki"]
+	path = PureWiki/vendor/SugarWiki
+	url = https://github.com/PureWiki/SugarWiki
