@@ -201,12 +201,12 @@
                 {
                 [ self->_wikiEngine searchAllPagesThatHaveValue: castratedWikiPageArchive.wikiPageTitle
                                                    inNamespaces: nil
-                                                           what: WikiEngineSearchWhatPageText
+                                                       approach: WikiEngineSearchApproachPageText
                                                           limit: 1
                                                         success:
-                    ^( NSArray* _MatchedPages )
+                    ^( WikiSearchResults _SearchResults )
                         {
-                        if ( _MatchedPages )
+                        if ( _SearchResults )
                             {
                             [ self __saveScrollPosition ];
                             [ self.__webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
@@ -216,7 +216,7 @@
 
                             PWOpenedWikiPage* openedWikiPage =
                                 [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: self.UUID
-                                                                          openedWikiPage: _MatchedPages.firstObject
+                                                                          openedWikiPage: _SearchResults.firstObject
                                                                                      URL: archiveURL ];
                             [ self->_backForwardList addItem: openedWikiPage ];
                             #if DEBUG
