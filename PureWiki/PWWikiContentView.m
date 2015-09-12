@@ -35,6 +35,7 @@
 #import "TKSafariSearchbarController.h"
 #import "PWSidebarTabsTableController.h"
 
+#import "SugarWikiDefines.h"
 #import "WikiPage.h"
 #import "WikiEngine.h"
 
@@ -199,14 +200,12 @@
 
             if ( !error )
                 {
-                [ self->_wikiEngine searchAllPagesThatHaveValue: castratedWikiPageArchive.wikiPageTitle
-                                                   inNamespaces: nil
-                                                       approach: WikiEngineSearchApproachPageText
-                                                          limit: 1
-                                                        success:
-                    ^( WikiSearchResults _SearchResults )
+                [ self->_wikiEngine pagesWithTitles: @[ castratedWikiPageArchive.wikiPageTitle ]
+                                       continuation: nil
+                                            success:
+                    ^( __NSArray_of( WikiPage* ) _MatchedPages, WikiContinuation* _Continuation )
                         {
-                        if ( _SearchResults )
+                        if ( _MatchedPages )
                             {
                             [ self __saveScrollPosition ];
                             [ self.__webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: archiveURL ] ];
@@ -216,7 +215,7 @@
 
                             PWOpenedWikiPage* openedWikiPage =
                                 [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: self.UUID
-                                                                          openedWikiPage: _SearchResults.firstObject
+                                                                          openedWikiPage: _MatchedPages.firstObject
                                                                                      URL: archiveURL ];
                             [ self->_backForwardList addItem: openedWikiPage ];
                             #if DEBUG
