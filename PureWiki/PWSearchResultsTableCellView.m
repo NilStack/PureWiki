@@ -24,13 +24,12 @@
 #import "PWSearchResultsTableCellView.h"
 #import "PWActionNotifications.h"
 
-#import "WikiPage.h"
-#import "WikiRevision.h"
+#import "WikiSearchResult.h"
 
 // PWSearchResultsTableCellView class
 @implementation PWSearchResultsTableCellView
 
-@dynamic wikiPage;
+@dynamic wikiSearchResult;
 
 #pragma mark Custom Drawing
 - ( void ) drawRect: ( NSRect )_DirtyRect
@@ -47,22 +46,22 @@
 
     [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidPickUpSearchItemNotif
                                                            object: self
-                                                         userInfo: @{ kPage : self->_wikiPage } ];
+                                                         userInfo: @{ kSearchResult : self->_wikiSearchResult } ];
     }
 
 #pragma mark Dynamic Properties
-- ( void ) setWikiPage: ( WikiPage* )_WikiPage
+- ( void ) setWikiSearchResult: ( WikiSearchResult* )_SearchResult
     {
-    self->_wikiPage = _WikiPage;
+    self->_wikiSearchResult = _SearchResult;
 
     // self.pageImageView =
-    self.pageTitleTextField.stringValue = self->_wikiPage.title;
-    self.pageSnippetTextField.stringValue = [ self->_wikiPage.lastRevision.content substringToIndex: 100 ];
+    self.pageTitleTextField.stringValue = self->_wikiSearchResult.title;
+    self.pageSnippetTextField.stringValue = [ self->_wikiSearchResult resultSnippet ];
     }
 
-- ( WikiPage* ) wikiPage
+- ( WikiSearchResult* ) wikiSearchResult
     {
-    return self->_wikiPage;
+    return self->_wikiSearchResult;
     }
 
 @end // PWSearchResultsTableCellView class

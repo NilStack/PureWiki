@@ -32,12 +32,16 @@
 @class PWSidebarTabsTableController;
 @class TKSafariSearchbarController;
 
+@class WikiEngine;
+
 @class FBKVOController;
 
 // PWStackContainerView class
 @interface PWStackContainerView : NSView <PWWikiContentViewOwner>
     {
 @protected
+    WikiEngine* __strong _wikiEngine;
+
     NSMutableArray __strong* _pagesStack;                   // @{ PWOpendedWikiPage, … }
     NSMutableDictionary __strong* _contentViewControllers;  // @{ WikiContentViewUUID : WikiContentView, … }
 

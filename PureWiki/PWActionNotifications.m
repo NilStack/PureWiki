@@ -32,6 +32,7 @@ NSString* const PureWikiTabsSelectionDidChangeNotif = @"PureWikiTabsSelectionDid
 NSString* const kPage = @"kPage";
 NSString* const kPages = @"kPages";
 NSString* const kOpenedPage = @"kOpenedPage";
+NSString* const kSearchResult = @"kSearchResult";
 
 /*===============================================================================┐
 |                                                                                | 

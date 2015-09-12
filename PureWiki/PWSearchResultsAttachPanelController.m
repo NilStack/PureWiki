@@ -31,6 +31,7 @@
 #import "WikiPage.h"
 #import "WikiRevision.h"
 #import "WikiEngine.h"
+#import "WikiSearchResult.h"
 
 NSString* const kResultsColumnID = @"results-column";
 
@@ -72,7 +73,7 @@ NSString* const kResultsColumnID = @"results-column";
         {
         self.relativeView = _RelativeView;
 
-        self->_fetchedWikiPages = [ NSMutableArray array ];
+        self->_fetchedResults = [ NSMutableArray array ];
         self->_instantSearchWikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
 
         [ [ NSNotificationCenter defaultCenter ] addObserver: self
@@ -155,7 +156,7 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( BOOL ) isInUse
     {
-    return !self.hasCompletedInstantSearch || self->_fetchedWikiPages.count > 0;
+    return !self.hasCompletedInstantSearch || self->_fetchedResults.count > 0;
     }
 
 - ( void ) searchValue: ( NSString* )SearchValue
@@ -199,14 +200,14 @@ NSString* const kResultsColumnID = @"results-column";
 - ( void ) stopSearchingAndClearResults
     {
     [ self stopSearching ];
-    [ self->_fetchedWikiPages removeAllObjects ];
+    [ self->_fetchedResults removeAllObjects ];
     [ self.searchResultsTableView reloadData ];
     }
 
 #pragma mark Conforms to <NSTableViewDataSource>
 - ( NSInteger ) numberOfRowsInTableView: ( nonnull NSTableView* )_TableView
     {
-    return self->_fetchedWikiPages.count;
+    return self->_fetchedResults.count;
     }
 
 - ( id )            tableView: ( nonnull NSTableView* )_TableView
@@ -216,7 +217,7 @@ NSString* const kResultsColumnID = @"results-column";
     id result = nil;
 
     if ( [ _TableColumn.identifier isEqualToString: kResultsColumnID ] )
-        result = self->_fetchedWikiPages[ _Row ];
+        result = self->_fetchedResults[ _Row ];
 
     return result;
     }
@@ -227,8 +228,8 @@ NSString* const kResultsColumnID = @"results-column";
                     row: ( NSInteger )_Row
     {
     PWSearchResultsTableCellView* tableCellView = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
-    WikiPage* wikiPage = ( WikiPage* )( self->_fetchedWikiPages[ _Row ] );
-    [ tableCellView setWikiPage: wikiPage ];
+    WikiSearchResult* searchResult = ( WikiSearchResult* )( self->_fetchedResults[ _Row ] );
+    [ tableCellView setWikiSearchResult: searchResult ];
 
     return tableCellView;
     }
@@ -312,15 +313,15 @@ NSString* const kResultsColumnID = @"results-column";
     [ self popUpAttachPanel ];
     [ self->_instantSearchWikiEngine searchAllPagesThatHaveValue: _Value
                                                     inNamespaces: nil
-                                                            what: WikiEngineSearchWhatPageText
+                                                        approach: WikiEngineSearchApproachPageText
                                                            limit: 10
                                                          success:
-        ^( NSArray* _MatchedPages )
+        ^( __NSArray_of( WikiSearchResult* ) _SearchResults )
             {
-            if ( _MatchedPages )
+            if ( _SearchResults )
                 {
-                [ self->_fetchedWikiPages removeAllObjects ];
-                [ self->_fetchedWikiPages addObjectsFromArray: _MatchedPages ];
+                [ self->_fetchedResults removeAllObjects ];
+                [ self->_fetchedResults addObjectsFromArray: _SearchResults ];
                 [ self.searchResultsTableView reloadData ];
                 }
             } failure:

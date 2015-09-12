@@ -136,7 +136,7 @@
                     ^( NSError* _Error )
                         {
                         [ self performSelectorOnMainThread: @selector( setImage: ) withObject: normalDefaultContentPreview waitUntilDone: NO ];
-                        } ];
+                        }  stopAllOtherTasks: YES ];
                 }
         else
             [ self setImage: normalDefaultContentPreview ];

@@ -32,7 +32,11 @@
 #import "TKSafariSearchbar.h"
 #import "TKSafariSearchbarController.h"
 
+#import "SugarWikiDefines.h"
+#import "WikiEngine.h"
 #import "WikiPage.h"
+#import "WikiSearchResult.h"
+#import "WikiContinuation.h"
 
 #import "FBKVOController.h"
 
@@ -53,6 +57,8 @@
     {
     if ( self = [ super initWithCoder: _Coder ] )
         {
+        self->_wikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
+
         self->_pagesStack = [ NSMutableArray array ];
         self->_contentViewControllers = [ NSMutableDictionary dictionary ];
 
@@ -138,19 +144,30 @@
 #pragma mark Private Interfaces
 - ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif
     {
-    WikiPage* pickedWikiPage = _Notif.userInfo[ kPage ];
-    PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: pickedWikiPage owner: self ];
-
-    if ( wikiContentViewController )
+    WikiSearchResult* pickedSearchResult = _Notif.userInfo[ kSearchResult ];
+    [ self->_wikiEngine pagesWithTitles: @[ pickedSearchResult.title ]
+                           continuation: nil
+                                success:
+    ^( NSArray <WikiPage*>* _MatchedPage, WikiContinuation* _Continuation )
         {
-        PWOpenedWikiPage* openedWikiPage = [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: wikiContentViewController.UUID
-                                                                                     openedWikiPage: pickedWikiPage
-                                                                                                URL: pickedWikiPage.URL ];
-        [ self->_pagesStack addObject: openedWikiPage ];
-        self->_contentViewControllers[ wikiContentViewController.UUID ] = wikiContentViewController;
+        WikiPage* pickedWikiPage = _MatchedPage.firstObject;
+        PWWikiContentViewController* wikiContentViewController = [ PWWikiContentViewController controllerWithWikiPage: pickedWikiPage owner: self ];
 
-        [ self.sidebarTabsTableController pushOpenedWikiPage: openedWikiPage ];
-        }
+        if ( wikiContentViewController )
+            {
+            PWOpenedWikiPage* openedWikiPage = [ PWOpenedWikiPage openedWikiPageWithHostContentViewUUID: wikiContentViewController.UUID
+                                                                                         openedWikiPage: pickedWikiPage
+                                                                                                    URL: pickedWikiPage.URL ];
+            [ self->_pagesStack addObject: openedWikiPage ];
+            self->_contentViewControllers[ wikiContentViewController.UUID ] = wikiContentViewController;
+
+            [ self.sidebarTabsTableController pushOpenedWikiPage: openedWikiPage ];
+            }
+        } failure:
+            ^( NSError* _Error )
+                {
+
+                } stopAllOtherTasks: NO ];
     }
 
 @end // PWStackContainerView class

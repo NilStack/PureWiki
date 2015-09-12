@@ -32,6 +32,7 @@ NSString extern* const PureWikiTabsSelectionDidChangeNotif;
 NSString extern* const kPage;
 NSString extern* const kPages;
 NSString extern* const kOpenedPage;
+NSString extern* const kSearchResult;
 
 /*===============================================================================┐
 |                                                                                | 
