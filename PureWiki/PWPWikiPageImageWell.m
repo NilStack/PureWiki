@@ -43,9 +43,9 @@
 @dynamic wikiPage;
 
 #pragma mark Initializations
-- ( instancetype ) initWithCoder:(NSCoder *)coder
+- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
     {
-    if ( self = [ super initWithCoder: coder ] )
+    if ( self = [ super initWithCoder: _Coder ] )
         {
         self->_HTTPSessionManager = [ AFHTTPSessionManager manager ];
         [ self->_HTTPSessionManager setResponseSerializer: [ [ AFCompoundResponseSerializer alloc ] init ] ];
