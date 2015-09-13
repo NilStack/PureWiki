@@ -41,7 +41,7 @@
 #pragma mark Outlets
 @property ( weak ) IBOutlet NSImageView* pageImageView;
 @property ( weak ) IBOutlet NSTextField* pageTitleTextField;
-@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
+//@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
 
 @end // PWSearchResultsTableCellView class
 

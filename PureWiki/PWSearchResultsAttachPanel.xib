@@ -54,42 +54,16 @@
                                                             <rect key="frame" x="1" y="1" width="447" height="97"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2NN-X7-YRD">
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2NN-X7-YRD">
                                                                     <rect key="frame" x="18" y="70" width="411" height="17"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="407" id="0rE-MN-3kT"/>
-                                                                        <constraint firstAttribute="height" constant="17" id="7hY-os-S2v"/>
-                                                                    </constraints>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C++" id="QbM-3i-nep">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1p4-h1-gCb">
-                                                                    <rect key="frame" x="18" y="10" width="411" height="52"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="52" id="Lwn-Fn-Zj2"/>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="407" id="MWY-GU-iez"/>
-                                                                    </constraints>
-                                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="C++ (pronounced as cee plus plus, /ˈsiː plʌs plʌs/)…" id="2dF-zc-FYO">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="2NN-X7-YRD" firstAttribute="top" secondItem="6SG-g1-Ej4" secondAttribute="top" constant="10" id="09k-2I-DAZ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="2NN-X7-YRD" secondAttribute="trailing" constant="20" id="BaG-9m-lTC"/>
-                                                                <constraint firstItem="2NN-X7-YRD" firstAttribute="leading" secondItem="6SG-g1-Ej4" secondAttribute="leading" constant="20" id="CyB-Lq-z4d"/>
-                                                                <constraint firstAttribute="bottom" secondItem="1p4-h1-gCb" secondAttribute="bottom" constant="10" id="DlG-zc-rgS"/>
-                                                                <constraint firstItem="1p4-h1-gCb" firstAttribute="top" secondItem="2NN-X7-YRD" secondAttribute="bottom" constant="8" id="TzF-63-aOa"/>
-                                                                <constraint firstAttribute="trailing" secondItem="1p4-h1-gCb" secondAttribute="trailing" constant="20" id="i5k-2H-pNB"/>
-                                                                <constraint firstItem="1p4-h1-gCb" firstAttribute="leading" secondItem="6SG-g1-Ej4" secondAttribute="leading" constant="20" id="xNA-d6-XHl"/>
-                                                            </constraints>
                                                             <connections>
-                                                                <outlet property="pageSnippetTextField" destination="1p4-h1-gCb" id="hRr-Go-qVl"/>
                                                                 <outlet property="pageTitleTextField" destination="2NN-X7-YRD" id="k4U-0S-2KL"/>
                                                             </connections>
                                                         </tableCellView>

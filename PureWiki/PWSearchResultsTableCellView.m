@@ -64,9 +64,15 @@
 
     // self.pageImageView =
     self.pageTitleTextField.stringValue = self->_wikiSearchResult.title;
-    self.pageSnippetTextField.stringValue = [ self->_wikiSearchResult resultSnippet ];
+//    self.pageSnippetTextField.stringValue = [ self->_wikiSearchResult resultSnippet ];
 
     [ self->__searchResultSnippetTextStorage setWikiSearchResult: _SearchResult ];
+    [ self __relayout ];
+    }
+
+- ( void ) __relayout
+    {
+
     }
 
 - ( WikiSearchResult* ) wikiSearchResult
