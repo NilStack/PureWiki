@@ -135,6 +135,7 @@
 		8330E5CF1B890BD400373760 /* PWUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWUtilities.m; sourceTree = "<group>"; };
 		83362CCA1BA5A4C2001277E1 /* SugarWiki.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SugarWiki.h; path = ../../../../../SugarWiki/SugarWiki/SugarWiki.h; sourceTree = "<group>"; };
 		83362CCF1BA5A7A7001277E1 /* __SugarWiki.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __SugarWiki.h; sourceTree = "<group>"; };
+		83362CD31BA5CA3D001277E1 /* PurePrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PurePrefixHeader.pch; path = PureWiki/PurePrefixHeader.pch; sourceTree = "<group>"; };
 		83480E921B8351BF00A33030 /* PWWikiContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentView.h; sourceTree = "<group>"; };
 		83480E931B8351BF00A33030 /* PWWikiContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentView.m; sourceTree = "<group>"; };
 		83480E951B83530C00A33030 /* PWSidebarTabsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTable.h; sourceTree = "<group>"; };
@@ -481,6 +482,7 @@
 		83B794061B7DCE5F00F4544E = {
 			isa = PBXGroup;
 			children = (
+				83362CD31BA5CA3D001277E1 /* PurePrefixHeader.pch */,
 				83B794111B7DCE5F00F4544E /* PureWiki */,
 				8321EC861B8C1CE60099C824 /* artwork */,
 				83B75CAD1B7DDB2C00E9C05E /* vendor */,
@@ -1000,6 +1002,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PureWiki/PurePrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1041,6 +1045,8 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PureWiki/PurePrefixHeader.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

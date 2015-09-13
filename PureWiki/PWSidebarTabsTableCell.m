@@ -25,7 +25,6 @@
 #import "PWSidebarTabsTableCell.h"
 #import "PWPWikiPageImageWell.h"
 
-#import "PureLayout.h"
 #import "SugarWiki.h"
 
 // Private Interfaces

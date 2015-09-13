@@ -37,7 +37,6 @@
 #import "__TKPlaceholderTextLayer.h"
 
 #import "SugarWiki.h"
-#import "FBKVOController.h"
 
 // __TKSearchbarBackingLayer + TKPrivate
 @interface __TKSearchbarBackingLayer ( TKPrivate )

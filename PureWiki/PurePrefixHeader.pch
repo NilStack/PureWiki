@@ -1,0 +1,16 @@
+//
+//  PurePrefixHeader.pch
+//  PureWiki
+//
+//  Created by Tong G. on 9/13/15.
+//  Copyright © 2015 TongKuo. All rights reserved.
+//
+
+#ifndef PurePrefixHeader_pch
+#define PurePrefixHeader_pch
+
+#import "PureLayout.h"
+#import "FBKVOController.h"
+#import "SugarWiki.h"
+
+#endif /* PurePrefixHeader_pch */

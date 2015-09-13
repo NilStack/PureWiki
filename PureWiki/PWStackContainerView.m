@@ -33,8 +33,6 @@
 #import "TKSafariSearchbarController.h"
 
 #import "SugarWiki.h"
-#import "FBKVOController.h"
-#import "PureLayout.h"
 
 // Private Interfaces
 @interface PWStackContainerView ()
