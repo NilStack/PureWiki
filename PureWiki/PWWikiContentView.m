@@ -35,8 +35,6 @@
 #import "TKSafariSearchbarController.h"
 #import "PWSidebarTabsTableController.h"
 
-#import "SugarWiki.h"
-
 // Private Interfaces
 @interface PWWikiContentView ()
 

@@ -23,8 +23,6 @@
 
 @import Cocoa;
 
-#import "SugarWiki.h"
-
 @class PWSearchResultsAttachPanel;
 @class PWSearchResultsTableView;
 

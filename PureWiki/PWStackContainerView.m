@@ -32,8 +32,6 @@
 #import "TKSafariSearchbar.h"
 #import "TKSafariSearchbarController.h"
 
-#import "SugarWiki.h"
-
 // Private Interfaces
 @interface PWStackContainerView ()
 - ( void ) _userDidPickUpSearchItem: ( NSNotification* )_Notif;
