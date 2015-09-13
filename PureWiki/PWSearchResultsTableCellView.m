@@ -23,6 +23,7 @@
 
 #import "PWSearchResultsTableCellView.h"
 #import "PWActionNotifications.h"
+#import "PWSearchResultSnippetTextStorage.h"
 
 #import "WikiSearchResult.h"
 
@@ -30,6 +31,12 @@
 @implementation PWSearchResultsTableCellView
 
 @dynamic wikiSearchResult;
+
+- ( void ) awakeFromNib
+    {
+    self->__searchResultSnippetTextStorage =
+        [ [ PWSearchResultSnippetTextStorage alloc ] initWithHT
+    }
 
 #pragma mark Custom Drawing
 - ( void ) drawRect: ( NSRect )_DirtyRect

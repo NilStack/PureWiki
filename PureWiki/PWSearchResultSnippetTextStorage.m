@@ -21,29 +21,73 @@
 └==============================================================================┘██
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+#import "PWSearchResultSnippetTextStorage.h"
 
-@class PWSearchResultSnippetTextStorage;
+#import "WikiSearchResult.h"
 
-@class WikiSearchResult;
+// Private Interfaces
+@interface PWSearchResultSnippetTextStorage ()
+@end // Private Interfaces
 
-// PWSearchResultsTableCellView class
-@interface PWSearchResultsTableCellView : NSTableCellView
+// PWSearchResultSnippetTextStorage class
+@implementation PWSearchResultSnippetTextStorage
+
+@dynamic wikiSearchResult;
+
+@dynamic repTextView;
+
+#pragma mark Initializations
+- ( instancetype ) initWithHTML: ( NSData* )_HTMLData
+                        baseURL: ( NSURL* )_BaseURL
+             documentAttributes: ( __NSDictionary_of( NSString*, id )* )_DocAttributes
+                 containerFrame: ( NSRect )_ContainerFrame
     {
-@protected
-    WikiSearchResult __strong* _wikiSearchResult;
+    if ( self = [ super initWithHTML: _HTMLData
+                             baseURL: _BaseURL
+                  documentAttributes: _DocAttributes ] )
+        {
+        NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
+        [ self addLayoutManager: layoutManager ];
 
-    PWSearchResultSnippetTextStorage __strong* __searchResultSnippetTextStorage;
+        NSTextContainer* textContainer = [ [ NSTextContainer alloc ] initWithContainerSize: _ContainerFrame.size ];
+
+        // textContainer should follow changes to the width of its text view
+        [ textContainer setWidthTracksTextView: YES ];
+        // textContainer should follow changes to the height of its text view
+        [ textContainer setHeightTracksTextView: YES ];
+
+        [ layoutManager addTextContainer: textContainer ];
+
+        ( void )[ [ NSTextView alloc ] initWithFrame: _ContainerFrame textContainer: textContainer ];
+        [ self.repTextView setEditable: NO ];
+        [ self.repTextView setSelectable: NO ];
+        [ self.repTextView setTranslatesAutoresizingMaskIntoConstraints: NO ];
+        }
+
+    return self;
     }
 
-@property ( strong ) WikiSearchResult* wikiSearchResult;
+#pragma mark Dynamic Properties
+- ( void ) setWikiSearchResult: ( WikiSearchResult* )_Result
+    {
+    NSLog( @"Before: %@", _Result.resultSnippet );
+    NSString* HTMLString = [ _Result.resultSnippet stringByReplacingOccurrencesOfString: @"\\\"" withString: @"\"" ];
+    NSLog( @"After %@", HTMLString );
 
-#pragma mark Outlets
-@property ( weak ) IBOutlet NSImageView* pageImageView;
-@property ( weak ) IBOutlet NSTextField* pageTitleTextField;
-@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
+    
+    }
 
-@end // PWSearchResultsTableCellView class
+- ( WikiSearchResult* ) wikiSearchResult
+    {
+    return self->__wikiSearchResult;
+    }
+
+- ( NSTextView* ) repTextView
+    {
+    return self.layoutManagers.firstObject.textContainers.firstObject.textView;
+    }
+
+@end // PWSearchResultSnippetTextStorage class
 
 /*===============================================================================┐
 |                                                                                | 

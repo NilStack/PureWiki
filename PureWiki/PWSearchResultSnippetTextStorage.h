@@ -23,27 +23,26 @@
 
 @import Cocoa;
 
-@class PWSearchResultSnippetTextStorage;
+#import "SugarWikiDefines.h"
 
-@class WikiSearchResult;
-
-// PWSearchResultsTableCellView class
-@interface PWSearchResultsTableCellView : NSTableCellView
+// PWSearchResultSnippetTextStorage class
+@interface PWSearchResultSnippetTextStorage : NSTextStorage
     {
 @protected
-    WikiSearchResult __strong* _wikiSearchResult;
-
-    PWSearchResultSnippetTextStorage __strong* __searchResultSnippetTextStorage;
+    WikiSearchResult __strong* __wikiSearchResult;
     }
 
-@property ( strong ) WikiSearchResult* wikiSearchResult;
+@property ( strong, readwrite ) WikiSearchResult* wikiSearchResult;
 
-#pragma mark Outlets
-@property ( weak ) IBOutlet NSImageView* pageImageView;
-@property ( weak ) IBOutlet NSTextField* pageTitleTextField;
-@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
+@property ( strong, readonly ) NSTextView* repTextView;
 
-@end // PWSearchResultsTableCellView class
+#pragma mark Initializations
+- ( instancetype ) initWithHTML: ( NSData* )_HTMLData
+                        baseURL: ( NSURL* )_BaseURL
+             documentAttributes: ( __NSDictionary_of( NSString*, id )* )_DocAttributes
+                 containerFrame: ( NSRect )_ContainerFrame;
+
+@end // PWSearchResultSnippetTextStorage class
 
 /*===============================================================================┐
 |                                                                                | 
