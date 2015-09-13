@@ -32,11 +32,7 @@
 #import "TKSafariSearchbar.h"
 #import "TKSafariSearchbarController.h"
 
-#import "SugarWikiDefines.h"
-#import "WikiEngine.h"
-#import "WikiPage.h"
-#import "WikiSearchResult.h"
-#import "WikiContinuation.h"
+#import "SugarWiki.h"
 
 #import "FBKVOController.h"
 

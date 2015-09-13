@@ -133,6 +133,7 @@
 		8330E5CC1B88FFA800373760 /* NSURL+PureWiki.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PureWiki.m"; sourceTree = "<group>"; };
 		8330E5CE1B890BD400373760 /* PWUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWUtilities.h; sourceTree = "<group>"; };
 		8330E5CF1B890BD400373760 /* PWUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWUtilities.m; sourceTree = "<group>"; };
+		83362CCA1BA5A4C2001277E1 /* SugarWiki.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SugarWiki.h; path = ../../../../../SugarWiki/SugarWiki/SugarWiki.h; sourceTree = "<group>"; };
 		83480E921B8351BF00A33030 /* PWWikiContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentView.h; sourceTree = "<group>"; };
 		83480E931B8351BF00A33030 /* PWWikiContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentView.m; sourceTree = "<group>"; };
 		83480E951B83530C00A33030 /* PWSidebarTabsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTable.h; sourceTree = "<group>"; };
@@ -618,6 +619,7 @@
 		83ED35CC1BA4593C00CEFE61 /* SugarWiki */ = {
 			isa = PBXGroup;
 			children = (
+				83362CCA1BA5A4C2001277E1 /* SugarWiki.h */,
 				83ED35CE1BA4593C00CEFE61 /* internal */,
 				83ED35DF1BA4593C00CEFE61 /* NSArray+SugarWiki.h */,
 				83ED35E01BA4593C00CEFE61 /* NSArray+SugarWiki.m */,

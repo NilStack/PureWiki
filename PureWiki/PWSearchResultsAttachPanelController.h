@@ -23,7 +23,7 @@
 
 @import Cocoa;
 
-#import "SugarWikiDefines.h"
+#import "SugarWiki.h"
 
 @class PWSearchResultsAttachPanel;
 @class PWSearchResultsTableView;
@@ -36,7 +36,7 @@
     <NSTableViewDataSource, NSTableViewDelegate>
     {
 @protected
-    __strong __NSMutableArray_of( WikiSearchResult* ) _fetchedResults;    // Used as backing store
+    __strong __SugarMutableArray_of( WikiSearchResult* ) _fetchedResults;    // Used as backing store
 
     WikiEngine __strong* _instantSearchWikiEngine;
     NSTimer __strong* _timer;

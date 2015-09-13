@@ -27,8 +27,7 @@
 
 #import "PureLayout.h"
 
-#import "WikiPage.h"
-#import "WikiRevision.h"
+#import "SugarWiki.h"
 
 // Private Interfaces
 @interface PWSidebarTabsTableCell ()

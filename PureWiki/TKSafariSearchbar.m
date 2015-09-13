@@ -36,7 +36,7 @@
 #import "__TKSearchbarBackingLayer.h"
 #import "__TKPlaceholderTextLayer.h"
 
-#import "WikiPage.h"
+#import "SugarWiki.h"
 
 #import "FBKVOController.h"
 

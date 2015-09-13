@@ -25,7 +25,7 @@
 #import "PWActionNotifications.h"
 #import "PWSearchResultSnippetTextStorage.h"
 
-#import "WikiSearchResult.h"
+#import "SugarWiki.h"
 
 // PWSearchResultsTableCellView class
 @implementation PWSearchResultsTableCellView

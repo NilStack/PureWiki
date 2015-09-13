@@ -28,10 +28,7 @@
 #import "PWSearchResultsTableView.h"
 #import "PWSearchResultsTableCellView.h"
 
-#import "WikiPage.h"
-#import "WikiRevision.h"
-#import "WikiEngine.h"
-#import "WikiSearchResult.h"
+#import "SugarWiki.h"
 
 NSString* const kResultsColumnID = @"results-column";
 
@@ -316,7 +313,7 @@ NSString* const kResultsColumnID = @"results-column";
                                                         approach: WikiEngineSearchApproachPageText
                                                            limit: 10
                                                          success:
-        ^( __NSArray_of( WikiSearchResult* ) _SearchResults )
+        ^( __SugarArray_of( WikiSearchResult* ) _SearchResults )
             {
             if ( _SearchResults )
                 {

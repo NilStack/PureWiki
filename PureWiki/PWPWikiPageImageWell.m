@@ -28,9 +28,7 @@
 
 #import "AFNetworking.h"
 
-#import "WikiEngine.h"
-#import "WikiPage.h"
-#import "WikiImage.h"
+#import "SugarWiki.h"
 
 // Private Interfaces
 @interface PWPWikiPageImageWell ()

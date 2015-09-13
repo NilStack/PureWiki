@@ -35,9 +35,7 @@
 #import "TKSafariSearchbarController.h"
 #import "PWSidebarTabsTableController.h"
 
-#import "SugarWikiDefines.h"
-#import "WikiPage.h"
-#import "WikiEngine.h"
+#import "SugarWiki.h"
 
 // Private Interfaces
 @interface PWWikiContentView ()
@@ -203,7 +201,7 @@
                 [ self->_wikiEngine pagesWithTitles: @[ castratedWikiPageArchive.wikiPageTitle ]
                                        continuation: nil
                                             success:
-                    ^( __NSArray_of( WikiPage* ) _MatchedPages, WikiContinuation* _Continuation )
+                    ^( __SugarArray_of( WikiPage* ) _MatchedPages, WikiContinuation* _Continuation )
                         {
                         if ( _MatchedPages )
                             {
