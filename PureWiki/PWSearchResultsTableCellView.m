@@ -35,7 +35,7 @@
 - ( void ) awakeFromNib
     {
     self->__searchResultSnippetTextStorage =
-        [ [ PWSearchResultSnippetTextStorage alloc ] initWithHT
+        [ [ PWSearchResultSnippetTextStorage alloc ] initWithContainerFrame: self.bounds ];
     }
 
 #pragma mark Custom Drawing
@@ -64,6 +64,8 @@
     // self.pageImageView =
     self.pageTitleTextField.stringValue = self->_wikiSearchResult.title;
     self.pageSnippetTextField.stringValue = [ self->_wikiSearchResult resultSnippet ];
+
+    [ self->__searchResultSnippetTextStorage setWikiSearchResult: _SearchResult ];
     }
 
 - ( WikiSearchResult* ) wikiSearchResult

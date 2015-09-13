@@ -37,54 +37,57 @@
 @dynamic repTextView;
 
 #pragma mark Initializations
-- ( instancetype ) initWithHTML: ( NSData* )_HTMLData
-                        baseURL: ( NSURL* )_BaseURL
-             documentAttributes: ( __NSDictionary_of( NSString*, id )* )_DocAttributes
-                 containerFrame: ( NSRect )_ContainerFrame
+- ( instancetype ) initWithContainerFrame: ( NSRect )_ContainerFrame
     {
-    if ( self = [ super initWithHTML: _HTMLData
-                             baseURL: _BaseURL
-                  documentAttributes: _DocAttributes ] )
-        {
-        NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
-        [ self addLayoutManager: layoutManager ];
-
-        NSTextContainer* textContainer = [ [ NSTextContainer alloc ] initWithContainerSize: _ContainerFrame.size ];
-
-        // textContainer should follow changes to the width of its text view
-        [ textContainer setWidthTracksTextView: YES ];
-        // textContainer should follow changes to the height of its text view
-        [ textContainer setHeightTracksTextView: YES ];
-
-        [ layoutManager addTextContainer: textContainer ];
-
-        ( void )[ [ NSTextView alloc ] initWithFrame: _ContainerFrame textContainer: textContainer ];
-        [ self.repTextView setEditable: NO ];
-        [ self.repTextView setSelectable: NO ];
-        [ self.repTextView setTranslatesAutoresizingMaskIntoConstraints: NO ];
-        }
+    if ( self = [ super init ] )
+        self->__containerFrame = _ContainerFrame;
 
     return self;
     }
 
 #pragma mark Dynamic Properties
+- ( NSTextView* ) repTextView
+    {
+    return self->__internalTextStorage.layoutManagers
+                                      .firstObject
+                                      .textContainers
+                                      .firstObject
+                                      .textView;
+    }
+
 - ( void ) setWikiSearchResult: ( WikiSearchResult* )_Result
     {
-    NSLog( @"Before: %@", _Result.resultSnippet );
-    NSString* HTMLString = [ _Result.resultSnippet stringByReplacingOccurrencesOfString: @"\\\"" withString: @"\"" ];
-    NSLog( @"After %@", HTMLString );
+//    NSLog( @"🍌Before: %@", _Result.resultSnippet );
+//    NSString* HTMLString = [ _Result.resultSnippet stringByReplacingOccurrencesOfString: @"\\\"" withString: @"\"" ];
+    NSString* HTMLString = _Result.resultSnippet;
+//    NSLog( @"After %@", HTMLString );
 
-    
+    NSData* HTMLData = [ HTMLString dataUsingEncoding: NSUTF8StringEncoding ];
+    NSURL* baseURL = [ NSURL URLWithString: @"http://en.wikipedia.org" ];
+    self->__internalTextStorage =
+        [ [ NSTextStorage alloc ] initWithHTML: HTMLData baseURL: baseURL/*_BaseURL*/ documentAttributes: nil ];
+
+    NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
+    [ self->__internalTextStorage addLayoutManager: layoutManager ];
+
+    NSTextContainer* textContainer = [ [ NSTextContainer alloc ] initWithContainerSize: self->__containerFrame.size ];
+
+    // textContainer should follow changes to the width of its text view
+    [ textContainer setWidthTracksTextView: YES ];
+    // textContainer should follow changes to the height of its text view
+    [ textContainer setHeightTracksTextView: YES ];
+
+    [ layoutManager addTextContainer: textContainer ];
+
+    ( void )[ [ NSTextView alloc ] initWithFrame: self->__containerFrame textContainer: textContainer ];
+    [ self.repTextView setEditable: NO ];
+    [ self.repTextView setSelectable: NO ];
+    [ self.repTextView setTranslatesAutoresizingMaskIntoConstraints: NO ];
     }
 
 - ( WikiSearchResult* ) wikiSearchResult
     {
     return self->__wikiSearchResult;
-    }
-
-- ( NSTextView* ) repTextView
-    {
-    return self.layoutManagers.firstObject.textContainers.firstObject.textView;
     }
 
 @end // PWSearchResultSnippetTextStorage class
