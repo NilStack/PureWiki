@@ -467,6 +467,7 @@
 		83B75CAD1B7DDB2C00E9C05E /* vendor */ = {
 			isa = PBXGroup;
 			children = (
+				83574A6A1BA595E400FCE946 /* Cocoa.framework */,
 				837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */,
 				83B75CAB1B7DDB0C00E9C05E /* WebKit.framework */,
 				83D591101B89EC910018BC1C /* FBKVOController */,
@@ -480,7 +481,6 @@
 		83B794061B7DCE5F00F4544E = {
 			isa = PBXGroup;
 			children = (
-				83574A6A1BA595E400FCE946 /* Cocoa.framework */,
 				83B794111B7DCE5F00F4544E /* PureWiki */,
 				8321EC861B8C1CE60099C824 /* artwork */,
 				83B75CAD1B7DDB2C00E9C05E /* vendor */,

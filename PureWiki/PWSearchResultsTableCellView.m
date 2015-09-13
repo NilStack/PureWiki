@@ -26,6 +26,7 @@
 #import "PWSearchResultSnippetTextStorage.h"
 
 #import "SugarWiki.h"
+#import "PureLayout.h"
 
 // PWSearchResultsTableCellView class
 @implementation PWSearchResultsTableCellView
