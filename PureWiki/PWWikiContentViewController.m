@@ -25,6 +25,8 @@
 #import "PWWikiContentViewController.h"
 #import "PWWikiContentView.h"
 
+#import "SugarWiki.h"
+
 // Private Interfaces
 @interface PWWikiContentViewController ()
 @end // Private Interfaces

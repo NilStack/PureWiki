@@ -24,6 +24,8 @@
 
 #import "PWOpenedWikiPage.h"
 
+#import "SugarWiki.h"
+
 // PWOpenedWikiPage class
 @implementation PWOpenedWikiPage
 

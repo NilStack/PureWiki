@@ -23,6 +23,8 @@
 
 #import "PWSearchResultSnippetTextStorage.h"
 
+#import "SugarWiki.h"
+
 // Private Interfaces
 @interface PWSearchResultSnippetTextStorage ()
 @end // Private Interfaces

@@ -28,6 +28,8 @@
 #import "PWSearchResultsTableView.h"
 #import "PWSearchResultsTableCellView.h"
 
+#import "SugarWiki.h"
+
 NSString* const kResultsColumnID = @"results-column";
 
 // Private Interfaces

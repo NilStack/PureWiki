@@ -30,6 +30,8 @@
 #import "PWWikiContentView.h"
 #import "PWOpenedWikiPage.h"
 
+#import "SugarWiki.h"
+
 NSString* const PWSidebarCurrentSelectedPageKVOPath = @"currentSelectedPage";
 
 NSString* const kColumnIdentifierTabs = @"tabs-column";

@@ -27,6 +27,7 @@
 #import "PWArtworkConstants.h"
 
 #import "AFNetworking.h"
+#import "SugarWiki.h"
 
 // Private Interfaces
 @interface PWPWikiPageImageWell ()
