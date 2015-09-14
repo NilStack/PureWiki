@@ -23,7 +23,7 @@
 
 #import "PWSearchResultsTableCellView.h"
 #import "PWActionNotifications.h"
-#import "PWSearchResultSnippetTextStorage.h"
+#import "PWSearchResultSnippetView.h"
 
 #import "SugarWiki.h"
 
@@ -68,7 +68,7 @@ CGFloat static const kRightGap = kLeftGap;
         self->_wikiSearchResult = _SearchResult;
 
         if ( !self->__searchResultSnippetTextStorage )
-            self->__searchResultSnippetTextStorage = [ [ PWSearchResultSnippetTextStorage alloc ] initWithContainerFrame: self.bounds ];
+            self->__searchResultSnippetTextStorage = [ [ PWSearchResultSnippetView alloc ] initWithFrame: self.frame ];
 
         self.pageTitleTextField.stringValue = self->_wikiSearchResult.title;
         [ self->__searchResultSnippetTextStorage setWikiSearchResult: self->_wikiSearchResult ];

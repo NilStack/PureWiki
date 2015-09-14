@@ -33,7 +33,7 @@
 		83509BE01B870D0500C4F454 /* TKSafariSearchbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83509BDF1B870D0500C4F454 /* TKSafariSearchbarController.m */; };
 		83509BE31B8738E800C4F454 /* PWWikiContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83509BE21B8738E800C4F454 /* PWWikiContentViewController.m */; };
 		83509BE61B8739FD00C4F454 /* PWWikiContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83509BE51B8739FD00C4F454 /* PWWikiContentView.xib */; };
-		83574A691BA577D100FCE946 /* PWSearchResultSnippetTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 83574A681BA577D100FCE946 /* PWSearchResultSnippetTextStorage.m */; settings = {ASSET_TAGS = (); }; };
+		83574A691BA577D100FCE946 /* PWSearchResultSnippetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83574A681BA577D100FCE946 /* PWSearchResultSnippetView.m */; settings = {ASSET_TAGS = (); }; };
 		83574A6B1BA595E400FCE946 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83574A6A1BA595E400FCE946 /* Cocoa.framework */; };
 		837B975C1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837B975B1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m */; };
 		837B975E1B8D7BCF00BDDCF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */; };
@@ -162,8 +162,8 @@
 		83509BE11B8738E800C4F454 /* PWWikiContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentViewController.h; sourceTree = "<group>"; };
 		83509BE21B8738E800C4F454 /* PWWikiContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentViewController.m; sourceTree = "<group>"; };
 		83509BE51B8739FD00C4F454 /* PWWikiContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PWWikiContentView.xib; sourceTree = "<group>"; };
-		83574A671BA577D100FCE946 /* PWSearchResultSnippetTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSearchResultSnippetTextStorage.h; sourceTree = "<group>"; };
-		83574A681BA577D100FCE946 /* PWSearchResultSnippetTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSearchResultSnippetTextStorage.m; sourceTree = "<group>"; };
+		83574A671BA577D100FCE946 /* PWSearchResultSnippetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSearchResultSnippetView.h; sourceTree = "<group>"; };
+		83574A681BA577D100FCE946 /* PWSearchResultSnippetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSearchResultSnippetView.m; sourceTree = "<group>"; };
 		83574A6A1BA595E400FCE946 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		837B975A1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKSafariSearchbarCell.h; path = PureWiki/TKSafariSearchbarCell.h; sourceTree = "<group>"; };
 		837B975B1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TKSafariSearchbarCell.m; path = PureWiki/TKSafariSearchbarCell.m; sourceTree = "<group>"; };
@@ -351,8 +351,8 @@
 				83509BD91B864A9100C4F454 /* PWSearchResultsTableView.m */,
 				83509BDB1B864B1300C4F454 /* PWSearchResultsTableCellView.h */,
 				83509BDC1B864B1300C4F454 /* PWSearchResultsTableCellView.m */,
-				83574A671BA577D100FCE946 /* PWSearchResultSnippetTextStorage.h */,
-				83574A681BA577D100FCE946 /* PWSearchResultSnippetTextStorage.m */,
+				83574A671BA577D100FCE946 /* PWSearchResultSnippetView.h */,
+				83574A681BA577D100FCE946 /* PWSearchResultSnippetView.m */,
 			);
 			name = "search-wikipedia";
 			sourceTree = "<group>";
@@ -919,7 +919,7 @@
 				83ED36C31BA4593C00CEFE61 /* AFSecurityPolicy.m in Sources */,
 				839585E81B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m in Sources */,
 				83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */,
-				83574A691BA577D100FCE946 /* PWSearchResultSnippetTextStorage.m in Sources */,
+				83574A691BA577D100FCE946 /* PWSearchResultSnippetView.m in Sources */,
 				83ED372A1BA4593C00CEFE61 /* WikiRevision.m in Sources */,
 				83D591161B89EC910018BC1C /* FBKVOController.m in Sources */,
 				83B794141B7DCE5F00F4544E /* PWAppDelegate.m in Sources */,

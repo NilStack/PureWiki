@@ -21,29 +21,20 @@
 └==============================================================================┘██
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSearchResultSnippetTextStorage.h"
+#import "PWSearchResultSnippetView.h"
 
 #import "SugarWiki.h"
 
 // Private Interfaces
-@interface PWSearchResultSnippetTextStorage ()
+@interface PWSearchResultSnippetView ()
 @end // Private Interfaces
 
-// PWSearchResultSnippetTextStorage class
-@implementation PWSearchResultSnippetTextStorage
+// PWSearchResultSnippetView class
+@implementation PWSearchResultSnippetView
 
 @dynamic wikiSearchResult;
 
 @dynamic repTextView;
-
-#pragma mark Initializations
-- ( instancetype ) initWithContainerFrame: ( NSRect )_ContainerFrame
-    {
-    if ( self = [ super init ] )
-        self->__containerFrame = _ContainerFrame;
-
-    return self;
-    }
 
 #pragma mark Dynamic Properties
 - ( NSTextView* ) repTextView
@@ -59,10 +50,7 @@
     {
     self->__wikiSearchResult = _Result;
 
-//    NSLog( @"🍌Before: %@", _Result.resultSnippet );
     NSString* HTMLString = [ _Result.resultSnippet stringByReplacingOccurrencesOfString: @"\\\"" withString: @"\"" ];
-//    NSString* HTMLString = _Result.resultSnippet;
-//    NSLog( @"After %@", HTMLString );
 
     NSData* HTMLData = [ HTMLString dataUsingEncoding: NSUTF8StringEncoding ];
     NSURL* baseURL = [ NSURL URLWithString: @"http://en.wikipedia.org" ];
@@ -72,7 +60,7 @@
     NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
     [ self->__internalTextStorage addLayoutManager: layoutManager ];
 
-    NSTextContainer* textContainer = [ [ NSTextContainer alloc ] initWithContainerSize: self->__containerFrame.size ];
+    NSTextContainer* textContainer = [ [ NSTextContainer alloc ] initWithContainerSize: self.frame.size ];
 
     // textContainer should follow changes to the width of its text view
     [ textContainer setWidthTracksTextView: YES ];
@@ -81,12 +69,14 @@
 
     [ layoutManager addTextContainer: textContainer ];
 
-    ( void )[ [ NSTextView alloc ] initWithFrame: self->__containerFrame textContainer: textContainer ];
+    ( void )[ [ NSTextView alloc ] initWithFrame: self.frame textContainer: textContainer ];
     [ self.repTextView setEditable: NO ];
     [ self.repTextView setSelectable: NO ];
     [ self.repTextView setBackgroundColor: [ NSColor clearColor ] ];
-//    [ self.repTextView setString: @"fuck you" ];
-    [ self.repTextView setTranslatesAutoresizingMaskIntoConstraints: NO ];
+    [ self.repTextView configureForAutoLayout ];
+
+    [ self setSubviews: @[ self.repTextView ] ];
+    [ self.repTextView autoPinEdgesToSuperviewEdges ];
     }
 
 - ( WikiSearchResult* ) wikiSearchResult
@@ -94,7 +84,7 @@
     return self->__wikiSearchResult;
     }
 
-@end // PWSearchResultSnippetTextStorage class
+@end // PWSearchResultSnippetView class
 
 /*===============================================================================┐
 |                                                                                | 

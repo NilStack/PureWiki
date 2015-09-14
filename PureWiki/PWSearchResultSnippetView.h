@@ -25,23 +25,18 @@
 
 #import "SugarWikiDefines.h"
 
-// PWSearchResultSnippetTextStorage class
-@interface PWSearchResultSnippetTextStorage : NSObject
+// PWSearchResultSnippetView class
+@interface PWSearchResultSnippetView : NSView
     {
 @protected
     NSTextStorage __strong* __internalTextStorage;
     WikiSearchResult __strong* __wikiSearchResult;
-
-    NSRect __containerFrame;
     }
 
 @property ( strong, readonly ) NSTextView* repTextView;
 @property ( strong, readwrite ) WikiSearchResult* wikiSearchResult;
 
-#pragma mark Initializations
-- ( instancetype ) initWithContainerFrame: ( NSRect )_ContainerFrame;
-
-@end // PWSearchResultSnippetTextStorage class
+@end // PWSearchResultSnippetView class
 
 /*===============================================================================┐
 |                                                                                | 

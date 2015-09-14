@@ -23,7 +23,7 @@
 
 @import Cocoa;
 
-@class PWSearchResultSnippetTextStorage;
+@class PWSearchResultSnippetView;
 
 @class WikiSearchResult;
 
@@ -33,7 +33,7 @@
 @protected
     WikiSearchResult __strong* _wikiSearchResult;
 
-    PWSearchResultSnippetTextStorage __strong* __searchResultSnippetTextStorage;
+    PWSearchResultSnippetView __strong* __searchResultSnippetTextStorage;
     }
 
 @property ( strong ) WikiSearchResult* wikiSearchResult;
