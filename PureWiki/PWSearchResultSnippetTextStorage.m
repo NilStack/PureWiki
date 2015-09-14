@@ -57,9 +57,11 @@
 
 - ( void ) setWikiSearchResult: ( WikiSearchResult* )_Result
     {
+    self->__wikiSearchResult = _Result;
+
 //    NSLog( @"🍌Before: %@", _Result.resultSnippet );
-//    NSString* HTMLString = [ _Result.resultSnippet stringByReplacingOccurrencesOfString: @"\\\"" withString: @"\"" ];
-    NSString* HTMLString = _Result.resultSnippet;
+    NSString* HTMLString = [ _Result.resultSnippet stringByReplacingOccurrencesOfString: @"\\\"" withString: @"\"" ];
+//    NSString* HTMLString = _Result.resultSnippet;
 //    NSLog( @"After %@", HTMLString );
 
     NSData* HTMLData = [ HTMLString dataUsingEncoding: NSUTF8StringEncoding ];
@@ -82,6 +84,8 @@
     ( void )[ [ NSTextView alloc ] initWithFrame: self->__containerFrame textContainer: textContainer ];
     [ self.repTextView setEditable: NO ];
     [ self.repTextView setSelectable: NO ];
+    [ self.repTextView setBackgroundColor: [ NSColor clearColor ] ];
+//    [ self.repTextView setString: @"fuck you" ];
     [ self.repTextView setTranslatesAutoresizingMaskIntoConstraints: NO ];
     }
 

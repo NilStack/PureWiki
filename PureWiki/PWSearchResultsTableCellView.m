@@ -27,6 +27,16 @@
 
 #import "SugarWiki.h"
 
+CGFloat static const kTopGap = 10.f;
+CGFloat static const kBottomGap = kTopGap;
+CGFloat static const kLeftGap = 20.f;
+CGFloat static const kRightGap = kLeftGap;
+
+// Private Interfaces
+@interface PWSearchResultsTableCellView ()
+- ( void ) __relayout;
+@end // Private Interfaces
+
 // PWSearchResultsTableCellView class
 @implementation PWSearchResultsTableCellView
 
@@ -34,8 +44,6 @@
 
 - ( void ) awakeFromNib
     {
-    self->__searchResultSnippetTextStorage =
-        [ [ PWSearchResultSnippetTextStorage alloc ] initWithContainerFrame: self.bounds ];
     }
 
 #pragma mark Custom Drawing
@@ -59,24 +67,45 @@
 #pragma mark Dynamic Properties
 - ( void ) setWikiSearchResult: ( WikiSearchResult* )_SearchResult
     {
-    self->_wikiSearchResult = _SearchResult;
+    if ( self->_wikiSearchResult != _SearchResult )
+        {
+        self->_wikiSearchResult = _SearchResult;
 
-    // self.pageImageView =
-    self.pageTitleTextField.stringValue = self->_wikiSearchResult.title;
-//    self.pageSnippetTextField.stringValue = [ self->_wikiSearchResult resultSnippet ];
+        if ( !self->__searchResultSnippetTextStorage )
+            self->__searchResultSnippetTextStorage = [ [ PWSearchResultSnippetTextStorage alloc ] initWithContainerFrame: self.bounds ];
 
-    [ self->__searchResultSnippetTextStorage setWikiSearchResult: _SearchResult ];
-    [ self __relayout ];
-    }
-
-- ( void ) __relayout
-    {
-
+        self.pageTitleTextField.stringValue = self->_wikiSearchResult.title;
+        [ self->__searchResultSnippetTextStorage setWikiSearchResult: self->_wikiSearchResult ];
+        [ self __relayout ];
+        }
     }
 
 - ( WikiSearchResult* ) wikiSearchResult
     {
     return self->_wikiSearchResult;
+    }
+
+#pragma mark Private Interfaces
+- ( void ) __relayout
+    {
+    [ self.pageTitleTextField configureForAutoLayout ];
+    [ self->__searchResultSnippetTextStorage.repTextView configureForAutoLayout ];
+
+    dispatch_once_t static onceToken;
+    dispatch_once( &onceToken
+                 , ( dispatch_block_t )^( void )
+                    {
+                    [ self removeAllConstraints ];
+                    } );
+
+    if ( self->__searchResultSnippetTextStorage.repTextView.superview != self )
+        [ self addSubview: self->__searchResultSnippetTextStorage.repTextView ];
+
+    [ self.pageTitleTextField autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsMake( kTopGap, kLeftGap, kBottomGap, kRightGap )
+                                                       excludingEdge: ALEdgeBottom ];
+
+    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self.pageTitleTextField withOffset: 10.f ];
+    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsMake( kTopGap, kLeftGap, kBottomGap, kRightGap ) excludingEdge: ALEdgeTop ];
     }
 
 @end // PWSearchResultsTableCellView class
