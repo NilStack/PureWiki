@@ -42,10 +42,6 @@ CGFloat static const kRightGap = kLeftGap;
 
 @dynamic wikiSearchResult;
 
-- ( void ) awakeFromNib
-    {
-    }
-
 #pragma mark Custom Drawing
 - ( void ) drawRect: ( NSRect )_DirtyRect
     {
@@ -91,21 +87,13 @@ CGFloat static const kRightGap = kLeftGap;
     [ self.pageTitleTextField configureForAutoLayout ];
     [ self->__searchResultSnippetTextStorage.repTextView configureForAutoLayout ];
 
-    dispatch_once_t static onceToken;
-    dispatch_once( &onceToken
-                 , ( dispatch_block_t )^( void )
-                    {
-                    [ self removeAllConstraints ];
-                    } );
-
     if ( self->__searchResultSnippetTextStorage.repTextView.superview != self )
         [ self addSubview: self->__searchResultSnippetTextStorage.repTextView ];
 
-    [ self.pageTitleTextField autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsMake( kTopGap, kLeftGap, kBottomGap, kRightGap )
-                                                       excludingEdge: ALEdgeBottom ];
-
-    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self.pageTitleTextField withOffset: 10.f ];
-    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdgesToSuperviewEdgesWithInsets: NSEdgeInsetsMake( kTopGap, kLeftGap, kBottomGap, kRightGap ) excludingEdge: ALEdgeTop ];
+    NSEdgeInsets insets = NSEdgeInsetsMake( kTopGap, kLeftGap, kBottomGap, kRightGap );
+    [ self.pageTitleTextField autoPinEdgesToSuperviewEdgesWithInsets: insets excludingEdge: ALEdgeBottom ];
+    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self.pageTitleTextField withOffset: kTopGap ];
+    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdgesToSuperviewEdgesWithInsets: insets excludingEdge: ALEdgeTop ];
     }
 
 @end // PWSearchResultsTableCellView class
