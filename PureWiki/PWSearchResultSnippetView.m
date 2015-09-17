@@ -22,6 +22,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSearchResultSnippetView.h"
+#import "PWActionNotifications.h"
 
 #import "PWSearchResultSnippetBackingTextView.h"
 
@@ -86,7 +87,11 @@
     BOOL isHandled = NO;
     if ( [ _Link isKindOfClass: [ NSURL class ] ] )
         {
-        NSLog( @"%@", ( ( NSURL* )_Link ).lastPathComponent );
+        [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidPickUpSearchItemNotif
+                                                               object: self
+                                                             userInfo: @{ kSearchResult : self->__wikiSearchResult
+                                                                        , kMoreLink : ( NSURL* )_Link
+                                                                        } ];
         isHandled = YES;
         }
 

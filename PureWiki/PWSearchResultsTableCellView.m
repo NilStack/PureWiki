@@ -45,16 +45,6 @@ CGFloat static const kRightGap = kLeftGap;
 
 @dynamic wikiSearchResult;
 
-#pragma mark Handling Events
-- ( void ) mouseDown: ( nonnull NSEvent* )_Event
-    {
-    [ super mouseDown: _Event ];
-
-    [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidPickUpSearchItemNotif
-                                                           object: self
-                                                         userInfo: @{ kSearchResult : self->_wikiSearchResult } ];
-    }
-
 #pragma mark Dynamic Properties
 - ( void ) setWikiSearchResult: ( WikiSearchResult* )_SearchResult
     {
