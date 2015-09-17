@@ -27,6 +27,7 @@
 
 // Private Interfaces
 @interface PWSearchResultSnippetView ()
+- ( NSXMLNode* ) __processedResultSnippetHTML: ( NSXMLElement* )_NSHTML;
 @end // Private Interfaces
 
 // PWSearchResultSnippetView class
@@ -50,7 +51,7 @@
     {
     self->__wikiSearchResult = _Result;
 
-    NSString* HTMLString = [ _Result.resultSnippet XMLString ];
+    NSString* HTMLString = [ [ self __processedResultSnippetHTML: _Result.resultSnippet ] XMLString ];
 
     NSData* HTMLData = [ HTMLString dataUsingEncoding: NSUTF8StringEncoding ];
     NSURL* baseURL = [ NSURL URLWithString: @"http://en.wikipedia.org" ];
@@ -82,6 +83,40 @@
 - ( WikiSearchResult* ) wikiSearchResult
     {
     return self->__wikiSearchResult;
+    }
+
+#pragma mark Private Interfaces
+
+NSString static* const sResultSnippetContentCSS =
+    @"body {"
+     "font-family: \"Helvetica Neue\";"
+     "color: rgb(10, 10, 10);"
+     "font-size: 1.2em;"
+     "line-height: 140%;"
+     "font-weight: lighter;"
+     "}"
+
+     "span.searchmatch {"
+     "/*background-color: rgb(235, 240, 29);*/"
+     "font-style: italic;"
+     "}";
+
+- ( NSXMLNode* ) __processedResultSnippetHTML: ( NSXMLElement* )_NSHTML
+    {
+    NSError* error = nil;
+    NSXMLElement* processedHTML = _NSHTML;
+
+    NSXMLElement* rootNode = [ [ NSXMLElement alloc ] initWithName: @"html" ];
+    NSXMLElement* headNode = [ [ NSXMLElement alloc ] initWithXMLString: @"<head><meta charset=\"utf-8\" /></head>" error: &error ];
+    NSXMLElement* bodyNode = [ [ NSXMLElement alloc ] initWithXMLString: @"<body></body>" error: nil ];
+    NSXMLElement* styleNode = [ [ NSXMLElement alloc ] initWithXMLString: [ NSString stringWithFormat: @"<style>%@</style>", sResultSnippetContentCSS ] error: &error ];
+
+    [ bodyNode addChild: processedHTML ];
+    [ headNode addChild: styleNode ];
+    [ rootNode setChildren: @[ headNode, bodyNode ] ];
+
+    NSXMLDocument* wrapingDocument = [ [ NSXMLDocument alloc ] initWithRootElement: rootNode ];
+    return wrapingDocument;
     }
 
 @end // PWSearchResultSnippetView class

@@ -23,18 +23,17 @@
                     <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="NEo-s5-ZXu" customClass="PWSearchResultsAttachPanelBlurBgView">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="121" horizontalPageScroll="10" verticalLineScroll="121" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="90d-g9-3dd">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="97" rowSizeStyle="automatic" viewBased="YES" id="weE-5Z-5VQ" customClass="PWSearchResultsTableView">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="119" rowSizeStyle="automatic" viewBased="YES" id="weE-5Z-5VQ" customClass="PWSearchResultsTableView">
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="results-column" width="447" minWidth="40" maxWidth="1000" id="iBY-Ct-yWY">
@@ -51,11 +50,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="6SG-g1-Ej4" customClass="PWSearchResultsTableCellView">
-                                                            <rect key="frame" x="1" y="1" width="447" height="97"/>
+                                                            <rect key="frame" x="1" y="1" width="447" height="119"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2NN-X7-YRD">
-                                                                    <rect key="frame" x="18" y="70" width="411" height="17"/>
+                                                                    <rect key="frame" x="18" y="92" width="411" height="17"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C++" id="QbM-3i-nep">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

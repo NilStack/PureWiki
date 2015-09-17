@@ -62,6 +62,14 @@
 		83B7B0461B87A1F6002DE75A /* PWCastrateFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B7B0451B87A1F6002DE75A /* PWCastrateFactory.m */; };
 		83B7B0481B87A510002DE75A /* purewikied-css.css in Resources */ = {isa = PBXBuildFile; fileRef = 83B7B0471B87A510002DE75A /* purewikied-css.css */; };
 		83B81DD51B95FDF100858BAB /* PWWikiPageArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B81DD41B95FDF100858BAB /* PWWikiPageArchive.m */; };
+		83C1081A1BAAC7CF0096FC57 /* font-lato-black-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83C108161BAAC7CF0096FC57 /* font-lato-black-regular.ttf */; settings = {ASSET_TAGS = (); }; };
+		83C1081B1BAAC7CF0096FC57 /* font-lato-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83C108171BAAC7CF0096FC57 /* font-lato-bold.ttf */; settings = {ASSET_TAGS = (); }; };
+		83C1081C1BAAC7CF0096FC57 /* font-lato-light-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83C108181BAAC7CF0096FC57 /* font-lato-light-regular.ttf */; settings = {ASSET_TAGS = (); }; };
+		83C1081D1BAAC7CF0096FC57 /* font-lato-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83C108191BAAC7CF0096FC57 /* font-lato-regular.ttf */; settings = {ASSET_TAGS = (); }; };
+		83C1081F1BAAC8090096FC57 /* font-lato-black-regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83C108161BAAC7CF0096FC57 /* font-lato-black-regular.ttf */; };
+		83C108201BAAC8090096FC57 /* font-lato-bold.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83C108171BAAC7CF0096FC57 /* font-lato-bold.ttf */; };
+		83C108211BAAC8090096FC57 /* font-lato-light-regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83C108181BAAC7CF0096FC57 /* font-lato-light-regular.ttf */; };
+		83C108221BAAC8090096FC57 /* font-lato-regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83C108191BAAC7CF0096FC57 /* font-lato-regular.ttf */; };
 		83D46ABC1B878B900061BE7E /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB41B878B900061BE7E /* ALView+PureLayout.m */; };
 		83D46ABD1B878B900061BE7E /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB61B878B900061BE7E /* NSArray+PureLayout.m */; };
 		83D46ABE1B878B900061BE7E /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB81B878B900061BE7E /* NSLayoutConstraint+PureLayout.m */; };
@@ -111,6 +119,22 @@
 			remoteInfo = PureWiki;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		83C1081E1BAAC7E70096FC57 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Fonts;
+			dstSubfolderSpec = 7;
+			files = (
+				83C1081F1BAAC8090096FC57 /* font-lato-black-regular.ttf in CopyFiles */,
+				83C108201BAAC8090096FC57 /* font-lato-bold.ttf in CopyFiles */,
+				83C108211BAAC8090096FC57 /* font-lato-light-regular.ttf in CopyFiles */,
+				83C108221BAAC8090096FC57 /* font-lato-regular.ttf in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8321EC7D1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSearchResultsAttachPanelBlurBgView.h; sourceTree = "<group>"; };
@@ -218,6 +242,10 @@
 		83B81DD31B95FDF100858BAB /* PWWikiPageArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiPageArchive.h; sourceTree = "<group>"; };
 		83B81DD41B95FDF100858BAB /* PWWikiPageArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiPageArchive.m; sourceTree = "<group>"; };
 		83C108131BAAB6470096FC57 /* SugarWiki.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SugarWiki.h; sourceTree = "<group>"; };
+		83C108161BAAC7CF0096FC57 /* font-lato-black-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "font-lato-black-regular.ttf"; sourceTree = "<group>"; };
+		83C108171BAAC7CF0096FC57 /* font-lato-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "font-lato-bold.ttf"; sourceTree = "<group>"; };
+		83C108181BAAC7CF0096FC57 /* font-lato-light-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "font-lato-light-regular.ttf"; sourceTree = "<group>"; };
+		83C108191BAAC7CF0096FC57 /* font-lato-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "font-lato-regular.ttf"; sourceTree = "<group>"; };
 		83D46AB31B878B900061BE7E /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
 		83D46AB41B878B900061BE7E /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
 		83D46AB51B878B900061BE7E /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
@@ -484,6 +512,7 @@
 			children = (
 				83B794111B7DCE5F00F4544E /* PureWiki */,
 				8321EC861B8C1CE60099C824 /* artwork */,
+				83C108141BAAC7CF0096FC57 /* fonts */,
 				83B75CAD1B7DDB2C00E9C05E /* vendor */,
 				83B794251B7DCE5F00F4544E /* PureWikiTests */,
 				83B794301B7DCE5F00F4544E /* PureWikiUITests */,
@@ -555,6 +584,26 @@
 				83B794331B7DCE5F00F4544E /* Info.plist */,
 			);
 			path = PureWikiUITests;
+			sourceTree = "<group>";
+		};
+		83C108141BAAC7CF0096FC57 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				83C108151BAAC7CF0096FC57 /* Lato Family */,
+			);
+			name = fonts;
+			path = PureWiki/fonts;
+			sourceTree = "<group>";
+		};
+		83C108151BAAC7CF0096FC57 /* Lato Family */ = {
+			isa = PBXGroup;
+			children = (
+				83C108161BAAC7CF0096FC57 /* font-lato-black-regular.ttf */,
+				83C108171BAAC7CF0096FC57 /* font-lato-bold.ttf */,
+				83C108181BAAC7CF0096FC57 /* font-lato-light-regular.ttf */,
+				83C108191BAAC7CF0096FC57 /* font-lato-regular.ttf */,
+			);
+			path = "Lato Family";
 			sourceTree = "<group>";
 		};
 		83D46AB21B878B900061BE7E /* PureLayout */ = {
@@ -726,6 +775,7 @@
 				83B7940B1B7DCE5F00F4544E /* Sources */,
 				83B7940C1B7DCE5F00F4544E /* Frameworks */,
 				83B7940D1B7DCE5F00F4544E /* Resources */,
+				83C1081E1BAAC7E70096FC57 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -825,13 +875,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83C1081D1BAAC7CF0096FC57 /* font-lato-regular.ttf in Resources */,
 				8321EC921B8C30490099C824 /* wikipage-image-normal@2x.png in Resources */,
 				83B794191B7DCE5F00F4544E /* Assets.xcassets in Resources */,
 				83B7B0481B87A510002DE75A /* purewikied-css.css in Resources */,
+				83C1081A1BAAC7CF0096FC57 /* font-lato-black-regular.ttf in Resources */,
 				83509BD11B862A0400C4F454 /* PWSearchResultsAttachPanel.xib in Resources */,
 				8321EC8F1B8C30490099C824 /* wikipage-image-highlighted.png in Resources */,
+				83C1081C1BAAC7CF0096FC57 /* font-lato-light-regular.ttf in Resources */,
 				83A2FBCC1B830AC700939452 /* PWMainWindow.xib in Resources */,
 				8321EC911B8C30490099C824 /* wikipage-image-normal.png in Resources */,
+				83C1081B1BAAC7CF0096FC57 /* font-lato-bold.ttf in Resources */,
 				83509BE61B8739FD00C4F454 /* PWWikiContentView.xib in Resources */,
 				83B7941C1B7DCE5F00F4544E /* PWMainMenu.xib in Resources */,
 				8321EC901B8C30490099C824 /* wikipage-image-highlighted@2x.png in Resources */,
