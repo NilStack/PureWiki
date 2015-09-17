@@ -21,82 +21,25 @@
 └==============================================================================┘██
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSearchResultsTableCellView.h"
-#import "PWActionNotifications.h"
-#import "PWSearchResultTitleField.h"
-#import "PWSearchResultSnippetView.h"
+@import Cocoa;
 
-#import "SugarWiki.h"
+@class WikiSearchResult;
 
-CGFloat static const kTopGap = 10.f;
-CGFloat static const kBottomGap = kTopGap;
-CGFloat static const kLeftGap = 20.f;
-CGFloat static const kRightGap = kLeftGap;
-
-// Private Interfaces
-@interface PWSearchResultsTableCellView ()
-- ( void ) __relayout;
-@end // Private Interfaces
-
-// PWSearchResultsTableCellView class
-@implementation PWSearchResultsTableCellView
-
-@dynamic wikiSearchResult;
-
-#pragma mark Handling Events
-- ( void ) mouseDown: ( nonnull NSEvent* )_Event
+// PWSearchResultTitleField class
+@interface PWSearchResultTitleField : NSView
     {
-    [ super mouseDown: _Event ];
-
-    [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidPickUpSearchItemNotif
-                                                           object: self
-                                                         userInfo: @{ kSearchResult : self->_wikiSearchResult } ];
+@private
+    NSDictionary __strong* __attrs;
+    WikiSearchResult __strong* __wikiSearchResult;
     }
 
-#pragma mark Dynamic Properties
-- ( void ) setWikiSearchResult: ( WikiSearchResult* )_SearchResult
-    {
-    if ( self->_wikiSearchResult != _SearchResult )
-        {
-        self->_wikiSearchResult = _SearchResult;
+@property ( strong, readwrite ) WikiSearchResult* wikiSearchResult;
 
-        if ( !self->__searchResultSnippetTextStorage )
-            self->__searchResultSnippetTextStorage = [ [ PWSearchResultSnippetView alloc ] initWithFrame: self.frame ];
+#pragma mark Initializations
++ ( instancetype ) titleFieldWithFrame: ( NSRect )_Frame wikiSearchResult: ( WikiSearchResult* )_Result;
+- ( instancetype ) initWithFrame: ( NSRect )_Frame wikiSearchResult: ( WikiSearchResult* )_Result;
 
-        if ( !self->__searchResultTitleField )
-            self->__searchResultTitleField = [ [ PWSearchResultTitleField alloc ] initWithFrame: self.pageTitleTextField.frame
-                                                                               wikiSearchResult: self->_wikiSearchResult ];
-
-        self.pageTitleTextField.stringValue = self->_wikiSearchResult.title;
-        [ self->__searchResultSnippetTextStorage setWikiSearchResult: self->_wikiSearchResult ];
-        [ self __relayout ];
-        }
-    }
-
-- ( WikiSearchResult* ) wikiSearchResult
-    {
-    return self->_wikiSearchResult;
-    }
-
-#pragma mark Private Interfaces
-- ( void ) __relayout
-    {
-    [ self.pageTitleTextField configureForAutoLayout ];
-    [ self->__searchResultSnippetTextStorage.repTextView configureForAutoLayout ];
-
-    if ( self->__searchResultTitleField.superview != self )
-        [ self addSubview: self->__searchResultTitleField ];
-
-    if ( self->__searchResultSnippetTextStorage.repTextView.superview != self )
-        [ self addSubview: self->__searchResultSnippetTextStorage.repTextView ];
-
-    NSEdgeInsets insets = NSEdgeInsetsMake( kTopGap, kLeftGap, kBottomGap, kRightGap );
-    [ self.pageTitleTextField autoPinEdgesToSuperviewEdgesWithInsets: insets excludingEdge: ALEdgeBottom ];
-    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self.pageTitleTextField withOffset: kTopGap ];
-    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdgesToSuperviewEdgesWithInsets: insets excludingEdge: ALEdgeTop ];
-    }
-
-@end // PWSearchResultsTableCellView class
+@end // PWSearchResultTitleField class
 
 /*===============================================================================┐
 |                                                                                | 

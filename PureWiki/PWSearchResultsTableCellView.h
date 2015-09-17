@@ -23,6 +23,7 @@
 
 @import Cocoa;
 
+@class PWSearchResultTitleField;
 @class PWSearchResultSnippetView;
 
 @class WikiSearchResult;
@@ -33,13 +34,13 @@
 @protected
     WikiSearchResult __strong* _wikiSearchResult;
 
+    PWSearchResultTitleField __strong* __searchResultTitleField;
     PWSearchResultSnippetView __strong* __searchResultSnippetTextStorage;
     }
 
 @property ( strong ) WikiSearchResult* wikiSearchResult;
 
 #pragma mark Outlets
-@property ( weak ) IBOutlet NSImageView* pageImageView;
 @property ( weak ) IBOutlet NSTextField* pageTitleTextField;
 
 @end // PWSearchResultsTableCellView class
