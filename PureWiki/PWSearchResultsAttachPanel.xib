@@ -53,17 +53,12 @@
                                                             <rect key="frame" x="1" y="1" width="447" height="119"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2NN-X7-YRD">
-                                                                    <rect key="frame" x="18" y="79" width="411" height="30"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C++" id="QbM-3i-nep">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
+                                                                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3rR-I3-A94" customClass="PWSearchResultTitleField">
+                                                                    <rect key="frame" x="20" y="84" width="407" height="25"/>
+                                                                </customView>
                                                             </subviews>
                                                             <connections>
-                                                                <outlet property="pageTitleTextField" destination="2NN-X7-YRD" id="k4U-0S-2KL"/>
+                                                                <outlet property="__searchResultTitleField" destination="3rR-I3-A94" id="t1k-lF-JDW"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>

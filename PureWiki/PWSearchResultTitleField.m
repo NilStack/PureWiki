@@ -25,28 +25,34 @@
 
 #import "SugarWiki.h"
 
+CGFloat const kLeadingGap = 4.f;
+CGFloat const kTrailingGap = kLeadingGap;
+
 // PWSearchResultTitleField class
 @implementation PWSearchResultTitleField
 
 @dynamic wikiSearchResult;
 
-#pragma mark Initializations
-+ ( instancetype ) titleFieldWithFrame: ( NSRect )_Frame
-                      wikiSearchResult: ( WikiSearchResult* )_Result;
+- ( void ) drawRect: ( NSRect )_DirtyRect
     {
-    return [ [ self alloc ] initWithFrame: _Frame wikiSearchResult: _Result ];
+    [ super drawRect: _DirtyRect ];
+
+    NSString* drawingContent = self->__wikiSearchResult.title;
+    NSDictionary* drawingAttrs = self->__attrs;
+
+    NSSize occupiedSize = [ drawingContent sizeWithAttributes: drawingAttrs ];
+    NSRect occupiedRect = NSMakeRect( kLeadingGap, 0.f, occupiedSize.width, NSHeight( self.bounds ) );
+    [ self->__wikiSearchResult.title drawInRect: occupiedRect withAttributes: drawingAttrs ];
     }
 
-- ( instancetype ) initWithFrame: ( NSRect )_Frame
-                wikiSearchResult: ( WikiSearchResult* )_Result;
+#pragma mark Initializations
+- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
     {
-    if ( self = [ super initWithFrame: _Frame ] )
+    if ( self = [ super initWithCoder: _Coder ] )
         {
-        self->__attrs = @{ NSFontNameAttribute : [ NSFont fontWithName: @"Helvetica Neue" size: 15.f ]
+        self->__attrs = @{ NSFontAttributeName : [ NSFont fontWithName: @"Helvetica Neue" size: 17.f ]
                          , NSForegroundColorAttributeName : [ NSColor blackColor ]
                          };
-
-        [ self setWikiSearchResult: _Result ];
         }
 
     return self;
@@ -58,10 +64,7 @@
     if ( _Result && _Result != self->__wikiSearchResult )
         {
         self->__wikiSearchResult = _Result;
-
-        NSSize size = [ self->__wikiSearchResult.title sizeWithAttributes: self->__attrs ];
-        NSRect rect = NSMakeRect( 0.f, 0.f, size.width, size.height );
-        [ self->__wikiSearchResult.title drawInRect: rect withAttributes: self->__attrs ];
+        [ self setNeedsDisplay: YES ];
         }
     }
 

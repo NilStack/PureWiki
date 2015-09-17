@@ -35,10 +35,6 @@
 
 @property ( strong, readwrite ) WikiSearchResult* wikiSearchResult;
 
-#pragma mark Initializations
-+ ( instancetype ) titleFieldWithFrame: ( NSRect )_Frame wikiSearchResult: ( WikiSearchResult* )_Result;
-- ( instancetype ) initWithFrame: ( NSRect )_Frame wikiSearchResult: ( WikiSearchResult* )_Result;
-
 @end // PWSearchResultTitleField class
 
 /*===============================================================================┐
