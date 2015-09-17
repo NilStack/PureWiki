@@ -23,7 +23,7 @@
 
 #import "PWSearchResultSnippetView.h"
 
-#import "__PWSearchResultSnippetBackingTextView.h"
+#import "PWSearchResultSnippetBackingTextView.h"
 
 #import "SugarWiki.h"
 
@@ -42,7 +42,7 @@
 #pragma mark Dynamic Properties
 - ( NSTextView* ) repTextView
     {
-    return ( __PWSearchResultSnippetBackingTextView* )
+    return ( PWSearchResultSnippetBackingTextView* )
         self->__internalTextStorage.layoutManagers
                                    .firstObject
                                    .textContainers
@@ -73,7 +73,7 @@
 
     [ layoutManager addTextContainer: textContainer ];
 
-    ( void )[ [ __PWSearchResultSnippetBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer delegate: self ];
+    ( void )[ [ PWSearchResultSnippetBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer delegate: self ];
 
     [ self setSubviews: @[ self.repTextView ] ];
     [ self.repTextView autoPinEdgesToSuperviewEdges ];

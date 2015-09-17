@@ -26,7 +26,7 @@
 #import "PWSearchResultTitleField.h"
 #import "PWSearchResultSnippetView.h"
 
-#import "__PWSearchResultSnippetBackingTextView.h"
+#import "PWSearchResultSnippetBackingTextView.h"
 
 #import "SugarWiki.h"
 

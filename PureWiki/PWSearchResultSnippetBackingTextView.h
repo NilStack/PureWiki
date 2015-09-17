@@ -23,14 +23,15 @@
 
 @import Cocoa;
 
-// __PWSearchResultSnippetBackingTextView class
-@interface __PWSearchResultSnippetBackingTextView : NSTextView
+// PWSearchResultSnippetBackingTextView class
+@interface PWSearchResultSnippetBackingTextView : NSTextView
 
+#pragma mark Initializations
 - ( instancetype ) initWithFrame: ( NSRect )_Frame
                    textContainer: ( NSTextContainer* )_TextContainer
                         delegate: ( id <NSTextViewDelegate> )_Delegate;
 
-@end // __PWSearchResultSnippetBackingTextView class
+@end // PWSearchResultSnippetBackingTextView class
 
 /*===============================================================================┐
 |                                                                                | 

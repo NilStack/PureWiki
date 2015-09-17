@@ -21,21 +21,28 @@
 └==============================================================================┘██
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "__PWSearchResultSnippetBackingTextView.h"
+#import "PWSearchResultSnippetBackingTextView.h"
 
 #import "NSColor+TKSafariSearchbar.h"
 
-// __PWSearchResultSnippetBackingTextView class
-@implementation __PWSearchResultSnippetBackingTextView
+// PWSearchResultSnippetBackingTextView class
+@implementation PWSearchResultSnippetBackingTextView
+
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
+                   textContainer: ( NSTextContainer* )_Container
+                        delegate: ( id <NSTextViewDelegate> )_Delegate
+    {
+    if ( self = [ self initWithFrame: _Frame textContainer: _Container ] )
+        [ self setDelegate: _Delegate ];
+
+    return self;
+    }
 
 - ( instancetype ) initWithFrame: ( NSRect )_Frame
                    textContainer: ( NSTextContainer* )_TextContainer
-                        delegate: ( id <NSTextViewDelegate> )_Delegate
     {
     if ( self = [ super initWithFrame: _Frame textContainer: _TextContainer ] )
         {
-        [ self setDelegate: _Delegate ];
-
         [ self setLinkTextAttributes: @{ NSForegroundColorAttributeName : [ NSColor colorWithHTMLColor: @"4ebbf1" ] } ];
 
         [ self setEditable: NO ];
@@ -53,7 +60,7 @@
     return NSMakeRange( 0, 0 );
     }
 
-@end // __PWSearchResultSnippetBackingTextView class
+@end // PWSearchResultSnippetBackingTextView class
 
 /*===============================================================================┐
 |                                                                                | 
