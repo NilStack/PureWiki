@@ -42,14 +42,6 @@ CGFloat static const kRightGap = kLeftGap;
 
 @dynamic wikiSearchResult;
 
-#pragma mark Custom Drawing
-- ( void ) drawRect: ( NSRect )_DirtyRect
-    {
-    [ super drawRect: _DirtyRect ];
-    
-    // Drawing code here.
-    }
-
 #pragma mark Handling Events
 - ( void ) mouseDown: ( nonnull NSEvent* )_Event
     {
