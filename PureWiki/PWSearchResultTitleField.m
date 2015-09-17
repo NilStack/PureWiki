@@ -26,7 +26,7 @@
 #import "SugarWiki.h"
 
 CGFloat const kLeadingGap = 4.f;
-CGFloat const kTrailingGap = kLeadingGap;
+CGFloat const kTrailingGap = 20.f;
 
 // PWSearchResultTitleField class
 @implementation PWSearchResultTitleField
@@ -40,9 +40,20 @@ CGFloat const kTrailingGap = kLeadingGap;
     NSString* drawingContent = self->__wikiSearchResult.title;
     NSDictionary* drawingAttrs = self->__attrs;
 
+    if ( drawingContent.length > self->__maxTitleCharCount )
+        {
+        drawingContent = [ drawingContent substringToIndex: self->__maxTitleCharCount - 3 - 1 ];
+        drawingContent = [ drawingContent stringByAppendingString: @"..." ];
+        }
+
     NSSize occupiedSize = [ drawingContent sizeWithAttributes: drawingAttrs ];
-    NSRect occupiedRect = NSMakeRect( kLeadingGap, 0.f, occupiedSize.width, NSHeight( self.bounds ) );
-    [ self->__wikiSearchResult.title drawInRect: occupiedRect withAttributes: drawingAttrs ];
+    NSRect occupiedRect = NSMakeRect( kLeadingGap
+                                    , ( NSHeight( self.bounds ) - occupiedSize.height ) / 2.f
+                                    , occupiedSize.width
+                                    , NSHeight( self.bounds )
+                                    );
+
+    [ drawingContent drawInRect: occupiedRect withAttributes: drawingAttrs ];
     }
 
 #pragma mark Initializations
@@ -53,6 +64,20 @@ CGFloat const kTrailingGap = kLeadingGap;
         self->__attrs = @{ NSFontAttributeName : [ NSFont fontWithName: @"Helvetica Neue" size: 17.f ]
                          , NSForegroundColorAttributeName : [ NSColor blackColor ]
                          };
+
+        NSString* testChar = @"a";
+        NSMutableString* testTitle = [ NSMutableString stringWithString: testChar ];
+        self->__maxTitleCharCount = testTitle.length;
+
+        CGFloat maxTitleWidth = NSWidth( self.bounds ) - kTrailingGap;
+        CGFloat widthOfCurrentTitleCharCount = [ testTitle sizeWithAttributes: self->__attrs ].width;
+
+        while ( widthOfCurrentTitleCharCount < maxTitleWidth )
+            {
+            [ testTitle appendString: testChar ];
+            widthOfCurrentTitleCharCount = [ testTitle sizeWithAttributes: self->__attrs ].width;
+            self->__maxTitleCharCount++;
+            }
         }
 
     return self;

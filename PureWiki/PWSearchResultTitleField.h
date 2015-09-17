@@ -31,6 +31,7 @@
 @private
     NSDictionary __strong* __attrs;
     WikiSearchResult __strong* __wikiSearchResult;
+    NSUInteger __maxTitleCharCount;
     }
 
 @property ( strong, readwrite ) WikiSearchResult* wikiSearchResult;
