@@ -23,46 +23,62 @@
 
 #import "PWSearchResultsTableCellView.h"
 #import "PWActionNotifications.h"
+#import "PWSearchResultTitleField.h"
+#import "PWSearchResultSnippetView.h"
 
-#import "WikiPage.h"
-#import "WikiRevision.h"
+#import "PWSearchResultSnippetBackingTextView.h"
+
+#import "SugarWiki.h"
+
+CGFloat static const kTopGap = 10.f;
+CGFloat static const kBottomGap = 0.f;
+CGFloat static const kLeftGap = 20.f;
+CGFloat static const kRightGap = kLeftGap;
+
+// Private Interfaces
+@interface PWSearchResultsTableCellView ()
+- ( void ) __relayout;
+@end // Private Interfaces
 
 // PWSearchResultsTableCellView class
 @implementation PWSearchResultsTableCellView
 
-@dynamic wikiPage;
-
-#pragma mark Custom Drawing
-- ( void ) drawRect: ( NSRect )_DirtyRect
-    {
-    [ super drawRect: _DirtyRect ];
-    
-    // Drawing code here.
-    }
-
-#pragma mark Handling Events
-- ( void ) mouseDown: ( nonnull NSEvent* )_Event
-    {
-    [ super mouseDown: _Event ];
-
-    [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiDidPickUpSearchItemNotif
-                                                           object: self
-                                                         userInfo: @{ kPage : self->_wikiPage } ];
-    }
+@dynamic wikiSearchResult;
 
 #pragma mark Dynamic Properties
-- ( void ) setWikiPage: ( WikiPage* )_WikiPage
+- ( void ) setWikiSearchResult: ( WikiSearchResult* )_SearchResult
     {
-    self->_wikiPage = _WikiPage;
+    if ( self->_wikiSearchResult != _SearchResult )
+        {
+        self->_wikiSearchResult = _SearchResult;
 
-    // self.pageImageView =
-    self.pageTitleTextField.stringValue = self->_wikiPage.title;
-    self.pageSnippetTextField.stringValue = [ self->_wikiPage.lastRevision.content substringToIndex: 100 ];
+        if ( !self->__searchResultSnippetTextStorage )
+            self->__searchResultSnippetTextStorage = [ [ PWSearchResultSnippetView alloc ] initWithFrame: self.frame ];
+
+        [ self->__searchResultTitleField setWikiSearchResult: self->_wikiSearchResult ];
+        [ self->__searchResultSnippetTextStorage setWikiSearchResult: self->_wikiSearchResult ];
+        [ self __relayout ];
+        }
     }
 
-- ( WikiPage* ) wikiPage
+- ( WikiSearchResult* ) wikiSearchResult
     {
-    return self->_wikiPage;
+    return self->_wikiSearchResult;
+    }
+
+#pragma mark Private Interfaces
+- ( void ) __relayout
+    {
+    [ self->__searchResultTitleField configureForAutoLayout ];
+    [ self->__searchResultSnippetTextStorage.repTextView configureForAutoLayout ];
+
+    if ( self->__searchResultSnippetTextStorage.repTextView.superview != self )
+        [ self addSubview: self->__searchResultSnippetTextStorage.repTextView ];
+
+    NSEdgeInsets snippetInsets = NSEdgeInsetsMake( kTopGap, kLeftGap, kBottomGap, kRightGap );
+    [ self->__searchResultTitleField autoPinEdgesToSuperviewEdgesWithInsets: snippetInsets excludingEdge: ALEdgeBottom ];
+    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self->__searchResultTitleField withOffset: kTopGap ];
+    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdgesToSuperviewEdgesWithInsets: snippetInsets excludingEdge: ALEdgeTop ];
     }
 
 @end // PWSearchResultsTableCellView class

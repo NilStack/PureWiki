@@ -30,7 +30,7 @@
 #import "PWWikiContentView.h"
 #import "PWOpenedWikiPage.h"
 
-#import "WikiPage.h"
+#import "SugarWiki.h"
 
 NSString* const PWSidebarCurrentSelectedPageKVOPath = @"currentSelectedPage";
 

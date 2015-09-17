@@ -1,9 +1,9 @@
-[submodule "PureWiki/vendor/Wikikit"]
-	path = PureWiki/vendor/Wikikit
-	url = https://github.com/TongKuo/Wikikit.git
 [submodule "PureWiki/vendor/PureLayout"]
 	path = PureWiki/vendor/PureLayout
 	url = https://github.com/PureWiki/PureLayout.git
 [submodule "PureWiki/vendor/KVOController"]
 	path = PureWiki/vendor/KVOController
 	url = https://github.com/PureWiki/KVOController.git
+[submodule "PureWiki/vendor/SugarWiki"]
+	path = PureWiki/vendor/SugarWiki
+	url = https://github.com/PureWiki/SugarWiki

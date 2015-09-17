@@ -19,21 +19,48 @@
 |                             ALL RIGHTS RESERVED.                             |██
 |                                                                              |██
 └==============================================================================┘██
-  ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Foundation;
+#import "PWSearchResultSnippetBackingTextView.h"
 
-NSString extern* const PureWikiDidSearchPagesNotif;
-NSString extern* const PureWikiDidEmptySearchNotif;
-NSString extern* const PureWikiDidPickUpSearchItemNotif;
-NSString extern* const PureWikiTabsSelectionDidChangeNotif;
+#import "NSColor+TKSafariSearchbar.h"
 
-NSString extern* const kPage;
-NSString extern* const kPages;
-NSString extern* const kOpenedPage;
-NSString extern* const kSearchResult;
-NSString extern* const kMoreLink;
+// PWSearchResultSnippetBackingTextView class
+@implementation PWSearchResultSnippetBackingTextView
+
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
+                   textContainer: ( NSTextContainer* )_Container
+                        delegate: ( id <NSTextViewDelegate> )_Delegate
+    {
+    if ( self = [ self initWithFrame: _Frame textContainer: _Container ] )
+        [ self setDelegate: _Delegate ];
+
+    return self;
+    }
+
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
+                   textContainer: ( NSTextContainer* )_TextContainer
+    {
+    if ( self = [ super initWithFrame: _Frame textContainer: _TextContainer ] )
+        {
+        [ self setLinkTextAttributes: @{ NSForegroundColorAttributeName : [ NSColor colorWithHTMLColor: @"4ebbf1" ] } ];
+
+        [ self setEditable: NO ];
+        [ self setBackgroundColor: [ NSColor clearColor ] ];
+        [ self configureForAutoLayout ];
+        }
+
+    return self;
+    }
+
+#pragma mark Overrides
+- ( NSRange ) selectionRangeForProposedRange: ( NSRange )_ProposedSelRange
+                                 granularity: ( NSSelectionGranularity )_Granularity
+    {
+    return NSMakeRange( 0, 0 );
+    }
+
+@end // PWSearchResultSnippetBackingTextView class
 
 /*===============================================================================┐
 |                                                                                | 

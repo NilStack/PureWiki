@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14F25a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F25a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8121.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PWSearchResultsAttachPanelController">
@@ -23,18 +23,17 @@
                     <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="NEo-s5-ZXu" customClass="PWSearchResultsAttachPanelBlurBgView">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="99" horizontalPageScroll="10" verticalLineScroll="99" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="127" horizontalPageScroll="10" verticalLineScroll="127" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="90d-g9-3dd">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="97" rowSizeStyle="automatic" viewBased="YES" id="weE-5Z-5VQ" customClass="PWSearchResultsTableView">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="125" rowSizeStyle="automatic" viewBased="YES" id="weE-5Z-5VQ" customClass="PWSearchResultsTableView">
                                             <rect key="frame" x="0.0" y="0.0" width="450" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="results-column" width="447" minWidth="40" maxWidth="1000" id="iBY-Ct-yWY">
@@ -51,46 +50,15 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="6SG-g1-Ej4" customClass="PWSearchResultsTableCellView">
-                                                            <rect key="frame" x="1" y="1" width="447" height="97"/>
+                                                            <rect key="frame" x="1" y="1" width="447" height="125"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2NN-X7-YRD">
-                                                                    <rect key="frame" x="18" y="70" width="411" height="17"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="407" id="0rE-MN-3kT"/>
-                                                                        <constraint firstAttribute="height" constant="17" id="7hY-os-S2v"/>
-                                                                    </constraints>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C++" id="QbM-3i-nep">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1p4-h1-gCb">
-                                                                    <rect key="frame" x="18" y="10" width="411" height="52"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="52" id="Lwn-Fn-Zj2"/>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="407" id="MWY-GU-iez"/>
-                                                                    </constraints>
-                                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="C++ (pronounced as cee plus plus, /ˈsiː plʌs plʌs/)…" id="2dF-zc-FYO">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
+                                                                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3rR-I3-A94" customClass="PWSearchResultTitleField">
+                                                                    <rect key="frame" x="20" y="90" width="407" height="25"/>
+                                                                </customView>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="2NN-X7-YRD" firstAttribute="top" secondItem="6SG-g1-Ej4" secondAttribute="top" constant="10" id="09k-2I-DAZ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="2NN-X7-YRD" secondAttribute="trailing" constant="20" id="BaG-9m-lTC"/>
-                                                                <constraint firstItem="2NN-X7-YRD" firstAttribute="leading" secondItem="6SG-g1-Ej4" secondAttribute="leading" constant="20" id="CyB-Lq-z4d"/>
-                                                                <constraint firstAttribute="bottom" secondItem="1p4-h1-gCb" secondAttribute="bottom" constant="10" id="DlG-zc-rgS"/>
-                                                                <constraint firstItem="1p4-h1-gCb" firstAttribute="top" secondItem="2NN-X7-YRD" secondAttribute="bottom" constant="8" id="TzF-63-aOa"/>
-                                                                <constraint firstAttribute="trailing" secondItem="1p4-h1-gCb" secondAttribute="trailing" constant="20" id="i5k-2H-pNB"/>
-                                                                <constraint firstItem="1p4-h1-gCb" firstAttribute="leading" secondItem="6SG-g1-Ej4" secondAttribute="leading" constant="20" id="xNA-d6-XHl"/>
-                                                            </constraints>
                                                             <connections>
-                                                                <outlet property="pageSnippetTextField" destination="1p4-h1-gCb" id="hRr-Go-qVl"/>
-                                                                <outlet property="pageTitleTextField" destination="2NN-X7-YRD" id="k4U-0S-2KL"/>
+                                                                <outlet property="__searchResultTitleField" destination="3rR-I3-A94" id="t1k-lF-JDW"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -139,7 +107,7 @@
                 <outlet property="delegate" destination="-2" id="7xz-Lo-UNM"/>
                 <outlet property="panelBlurBackgroundView" destination="NEo-s5-ZXu" id="hSF-Fy-fYD"/>
             </connections>
-            <point key="canvasLocation" x="-204" y="544"/>
+            <point key="canvasLocation" x="226" y="877"/>
         </window>
     </objects>
 </document>

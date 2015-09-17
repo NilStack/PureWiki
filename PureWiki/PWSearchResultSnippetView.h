@@ -19,21 +19,26 @@
 |                             ALL RIGHTS RESERVED.                             |██
 |                                                                              |██
 └==============================================================================┘██
-  ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Foundation;
+@import Cocoa;
 
-NSString extern* const PureWikiDidSearchPagesNotif;
-NSString extern* const PureWikiDidEmptySearchNotif;
-NSString extern* const PureWikiDidPickUpSearchItemNotif;
-NSString extern* const PureWikiTabsSelectionDidChangeNotif;
+#import "SugarWikiDefines.h"
 
-NSString extern* const kPage;
-NSString extern* const kPages;
-NSString extern* const kOpenedPage;
-NSString extern* const kSearchResult;
-NSString extern* const kMoreLink;
+@class PWSearchResultSnippetBackingTextView;
+
+// PWSearchResultSnippetView class
+@interface PWSearchResultSnippetView : NSView <NSTextViewDelegate>
+    {
+@protected
+    NSTextStorage __strong* __internalTextStorage;
+    WikiSearchResult __strong* __wikiSearchResult;
+    }
+
+@property ( strong, readonly ) PWSearchResultSnippetBackingTextView* repTextView;
+@property ( strong, readwrite ) WikiSearchResult* wikiSearchResult;
+
+@end // PWSearchResultSnippetView class
 
 /*===============================================================================┐
 |                                                                                | 

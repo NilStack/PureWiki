@@ -19,21 +19,19 @@
 |                             ALL RIGHTS RESERVED.                             |██
 |                                                                              |██
 └==============================================================================┘██
-  ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Foundation;
+@import Cocoa;
 
-NSString extern* const PureWikiDidSearchPagesNotif;
-NSString extern* const PureWikiDidEmptySearchNotif;
-NSString extern* const PureWikiDidPickUpSearchItemNotif;
-NSString extern* const PureWikiTabsSelectionDidChangeNotif;
+// PWSearchResultSnippetBackingTextView class
+@interface PWSearchResultSnippetBackingTextView : NSTextView
 
-NSString extern* const kPage;
-NSString extern* const kPages;
-NSString extern* const kOpenedPage;
-NSString extern* const kSearchResult;
-NSString extern* const kMoreLink;
+#pragma mark Initializations
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
+                   textContainer: ( NSTextContainer* )_TextContainer
+                        delegate: ( id <NSTextViewDelegate> )_Delegate;
+
+@end // PWSearchResultSnippetBackingTextView class
 
 /*===============================================================================┐
 |                                                                                | 

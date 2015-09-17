@@ -22,18 +22,14 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Foundation;
+#ifndef PurePrefixHeader_pch
+#define PurePrefixHeader_pch
 
-NSString extern* const PureWikiDidSearchPagesNotif;
-NSString extern* const PureWikiDidEmptySearchNotif;
-NSString extern* const PureWikiDidPickUpSearchItemNotif;
-NSString extern* const PureWikiTabsSelectionDidChangeNotif;
+#import "PureLayout.h"
+#import "FBKVOController.h"
+//#import "SugarWiki.h"
 
-NSString extern* const kPage;
-NSString extern* const kPages;
-NSString extern* const kOpenedPage;
-NSString extern* const kSearchResult;
-NSString extern* const kMoreLink;
+#endif /* PurePrefixHeader_pch */
 
 /*===============================================================================┐
 |                                                                                | 

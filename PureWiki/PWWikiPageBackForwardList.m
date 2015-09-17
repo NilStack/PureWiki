@@ -25,7 +25,7 @@
 #import "PWWikiPageBackForwardList.h"
 #import "PWOpenedWikiPage.h"
 
-#import "WikiPage.h"
+#import "SugarWiki.h"
 
 // PWWikiPageBackForwardList class
 @implementation PWWikiPageBackForwardList

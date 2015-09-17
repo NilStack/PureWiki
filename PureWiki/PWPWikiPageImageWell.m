@@ -27,10 +27,7 @@
 #import "PWArtworkConstants.h"
 
 #import "AFNetworking.h"
-
-#import "WikiEngine.h"
-#import "WikiPage.h"
-#import "WikiImage.h"
+#import "SugarWiki.h"
 
 // Private Interfaces
 @interface PWPWikiPageImageWell ()
@@ -43,9 +40,9 @@
 @dynamic wikiPage;
 
 #pragma mark Initializations
-- ( instancetype ) initWithCoder:(NSCoder *)coder
+- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
     {
-    if ( self = [ super initWithCoder: coder ] )
+    if ( self = [ super initWithCoder: _Coder ] )
         {
         self->_HTTPSessionManager = [ AFHTTPSessionManager manager ];
         [ self->_HTTPSessionManager setResponseSerializer: [ [ AFCompoundResponseSerializer alloc ] init ] ];
@@ -136,7 +133,7 @@
                     ^( NSError* _Error )
                         {
                         [ self performSelectorOnMainThread: @selector( setImage: ) withObject: normalDefaultContentPreview waitUntilDone: NO ];
-                        } ];
+                        }  stopAllOtherTasks: YES ];
                 }
         else
             [ self setImage: normalDefaultContentPreview ];

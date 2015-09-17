@@ -19,21 +19,24 @@
 |                             ALL RIGHTS RESERVED.                             |██
 |                                                                              |██
 └==============================================================================┘██
-  ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Foundation;
+@import Cocoa;
 
-NSString extern* const PureWikiDidSearchPagesNotif;
-NSString extern* const PureWikiDidEmptySearchNotif;
-NSString extern* const PureWikiDidPickUpSearchItemNotif;
-NSString extern* const PureWikiTabsSelectionDidChangeNotif;
+@class WikiSearchResult;
 
-NSString extern* const kPage;
-NSString extern* const kPages;
-NSString extern* const kOpenedPage;
-NSString extern* const kSearchResult;
-NSString extern* const kMoreLink;
+// PWSearchResultTitleField class
+@interface PWSearchResultTitleField : NSView
+    {
+@private
+    NSDictionary __strong* __attrs;
+    WikiSearchResult __strong* __wikiSearchResult;
+    NSUInteger __maxTitleCharCount;
+    }
+
+@property ( strong, readwrite ) WikiSearchResult* wikiSearchResult;
+
+@end // PWSearchResultTitleField class
 
 /*===============================================================================┐
 |                                                                                | 
