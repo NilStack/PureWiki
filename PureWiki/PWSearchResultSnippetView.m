@@ -22,6 +22,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSearchResultSnippetView.h"
+#import "NSColor+TKSafariSearchbar.h"
 
 #import "__PWSearchResultSnippetBackingTextView.h"
 
@@ -61,10 +62,6 @@
     self->__internalTextStorage =
         [ [ NSTextStorage alloc ] initWithHTML: HTMLData baseURL: baseURL/*_BaseURL*/ documentAttributes: nil ];
 
-    NSAttributedString* attributedMoreText = [ [ NSAttributedString alloc ] initWithString: @"more" attributes: @{ NSLinkAttributeName : [ NSURL URLWithString: @"https://twitter.com" ] } ];
-    [ self->__internalTextStorage insertAttributedString: attributedMoreText
-                                                 atIndex: self->__internalTextStorage.length - 1 ];
-
     NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
     [ self->__internalTextStorage addLayoutManager: layoutManager ];
 
@@ -80,9 +77,9 @@
     ( void )[ [ __PWSearchResultSnippetBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer ];
     [ self.repTextView setDelegate: self ];
     [ self.repTextView setSelectedTextAttributes: @{ NSBackgroundColorAttributeName : [ NSColor clearColor ] } ];
+    [ self.repTextView setLinkTextAttributes: @{ NSForegroundColorAttributeName : [ NSColor colorWithHTMLColor: @"4ebbf1" ] } ];
 
     [ self.repTextView setEditable: NO ];
-//    [ self.repTextView setSelectable: NO ];
     [ self.repTextView setBackgroundColor: [ NSColor clearColor ] ];
     [ self.repTextView configureForAutoLayout ];
 
@@ -94,12 +91,15 @@
       clickedOnLink: ( id )_Link
             atIndex: ( NSUInteger )_CharIndex
     {
-    NSLog( @"%@", _Link );
+    BOOL isHandled = NO;
+    if ( [ _Link isKindOfClass: [ NSURL class ] ] )
+        {
+        NSLog( @"%@", ( ( NSURL* )_Link ).lastPathComponent );
+        isHandled = YES;
+        }
 
-    return YES;
+    return isHandled;
     }
-
-//- ( BOOL _
 
 - ( WikiSearchResult* ) wikiSearchResult
     {
@@ -110,37 +110,42 @@
 
 NSString static* const sResultSnippetContentCSS =
     @"body {"
-         "font-family: \"Helvetica Neue\";"
-         "color: rgb(10, 10, 10);"
-         "font-size: 1.2em;"
-         "line-height: 140%;"
-         "font-weight: lighter;"
-         "}"
+        "font-family: \"Helvetica Neue\";"
+        "color: rgb(10, 10, 10);"
+        "font-size: 1.2em;"
+        "line-height: 140%;"
+        "font-weight: lighter;"
+        "}"
 
-     "span.searchmatch {"
-         "/*background-color: rgb(235, 240, 29);*/"
-         "font-style: italic;"
-         "}"
+    "span.searchmatch {"
+        "/*background-color: rgb(235, 240, 29);*/"
+        "font-style: italic;"
+        "}"
 
-     "#more {"
-         "color: rgb( 78, 187, 241 );"
-         "font-family: \"Lucida Grande\";"
-         "font-size: .9em;"
-         "text-decoration: none;"
-         "}";
+    // To render a "more" link that has a custom color (#4ebbf1) and no underline,
+    // below CSS code fregment and linkTextAttributes dictionary of
+    // the text view must coexist in the attributed string.
+    "#more {"
+        "color: rgb( 78, 187, 241 );"
+        "font-family: \"Lucida Grande\";"
+        "font-size: .9em;"
+        "text-decoration: none;"
+        "}";
 
 - ( NSXMLNode* ) __processedResultSnippetHTML: ( NSXMLElement* )_NSHTML
     {
     NSError* error = nil;
     NSXMLElement* processedHTML = _NSHTML;
 
-//    NSXMLElement* moreLinkNode = [ [ NSXMLElement alloc ] initWithXMLString: @"<a href=\"https://twitter.com\">more</a>" error: &error ];
     NSXMLNode* ellipsisTextNode = [ [ NSXMLNode alloc ] initWithKind: NSXMLTextKind ];
     [ ellipsisTextNode setStringValue: @"... " ];
-
     [ processedHTML addChild: ellipsisTextNode ];
-//    [ moreLinkNode setAttributesWithDictionary: @{ @"id" : @"more", @"href" : @"https://twitter.com" } ];
-//    [ processedHTML addChild: moreLinkNode ];
+
+    NSXMLElement* moreLinkNode = [ [ NSXMLElement alloc ] initWithXMLString: @"<a>more</a>" error: &error ];
+    [ moreLinkNode setAttributesWithDictionary: @{ @"id" : @"more"
+                                                 , @"href" : [ NSString stringWithFormat: @"purewiki://search/result/show-more/%@", self->__wikiSearchResult.title ]
+                                                 } ];
+    [ processedHTML addChild: moreLinkNode ];
 
     NSXMLElement* rootNode = [ [ NSXMLElement alloc ] initWithName: @"html" ];
     NSXMLElement* headNode = [ [ NSXMLElement alloc ] initWithXMLString: @"<head><meta charset=\"utf-8\" /></head>" error: &error ];
