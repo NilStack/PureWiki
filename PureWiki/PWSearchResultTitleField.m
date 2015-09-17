@@ -54,6 +54,13 @@ CGFloat const kTrailingGap = 20.f;
                                     );
 
     [ drawingContent drawInRect: occupiedRect withAttributes: drawingAttrs ];
+
+    NSBezierPath* cuttingLinePath = [ NSBezierPath bezierPath ];
+    [ cuttingLinePath moveToPoint: NSMakePoint( occupiedSize.width + 15.f, ( NSHeight( self.bounds ) - 1.f ) / 2.f - 2.5f ) ];
+    [ cuttingLinePath lineToPoint: NSMakePoint( NSMaxX( self.bounds ) - 4.f, ( NSHeight( self.bounds ) - 1.f ) / 2.f - 2.5f ) ];
+
+    [ [ [ NSColor grayColor ] colorWithAlphaComponent: .2f ] setStroke ];
+    [ cuttingLinePath stroke ];
     }
 
 #pragma mark Initializations
@@ -65,19 +72,21 @@ CGFloat const kTrailingGap = 20.f;
                          , NSForegroundColorAttributeName : [ NSColor blackColor ]
                          };
 
-        NSString* testChar = @"a";
-        NSMutableString* testTitle = [ NSMutableString stringWithString: testChar ];
-        self->__maxTitleCharCount = testTitle.length;
+//        NSString* testChar = @"a";
+//        NSMutableString* testTitle = [ NSMutableString stringWithString: testChar ];
+//        self->__maxTitleCharCount = testTitle.length;
+//
+//        CGFloat maxTitleWidth = NSWidth( self.bounds ) - kTrailingGap;
+//        CGFloat widthOfCurrentTitleCharCount = [ testTitle sizeWithAttributes: self->__attrs ].width;
+//
+//        while ( widthOfCurrentTitleCharCount < maxTitleWidth )
+//            {
+//            [ testTitle appendString: testChar ];
+//            widthOfCurrentTitleCharCount = [ testTitle sizeWithAttributes: self->__attrs ].width;
+//            self->__maxTitleCharCount++;
+//            }
 
-        CGFloat maxTitleWidth = NSWidth( self.bounds ) - kTrailingGap;
-        CGFloat widthOfCurrentTitleCharCount = [ testTitle sizeWithAttributes: self->__attrs ].width;
-
-        while ( widthOfCurrentTitleCharCount < maxTitleWidth )
-            {
-            [ testTitle appendString: testChar ];
-            widthOfCurrentTitleCharCount = [ testTitle sizeWithAttributes: self->__attrs ].width;
-            self->__maxTitleCharCount++;
-            }
+        self->__maxTitleCharCount = 50;
         }
 
     return self;
