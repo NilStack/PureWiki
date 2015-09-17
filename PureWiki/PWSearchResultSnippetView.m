@@ -23,6 +23,8 @@
 
 #import "PWSearchResultSnippetView.h"
 
+#import "__PWSearchResultSnippetBackingTextView.h"
+
 #import "SugarWiki.h"
 
 // Private Interfaces
@@ -40,11 +42,12 @@
 #pragma mark Dynamic Properties
 - ( NSTextView* ) repTextView
     {
-    return self->__internalTextStorage.layoutManagers
-                                      .firstObject
-                                      .textContainers
-                                      .firstObject
-                                      .textView;
+    return ( __PWSearchResultSnippetBackingTextView* )
+        self->__internalTextStorage.layoutManagers
+                                   .firstObject
+                                   .textContainers
+                                   .firstObject
+                                   .textView;
     }
 
 - ( void ) setWikiSearchResult: ( WikiSearchResult* )_Result
@@ -74,11 +77,12 @@
 
     [ layoutManager addTextContainer: textContainer ];
 
-    ( void )[ [ NSTextView alloc ] initWithFrame: self.frame textContainer: textContainer ];
-//    [ self.repTextView setDelegate: self ];
-//    [ self.repTextView setAutomaticLinkDetectionEnabled: YES ];
+    ( void )[ [ __PWSearchResultSnippetBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer ];
+    [ self.repTextView setDelegate: self ];
+    [ self.repTextView setSelectedTextAttributes: @{ NSBackgroundColorAttributeName : [ NSColor clearColor ] } ];
+
     [ self.repTextView setEditable: NO ];
-    [ self.repTextView setSelectable: NO ];
+//    [ self.repTextView setSelectable: NO ];
     [ self.repTextView setBackgroundColor: [ NSColor clearColor ] ];
     [ self.repTextView configureForAutoLayout ];
 
@@ -94,6 +98,8 @@
 
     return YES;
     }
+
+//- ( BOOL _
 
 - ( WikiSearchResult* ) wikiSearchResult
     {

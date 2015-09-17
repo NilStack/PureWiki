@@ -71,6 +71,7 @@
 		83C108211BAAC8090096FC57 /* font-lato-light-regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83C108181BAAC7CF0096FC57 /* font-lato-light-regular.ttf */; };
 		83C108221BAAC8090096FC57 /* font-lato-regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83C108191BAAC7CF0096FC57 /* font-lato-regular.ttf */; };
 		83C108251BAAD3FB0096FC57 /* PWSearchResultTitleField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C108241BAAD3FB0096FC57 /* PWSearchResultTitleField.m */; settings = {ASSET_TAGS = (); }; };
+		83C108281BAB29390096FC57 /* __PWSearchResultSnippetBackingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C108271BAB29390096FC57 /* __PWSearchResultSnippetBackingTextView.m */; settings = {ASSET_TAGS = (); }; };
 		83D46ABC1B878B900061BE7E /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB41B878B900061BE7E /* ALView+PureLayout.m */; };
 		83D46ABD1B878B900061BE7E /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB61B878B900061BE7E /* NSArray+PureLayout.m */; };
 		83D46ABE1B878B900061BE7E /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB81B878B900061BE7E /* NSLayoutConstraint+PureLayout.m */; };
@@ -249,6 +250,8 @@
 		83C108191BAAC7CF0096FC57 /* font-lato-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "font-lato-regular.ttf"; sourceTree = "<group>"; };
 		83C108231BAAD3FB0096FC57 /* PWSearchResultTitleField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSearchResultTitleField.h; sourceTree = "<group>"; };
 		83C108241BAAD3FB0096FC57 /* PWSearchResultTitleField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSearchResultTitleField.m; sourceTree = "<group>"; };
+		83C108261BAB29390096FC57 /* __PWSearchResultSnippetBackingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __PWSearchResultSnippetBackingTextView.h; sourceTree = "<group>"; };
+		83C108271BAB29390096FC57 /* __PWSearchResultSnippetBackingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __PWSearchResultSnippetBackingTextView.m; sourceTree = "<group>"; };
 		83D46AB31B878B900061BE7E /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
 		83D46AB41B878B900061BE7E /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
 		83D46AB51B878B900061BE7E /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
@@ -386,6 +389,8 @@
 				83C108241BAAD3FB0096FC57 /* PWSearchResultTitleField.m */,
 				83574A671BA577D100FCE946 /* PWSearchResultSnippetView.h */,
 				83574A681BA577D100FCE946 /* PWSearchResultSnippetView.m */,
+				83C108261BAB29390096FC57 /* __PWSearchResultSnippetBackingTextView.h */,
+				83C108271BAB29390096FC57 /* __PWSearchResultSnippetBackingTextView.m */,
 			);
 			name = "search-wikipedia";
 			sourceTree = "<group>";
@@ -930,6 +935,7 @@
 				83ED36B71BA4593C00CEFE61 /* __WikiContinuationUncompleted.m in Sources */,
 				83ED36C01BA4593C00CEFE61 /* AFHTTPRequestOperationManager.m in Sources */,
 				83ED36BB1BA4593C00CEFE61 /* SugarWikiInfo.m in Sources */,
+				83C108281BAB29390096FC57 /* __PWSearchResultSnippetBackingTextView.m in Sources */,
 				83D46ABC1B878B900061BE7E /* ALView+PureLayout.m in Sources */,
 				83ED36B91BA4593C00CEFE61 /* NSArray+SugarWiki.m in Sources */,
 				83480EA01B83728000A33030 /* PWSidebarTabsTableController.m in Sources */,

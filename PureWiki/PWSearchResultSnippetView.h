@@ -25,6 +25,8 @@
 
 #import "SugarWikiDefines.h"
 
+@class __PWSearchResultSnippetBackingTextView;
+
 // PWSearchResultSnippetView class
 @interface PWSearchResultSnippetView : NSView <NSTextViewDelegate>
     {
@@ -33,7 +35,7 @@
     WikiSearchResult __strong* __wikiSearchResult;
     }
 
-@property ( strong, readonly ) NSTextView* repTextView;
+@property ( strong, readonly ) __PWSearchResultSnippetBackingTextView* repTextView;
 @property ( strong, readwrite ) WikiSearchResult* wikiSearchResult;
 
 @end // PWSearchResultSnippetView class
