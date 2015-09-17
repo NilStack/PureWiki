@@ -58,6 +58,10 @@
     self->__internalTextStorage =
         [ [ NSTextStorage alloc ] initWithHTML: HTMLData baseURL: baseURL/*_BaseURL*/ documentAttributes: nil ];
 
+    NSAttributedString* attributedMoreText = [ [ NSAttributedString alloc ] initWithString: @"more" attributes: @{ NSLinkAttributeName : [ NSURL URLWithString: @"https://twitter.com" ] } ];
+    [ self->__internalTextStorage insertAttributedString: attributedMoreText
+                                                 atIndex: self->__internalTextStorage.length - 1 ];
+
     NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
     [ self->__internalTextStorage addLayoutManager: layoutManager ];
 
@@ -71,6 +75,7 @@
     [ layoutManager addTextContainer: textContainer ];
 
     ( void )[ [ NSTextView alloc ] initWithFrame: self.frame textContainer: textContainer ];
+    [ self.repTextView setAutomaticLinkDetectionEnabled: YES ];
     [ self.repTextView setEditable: NO ];
     [ self.repTextView setSelectable: NO ];
     [ self.repTextView setBackgroundColor: [ NSColor clearColor ] ];
@@ -89,22 +94,37 @@
 
 NSString static* const sResultSnippetContentCSS =
     @"body {"
-     "font-family: \"Helvetica Neue\";"
-     "color: rgb(10, 10, 10);"
-     "font-size: 1.2em;"
-     "line-height: 140%;"
-     "font-weight: lighter;"
-     "}"
+         "font-family: \"Helvetica Neue\";"
+         "color: rgb(10, 10, 10);"
+         "font-size: 1.2em;"
+         "line-height: 140%;"
+         "font-weight: lighter;"
+         "}"
 
      "span.searchmatch {"
-     "/*background-color: rgb(235, 240, 29);*/"
-     "font-style: italic;"
-     "}";
+         "/*background-color: rgb(235, 240, 29);*/"
+         "font-style: italic;"
+         "}"
+
+     "#more {"
+         "color: rgb( 78, 187, 241 );"
+         "font-family: \"Lucida Grande\";"
+         "font-size: .9em;"
+         "text-decoration: none;"
+         "}";
 
 - ( NSXMLNode* ) __processedResultSnippetHTML: ( NSXMLElement* )_NSHTML
     {
     NSError* error = nil;
     NSXMLElement* processedHTML = _NSHTML;
+
+//    NSXMLElement* moreLinkNode = [ [ NSXMLElement alloc ] initWithXMLString: @"<a href=\"https://twitter.com\">more</a>" error: &error ];
+    NSXMLNode* ellipsisTextNode = [ [ NSXMLNode alloc ] initWithKind: NSXMLTextKind ];
+    [ ellipsisTextNode setStringValue: @"... " ];
+
+    [ processedHTML addChild: ellipsisTextNode ];
+//    [ moreLinkNode setAttributesWithDictionary: @{ @"id" : @"more", @"href" : @"https://twitter.com" } ];
+//    [ processedHTML addChild: moreLinkNode ];
 
     NSXMLElement* rootNode = [ [ NSXMLElement alloc ] initWithName: @"html" ];
     NSXMLElement* headNode = [ [ NSXMLElement alloc ] initWithXMLString: @"<head><meta charset=\"utf-8\" /></head>" error: &error ];
