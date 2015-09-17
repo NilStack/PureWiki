@@ -312,8 +312,12 @@ NSString* const kResultsColumnID = @"results-column";
                                                     inNamespaces: nil
                                                         approach: WikiEngineSearchApproachPageText
                                                            limit: 10
+                                                   usesGenerator: NO
+                                                    continuation: nil
                                                          success:
-        ^( __SugarArray_of( WikiSearchResult* ) _SearchResults )
+        ^( __SugarArray_of( WikiSearchResult* ) _SearchResults
+         , WikiContinuation* _Continuation
+         , BOOL _IsBatchComplete )
             {
             if ( _SearchResults )
                 {

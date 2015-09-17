@@ -201,7 +201,7 @@
                 [ self->_wikiEngine pagesWithTitles: @[ castratedWikiPageArchive.wikiPageTitle ]
                                        continuation: nil
                                             success:
-                    ^( __SugarArray_of( WikiPage* ) _MatchedPages, WikiContinuation* _Continuation )
+                    ^( __SugarArray_of( WikiPage* ) _MatchedPages, WikiContinuation* _Continuation, BOOL _IsBatchComplete )
                         {
                         if ( _MatchedPages )
                             {

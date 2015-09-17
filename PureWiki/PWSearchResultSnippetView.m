@@ -50,7 +50,7 @@
     {
     self->__wikiSearchResult = _Result;
 
-    NSString* HTMLString = [ _Result.resultSnippet stringByReplacingOccurrencesOfString: @"\\\"" withString: @"\"" ];
+    NSString* HTMLString = [ _Result.resultSnippet XMLString ];
 
     NSData* HTMLData = [ HTMLString dataUsingEncoding: NSUTF8StringEncoding ];
     NSURL* baseURL = [ NSURL URLWithString: @"http://en.wikipedia.org" ];
