@@ -59,8 +59,9 @@
     self->_wikiPage = _WikiPage;
 
     self.pageImageView.wikiPage = self->_wikiPage;
-    self.pageTitleTextField.stringValue = self->_wikiPage.title;
-    self.pageSnippetTextField.stringValue = [ self->_wikiPage.lastRevision.content substringToIndex: 100 ];
+
+    self.pageTitleTextField.stringValue = self->_wikiPage.title ?: @"";
+    self.pageSnippetTextField.stringValue = [ self->_wikiPage.lastRevision.content substringToIndex: 100 ] ?: @"";
     }
 
 - ( WikiPage* ) wikiPage

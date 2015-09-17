@@ -163,16 +163,16 @@
     PWOpenedWikiPage* currentOpenedPage = wikiContentView.currentOpenedWikiPage;
     if ( currentOpenedPage.openedWikiPage.title )
         {
-        [ self setFrozenTitle: currentOpenedPage.openedWikiPage.title ];
-        [ self setStringValue: currentOpenedPage.openedWikiPage.title ];
+        [ self setFrozenTitle: currentOpenedPage.openedWikiPage.title ?: @"" ];
+        [ self setStringValue: currentOpenedPage.openedWikiPage.title ?: @"" ];
         }
     else
         {
         WikiPage* originalWikiPage = wikiContentView.originalWikiPage;
         if ( originalWikiPage.title )
             {
-            [ self setFrozenTitle: originalWikiPage.title ];
-            [ self setStringValue: originalWikiPage.title ];
+            [ self setFrozenTitle: originalWikiPage.title ?: @"" ];
+            [ self setStringValue: originalWikiPage.title ?: @"" ];
             }
         }
     }
