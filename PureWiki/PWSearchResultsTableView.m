@@ -23,6 +23,7 @@
 
 #import "PWSearchResultsTableView.h"
 #import "PWSearchResultsTableCellView.h"
+#import "PWSearchResultSnippetView.h"
 
 // PWSearchResultsTableView class
 @implementation PWSearchResultsTableView
@@ -41,7 +42,9 @@
     {
     if ( [ _Responder isKindOfClass: [ PWSearchResultsTableCellView class ] ]
             || [ _Responder isKindOfClass: [ NSTextField class ] ]
-            || [ _Responder isKindOfClass: [ NSImageView class ] ] )
+            || [ _Responder isKindOfClass: [ NSImageView class ] ]
+            || [ _Responder isKindOfClass: [ PWSearchResultSnippetView class ] ]
+            || [ _Responder isKindOfClass: [ NSTextView class ] ] )
         return YES;
     else
         return [ super validateProposedFirstResponder: _Responder forEvent: _Event ];

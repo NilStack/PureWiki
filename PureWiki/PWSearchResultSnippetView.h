@@ -26,7 +26,7 @@
 #import "SugarWikiDefines.h"
 
 // PWSearchResultSnippetView class
-@interface PWSearchResultSnippetView : NSView
+@interface PWSearchResultSnippetView : NSView <NSTextViewDelegate>
     {
 @protected
     NSTextStorage __strong* __internalTextStorage;

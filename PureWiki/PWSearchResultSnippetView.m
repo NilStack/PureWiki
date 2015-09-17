@@ -75,7 +75,8 @@
     [ layoutManager addTextContainer: textContainer ];
 
     ( void )[ [ NSTextView alloc ] initWithFrame: self.frame textContainer: textContainer ];
-    [ self.repTextView setAutomaticLinkDetectionEnabled: YES ];
+//    [ self.repTextView setDelegate: self ];
+//    [ self.repTextView setAutomaticLinkDetectionEnabled: YES ];
     [ self.repTextView setEditable: NO ];
     [ self.repTextView setSelectable: NO ];
     [ self.repTextView setBackgroundColor: [ NSColor clearColor ] ];
@@ -83,6 +84,15 @@
 
     [ self setSubviews: @[ self.repTextView ] ];
     [ self.repTextView autoPinEdgesToSuperviewEdges ];
+    }
+
+- ( BOOL ) textView: ( NSTextView* )_TextView
+      clickedOnLink: ( id )_Link
+            atIndex: ( NSUInteger )_CharIndex
+    {
+    NSLog( @"%@", _Link );
+
+    return YES;
     }
 
 - ( WikiSearchResult* ) wikiSearchResult
