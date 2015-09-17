@@ -26,6 +26,10 @@
 // __PWSearchResultSnippetBackingTextView class
 @interface __PWSearchResultSnippetBackingTextView : NSTextView
 
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
+                   textContainer: ( NSTextContainer* )_TextContainer
+                        delegate: ( id <NSTextViewDelegate> )_Delegate;
+
 @end // __PWSearchResultSnippetBackingTextView class
 
 /*===============================================================================┐

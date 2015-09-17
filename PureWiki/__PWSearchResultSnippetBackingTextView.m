@@ -23,9 +23,30 @@
 
 #import "__PWSearchResultSnippetBackingTextView.h"
 
+#import "NSColor+TKSafariSearchbar.h"
+
 // __PWSearchResultSnippetBackingTextView class
 @implementation __PWSearchResultSnippetBackingTextView
 
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
+                   textContainer: ( NSTextContainer* )_TextContainer
+                        delegate: ( id <NSTextViewDelegate> )_Delegate
+    {
+    if ( self = [ super initWithFrame: _Frame textContainer: _TextContainer ] )
+        {
+        [ self setDelegate: _Delegate ];
+
+        [ self setLinkTextAttributes: @{ NSForegroundColorAttributeName : [ NSColor colorWithHTMLColor: @"4ebbf1" ] } ];
+
+        [ self setEditable: NO ];
+        [ self setBackgroundColor: [ NSColor clearColor ] ];
+        [ self configureForAutoLayout ];
+        }
+
+    return self;
+    }
+
+#pragma mark Overrides
 - ( NSRange ) selectionRangeForProposedRange: ( NSRange )_ProposedSelRange
                                  granularity: ( NSSelectionGranularity )_Granularity
     {

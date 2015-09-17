@@ -87,7 +87,7 @@ CGFloat const kTrailingGap = 20.f;
 //            self->__maxTitleCharCount++;
 //            }
 
-        self->__maxTitleCharCount = 50;
+        self->__maxTitleCharCount = 47;
         }
 
     return self;

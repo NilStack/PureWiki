@@ -31,7 +31,7 @@
 #import "SugarWiki.h"
 
 CGFloat static const kTopGap = 10.f;
-CGFloat static const kBottomGap = kTopGap;
+CGFloat static const kBottomGap = 0.f;
 CGFloat static const kLeftGap = 20.f;
 CGFloat static const kRightGap = kLeftGap;
 

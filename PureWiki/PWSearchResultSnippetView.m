@@ -22,7 +22,6 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSearchResultSnippetView.h"
-#import "NSColor+TKSafariSearchbar.h"
 
 #import "__PWSearchResultSnippetBackingTextView.h"
 
@@ -74,14 +73,7 @@
 
     [ layoutManager addTextContainer: textContainer ];
 
-    ( void )[ [ __PWSearchResultSnippetBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer ];
-    [ self.repTextView setDelegate: self ];
-    [ self.repTextView setSelectedTextAttributes: @{ NSBackgroundColorAttributeName : [ NSColor clearColor ] } ];
-    [ self.repTextView setLinkTextAttributes: @{ NSForegroundColorAttributeName : [ NSColor colorWithHTMLColor: @"4ebbf1" ] } ];
-
-    [ self.repTextView setEditable: NO ];
-    [ self.repTextView setBackgroundColor: [ NSColor clearColor ] ];
-    [ self.repTextView configureForAutoLayout ];
+    ( void )[ [ __PWSearchResultSnippetBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer delegate: self ];
 
     [ self setSubviews: @[ self.repTextView ] ];
     [ self.repTextView autoPinEdgesToSuperviewEdges ];
