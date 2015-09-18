@@ -27,6 +27,7 @@
 
 @class PWPWikiPageImageWell;
 @class PWOpenedWikiPage;
+@class PWOpenedPageContentPreviewView;
 
 @class WikiPage;
 
@@ -35,6 +36,8 @@
     {
 @private
     PWOpenedWikiPage __strong* _openedWikiPage;
+
+    PWOpenedPageContentPreviewView __strong* __openedPageContentPreviewView;
     }
 
 #pragma mark Ivar Properties
@@ -43,7 +46,7 @@
 #pragma mark Outlets
 @property ( weak ) IBOutlet PWPWikiPageImageWell* pageImageView;
 @property ( weak ) IBOutlet NSTextField* pageTitleTextField;
-@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
+//@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
 
 @end // PWSidebarTabsTableCell class
 

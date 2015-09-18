@@ -40,6 +40,23 @@
 
 @dynamic repTextView;
 
+#pragma mark Initializations
+- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
+    {
+    if ( self = [ super initWithCoder: _Coder ] )
+        [ self configureForAutoLayout ];
+
+    return self;
+    }
+
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
+    {
+    if ( self = [ super initWithFrame: _Frame ] )
+        [ self configureForAutoLayout ];
+
+    return self;
+    }
+
 #pragma mark Dynamic Properties
 - ( PWSearchResultSnippetBackingTextView* ) repTextView
     {

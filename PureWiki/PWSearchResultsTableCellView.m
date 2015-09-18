@@ -70,15 +70,14 @@ CGFloat static const kRightGap = kLeftGap;
 - ( void ) __relayout
     {
     [ self->__searchResultTitleField configureForAutoLayout ];
-    [ self->__searchResultSnippetTextStorage.repTextView configureForAutoLayout ];
 
-    if ( self->__searchResultSnippetTextStorage.repTextView.superview != self )
-        [ self addSubview: self->__searchResultSnippetTextStorage.repTextView ];
+    if ( self->__searchResultSnippetTextStorage.superview != self )
+        [ self addSubview: self->__searchResultSnippetTextStorage ];
 
     NSEdgeInsets snippetInsets = NSEdgeInsetsMake( kTopGap, kLeftGap, kBottomGap, kRightGap );
     [ self->__searchResultTitleField autoPinEdgesToSuperviewEdgesWithInsets: snippetInsets excludingEdge: ALEdgeBottom ];
-    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self->__searchResultTitleField withOffset: kTopGap ];
-    [ self->__searchResultSnippetTextStorage.repTextView autoPinEdgesToSuperviewEdgesWithInsets: snippetInsets excludingEdge: ALEdgeTop ];
+    [ self->__searchResultSnippetTextStorage autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self->__searchResultTitleField withOffset: kTopGap ];
+    [ self->__searchResultSnippetTextStorage autoPinEdgesToSuperviewEdgesWithInsets: snippetInsets excludingEdge: ALEdgeTop ];
     }
 
 @end // PWSearchResultsTableCellView class
