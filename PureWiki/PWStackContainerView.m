@@ -139,6 +139,7 @@
     WikiSearchResult* pickedSearchResult = _Notif.userInfo[ kSearchResult ];
 
     [ self->_wikiEngine pagesWithTitles: @[ pickedSearchResult.title ]
+                          parseRevision: YES
                            continuation: nil
                                 success:
     ^( NSArray <WikiPage*>* _MatchedPage

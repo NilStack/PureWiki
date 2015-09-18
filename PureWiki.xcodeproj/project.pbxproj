@@ -77,6 +77,7 @@
 		83D46ABE1B878B900061BE7E /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D46AB81B878B900061BE7E /* NSLayoutConstraint+PureLayout.m */; };
 		83D591161B89EC910018BC1C /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D591131B89EC910018BC1C /* FBKVOController.m */; };
 		83D591171B89EC910018BC1C /* NSObject+FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D591151B89EC910018BC1C /* NSObject+FBKVOController.m */; };
+		83E42E6C1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E42E6B1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.m */; settings = {ASSET_TAGS = (); }; };
 		83ED36B51BA4593C00CEFE61 /* __WikiContinuationCompleted.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED35D11BA4593C00CEFE61 /* __WikiContinuationCompleted.m */; settings = {ASSET_TAGS = (); }; };
 		83ED36B61BA4593C00CEFE61 /* __WikiContinuationInitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED35D31BA4593C00CEFE61 /* __WikiContinuationInitial.m */; settings = {ASSET_TAGS = (); }; };
 		83ED36B71BA4593C00CEFE61 /* __WikiContinuationUncompleted.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED35D51BA4593C00CEFE61 /* __WikiContinuationUncompleted.m */; settings = {ASSET_TAGS = (); }; };
@@ -265,6 +266,8 @@
 		83D591131B89EC910018BC1C /* FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBKVOController.m; sourceTree = "<group>"; };
 		83D591141B89EC910018BC1C /* NSObject+FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FBKVOController.h"; sourceTree = "<group>"; };
 		83D591151B89EC910018BC1C /* NSObject+FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FBKVOController.m"; sourceTree = "<group>"; };
+		83E42E6A1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWOpenedPageContentPreviewView.h; sourceTree = "<group>"; };
+		83E42E6B1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWOpenedPageContentPreviewView.m; sourceTree = "<group>"; };
 		83ED35CF1BA4593C00CEFE61 /* __WikiContinuation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __WikiContinuation.h; sourceTree = "<group>"; };
 		83ED35D01BA4593C00CEFE61 /* __WikiContinuationCompleted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __WikiContinuationCompleted.h; sourceTree = "<group>"; };
 		83ED35D11BA4593C00CEFE61 /* __WikiContinuationCompleted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __WikiContinuationCompleted.m; sourceTree = "<group>"; };
@@ -416,6 +419,8 @@
 				8321EC811B8C0C940099C824 /* PWPWikiPageImageWell.m */,
 				8321EC821B8C0C940099C824 /* PWWikiPageImageCell.h */,
 				8321EC831B8C0C940099C824 /* PWWikiPageImageCell.m */,
+				83E42E6A1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.h */,
+				83E42E6B1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.m */,
 			);
 			name = sidebar;
 			sourceTree = "<group>";
@@ -945,6 +950,7 @@
 				83D46ABD1B878B900061BE7E /* NSArray+PureLayout.m in Sources */,
 				83509BD71B86388E00C4F454 /* NSObject+TKSafariSearchbar.m in Sources */,
 				8330E5D01B890BD400373760 /* PWUtilities.m in Sources */,
+				83E42E6C1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.m in Sources */,
 				83A2FBD31B8324D000939452 /* PWNavButtonsPairView.m in Sources */,
 				83ED36B81BA4593C00CEFE61 /* __WikiJSONUtilities.m in Sources */,
 				83D591171B89EC910018BC1C /* NSObject+FBKVOController.m in Sources */,

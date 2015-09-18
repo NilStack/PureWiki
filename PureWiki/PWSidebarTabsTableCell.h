@@ -26,6 +26,7 @@
 @import WebKit;
 
 @class PWPWikiPageImageWell;
+@class PWOpenedWikiPage;
 
 @class WikiPage;
 

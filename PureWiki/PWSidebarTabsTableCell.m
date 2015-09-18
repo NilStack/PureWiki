@@ -24,6 +24,7 @@
 
 #import "PWSidebarTabsTableCell.h"
 #import "PWPWikiPageImageWell.h"
+#import "PWOpenedWikiPage.h"
 
 #import "SugarWiki.h"
 

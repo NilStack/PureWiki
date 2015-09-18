@@ -199,6 +199,7 @@
             if ( !error )
                 {
                 [ self->_wikiEngine pagesWithTitles: @[ castratedWikiPageArchive.wikiPageTitle ]
+                                      parseRevision: YES
                                        continuation: nil
                                             success:
                     ^( __SugarArray_of( WikiPage* ) _MatchedPages, WikiContinuation* _Continuation, BOOL _IsBatchComplete )
