@@ -60,15 +60,13 @@
 
 - ( void ) setOpenedWikiPage: ( PWOpenedWikiPage* )_OpenedWikiPage
     {
-    if ( self->__openedWikiPage == _OpenedWikiPage )
-        return;
-
     self->__openedWikiPage = _OpenedWikiPage;
 
     NSXMLDocument* HTMLDocument = [ [ NSXMLDocument alloc ] initWithXMLString: self->__openedWikiPage.openedWikiPage.lastRevision.content
                                                                       options: NSXMLDocumentTidyHTML
                                                                         error: nil ];
 
+    [ self __processedTheFuckingHTMLDocument: HTMLDocument ];
     NSData* HTMLData = [ HTMLDocument.XMLString dataUsingEncoding: NSUTF8StringEncoding ];
     self->__internalTextStorage = [ [ NSTextStorage alloc ] initWithHTML: HTMLData documentAttributes: nil ];
 
@@ -91,6 +89,38 @@
 - ( PWOpenedWikiPage* ) openedWikiPage
     {
     return self->__openedWikiPage;
+    }
+
+- ( void ) __processedTheFuckingHTMLDocument: ( NSXMLDocument* )_HTMLDoc
+    {
+    NSMutableArray* toBeCastrated = [ NSMutableArray array ];
+
+    NSXMLNode* currentNode = _HTMLDoc;
+
+       do
+        {
+        if ( [ currentNode.name isEqualToString: @"h1" ]
+                || [ currentNode.name isEqualToString: @"h2" ]
+                || [ currentNode.name isEqualToString: @"h3" ]
+                || [ currentNode.name isEqualToString: @"h4" ]
+                || [ currentNode.name isEqualToString: @"h5" ]
+                || [ currentNode.name isEqualToString: @"div" ]
+                || [ currentNode.name isEqualToString: @"sup" ]
+                || [ currentNode.name isEqualToString: @"table" ]
+                || ( [ currentNode.name isEqualToString: @"p" ]
+                        && ( currentNode.nextNode.kind == NSXMLTextKind )
+                        && [ currentNode.nextNode.stringValue isEqualToString: @"\n" ] )
+                || ( [ currentNode.name isEqualToString: @"p" ] && ( currentNode.childCount == 0 ) ) )
+            [ toBeCastrated addObject: currentNode ];
+        } while ( ( currentNode = currentNode.nextNode ) );
+
+    [ toBeCastrated makeObjectsPerformSelector: @selector( detach ) ];
+
+    [ _HTMLDoc.XMLString writeToFile: [ NSHomeDirectory() stringByAppendingString: [ NSString stringWithFormat: @"/%@.htm", self->__openedWikiPage.openedWikiPage.title ] ]
+                          atomically: YES
+                            encoding: NSUTF8StringEncoding
+                               error: nil ];
+
     }
 
 @end // PWOpenedPageContentPreviewView class

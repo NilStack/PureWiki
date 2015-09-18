@@ -68,9 +68,6 @@
 
 - ( void ) setWikiSearchResult: ( WikiSearchResult* )_Result
     {
-    if ( self->__wikiSearchResult == _Result )
-        return;
-
     self->__wikiSearchResult = _Result;
 
     NSString* HTMLString = [ [ self __processedResultSnippetHTML: _Result.resultSnippet ] XMLString ];
