@@ -141,7 +141,9 @@
     [ self->_wikiEngine pagesWithTitles: @[ pickedSearchResult.title ]
                            continuation: nil
                                 success:
-    ^( NSArray <WikiPage*>* _MatchedPage, WikiContinuation* _Continuation, BOOL _IsBatchComplete )
+    ^( NSArray <WikiPage*>* _MatchedPage
+     , WikiContinuation* _Continuation
+     , BOOL _IsBatchComplete )
         {
         if ( _MatchedPage.count > 0 )
             {
