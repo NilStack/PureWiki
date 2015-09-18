@@ -32,6 +32,23 @@
 
 @dynamic openedWikiPage;
 
+#pragma mark Initializations
+- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
+    {
+    if ( self = [ super initWithCoder: _Coder ] )
+        [ self configureForAutoLayout ];
+
+    return self;
+    }
+
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
+    {
+    if ( self = [ super initWithFrame: _Frame ] )
+        [ self configureForAutoLayout ];
+
+    return self;
+    }
+
 #pragma mark Dynamic Properties
 - ( PWOpenedPageContentPreviewBackingTextView* ) backingTextView
     {
@@ -48,8 +65,12 @@
 
     self->__openedWikiPage = _OpenedWikiPage;
 
-    self->__internalTextStorage =
-        [ [ NSTextStorage alloc ] initWithString: self->__openedWikiPage.openedWikiPage.lastRevision.content ];
+    NSXMLDocument* HTMLDocument = [ [ NSXMLDocument alloc ] initWithXMLString: self->__openedWikiPage.openedWikiPage.lastRevision.content
+                                                                      options: NSXMLDocumentTidyHTML
+                                                                        error: nil ];
+
+    NSData* HTMLData = [ HTMLDocument.XMLString dataUsingEncoding: NSUTF8StringEncoding ];
+    self->__internalTextStorage = [ [ NSTextStorage alloc ] initWithHTML: HTMLData documentAttributes: nil ];
 
     NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
     [ self->__internalTextStorage addLayoutManager: layoutManager ];

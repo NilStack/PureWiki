@@ -46,7 +46,6 @@
 #pragma mark Outlets
 @property ( weak ) IBOutlet PWPWikiPageImageWell* pageImageView;
 @property ( weak ) IBOutlet NSTextField* pageTitleTextField;
-//@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
 
 @end // PWSidebarTabsTableCell class
 

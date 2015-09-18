@@ -76,9 +76,7 @@
     NSString* HTMLString = [ [ self __processedResultSnippetHTML: _Result.resultSnippet ] XMLString ];
 
     NSData* HTMLData = [ HTMLString dataUsingEncoding: NSUTF8StringEncoding ];
-    NSURL* baseURL = [ NSURL URLWithString: @"http://en.wikipedia.org" ];
-    self->__internalTextStorage =
-        [ [ NSTextStorage alloc ] initWithHTML: HTMLData baseURL: baseURL/*_BaseURL*/ documentAttributes: nil ];
+    self->__internalTextStorage = [ [ NSTextStorage alloc ] initWithHTML: HTMLData documentAttributes: nil ];
 
     [ self->__internalTextStorage addAttribute: NSCursorAttributeName
                                          value: [ NSCursor arrowCursor ]

@@ -69,18 +69,9 @@
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ABV-vJ-XpL">
-                                                                            <rect key="frame" x="86" y="10" width="164" height="50"/>
-                                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="C++ (pronounced as cee plus plus, /ˈsiː plʌs plʌs/)…" id="dpe-SY-YLb">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
                                                                     </subviews>
                                                                     <connections>
                                                                         <outlet property="pageImageView" destination="GLP-7k-EMs" id="Mp3-uQ-fVH"/>
-                                                                        <outlet property="pageSnippetTextField" destination="ABV-vJ-XpL" id="z1l-5H-TNV"/>
                                                                         <outlet property="pageTitleTextField" destination="v4R-PD-Bh5" id="UVU-Bl-xgp"/>
                                                                     </connections>
                                                                 </tableCellView>
