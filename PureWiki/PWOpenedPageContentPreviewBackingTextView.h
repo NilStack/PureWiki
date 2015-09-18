@@ -24,21 +24,10 @@
 
 @import Cocoa;
 
-@class PWOpenedWikiPage;
-@class PWOpenedPageContentPreviewBackingTextView;
+// PWOpenedPageContentPreviewBackingTextView class
+@interface PWOpenedPageContentPreviewBackingTextView : NSTextView
 
-// PWOpenedPageContentPreviewView class
-@interface PWOpenedPageContentPreviewView : NSView
-    {
-@protected
-    PWOpenedWikiPage __strong* __openedWikiPage;
-    NSTextStorage __strong* __internalTextStorage;
-    }
-
-@property ( strong, readonly ) PWOpenedPageContentPreviewBackingTextView* backingTextView;
-@property ( strong, readwrite ) PWOpenedWikiPage* openedWikiPage;
-
-@end // PWOpenedPageContentPreviewView class
+@end // PWOpenedPageContentPreviewBackingTextView class
 
 /*=============================================================================┐
 |                                                                              |

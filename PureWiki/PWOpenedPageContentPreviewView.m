@@ -23,15 +23,54 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWOpenedPageContentPreviewView.h"
+#import "PWOpenedWikiPage.h"
+#import "PWOpenedPageContentPreviewBackingTextView.h"
+
+#import "SugarWiki.h"
 
 @implementation PWOpenedPageContentPreviewView
 
-// PWOpenedPageContentPreviewView class
-- (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-    
-    // Drawing code here.
-}
+@dynamic openedWikiPage;
+
+#pragma mark Dynamic Properties
+- ( PWOpenedPageContentPreviewBackingTextView* ) backingTextView
+    {
+    return ( PWOpenedPageContentPreviewBackingTextView* )
+        self->__internalTextStorage.layoutManagers.firstObject
+                                   .textContainers.firstObject
+                                   .textView;
+    }
+
+- ( void ) setOpenedWikiPage: ( PWOpenedWikiPage* )_OpenedWikiPage
+    {
+    if ( self->__openedWikiPage == _OpenedWikiPage )
+        return;
+
+    self->__openedWikiPage = _OpenedWikiPage;
+
+    self->__internalTextStorage =
+        [ [ NSTextStorage alloc ] initWithString: self->__openedWikiPage.openedWikiPage.lastRevision.content ];
+
+    NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
+    [ self->__internalTextStorage addLayoutManager: layoutManager ];
+
+    NSTextContainer* textContainer = [ [ NSTextContainer alloc ] initWithSize: self.frame.size ];
+    [ textContainer setWidthTracksTextView: YES ];
+    [ textContainer setHeightTracksTextView: YES ];
+
+    [ layoutManager addTextContainer: textContainer ];
+
+    ( void )[ [ PWOpenedPageContentPreviewBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer ];
+
+    [ self setSubviews: @[ self.backingTextView ] ];
+    [ self.backingTextView configureForAutoLayout ];
+    [ self.backingTextView autoPinEdgesToSuperviewEdges ];
+    }
+
+- ( PWOpenedWikiPage* ) openedWikiPage
+    {
+    return self->__openedWikiPage;
+    }
 
 @end // PWOpenedPageContentPreviewView class
 

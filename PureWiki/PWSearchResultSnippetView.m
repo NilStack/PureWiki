@@ -41,18 +41,19 @@
 @dynamic repTextView;
 
 #pragma mark Dynamic Properties
-- ( NSTextView* ) repTextView
+- ( PWSearchResultSnippetBackingTextView* ) repTextView
     {
     return ( PWSearchResultSnippetBackingTextView* )
-        self->__internalTextStorage.layoutManagers
-                                   .firstObject
-                                   .textContainers
-                                   .firstObject
+        self->__internalTextStorage.layoutManagers.firstObject
+                                   .textContainers.firstObject
                                    .textView;
     }
 
 - ( void ) setWikiSearchResult: ( WikiSearchResult* )_Result
     {
+    if ( self->__wikiSearchResult == _Result )
+        return;
+
     self->__wikiSearchResult = _Result;
 
     NSString* HTMLString = [ [ self __processedResultSnippetHTML: _Result.resultSnippet ] XMLString ];

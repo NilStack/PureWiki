@@ -22,23 +22,27 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+#import "PWOpenedPageContentPreviewBackingTextView.h"
 
-@class PWOpenedWikiPage;
-@class PWOpenedPageContentPreviewBackingTextView;
+// PWOpenedPageContentPreviewBackingTextView class
+@implementation PWOpenedPageContentPreviewBackingTextView
 
-// PWOpenedPageContentPreviewView class
-@interface PWOpenedPageContentPreviewView : NSView
+#pragma mark Initializations
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
+                   textContainer: ( NSTextContainer* )_TextContainer
     {
-@protected
-    PWOpenedWikiPage __strong* __openedWikiPage;
-    NSTextStorage __strong* __internalTextStorage;
+    if ( self = [ super initWithFrame: _Frame textContainer: _TextContainer ] )
+        {
+        [ self setEditable: NO ];
+        [ self setSelectable: NO ];
+        [ self setBackgroundColor: [ NSColor clearColor ] ];
+        [ self configureForAutoLayout ];
+        }
+
+    return self;
     }
 
-@property ( strong, readonly ) PWOpenedPageContentPreviewBackingTextView* backingTextView;
-@property ( strong, readwrite ) PWOpenedWikiPage* openedWikiPage;
-
-@end // PWOpenedPageContentPreviewView class
+@end // PWOpenedPageContentPreviewBackingTextView class
 
 /*=============================================================================┐
 |                                                                              |
