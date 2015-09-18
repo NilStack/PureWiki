@@ -62,6 +62,10 @@
     self->__internalTextStorage =
         [ [ NSTextStorage alloc ] initWithHTML: HTMLData baseURL: baseURL/*_BaseURL*/ documentAttributes: nil ];
 
+    [ self->__internalTextStorage addAttribute: NSCursorAttributeName
+                                         value: [ NSCursor arrowCursor ]
+                                         range: NSMakeRange( 0, self->__internalTextStorage.length ) ];
+
     NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
     [ self->__internalTextStorage addLayoutManager: layoutManager ];
 
