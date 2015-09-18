@@ -33,6 +33,8 @@
     {
     if ( self = [ super initWithFrame: _Frame textContainer: _TextContainer ] )
         {
+        [ self setLinkTextAttributes: @{ NSForegroundColorAttributeName : [ NSColor colorWithSRGBRed: 10.f / 255 green: 10.f / 255 blue: 10.f / 255 alpha: 1.f ] } ];
+
         [ self setEditable: NO ];
         [ self setSelectable: NO ];
         [ self setBackgroundColor: [ NSColor clearColor ] ];

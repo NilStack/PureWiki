@@ -91,11 +91,32 @@
     return self->__openedWikiPage;
     }
 
+NSString static* const sPagePreviewContentCSS =
+    @"body {"
+        "font-family: \"Helvetica Neue\";"
+        "color: rgb(10, 10, 10);"
+        "font-size: 1em;"
+        "line-height: 130%;"
+        "font-weight: lighter;"
+        "}"
+
+    "strong, b {"
+        "color: rgb(0, 0, 0);"
+        "font-weight: normal;"
+        "}"
+
+    " a {"
+        "text-decoration: none;"
+        "color: rgb(10, 10, 10);"
+        "}";
+
 - ( void ) __processedTheFuckingHTMLDocument: ( NSXMLDocument* )_HTMLDoc
     {
     NSMutableArray* toBeCastrated = [ NSMutableArray array ];
 
     NSXMLNode* currentNode = _HTMLDoc;
+
+    NSXMLElement* styleNode = [ [ NSXMLElement alloc ] initWithXMLString: [ NSString stringWithFormat: @"<style>%@</style>", sPagePreviewContentCSS ] error: nil ];
 
        do
         {
@@ -107,11 +128,18 @@
                 || [ currentNode.name isEqualToString: @"div" ]
                 || [ currentNode.name isEqualToString: @"sup" ]
                 || [ currentNode.name isEqualToString: @"table" ]
+
                 || ( [ currentNode.name isEqualToString: @"p" ]
                         && ( currentNode.nextNode.kind == NSXMLTextKind )
                         && [ currentNode.nextNode.stringValue isEqualToString: @"\n" ] )
-                || ( [ currentNode.name isEqualToString: @"p" ] && ( currentNode.childCount == 0 ) ) )
+
+                || ( [ currentNode.name isEqualToString: @"p" ]
+                        && ( currentNode.childCount == 0 ) ) )
             [ toBeCastrated addObject: currentNode ];
+
+        if ( currentNode.kind == NSXMLElementKind && [ currentNode.name isEqualToString: @"head" ] )
+            [ ( NSXMLElement* )currentNode addChild: styleNode ];
+
         } while ( ( currentNode = currentNode.nextNode ) );
 
     [ toBeCastrated makeObjectsPerformSelector: @selector( detach ) ];
