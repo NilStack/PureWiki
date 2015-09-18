@@ -38,7 +38,7 @@
 
 @dynamic wikiSearchResult;
 
-@dynamic repTextView;
+@dynamic backingTextView;
 
 #pragma mark Initializations
 - ( instancetype ) initWithCoder: ( NSCoder* )_Coder
@@ -58,7 +58,7 @@
     }
 
 #pragma mark Dynamic Properties
-- ( PWSearchResultSnippetBackingTextView* ) repTextView
+- ( PWSearchResultSnippetBackingTextView* ) backingTextView
     {
     return ( PWSearchResultSnippetBackingTextView* )
         self->__internalTextStorage.layoutManagers.firstObject
@@ -98,8 +98,8 @@
 
     ( void )[ [ PWSearchResultSnippetBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer delegate: self ];
 
-    [ self setSubviews: @[ self.repTextView ] ];
-    [ self.repTextView autoPinEdgesToSuperviewEdges ];
+    [ self setSubviews: @[ self.backingTextView ] ];
+    [ self.backingTextView autoPinEdgesToSuperviewEdges ];
     }
 
 - ( BOOL ) textView: ( NSTextView* )_TextView
