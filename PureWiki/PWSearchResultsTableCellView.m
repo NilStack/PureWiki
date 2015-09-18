@@ -52,11 +52,11 @@ CGFloat static const kRightGap = kLeftGap;
         {
         self->_wikiSearchResult = _SearchResult;
 
-        if ( !self->__searchResultSnippetTextStorage )
-            self->__searchResultSnippetTextStorage = [ [ PWSearchResultSnippetView alloc ] initWithFrame: self.frame ];
+        if ( !self->__searchResultSnippetView )
+            self->__searchResultSnippetView = [ [ PWSearchResultSnippetView alloc ] initWithFrame: self.frame ];
 
         [ self->__searchResultTitleField setWikiSearchResult: self->_wikiSearchResult ];
-        [ self->__searchResultSnippetTextStorage setWikiSearchResult: self->_wikiSearchResult ];
+        [ self->__searchResultSnippetView setWikiSearchResult: self->_wikiSearchResult ];
         [ self __relayout ];
         }
     }
@@ -71,13 +71,13 @@ CGFloat static const kRightGap = kLeftGap;
     {
     [ self->__searchResultTitleField configureForAutoLayout ];
 
-    if ( self->__searchResultSnippetTextStorage.superview != self )
-        [ self addSubview: self->__searchResultSnippetTextStorage ];
+    if ( self->__searchResultSnippetView.superview != self )
+        [ self addSubview: self->__searchResultSnippetView ];
 
     NSEdgeInsets snippetInsets = NSEdgeInsetsMake( kTopGap, kLeftGap, kBottomGap, kRightGap );
     [ self->__searchResultTitleField autoPinEdgesToSuperviewEdgesWithInsets: snippetInsets excludingEdge: ALEdgeBottom ];
-    [ self->__searchResultSnippetTextStorage autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self->__searchResultTitleField withOffset: kTopGap ];
-    [ self->__searchResultSnippetTextStorage autoPinEdgesToSuperviewEdgesWithInsets: snippetInsets excludingEdge: ALEdgeTop ];
+    [ self->__searchResultSnippetView autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self->__searchResultTitleField withOffset: kTopGap ];
+    [ self->__searchResultSnippetView autoPinEdgesToSuperviewEdgesWithInsets: snippetInsets excludingEdge: ALEdgeTop ];
     }
 
 @end // PWSearchResultsTableCellView class
