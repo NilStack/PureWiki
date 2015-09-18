@@ -109,7 +109,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     {
     PWSidebarTabsTableCell* resultCellView = [ _TableView makeViewWithIdentifier: _TableColumn.identifier owner: self ];
     PWOpenedWikiPage* opendedWikiPage = [ _TableView.dataSource tableView: _TableView objectValueForTableColumn: _TableColumn row: _Row ];
-    [ resultCellView setWikiPage: opendedWikiPage.openedWikiPage ];
+    [ resultCellView setOpenedWikiPage: opendedWikiPage ];
 
     return resultCellView;
     }

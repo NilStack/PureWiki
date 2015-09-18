@@ -38,7 +38,7 @@
 // PWSidebarTabsTableCell class
 @implementation PWSidebarTabsTableCell
 
-@dynamic wikiPage;
+@dynamic openedWikiPage;
 
 #pragma mark Initializations
 - ( void ) awakeFromNib
@@ -55,19 +55,19 @@
     }
 
 #pragma mark Dynamic Properties
-- ( void ) setWikiPage: ( WikiPage* )_WikiPage
+- ( void ) setOpenedWikiPage: ( PWOpenedWikiPage* )_OpenedWikiPage
     {
-    self->_wikiPage = _WikiPage;
+    self->_openedWikiPage = _OpenedWikiPage;
 
-    self.pageImageView.wikiPage = self->_wikiPage;
+    self.pageImageView.wikiPage = self->_openedWikiPage.openedWikiPage;
 
-    self.pageTitleTextField.stringValue = self->_wikiPage.title ?: @"";
-    self.pageSnippetTextField.stringValue = [ self->_wikiPage.lastRevision.content substringToIndex: 100 ] ?: @"";
+    self.pageTitleTextField.stringValue = self->_openedWikiPage.openedWikiPage.title ?: @"";
+    self.pageSnippetTextField.stringValue = [ self->_openedWikiPage.openedWikiPage.lastRevision.content substringToIndex: 100 ] ?: @"";
     }
 
-- ( WikiPage* ) wikiPage
+- ( PWOpenedWikiPage* ) openedWikiPage
     {
-    return self->_wikiPage;
+    return self->_openedWikiPage;
     }
 
 #pragma mark Private Interfaces

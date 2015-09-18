@@ -34,11 +34,11 @@
 @interface PWSidebarTabsTableCell : NSTableCellView
     {
 @private
-    WikiPage __strong* _wikiPage;
+    PWOpenedWikiPage __strong* _openedWikiPage;
     }
 
 #pragma mark Ivar Properties
-@property ( strong, readwrite ) WikiPage* wikiPage;
+@property ( strong, readwrite ) PWOpenedWikiPage* openedWikiPage;
 
 #pragma mark Outlets
 @property ( weak ) IBOutlet PWPWikiPageImageWell* pageImageView;
