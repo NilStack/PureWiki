@@ -25,14 +25,44 @@
 
 #import "SugarWiki.h"
 
-CGFloat const kLeadingGap = 4.f;
-CGFloat const kTrailingGap = 20.f;
+CGFloat static const kLeadingGap = 4.f;
+CGFloat static const kTrailingGap = 20.f;
 
 // PWSearchResultTitleField class
 @implementation PWSearchResultTitleField
 
 @dynamic wikiSearchResult;
 
+#pragma mark Initializations
+- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
+    {
+    if ( self = [ super initWithCoder: _Coder ] )
+        {
+        self->__attrs = @{ NSFontAttributeName : [ NSFont fontWithName: @"Helvetica Neue" size: 17.f ]
+                         , NSForegroundColorAttributeName : [ NSColor blackColor ]
+                         };
+
+//        NSString* testChar = @"a";
+//        NSMutableString* testTitle = [ NSMutableString stringWithString: testChar ];
+//        self->__maxTitleCharCount = testTitle.length;
+//
+//        CGFloat maxTitleWidth = NSWidth( self.bounds ) - kTrailingGap;
+//        CGFloat widthOfCurrentTitleCharCount = [ testTitle sizeWithAttributes: self->__attrs ].width;
+//
+//        while ( widthOfCurrentTitleCharCount < maxTitleWidth )
+//            {
+//            [ testTitle appendString: testChar ];
+//            widthOfCurrentTitleCharCount = [ testTitle sizeWithAttributes: self->__attrs ].width;
+//            self->__maxTitleCharCount++;
+//            }
+
+        self->__maxTitleCharCount = 47;
+        }
+
+    return self;
+    }
+
+#pragma mark Custom Drawing
 - ( void ) drawRect: ( NSRect )_DirtyRect
     {
     [ super drawRect: _DirtyRect ];
@@ -62,35 +92,6 @@ CGFloat const kTrailingGap = 20.f;
 
     [ [ [ NSColor grayColor ] colorWithAlphaComponent: .2f ] setStroke ];
     [ cuttingLinePath stroke ];
-    }
-
-#pragma mark Initializations
-- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
-    {
-    if ( self = [ super initWithCoder: _Coder ] )
-        {
-        self->__attrs = @{ NSFontAttributeName : [ NSFont fontWithName: @"Helvetica Neue" size: 17.f ]
-                         , NSForegroundColorAttributeName : [ NSColor blackColor ]
-                         };
-
-//        NSString* testChar = @"a";
-//        NSMutableString* testTitle = [ NSMutableString stringWithString: testChar ];
-//        self->__maxTitleCharCount = testTitle.length;
-//
-//        CGFloat maxTitleWidth = NSWidth( self.bounds ) - kTrailingGap;
-//        CGFloat widthOfCurrentTitleCharCount = [ testTitle sizeWithAttributes: self->__attrs ].width;
-//
-//        while ( widthOfCurrentTitleCharCount < maxTitleWidth )
-//            {
-//            [ testTitle appendString: testChar ];
-//            widthOfCurrentTitleCharCount = [ testTitle sizeWithAttributes: self->__attrs ].width;
-//            self->__maxTitleCharCount++;
-//            }
-
-        self->__maxTitleCharCount = 47;
-        }
-
-    return self;
     }
 
 #pragma mark Dynamic Properties

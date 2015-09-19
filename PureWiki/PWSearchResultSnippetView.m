@@ -38,16 +38,31 @@
 
 @dynamic wikiSearchResult;
 
-@dynamic repTextView;
+@dynamic backingTextView;
+
+#pragma mark Initializations
+- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
+    {
+    if ( self = [ super initWithCoder: _Coder ] )
+        [ self configureForAutoLayout ];
+
+    return self;
+    }
+
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
+    {
+    if ( self = [ super initWithFrame: _Frame ] )
+        [ self configureForAutoLayout ];
+
+    return self;
+    }
 
 #pragma mark Dynamic Properties
-- ( NSTextView* ) repTextView
+- ( PWSearchResultSnippetBackingTextView* ) backingTextView
     {
     return ( PWSearchResultSnippetBackingTextView* )
-        self->__internalTextStorage.layoutManagers
-                                   .firstObject
-                                   .textContainers
-                                   .firstObject
+        self->__internalTextStorage.layoutManagers.firstObject
+                                   .textContainers.firstObject
                                    .textView;
     }
 
@@ -58,9 +73,11 @@
     NSString* HTMLString = [ [ self __processedResultSnippetHTML: _Result.resultSnippet ] XMLString ];
 
     NSData* HTMLData = [ HTMLString dataUsingEncoding: NSUTF8StringEncoding ];
-    NSURL* baseURL = [ NSURL URLWithString: @"http://en.wikipedia.org" ];
-    self->__internalTextStorage =
-        [ [ NSTextStorage alloc ] initWithHTML: HTMLData baseURL: baseURL/*_BaseURL*/ documentAttributes: nil ];
+    self->__internalTextStorage = [ [ NSTextStorage alloc ] initWithHTML: HTMLData documentAttributes: nil ];
+
+    [ self->__internalTextStorage addAttribute: NSCursorAttributeName
+                                         value: [ NSCursor arrowCursor ]
+                                         range: NSMakeRange( 0, self->__internalTextStorage.length ) ];
 
     NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
     [ self->__internalTextStorage addLayoutManager: layoutManager ];
@@ -76,8 +93,8 @@
 
     ( void )[ [ PWSearchResultSnippetBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer delegate: self ];
 
-    [ self setSubviews: @[ self.repTextView ] ];
-    [ self.repTextView autoPinEdgesToSuperviewEdges ];
+    [ self setSubviews: @[ self.backingTextView ] ];
+    [ self.backingTextView autoPinEdgesToSuperviewEdges ];
     }
 
 - ( BOOL ) textView: ( NSTextView* )_TextView

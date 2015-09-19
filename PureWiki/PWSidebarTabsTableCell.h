@@ -26,6 +26,9 @@
 @import WebKit;
 
 @class PWPWikiPageImageWell;
+@class PWOpenedWikiPage;
+@class PWOpenedPagePreviewTitleField;
+@class PWOpenedPageContentPreviewView;
 
 @class WikiPage;
 
@@ -33,16 +36,17 @@
 @interface PWSidebarTabsTableCell : NSTableCellView
     {
 @private
-    WikiPage __strong* _wikiPage;
+    PWOpenedWikiPage __strong* _openedWikiPage;
+
+    PWOpenedPagePreviewTitleField __strong* __openedPageContentPreivewTitleField;
+    PWOpenedPageContentPreviewView __strong* __openedPageContentPreviewView;
     }
 
 #pragma mark Ivar Properties
-@property ( strong, readwrite ) WikiPage* wikiPage;
+@property ( strong, readwrite ) PWOpenedWikiPage* openedWikiPage;
 
 #pragma mark Outlets
 @property ( weak ) IBOutlet PWPWikiPageImageWell* pageImageView;
-@property ( weak ) IBOutlet NSTextField* pageTitleTextField;
-@property ( weak ) IBOutlet NSTextField* pageSnippetTextField;
 
 @end // PWSidebarTabsTableCell class
 

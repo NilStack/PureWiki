@@ -35,7 +35,7 @@
     WikiSearchResult __strong* _wikiSearchResult;
 
     IBOutlet PWSearchResultTitleField __weak* __searchResultTitleField;
-    PWSearchResultSnippetView __strong* __searchResultSnippetTextStorage;
+    PWSearchResultSnippetView __strong* __searchResultSnippetView;
     }
 
 @property ( strong ) WikiSearchResult* wikiSearchResult;

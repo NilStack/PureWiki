@@ -35,7 +35,7 @@
     WikiSearchResult __strong* __wikiSearchResult;
     }
 
-@property ( strong, readonly ) PWSearchResultSnippetBackingTextView* repTextView;
+@property ( strong, readonly ) PWSearchResultSnippetBackingTextView* backingTextView;
 @property ( strong, readwrite ) WikiSearchResult* wikiSearchResult;
 
 @end // PWSearchResultSnippetView class

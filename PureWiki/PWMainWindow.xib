@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14F25a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="14F25a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8121.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PWMainWindowController">
@@ -61,27 +61,9 @@
                                                                             <rect key="frame" x="20" y="27" width="60" height="60"/>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="oKe-qZ-JwS" customClass="PWWikiPageImageCell"/>
                                                                         </imageView>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4R-PD-Bh5">
-                                                                            <rect key="frame" x="86" y="70" width="164" height="17"/>
-                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C++" id="mKz-tc-hnG">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ABV-vJ-XpL">
-                                                                            <rect key="frame" x="86" y="10" width="164" height="50"/>
-                                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="C++ (pronounced as cee plus plus, /ˈsiː plʌs plʌs/)…" id="dpe-SY-YLb">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
                                                                     </subviews>
                                                                     <connections>
                                                                         <outlet property="pageImageView" destination="GLP-7k-EMs" id="Mp3-uQ-fVH"/>
-                                                                        <outlet property="pageSnippetTextField" destination="ABV-vJ-XpL" id="z1l-5H-TNV"/>
-                                                                        <outlet property="pageTitleTextField" destination="v4R-PD-Bh5" id="UVU-Bl-xgp"/>
                                                                     </connections>
                                                                 </tableCellView>
                                                             </prototypeCellViews>
