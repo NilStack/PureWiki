@@ -145,6 +145,7 @@
     {
     [ self __saveScrollPosition ];
     [ self->_backForwardList goBack ];
+    [ self __reloadAllStatusConsumers ];
     #if DEBUG
     [ self->_debuggingBFList goBack ];
     #endif
@@ -163,6 +164,7 @@
     {
     [ self __saveScrollPosition ];
     [ self->_backForwardList goForward ];
+    [ self __reloadAllStatusConsumers ];
     #if DEBUG
     [ self->_debuggingBFList goForward ];
     #endif
@@ -235,7 +237,7 @@
             {
             [ self.__webView setPolicyDelegate: self ];
 
-            [ self __reloadAllStatusConsumers ];
+//            [ self __reloadAllStatusConsumers ];
             [ self __restoreScrollPosition ];
 
             [ self askToBecomeFirstResponder ];
@@ -284,9 +286,39 @@
     [ self->_backForwardList.currentItem setYOffset: yOffset.doubleValue ];
     }
 
+NSString* const sScrollAnimationJS =
+@""
+"   var initPos = window.pageYOffset;"
+"   var currentPos = initPos;"
+"   var desXPos = %g;"
+"   var desPos = %g;"
+"   var step = desPos / 10.0;"
+
+"   function doScroll()"
+"      {"
+"      var shouldContinue = false;"
+
+"      if ( desPos > initPos )"
+"          shouldContinue = currentPos < desPos;"
+"       else if ( desPos < initPos )"
+"           shouldContinue = currentPos > desPos;"
+
+"       if ( shouldContinue )"
+"           {"
+"           ( desPos > currentPos ) ? ( currentPos += step )"
+"                                   : ( currentPos -= step );"
+
+"           window.scrollTo( desXPos, currentPos );"
+"           setTimeout( doScroll, 20 );"
+"           }"
+"       }"
+
+"   window.onload = doScroll();";
+
 - ( void ) __restoreScrollPosition
     {
     [ self.__webView stringByEvaluatingJavaScriptFromString:
+//        [ NSString stringWithFormat: sScrollAnimationJS, self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
         [ NSString stringWithFormat:@"window.scrollTo( %g, %g )", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
     }
 
