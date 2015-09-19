@@ -110,6 +110,51 @@ NSString static* const sPagePreviewContentCSS =
         "color: rgb(10, 10, 10);"
         "}";
 
+- ( BOOL ) __isNodeHeadElement: ( NSXMLNode* )_Node
+    {
+    if ( _Node.kind == NSXMLElementKind && [ _Node.name isEqualToString: @"head" ] )
+        return YES;
+
+    return NO;
+    }
+
+- ( BOOL ) __isNodeComplicated: ( NSXMLNode* )_Node
+    {
+    if ( [ _Node.name isEqualToString: @"h1" ]
+            || [ _Node.name isEqualToString: @"h2" ]
+            || [ _Node.name isEqualToString: @"h3" ]
+            || [ _Node.name isEqualToString: @"h4" ]
+            || [ _Node.name isEqualToString: @"h5" ]
+            || [ _Node.name isEqualToString: @"div" ]
+            || [ _Node.name isEqualToString: @"sup" ]
+            || [ _Node.name isEqualToString: @"table" ]
+            || [ _Node.name isEqualToString: @"dl" ]
+
+            || ( [ _Node.name isEqualToString: @"p" ]
+                    && ( _Node.nextNode.kind == NSXMLTextKind )
+                    && [ _Node.nextNode.stringValue isEqualToString: @"\n" ] )
+
+            || ( [ _Node.name isEqualToString: @"p" ]
+                    && ( _Node.childCount == 0 ) ) )
+        return YES;
+
+    return NO;
+    }
+
+- ( BOOL ) __isNodeCoordinates: ( NSXMLNode* )_Node
+    {
+    if ( _Node.kind == NSXMLElementKind && [ _Node.name isEqualToString: @"span" ] )
+        {
+        __SugarArray_of( NSXMLNode* ) attrs = [ ( NSXMLElement* )_Node attributes ];
+
+        for ( NSXMLNode* _Attr in attrs )
+            if ( [ _Attr.stringValue isEqualToString: @"coordinates" ] )
+                return YES;
+        }
+
+    return NO;
+    }
+
 - ( void ) __processedTheFuckingHTMLDocument: ( NSXMLDocument* )_HTMLDoc
     {
     NSMutableArray* toBeCastrated = [ NSMutableArray array ];
@@ -119,40 +164,12 @@ NSString static* const sPagePreviewContentCSS =
 
        do
         {
-        if ( currentNode.kind == NSXMLElementKind && [ currentNode.name isEqualToString: @"head" ] )
+        if ( [ self __isNodeHeadElement: currentNode ] )
             [ ( NSXMLElement* )currentNode addChild: styleNode ];
 
-        if ( [ currentNode.name isEqualToString: @"h1" ]
-                || [ currentNode.name isEqualToString: @"h2" ]
-                || [ currentNode.name isEqualToString: @"h3" ]
-                || [ currentNode.name isEqualToString: @"h4" ]
-                || [ currentNode.name isEqualToString: @"h5" ]
-                || [ currentNode.name isEqualToString: @"div" ]
-                || [ currentNode.name isEqualToString: @"sup" ]
-                || [ currentNode.name isEqualToString: @"table" ]
-                || [ currentNode.name isEqualToString: @"dl" ]
-
-                || ( [ currentNode.name isEqualToString: @"p" ]
-                        && ( currentNode.nextNode.kind == NSXMLTextKind )
-                        && [ currentNode.nextNode.stringValue isEqualToString: @"\n" ] )
-
-                || ( [ currentNode.name isEqualToString: @"p" ]
-                        && ( currentNode.childCount == 0 ) ) )
+        if ( [ self __isNodeComplicated: currentNode ]
+                || [ self __isNodeCoordinates: currentNode ] )
             [ toBeCastrated addObject: currentNode ];
-
-        if ( currentNode.kind == NSXMLElementKind && [ currentNode.name isEqualToString: @"span" ] )
-            {
-            __SugarArray_of( NSXMLNode* ) attrs = [ ( NSXMLElement* )currentNode attributes ];
-
-            for ( NSXMLNode* _Attr in attrs )
-                {
-                if ( [ _Attr.stringValue isEqualToString: @"coordinates" ] )
-                    {
-                    [ toBeCastrated addObject: currentNode ];
-                    break;
-                    }
-                }
-            }
 
         } while ( ( currentNode = currentNode.nextNode ) );
 
