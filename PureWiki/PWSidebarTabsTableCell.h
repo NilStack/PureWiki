@@ -27,6 +27,7 @@
 
 @class PWPWikiPageImageWell;
 @class PWOpenedWikiPage;
+@class PWOpenedPagePreviewTitleField;
 @class PWOpenedPageContentPreviewView;
 
 @class WikiPage;
@@ -37,6 +38,7 @@
 @private
     PWOpenedWikiPage __strong* _openedWikiPage;
 
+    PWOpenedPagePreviewTitleField __strong* __openedPageContentPreivewTitleField;
     PWOpenedPageContentPreviewView __strong* __openedPageContentPreviewView;
     }
 
@@ -45,7 +47,6 @@
 
 #pragma mark Outlets
 @property ( weak ) IBOutlet PWPWikiPageImageWell* pageImageView;
-@property ( weak ) IBOutlet NSTextField* pageTitleTextField;
 
 @end // PWSidebarTabsTableCell class
 

@@ -35,10 +35,12 @@ CGFloat static const kLeadingGap = 4.f;
 @dynamic openedWikiPage;
 
 #pragma mark Initializations
-- ( instancetype ) initWithCoder: ( NSCoder* )_Coder
+- ( instancetype ) initWithFrame: ( NSRect )_Frame
     {
-    if ( self = [ super initWithCoder: _Coder ] )
+    if ( self = [ super initWithFrame: _Frame ] )
         {
+        [ self configureForAutoLayout ];
+
         self->__attrs = @{ NSFontAttributeName : [ NSFont fontWithName: @"Helvetica Neue" size: 15.f ]
                          , NSForegroundColorAttributeName : [ NSColor blackColor ]
                          };
@@ -63,6 +65,9 @@ CGFloat static const kLeadingGap = 4.f;
                                     );
 
     [ drawingContent drawInRect: occupiedRect withAttributes: drawingAttrs ];
+
+//    [ [ NSColor orangeColor ] set ];
+//    NSRectFill( _DirtyRect );
     }
 
 #pragma mark Dynamic Properties

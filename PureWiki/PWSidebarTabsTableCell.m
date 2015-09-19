@@ -25,6 +25,7 @@
 #import "PWSidebarTabsTableCell.h"
 #import "PWPWikiPageImageWell.h"
 #import "PWOpenedWikiPage.h"
+#import "PWOpenedPagePreviewTitleField.h"
 #import "PWOpenedPageContentPreviewView.h"
 #import "PWOpenedPageContentPreviewBackingTextView.h"
 
@@ -54,11 +55,13 @@
 
     self.pageImageView.wikiPage = self->_openedWikiPage.openedWikiPage;
 
-    self.pageTitleTextField.stringValue = self->_openedWikiPage.openedWikiPage.title ?: @"";
+    if ( !self->__openedPageContentPreivewTitleField )
+        self->__openedPageContentPreivewTitleField = [ [ PWOpenedPagePreviewTitleField alloc ] initWithFrame: self.frame ];
 
     if ( !self->__openedPageContentPreviewView )
         self->__openedPageContentPreviewView = [ [ PWOpenedPageContentPreviewView alloc ] initWithFrame: self.frame ];
 
+    [ self->__openedPageContentPreivewTitleField setOpenedWikiPage: self->_openedWikiPage ];
     [ self->__openedPageContentPreviewView setOpenedWikiPage: self->_openedWikiPage ];
     [ self __relayout ];
     }
@@ -77,19 +80,22 @@ CGFloat kInsetFromBottom = 10.f;
 CGFloat kPageTitleFieldMinWidth = 50.f;
 
 CGFloat kOffsetFromPageImageView = 10.f;
-CGFloat kOffsetBetweenPageTitleAndSnippetField = 10.f;
+CGFloat kOffsetBetweenPageTitleAndSnippetField = 5.f;
 
 - ( void ) __relayout
     {
     #if DEBUG
     self.pageImageView.identifier = @"page-image-view";
     self.pageTitleTextField.identifier = @"page-title-field";
+    self->__openedPageContentPreivewTitleField = @"page-preview-title-field";
     self->__openedPageContentPreviewView.identifier = @"page-preview-view";
     self->__openedPageContentPreviewView.backingTextView.identifier = @"page-preview-backing-text-view";
     #endif
 
     [ self.pageImageView configureForAutoLayout ];
-    [ self.pageTitleTextField configureForAutoLayout ];
+
+    if ( self->__openedPageContentPreivewTitleField.superview != self )
+        [ self addSubview: self->__openedPageContentPreivewTitleField ];
 
     if ( self->__openedPageContentPreviewView.superview != self )
         [ self addSubview: self->__openedPageContentPreviewView ];
@@ -98,14 +104,15 @@ CGFloat kOffsetBetweenPageTitleAndSnippetField = 10.f;
     [ self.pageImageView autoPinEdgeToSuperviewEdge: ALEdgeLeading withInset: kInsetFromLeading relation: NSLayoutRelationEqual ];
     [ self.pageImageView autoPinEdgeToSuperviewEdge: ALEdgeTop withInset: kInsetFromTop relation: NSLayoutRelationEqual ];
 
-    [ self.pageTitleTextField autoSetDimension: ALDimensionWidth toSize: kPageTitleFieldMinWidth relation: NSLayoutRelationGreaterThanOrEqual ];
-    [ self.pageTitleTextField autoPinEdgeToSuperviewEdge: ALEdgeTop withInset: kInsetFromTop relation: NSLayoutRelationEqual ];
-    [ self.pageTitleTextField autoPinEdge: ALEdgeLeft toEdge: ALEdgeRight ofView: self.pageImageView withOffset: kOffsetFromPageImageView ];
-    [ self.pageTitleTextField autoPinEdgeToSuperviewEdge: ALEdgeTrailing withInset: kInsetFromTrailing relation: NSLayoutRelationEqual ];
+    [ self->__openedPageContentPreivewTitleField autoSetDimension: ALDimensionHeight toSize: 24.f relation: NSLayoutRelationEqual ];
+    [ self->__openedPageContentPreivewTitleField autoSetDimension: ALDimensionWidth toSize: kPageTitleFieldMinWidth relation: NSLayoutRelationGreaterThanOrEqual ];
+    [ self->__openedPageContentPreivewTitleField autoPinEdgeToSuperviewEdge: ALEdgeTop withInset: kInsetFromTop relation: NSLayoutRelationEqual ];
+    [ self->__openedPageContentPreivewTitleField autoPinEdge: ALEdgeLeft toEdge: ALEdgeRight ofView: self.pageImageView withOffset: kOffsetFromPageImageView ];
+    [ self->__openedPageContentPreivewTitleField autoPinEdgeToSuperviewEdge: ALEdgeTrailing withInset: kInsetFromTrailing relation: NSLayoutRelationEqual ];
 
-    [ self->__openedPageContentPreviewView autoMatchDimension: ALDimensionWidth toDimension: ALDimensionWidth ofView: self.pageTitleTextField ];
+    [ self->__openedPageContentPreviewView autoMatchDimension: ALDimensionWidth toDimension: ALDimensionWidth ofView: self->__openedPageContentPreivewTitleField ];
     [ self->__openedPageContentPreviewView autoPinEdge: ALEdgeLeft toEdge: ALEdgeRight ofView: self.pageImageView withOffset: kOffsetFromPageImageView ];
-    [ self->__openedPageContentPreviewView autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self.pageTitleTextField withOffset: kOffsetBetweenPageTitleAndSnippetField ];
+    [ self->__openedPageContentPreviewView autoPinEdge: ALEdgeTop toEdge: ALEdgeBottom ofView: self->__openedPageContentPreivewTitleField withOffset: kOffsetBetweenPageTitleAndSnippetField ];
     [ self->__openedPageContentPreviewView autoPinEdgeToSuperviewEdge: ALEdgeBottom withInset: kInsetFromBottom relation: NSLayoutRelationEqual ];
     [ self->__openedPageContentPreviewView autoPinEdgeToSuperviewEdge: ALEdgeTrailing withInset: kInsetFromTrailing relation: NSLayoutRelationEqual ];
     }

@@ -61,18 +61,9 @@
                                                                             <rect key="frame" x="20" y="27" width="60" height="60"/>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="oKe-qZ-JwS" customClass="PWWikiPageImageCell"/>
                                                                         </imageView>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4R-PD-Bh5">
-                                                                            <rect key="frame" x="86" y="70" width="164" height="17"/>
-                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="C++" id="mKz-tc-hnG">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
                                                                     </subviews>
                                                                     <connections>
                                                                         <outlet property="pageImageView" destination="GLP-7k-EMs" id="Mp3-uQ-fVH"/>
-                                                                        <outlet property="pageTitleTextField" destination="v4R-PD-Bh5" id="UVU-Bl-xgp"/>
                                                                     </connections>
                                                                 </tableCellView>
                                                             </prototypeCellViews>
