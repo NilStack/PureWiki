@@ -30,6 +30,7 @@
 
 #import "SugarWiki.h"
 
+// PWOpenedPageContentPreviewView class
 @implementation PWOpenedPageContentPreviewView
 
 @dynamic openedWikiPage;
