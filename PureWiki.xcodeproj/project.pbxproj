@@ -79,6 +79,7 @@
 		83D591171B89EC910018BC1C /* NSObject+FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D591151B89EC910018BC1C /* NSObject+FBKVOController.m */; };
 		83E42E6C1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E42E6B1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.m */; settings = {ASSET_TAGS = (); }; };
 		83E42E6F1BAC73A3009C6799 /* PWOpenedPageContentPreviewBackingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E42E6E1BAC73A3009C6799 /* PWOpenedPageContentPreviewBackingTextView.m */; settings = {ASSET_TAGS = (); }; };
+		83E42E721BADCFBA009C6799 /* PWOpenedPagePreviewTitleField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E42E711BADCFBA009C6799 /* PWOpenedPagePreviewTitleField.m */; settings = {ASSET_TAGS = (); }; };
 		83ED36B51BA4593C00CEFE61 /* __WikiContinuationCompleted.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED35D11BA4593C00CEFE61 /* __WikiContinuationCompleted.m */; settings = {ASSET_TAGS = (); }; };
 		83ED36B61BA4593C00CEFE61 /* __WikiContinuationInitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED35D31BA4593C00CEFE61 /* __WikiContinuationInitial.m */; settings = {ASSET_TAGS = (); }; };
 		83ED36B71BA4593C00CEFE61 /* __WikiContinuationUncompleted.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED35D51BA4593C00CEFE61 /* __WikiContinuationUncompleted.m */; settings = {ASSET_TAGS = (); }; };
@@ -271,6 +272,8 @@
 		83E42E6B1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWOpenedPageContentPreviewView.m; sourceTree = "<group>"; };
 		83E42E6D1BAC73A3009C6799 /* PWOpenedPageContentPreviewBackingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWOpenedPageContentPreviewBackingTextView.h; sourceTree = "<group>"; };
 		83E42E6E1BAC73A3009C6799 /* PWOpenedPageContentPreviewBackingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWOpenedPageContentPreviewBackingTextView.m; sourceTree = "<group>"; };
+		83E42E701BADCFBA009C6799 /* PWOpenedPagePreviewTitleField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWOpenedPagePreviewTitleField.h; sourceTree = "<group>"; };
+		83E42E711BADCFBA009C6799 /* PWOpenedPagePreviewTitleField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWOpenedPagePreviewTitleField.m; sourceTree = "<group>"; };
 		83ED35CF1BA4593C00CEFE61 /* __WikiContinuation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __WikiContinuation.h; sourceTree = "<group>"; };
 		83ED35D01BA4593C00CEFE61 /* __WikiContinuationCompleted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __WikiContinuationCompleted.h; sourceTree = "<group>"; };
 		83ED35D11BA4593C00CEFE61 /* __WikiContinuationCompleted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __WikiContinuationCompleted.m; sourceTree = "<group>"; };
@@ -422,6 +425,8 @@
 				8321EC811B8C0C940099C824 /* PWPWikiPageImageWell.m */,
 				8321EC821B8C0C940099C824 /* PWWikiPageImageCell.h */,
 				8321EC831B8C0C940099C824 /* PWWikiPageImageCell.m */,
+				83E42E701BADCFBA009C6799 /* PWOpenedPagePreviewTitleField.h */,
+				83E42E711BADCFBA009C6799 /* PWOpenedPagePreviewTitleField.m */,
 				83E42E6A1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.h */,
 				83E42E6B1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.m */,
 				83E42E6D1BAC73A3009C6799 /* PWOpenedPageContentPreviewBackingTextView.h */,
@@ -966,6 +971,7 @@
 				83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */,
 				83509BCF1B8629DF00C4F454 /* PWSearchResultsAttachPanel.m in Sources */,
 				83ED37241BA4593C00CEFE61 /* WikiEngine.m in Sources */,
+				83E42E721BADCFBA009C6799 /* PWOpenedPagePreviewTitleField.m in Sources */,
 				83ED36C11BA4593C00CEFE61 /* AFHTTPSessionManager.m in Sources */,
 				83509BD41B862A1400C4F454 /* PWSearchResultsAttachPanelController.m in Sources */,
 				83B794171B7DCE5F00F4544E /* main.m in Sources */,
