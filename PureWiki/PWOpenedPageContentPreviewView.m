@@ -115,11 +115,13 @@ NSString static* const sPagePreviewContentCSS =
     NSMutableArray* toBeCastrated = [ NSMutableArray array ];
 
     NSXMLNode* currentNode = _HTMLDoc;
-
     NSXMLElement* styleNode = [ [ NSXMLElement alloc ] initWithXMLString: [ NSString stringWithFormat: @"<style>%@</style>", sPagePreviewContentCSS ] error: nil ];
 
        do
         {
+        if ( currentNode.kind == NSXMLElementKind && [ currentNode.name isEqualToString: @"head" ] )
+            [ ( NSXMLElement* )currentNode addChild: styleNode ];
+
         if ( [ currentNode.name isEqualToString: @"h1" ]
                 || [ currentNode.name isEqualToString: @"h2" ]
                 || [ currentNode.name isEqualToString: @"h3" ]
@@ -137,18 +139,40 @@ NSString static* const sPagePreviewContentCSS =
                         && ( currentNode.childCount == 0 ) ) )
             [ toBeCastrated addObject: currentNode ];
 
-        if ( currentNode.kind == NSXMLElementKind && [ currentNode.name isEqualToString: @"head" ] )
-            [ ( NSXMLElement* )currentNode addChild: styleNode ];
+        if ( currentNode.kind == NSXMLElementKind && [ currentNode.name isEqualToString: @"span" ] )
+            {
+            __SugarArray_of( NSXMLNode* ) attrs = [ ( NSXMLElement* )currentNode attributes ];
+
+            for ( NSXMLNode* _Attr in attrs )
+                {
+                if ( [ _Attr.stringValue isEqualToString: @"coordinates" ] )
+                    {
+                    [ toBeCastrated addObject: currentNode ];
+                    break;
+                    }
+                }
+            }
 
         } while ( ( currentNode = currentNode.nextNode ) );
 
+    for ( int _Index = 0; _Index < toBeCastrated.count; _Index++ )
+        {
+        NSXMLNode* depNode = toBeCastrated[ _Index ];
+        if ( depNode.parent.childCount == 1 )
+            {
+            [ toBeCastrated removeObject: depNode ];
+            [ toBeCastrated addObject: depNode.parent ];
+            }
+        }
+
     [ toBeCastrated makeObjectsPerformSelector: @selector( detach ) ];
 
+    #if DEBUG
     [ _HTMLDoc.XMLString writeToFile: [ NSHomeDirectory() stringByAppendingString: [ NSString stringWithFormat: @"/%@.htm", self->__openedWikiPage.openedWikiPage.title ] ]
                           atomically: YES
                             encoding: NSUTF8StringEncoding
                                error: nil ];
-
+    #endif
     }
 
 @end // PWOpenedPageContentPreviewView class

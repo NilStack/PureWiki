@@ -86,8 +86,7 @@ CGFloat kOffsetBetweenPageTitleAndSnippetField = 5.f;
     {
     #if DEBUG
     self.pageImageView.identifier = @"page-image-view";
-    self.pageTitleTextField.identifier = @"page-title-field";
-    self->__openedPageContentPreivewTitleField = @"page-preview-title-field";
+    self->__openedPageContentPreivewTitleField.identifier = @"page-preview-title-field";
     self->__openedPageContentPreviewView.identifier = @"page-preview-view";
     self->__openedPageContentPreviewView.backingTextView.identifier = @"page-preview-backing-text-view";
     #endif
