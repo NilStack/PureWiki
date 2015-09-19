@@ -19,6 +19,7 @@
 		8322BF961B83C6F400A890C9 /* TKSafariSearchbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF951B83C6F400A890C9 /* TKSafariSearchbar.m */; };
 		8330E5CD1B88FFA800373760 /* NSURL+PureWiki.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330E5CC1B88FFA800373760 /* NSURL+PureWiki.m */; };
 		8330E5D01B890BD400373760 /* PWUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330E5CF1B890BD400373760 /* PWUtilities.m */; };
+		833AAEB11BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 833AAEB01BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.m */; settings = {ASSET_TAGS = (); }; };
 		83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E931B8351BF00A33030 /* PWWikiContentView.m */; };
 		83480E971B83530C00A33030 /* PWSidebarTabsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E961B83530C00A33030 /* PWSidebarTabsTable.m */; };
 		83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */; };
@@ -164,6 +165,8 @@
 		8330E5CF1B890BD400373760 /* PWUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWUtilities.m; sourceTree = "<group>"; };
 		83362CCF1BA5A7A7001277E1 /* __SugarWiki.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __SugarWiki.h; sourceTree = "<group>"; };
 		83362CD31BA5CA3D001277E1 /* PurePrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurePrefixHeader.pch; sourceTree = "<group>"; };
+		833AAEAF1BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXMLNode+PWOpenedPagePreview.h"; sourceTree = "<group>"; };
+		833AAEB01BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXMLNode+PWOpenedPagePreview.m"; sourceTree = "<group>"; };
 		83480E921B8351BF00A33030 /* PWWikiContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentView.h; sourceTree = "<group>"; };
 		83480E931B8351BF00A33030 /* PWWikiContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentView.m; sourceTree = "<group>"; };
 		83480E951B83530C00A33030 /* PWSidebarTabsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTable.h; sourceTree = "<group>"; };
@@ -412,9 +415,19 @@
 			name = xib;
 			sourceTree = "<group>";
 		};
+		833AAEB21BADFCD9001546A5 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				833AAEAF1BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.h */,
+				833AAEB01BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.m */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
 		83480E901B83515000A33030 /* sidebar */ = {
 			isa = PBXGroup;
 			children = (
+				833AAEB21BADFCD9001546A5 /* extensions */,
 				83480E9E1B83728000A33030 /* PWSidebarTabsTableController.h */,
 				83480E9F1B83728000A33030 /* PWSidebarTabsTableController.m */,
 				83480E951B83530C00A33030 /* PWSidebarTabsTable.h */,
@@ -958,6 +971,7 @@
 				83A2FBCA1B830ABB00939452 /* PWMainWindowController.m in Sources */,
 				83A2FBDF1B833B2A00939452 /* PWStackContainerView.m in Sources */,
 				83D46ABD1B878B900061BE7E /* NSArray+PureLayout.m in Sources */,
+				833AAEB11BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.m in Sources */,
 				83509BD71B86388E00C4F454 /* NSObject+TKSafariSearchbar.m in Sources */,
 				8330E5D01B890BD400373760 /* PWUtilities.m in Sources */,
 				83E42E6C1BAC6A29009C6799 /* PWOpenedPageContentPreviewView.m in Sources */,
