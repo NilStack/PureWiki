@@ -130,6 +130,7 @@ NSString static* const sPagePreviewContentCSS =
                 || [ currentNode.name isEqualToString: @"div" ]
                 || [ currentNode.name isEqualToString: @"sup" ]
                 || [ currentNode.name isEqualToString: @"table" ]
+                || [ currentNode.name isEqualToString: @"dl" ]
 
                 || ( [ currentNode.name isEqualToString: @"p" ]
                         && ( currentNode.nextNode.kind == NSXMLTextKind )
