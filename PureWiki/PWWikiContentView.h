@@ -41,7 +41,8 @@
 @protocol PWWikiContentViewStatusConsumer;
 
 // PWWikiContentView class
-@interface PWWikiContentView : NSView <WebFrameLoadDelegate, WebPolicyDelegate, MBProgressHUDDelegate>
+@interface PWWikiContentView : NSView
+    <WebFrameLoadDelegate, WebPolicyDelegate, WebResourceLoadDelegate, MBProgressHUDDelegate>
     {
 @private
     WikiEngine __strong* _wikiEngine;
@@ -55,6 +56,8 @@
     NSString __strong* _UUID;
 
     MBProgressHUD* __progressHUD;
+    CGFloat __totalProgress;
+    CGFloat __currentProgress;
     }
 
 #pragma mark Ivar Properties

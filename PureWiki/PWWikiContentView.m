@@ -42,6 +42,7 @@
 
 @property ( weak ) IBOutlet WebView* __webView;
 @property ( strong ) WebView* __backingWebView;
+@property ( assign ) CGFloat __progressPercent;
 
 - ( void ) __saveScrollPosition;
 - ( void ) __restoreScrollPosition;
@@ -60,6 +61,8 @@
 @synthesize owner;
 
 @dynamic UUID;
+
+@dynamic __progressPercent;
 
 #pragma mark Initializations
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
@@ -83,6 +86,7 @@
 - ( void ) awakeFromNib
     {
     [ self.__backingWebView setFrameLoadDelegate: self ];
+    [ self.__backingWebView setResourceLoadDelegate: self ];
     [ self.__backingWebView setMaintainsBackForwardList: NO ];
 
     [ self.__webView setPolicyDelegate: self ];
@@ -138,6 +142,11 @@
 - ( NSString* ) UUID
     {
     return self->_UUID;
+    }
+
+- ( CGFloat ) __progressPercent
+    {
+    return self->__currentProgress / self->__totalProgress;
     }
 
 #pragma mark IBActions
@@ -298,6 +307,40 @@
             [ self.__backingWebView.mainFrame loadRequest: _Request ];
             [ _Listener ignore ];
             }
+        }
+    }
+
+#pragma mark Conforms to <WebResourceLoadDelegate>
+- ( id )                webView: ( WebView* )_WebView
+    identifierForInitialRequest: ( NSURLRequest* )_Request
+                 fromDataSource: ( WebDataSource* )_DataSource
+    {
+    return _Request.URL.absoluteString;
+    }
+
+- ( void )     webView: ( WebView* )_Sender
+              resource: ( id )_Identifier
+    didReceiveResponse: ( NSURLResponse* )_Response
+        fromDataSource: ( WebDataSource* )_DataSource
+    {
+    if ( _Sender == self.__backingWebView )
+        {
+        self->__totalProgress += [ [ ( NSHTTPURLResponse* )_Response allHeaderFields ][ @"Content-Length" ] longLongValue ];
+        [ self->__progressHUD setProgress: self.__progressPercent ];
+        NSLog( @"🍌%@: %g", _Identifier, self->__totalProgress );
+        }
+    }
+
+- ( void )          webView: ( WebView* )_Sender
+                   resource: ( id )_Identifier
+    didReceiveContentLength: ( NSInteger )_Length
+             fromDataSource: ( WebDataSource* )_DataSource
+    {
+    if ( _Sender == self.__backingWebView )
+        {
+        self->__currentProgress += _Length;
+        [ self->__progressHUD setProgress: self.__progressPercent ];
+        NSLog( @"🍓%@: %ld", _Identifier, _Length );
         }
     }
 
