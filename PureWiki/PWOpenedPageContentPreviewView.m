@@ -30,6 +30,11 @@
 
 #import "SugarWiki.h"
 
+// Private Interfaces
+@interface PWOpenedPageContentPreviewView ()
+- ( NSXMLDocument* ) __processedTheFuckingHTMLDocument: ( NSXMLDocument* )_HTMLDoc;
+@end // Private Interfaces
+
 // PWOpenedPageContentPreviewView class
 @implementation PWOpenedPageContentPreviewView
 
@@ -65,12 +70,10 @@
     {
     self->__openedWikiPage = _OpenedWikiPage;
 
-    NSXMLDocument* HTMLDocument = [ [ NSXMLDocument alloc ] initWithXMLString: self->__openedWikiPage.openedWikiPage.lastRevision.content
-                                                                      options: NSXMLDocumentTidyHTML
-                                                                        error: nil ];
-
-    [ self __processedTheFuckingHTMLDocument: HTMLDocument ];
-    NSData* HTMLData = [ HTMLDocument.XMLString dataUsingEncoding: NSUTF8StringEncoding ];
+    NSXMLDocument* prettyParsedSnippet =
+        [ self __processedTheFuckingHTMLDocument: self->__openedWikiPage.openedWikiPage.lastRevision.prettyParsedSnippet ];
+        
+    NSData* HTMLData = [ prettyParsedSnippet.XMLString dataUsingEncoding: NSUTF8StringEncoding ];
     self->__internalTextStorage = [ [ NSTextStorage alloc ] initWithHTML: HTMLData documentAttributes: nil ];
 
     NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
@@ -113,34 +116,21 @@ NSString static* const sPagePreviewContentCSS =
         "color: rgb(10, 10, 10);"
         "}";
 
-- ( void ) __processedTheFuckingHTMLDocument: ( NSXMLDocument* )_HTMLDoc
+#pragma mark Private Interfaces
+- ( NSXMLDocument* ) __processedTheFuckingHTMLDocument: ( NSXMLDocument* )_HTMLDoc
     {
-    NSMutableArray* toBeCastrated = [ NSMutableArray array ];
-
     NSXMLNode* currentNode = _HTMLDoc;
     NSXMLElement* styleNode = [ [ NSXMLElement alloc ] initWithXMLString: [ NSString stringWithFormat: @"<style>%@</style>", sPagePreviewContentCSS ] error: nil ];
 
        do
         {
         if ( currentNode.isHeadElement )
+            {
             [ ( NSXMLElement* )currentNode addChild: styleNode ];
-
-        if ( currentNode.isInComplicatedSet || currentNode.isCoordinate )
-            [ toBeCastrated addObject: currentNode ];
+            break;
+            }
 
         } while ( ( currentNode = currentNode.nextNode ) );
-
-    for ( int _Index = 0; _Index < toBeCastrated.count; _Index++ )
-        {
-        NSXMLNode* depNode = toBeCastrated[ _Index ];
-        if ( depNode.parent.childCount == 1 )
-            {
-            [ toBeCastrated removeObject: depNode ];
-            [ toBeCastrated addObject: depNode.parent ];
-            }
-        }
-
-    [ toBeCastrated makeObjectsPerformSelector: @selector( detach ) ];
 
     #if DEBUG
     [ _HTMLDoc.XMLString writeToFile: [ NSHomeDirectory() stringByAppendingString: [ NSString stringWithFormat: @"/%@.htm", self->__openedWikiPage.openedWikiPage.title ] ]
@@ -148,6 +138,8 @@ NSString static* const sPagePreviewContentCSS =
                             encoding: NSUTF8StringEncoding
                                error: nil ];
     #endif
+
+    return _HTMLDoc;
     }
 
 @end // PWOpenedPageContentPreviewView class

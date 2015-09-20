@@ -35,6 +35,8 @@
 #import "TKSafariSearchbarController.h"
 #import "PWSidebarTabsTableController.h"
 
+#import "DJProgressHUD.h"
+
 #import "SugarWiki.h"
 
 // Private Interfaces
@@ -184,6 +186,11 @@
     }
 
 #pragma mark Conforms to <WebFrameLoadDelegate>
+- ( void )                  webView: ( WebView* )_WebView
+    didCommitLoadForFrame: ( WebFrame* )_Frame
+    {
+    }
+
 - ( void )        webView: ( WebView* )_WebView
     didFinishLoadForFrame: ( WebFrame* )_Frame
     {
@@ -201,7 +208,7 @@
             if ( !error )
                 {
                 [ self->_wikiEngine pagesWithTitles: @[ castratedWikiPageArchive.wikiPageTitle ]
-                                      parseRevision: YES
+                                  parseLastRevision: YES
                                        continuation: nil
                                             success:
                     ^( __SugarArray_of( WikiPage* ) _MatchedPages, WikiContinuation* _Continuation, BOOL _IsBatchComplete )
@@ -236,8 +243,6 @@
         else if ( _WebView == self.__webView )
             {
             [ self.__webView setPolicyDelegate: self ];
-
-//            [ self __reloadAllStatusConsumers ];
             [ self __restoreScrollPosition ];
 
             [ self askToBecomeFirstResponder ];

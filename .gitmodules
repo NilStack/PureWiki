@@ -7,3 +7,9 @@
 [submodule "PureWiki/vendor/SugarWiki"]
 	path = PureWiki/vendor/SugarWiki
 	url = https://github.com/PureWiki/SugarWiki
+[submodule "PureWiki/vendor/DJProgressHUD"]
+	path = PureWiki/vendor/DJProgressHUD
+	url = https://github.com/TongKuo/DJProgressHUD_OSX.git
+[submodule "PureWiki/vendor/MBProgressHUD"]
+	path = PureWiki/vendor/MBProgressHUD
+	url = https://github.com/TongKuo/MBProgressHUD-OSX.git

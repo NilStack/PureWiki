@@ -28,8 +28,6 @@
 @interface NSXMLNode ( PWOpenedPagePreview )
 
 @property ( assign, readonly ) BOOL isHeadElement;
-@property ( assign, readonly ) BOOL isInComplicatedSet;
-@property ( assign, readonly ) BOOL  isCoordinate;
 
 @end // NSXMLNode + PWOpenedPagePreview
 

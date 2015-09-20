@@ -17,6 +17,7 @@
 		8321EC951B8C40C40099C824 /* PWArtworkConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8321EC941B8C40C40099C824 /* PWArtworkConstants.m */; };
 		8322BF821B83812500A890C9 /* PWActionNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF811B83812500A890C9 /* PWActionNotifications.m */; };
 		8322BF961B83C6F400A890C9 /* TKSafariSearchbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8322BF951B83C6F400A890C9 /* TKSafariSearchbar.m */; };
+		8323AC151BAEC629009037B9 /* NSXMLNode+__WikiRevision.m in Sources */ = {isa = PBXBuildFile; fileRef = 8323AC131BAEC629009037B9 /* NSXMLNode+__WikiRevision.m */; settings = {ASSET_TAGS = (); }; };
 		8330E5CD1B88FFA800373760 /* NSURL+PureWiki.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330E5CC1B88FFA800373760 /* NSURL+PureWiki.m */; };
 		8330E5D01B890BD400373760 /* PWUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8330E5CF1B890BD400373760 /* PWUtilities.m */; };
 		833AAEB11BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 833AAEB01BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.m */; settings = {ASSET_TAGS = (); }; };
@@ -36,6 +37,11 @@
 		83509BE61B8739FD00C4F454 /* PWWikiContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83509BE51B8739FD00C4F454 /* PWWikiContentView.xib */; };
 		83574A691BA577D100FCE946 /* PWSearchResultSnippetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83574A681BA577D100FCE946 /* PWSearchResultSnippetView.m */; settings = {ASSET_TAGS = (); }; };
 		83574A6B1BA595E400FCE946 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83574A6A1BA595E400FCE946 /* Cocoa.framework */; };
+		835CB48C1BAEFA7800A35C1C /* DJActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 835CB4851BAEFA7800A35C1C /* DJActivityIndicator.m */; settings = {ASSET_TAGS = (); }; };
+		835CB48D1BAEFA7800A35C1C /* DJBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 835CB4871BAEFA7800A35C1C /* DJBezierPath.m */; settings = {ASSET_TAGS = (); }; };
+		835CB48E1BAEFA7800A35C1C /* DJProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 835CB4891BAEFA7800A35C1C /* DJProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
+		835CB48F1BAEFA7800A35C1C /* DJProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 835CB48B1BAEFA7800A35C1C /* DJProgressIndicator.m */; settings = {ASSET_TAGS = (); }; };
+		835CB4921BAF0A2C00A35C1C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 835CB4901BAF0A2C00A35C1C /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		837B975C1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837B975B1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m */; };
 		837B975E1B8D7BCF00BDDCF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */; };
 		839585E11B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 839585E01B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m */; };
@@ -159,6 +165,8 @@
 		8322BF811B83812500A890C9 /* PWActionNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWActionNotifications.m; sourceTree = "<group>"; };
 		8322BF941B83C6F400A890C9 /* TKSafariSearchbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKSafariSearchbar.h; path = PureWiki/TKSafariSearchbar.h; sourceTree = "<group>"; };
 		8322BF951B83C6F400A890C9 /* TKSafariSearchbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TKSafariSearchbar.m; path = PureWiki/TKSafariSearchbar.m; sourceTree = "<group>"; };
+		8323AC131BAEC629009037B9 /* NSXMLNode+__WikiRevision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXMLNode+__WikiRevision.m"; sourceTree = "<group>"; };
+		8323AC141BAEC629009037B9 /* NSXMLNode+__WikiRevision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXMLNode+__WikiRevision.h"; sourceTree = "<group>"; };
 		8330E5CB1B88FFA800373760 /* NSURL+PureWiki.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PureWiki.h"; sourceTree = "<group>"; };
 		8330E5CC1B88FFA800373760 /* NSURL+PureWiki.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PureWiki.m"; sourceTree = "<group>"; };
 		8330E5CE1B890BD400373760 /* PWUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWUtilities.h; sourceTree = "<group>"; };
@@ -196,6 +204,16 @@
 		83574A671BA577D100FCE946 /* PWSearchResultSnippetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSearchResultSnippetView.h; sourceTree = "<group>"; };
 		83574A681BA577D100FCE946 /* PWSearchResultSnippetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSearchResultSnippetView.m; sourceTree = "<group>"; };
 		83574A6A1BA595E400FCE946 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		835CB4841BAEFA7800A35C1C /* DJActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJActivityIndicator.h; sourceTree = "<group>"; };
+		835CB4851BAEFA7800A35C1C /* DJActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJActivityIndicator.m; sourceTree = "<group>"; };
+		835CB4861BAEFA7800A35C1C /* DJBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJBezierPath.h; sourceTree = "<group>"; };
+		835CB4871BAEFA7800A35C1C /* DJBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJBezierPath.m; sourceTree = "<group>"; };
+		835CB4881BAEFA7800A35C1C /* DJProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJProgressHUD.h; sourceTree = "<group>"; };
+		835CB4891BAEFA7800A35C1C /* DJProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJProgressHUD.m; sourceTree = "<group>"; };
+		835CB48A1BAEFA7800A35C1C /* DJProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJProgressIndicator.h; sourceTree = "<group>"; };
+		835CB48B1BAEFA7800A35C1C /* DJProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJProgressIndicator.m; sourceTree = "<group>"; };
+		835CB4901BAF0A2C00A35C1C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		835CB4911BAF0A2C00A35C1C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		837B975A1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKSafariSearchbarCell.h; path = PureWiki/TKSafariSearchbarCell.h; sourceTree = "<group>"; };
 		837B975B1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TKSafariSearchbarCell.m; path = PureWiki/TKSafariSearchbarCell.m; sourceTree = "<group>"; };
 		837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -480,6 +498,31 @@
 			name = xib;
 			sourceTree = "<group>";
 		};
+		835CB4831BAEFA7800A35C1C /* DJProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				835CB4841BAEFA7800A35C1C /* DJActivityIndicator.h */,
+				835CB4851BAEFA7800A35C1C /* DJActivityIndicator.m */,
+				835CB4861BAEFA7800A35C1C /* DJBezierPath.h */,
+				835CB4871BAEFA7800A35C1C /* DJBezierPath.m */,
+				835CB4881BAEFA7800A35C1C /* DJProgressHUD.h */,
+				835CB4891BAEFA7800A35C1C /* DJProgressHUD.m */,
+				835CB48A1BAEFA7800A35C1C /* DJProgressIndicator.h */,
+				835CB48B1BAEFA7800A35C1C /* DJProgressIndicator.m */,
+			);
+			name = DJProgressHUD;
+			path = DJProgressHUD/DJProgressHUD;
+			sourceTree = "<group>";
+		};
+		835CB4931BAF0A3100A35C1C /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				835CB4901BAF0A2C00A35C1C /* MBProgressHUD.m */,
+				835CB4911BAF0A2C00A35C1C /* MBProgressHUD.h */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		83A2FBCD1B830ACD00939452 /* main-window */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +583,8 @@
 				83D591101B89EC910018BC1C /* FBKVOController */,
 				83D46AB21B878B900061BE7E /* PureLayout */,
 				83ED35CC1BA4593C00CEFE61 /* SugarWiki */,
+				835CB4831BAEFA7800A35C1C /* DJProgressHUD */,
+				835CB4931BAF0A3100A35C1C /* MBProgressHUD */,
 			);
 			name = vendor;
 			path = PureWiki/vendor;
@@ -764,6 +809,8 @@
 				83ED35DC1BA4593C00CEFE61 /* __WikiQueryTask.h */,
 				83ED35DD1BA4593C00CEFE61 /* __WikiRevision.h */,
 				83ED35DE1BA4593C00CEFE61 /* __WikiSearchResult.h */,
+				8323AC131BAEC629009037B9 /* NSXMLNode+__WikiRevision.m */,
+				8323AC141BAEC629009037B9 /* NSXMLNode+__WikiRevision.h */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -956,12 +1003,14 @@
 				83A2FBE21B833B8E00939452 /* PWStackContainerViewController.m in Sources */,
 				83480E971B83530C00A33030 /* PWSidebarTabsTable.m in Sources */,
 				83ED372B1BA4593C00CEFE61 /* WikiSearchResult.m in Sources */,
+				835CB48D1BAEFA7800A35C1C /* DJBezierPath.m in Sources */,
 				83509BDD1B864B1300C4F454 /* PWSearchResultsTableCellView.m in Sources */,
 				83509BE01B870D0500C4F454 /* TKSafariSearchbarController.m in Sources */,
 				83ED36B61BA4593C00CEFE61 /* __WikiContinuationInitial.m in Sources */,
 				8321EC951B8C40C40099C824 /* PWArtworkConstants.m in Sources */,
 				83ED36B71BA4593C00CEFE61 /* __WikiContinuationUncompleted.m in Sources */,
 				83ED36C01BA4593C00CEFE61 /* AFHTTPRequestOperationManager.m in Sources */,
+				8323AC151BAEC629009037B9 /* NSXMLNode+__WikiRevision.m in Sources */,
 				83ED36BB1BA4593C00CEFE61 /* SugarWikiInfo.m in Sources */,
 				83C108281BAB29390096FC57 /* PWSearchResultSnippetBackingTextView.m in Sources */,
 				83D46ABC1B878B900061BE7E /* ALView+PureLayout.m in Sources */,
@@ -985,6 +1034,7 @@
 				83A2FBC71B830AB000939452 /* PWMainWindow.m in Sources */,
 				83509BCF1B8629DF00C4F454 /* PWSearchResultsAttachPanel.m in Sources */,
 				83ED37241BA4593C00CEFE61 /* WikiEngine.m in Sources */,
+				835CB48F1BAEFA7800A35C1C /* DJProgressIndicator.m in Sources */,
 				83E42E721BADCFBA009C6799 /* PWOpenedPagePreviewTitleField.m in Sources */,
 				83ED36C11BA4593C00CEFE61 /* AFHTTPSessionManager.m in Sources */,
 				83509BD41B862A1400C4F454 /* PWSearchResultsAttachPanelController.m in Sources */,
@@ -1004,6 +1054,7 @@
 				83B81DD51B95FDF100858BAB /* PWWikiPageArchive.m in Sources */,
 				83C108251BAAD3FB0096FC57 /* PWSearchResultTitleField.m in Sources */,
 				8322BF821B83812500A890C9 /* PWActionNotifications.m in Sources */,
+				835CB48E1BAEFA7800A35C1C /* DJProgressHUD.m in Sources */,
 				83ED36C21BA4593C00CEFE61 /* AFNetworkReachabilityManager.m in Sources */,
 				8321EC851B8C0C940099C824 /* PWWikiPageImageCell.m in Sources */,
 				83E42E6F1BAC73A3009C6799 /* PWOpenedPageContentPreviewBackingTextView.m in Sources */,
@@ -1011,10 +1062,12 @@
 				83509BE31B8738E800C4F454 /* PWWikiContentViewController.m in Sources */,
 				83ED37231BA4593C00CEFE61 /* WikiContinuation.m in Sources */,
 				8321EC841B8C0C940099C824 /* PWPWikiPageImageWell.m in Sources */,
+				835CB48C1BAEFA7800A35C1C /* DJActivityIndicator.m in Sources */,
 				83B4051E1B974231009C5FF1 /* PWWikiPageBackForwardList.m in Sources */,
 				8322BF961B83C6F400A890C9 /* TKSafariSearchbar.m in Sources */,
 				83ED36BF1BA4593C00CEFE61 /* AFHTTPRequestOperation.m in Sources */,
 				83ED36C31BA4593C00CEFE61 /* AFSecurityPolicy.m in Sources */,
+				835CB4921BAF0A2C00A35C1C /* MBProgressHUD.m in Sources */,
 				839585E81B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m in Sources */,
 				83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */,
 				83574A691BA577D100FCE946 /* PWSearchResultSnippetView.m in Sources */,

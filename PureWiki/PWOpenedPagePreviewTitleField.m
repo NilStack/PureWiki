@@ -27,7 +27,7 @@
 
 #import "SugarWiki.h"
 
-CGFloat static const kLeadingGap = 4.f;
+CGFloat static const kLeadingGap = 4.5f;
 
 // PWOpenedPagePreviewTitleField class
 @implementation PWOpenedPagePreviewTitleField
@@ -65,9 +65,6 @@ CGFloat static const kLeadingGap = 4.f;
                                     );
 
     [ drawingContent drawInRect: occupiedRect withAttributes: drawingAttrs ];
-
-//    [ [ NSColor orangeColor ] set ];
-//    NSRectFill( _DirtyRect );
     }
 
 #pragma mark Dynamic Properties

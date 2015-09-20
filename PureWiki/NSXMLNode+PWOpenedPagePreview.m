@@ -30,50 +30,11 @@
 @implementation NSXMLNode ( PWOpenedPagePreview )
 
 @dynamic isHeadElement;
-@dynamic isInComplicatedSet;
-@dynamic isCoordinate;
 
 - ( BOOL ) isHeadElement
     {
     if ( self.kind == NSXMLElementKind && [ self.name isEqualToString: @"head" ] )
         return YES;
-
-    return NO;
-    }
-
-- ( BOOL ) isInComplicatedSet
-    {
-    if ( [ self.name isEqualToString: @"h1" ]
-            || [ self.name isEqualToString: @"h2" ]
-            || [ self.name isEqualToString: @"h3" ]
-            || [ self.name isEqualToString: @"h4" ]
-            || [ self.name isEqualToString: @"h5" ]
-            || [ self.name isEqualToString: @"div" ]
-            || [ self.name isEqualToString: @"sup" ]
-            || [ self.name isEqualToString: @"table" ]
-            || [ self.name isEqualToString: @"dl" ]
-
-            || ( [ self.name isEqualToString: @"p" ]
-                    && ( self.nextNode.kind == NSXMLTextKind )
-                    && [ self.nextNode.stringValue isEqualToString: @"\n" ] )
-
-            || ( [ self.name isEqualToString: @"p" ]
-                    && ( self.childCount == 0 ) ) )
-        return YES;
-
-    return NO;
-    }
-
-- ( BOOL ) isCoordinate
-    {
-    if ( self.kind == NSXMLElementKind && [ self.name isEqualToString: @"span" ] )
-        {
-        __SugarArray_of( NSXMLNode* ) attrs = [ ( NSXMLElement* )self attributes ];
-
-        for ( NSXMLNode* _Attr in attrs )
-            if ( [ _Attr.stringValue isEqualToString: @"coordinates" ] )
-                return YES;
-        }
 
     return NO;
     }
