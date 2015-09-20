@@ -201,7 +201,7 @@
             if ( !error )
                 {
                 [ self->_wikiEngine pagesWithTitles: @[ castratedWikiPageArchive.wikiPageTitle ]
-                                      parseRevision: YES
+                                  parseLastRevision: YES
                                        continuation: nil
                                             success:
                     ^( __SugarArray_of( WikiPage* ) _MatchedPages, WikiContinuation* _Continuation, BOOL _IsBatchComplete )
@@ -236,8 +236,6 @@
         else if ( _WebView == self.__webView )
             {
             [ self.__webView setPolicyDelegate: self ];
-
-//            [ self __reloadAllStatusConsumers ];
             [ self __restoreScrollPosition ];
 
             [ self askToBecomeFirstResponder ];
