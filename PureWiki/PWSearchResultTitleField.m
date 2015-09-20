@@ -25,8 +25,7 @@
 
 #import "SugarWiki.h"
 
-CGFloat static const kLeadingGap = 4.f;
-CGFloat static const kTrailingGap = 20.f;
+CGFloat static const kLeadingGap = 4.5f;
 
 // PWSearchResultTitleField class
 @implementation PWSearchResultTitleField
