@@ -35,6 +35,8 @@
 #import "TKSafariSearchbarController.h"
 #import "PWSidebarTabsTableController.h"
 
+#import "DJProgressHUD.h"
+
 #import "SugarWiki.h"
 
 // Private Interfaces
@@ -184,6 +186,11 @@
     }
 
 #pragma mark Conforms to <WebFrameLoadDelegate>
+- ( void )                  webView: ( WebView* )_WebView
+    didCommitLoadForFrame: ( WebFrame* )_Frame
+    {
+    }
+
 - ( void )        webView: ( WebView* )_WebView
     didFinishLoadForFrame: ( WebFrame* )_Frame
     {

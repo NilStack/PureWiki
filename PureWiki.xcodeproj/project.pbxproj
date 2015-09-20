@@ -41,6 +41,7 @@
 		835CB48D1BAEFA7800A35C1C /* DJBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 835CB4871BAEFA7800A35C1C /* DJBezierPath.m */; settings = {ASSET_TAGS = (); }; };
 		835CB48E1BAEFA7800A35C1C /* DJProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 835CB4891BAEFA7800A35C1C /* DJProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		835CB48F1BAEFA7800A35C1C /* DJProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 835CB48B1BAEFA7800A35C1C /* DJProgressIndicator.m */; settings = {ASSET_TAGS = (); }; };
+		835CB4921BAF0A2C00A35C1C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 835CB4901BAF0A2C00A35C1C /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		837B975C1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837B975B1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m */; };
 		837B975E1B8D7BCF00BDDCF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */; };
 		839585E11B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 839585E01B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m */; };
@@ -211,6 +212,8 @@
 		835CB4891BAEFA7800A35C1C /* DJProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJProgressHUD.m; sourceTree = "<group>"; };
 		835CB48A1BAEFA7800A35C1C /* DJProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJProgressIndicator.h; sourceTree = "<group>"; };
 		835CB48B1BAEFA7800A35C1C /* DJProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJProgressIndicator.m; sourceTree = "<group>"; };
+		835CB4901BAF0A2C00A35C1C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		835CB4911BAF0A2C00A35C1C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		837B975A1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKSafariSearchbarCell.h; path = PureWiki/TKSafariSearchbarCell.h; sourceTree = "<group>"; };
 		837B975B1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TKSafariSearchbarCell.m; path = PureWiki/TKSafariSearchbarCell.m; sourceTree = "<group>"; };
 		837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -511,6 +514,15 @@
 			path = DJProgressHUD/DJProgressHUD;
 			sourceTree = "<group>";
 		};
+		835CB4931BAF0A3100A35C1C /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				835CB4901BAF0A2C00A35C1C /* MBProgressHUD.m */,
+				835CB4911BAF0A2C00A35C1C /* MBProgressHUD.h */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		83A2FBCD1B830ACD00939452 /* main-window */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +584,7 @@
 				83D46AB21B878B900061BE7E /* PureLayout */,
 				83ED35CC1BA4593C00CEFE61 /* SugarWiki */,
 				835CB4831BAEFA7800A35C1C /* DJProgressHUD */,
+				835CB4931BAF0A3100A35C1C /* MBProgressHUD */,
 			);
 			name = vendor;
 			path = PureWiki/vendor;
@@ -1054,6 +1067,7 @@
 				8322BF961B83C6F400A890C9 /* TKSafariSearchbar.m in Sources */,
 				83ED36BF1BA4593C00CEFE61 /* AFHTTPRequestOperation.m in Sources */,
 				83ED36C31BA4593C00CEFE61 /* AFSecurityPolicy.m in Sources */,
+				835CB4921BAF0A2C00A35C1C /* MBProgressHUD.m in Sources */,
 				839585E81B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m in Sources */,
 				83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */,
 				83574A691BA577D100FCE946 /* PWSearchResultSnippetView.m in Sources */,
