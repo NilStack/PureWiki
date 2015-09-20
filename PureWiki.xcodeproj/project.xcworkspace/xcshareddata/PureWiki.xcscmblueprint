@@ -4,22 +4,26 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "657576A761C833A7999A56A5721E177FA2FC9BE6" : 0,
     "F17C12D860420E85866F57474FF628886C65A3EA" : 0,
+    "657576A761C833A7999A56A5721E177FA2FC9BE6" : 0,
+    "8854BC9BC0967272D6D6C69841B8D20A1635D04B" : 0,
     "0D0F11DDE7B74E094A69FCB72E3DEF1E1255A8E9" : 0,
-    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : 0,
-    "E6248D77DBBC6B1D6F6059D14C6A0B9ED1677585" : 0
+    "E6248D77DBBC6B1D6F6059D14C6A0B9ED1677585" : 0,
+    "9216234465E28AF4110CA9480EA255273B2C94F7" : 0,
+    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6ECED3FD-6A08-428C-98AA-B62B5C53C1EE",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "657576A761C833A7999A56A5721E177FA2FC9BE6" : "PureWiki\/",
     "F17C12D860420E85866F57474FF628886C65A3EA" : "PureWiki\/PureWiki\/vendor\/KVOController\/",
+    "657576A761C833A7999A56A5721E177FA2FC9BE6" : "PureWiki\/",
+    "8854BC9BC0967272D6D6C69841B8D20A1635D04B" : "PureWiki\/PureWiki\/vendor\/DJProgressHUD\/",
     "0D0F11DDE7B74E094A69FCB72E3DEF1E1255A8E9" : "PureWiki\/PureWiki\/vendor\/Wikikit\/",
-    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : "PureWiki\/PureWiki\/vendor\/Wikikit\/Wikikit\/vendor\/AFNetworking\/",
-    "E6248D77DBBC6B1D6F6059D14C6A0B9ED1677585" : "PureWiki\/PureWiki\/vendor\/PureLayout\/"
+    "E6248D77DBBC6B1D6F6059D14C6A0B9ED1677585" : "PureWiki\/PureWiki\/vendor\/PureLayout\/",
+    "9216234465E28AF4110CA9480EA255273B2C94F7" : "PureWiki\/PureWiki\/vendor\/MBProgressHUD\/",
+    "DD20A1A48C66B5213E0FEBB87A95EF51D6C6F3E8" : "PureWiki\/PureWiki\/vendor\/Wikikit\/Wikikit\/vendor\/AFNetworking\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "PureWiki",
-  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "PureWiki.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
@@ -31,6 +35,16 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/PureWiki.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "657576A761C833A7999A56A5721E177FA2FC9BE6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/DJProgressHUD_OSX.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8854BC9BC0967272D6D6C69841B8D20A1635D04B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/MBProgressHUD-OSX.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9216234465E28AF4110CA9480EA255273B2C94F7"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/TongKuo\/AFNetworking.git",

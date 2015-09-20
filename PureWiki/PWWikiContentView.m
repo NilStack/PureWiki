@@ -35,8 +35,6 @@
 #import "TKSafariSearchbarController.h"
 #import "PWSidebarTabsTableController.h"
 
-#import "DJProgressHUD.h"
-
 #import "SugarWiki.h"
 
 // Private Interfaces
@@ -187,8 +185,28 @@
 
 #pragma mark Conforms to <WebFrameLoadDelegate>
 - ( void )                  webView: ( WebView* )_WebView
+    didStartProvisionalLoadForFrame: ( WebFrame* )_Frame
+    {
+    if ( _WebView == self.__backingWebView )
+        {
+        self->__progressHUD = [ [ MBProgressHUD alloc ] initWithView: self ];
+
+        [ self->__progressHUD setMode: MBProgressHUDModeDeterminate ];
+        [ self->__progressHUD setLabelText: @"LOADING…" ];
+
+        [ self addSubview: self->__progressHUD ];
+
+        [ self->__progressHUD setProgress: 0.f ];
+        [ self->__progressHUD show: YES ];
+        }
+    }
+
+- ( void )        webView: ( WebView* )_Sender
     didCommitLoadForFrame: ( WebFrame* )_Frame
     {
+    CGFloat pageTotalSize = ( CGFloat )[ [ ( NSHTTPURLResponse* )_Frame.dataSource.response allHeaderFields ][ @"Content-Length" ] longLongValue ];
+    CGFloat fetchedSize = ( CGFloat )( _Frame.dataSource.data.length );
+    [ self->__progressHUD setProgress: fetchedSize / pageTotalSize ];
     }
 
 - ( void )        webView: ( WebView* )_WebView
@@ -247,6 +265,8 @@
 
             [ self askToBecomeFirstResponder ];
             [ [ ( PWStackContainerView* )( self.owner ) sidebarTabsTableController ] pushOpenedWikiPage: self.currentOpenedWikiPage ];
+
+            [ self->__progressHUD hide: YES ];
 
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, _debuggingBFList, _backForwardList );
