@@ -213,9 +213,9 @@
 - ( void )        webView: ( WebView* )_Sender
     didCommitLoadForFrame: ( WebFrame* )_Frame
     {
-    CGFloat pageTotalSize = ( CGFloat )[ [ ( NSHTTPURLResponse* )_Frame.dataSource.response allHeaderFields ][ @"Content-Length" ] longLongValue ];
-    CGFloat fetchedSize = ( CGFloat )( _Frame.dataSource.data.length );
-    [ self->__progressHUD setProgress: fetchedSize / pageTotalSize ];
+    self->__totalProgress = ( CGFloat )[ [ ( NSHTTPURLResponse* )_Frame.dataSource.response allHeaderFields ][ @"Content-Length" ] longLongValue ];
+    self->__currentProgress = ( CGFloat )( _Frame.dataSource.data.length );
+    [ self->__progressHUD setProgress: self.__progressPercent ];
     }
 
 - ( void )        webView: ( WebView* )_WebView
@@ -323,12 +323,10 @@
     didReceiveResponse: ( NSURLResponse* )_Response
         fromDataSource: ( WebDataSource* )_DataSource
     {
-    if ( _Sender == self.__backingWebView )
-        {
-        self->__totalProgress += [ [ ( NSHTTPURLResponse* )_Response allHeaderFields ][ @"Content-Length" ] longLongValue ];
-        [ self->__progressHUD setProgress: self.__progressPercent ];
-        NSLog( @"🍌%@: %g", _Identifier, self->__totalProgress );
-        }
+//    NSLog( @"🍓%@ %lld", _Identifier, [ [ ( NSHTTPURLResponse* )_Response allHeaderFields ][ @"Content-Length" ] longLongValue ] );
+//    if ( _Sender == self.__backingWebView )
+//        {
+//        }
     }
 
 - ( void )          webView: ( WebView* )_Sender
@@ -336,12 +334,21 @@
     didReceiveContentLength: ( NSInteger )_Length
              fromDataSource: ( WebDataSource* )_DataSource
     {
-    if ( _Sender == self.__backingWebView )
-        {
-        self->__currentProgress += _Length;
-        [ self->__progressHUD setProgress: self.__progressPercent ];
-        NSLog( @"🍓%@: %ld", _Identifier, _Length );
-        }
+    NSLog( @"🍓%lu, %ld", _DataSource.data.length, _Length );
+//    if ( _Sender == self.__backingWebView )
+//        {
+//        if ( [ _Identifier isEqualToString: _DataSource.request.URL.absoluteString ] )
+//            {
+//            self->__currentProgress = _Length;
+//            [ self->__progressHUD setProgress: self.__progressPercent ];
+
+//            NSLog( @"🍍 %@  %g vs. %g", _DataSource.request.URL.absoluteString, self->__currentProgress, self->__totalProgress );
+
+//            if ( self->__currentProgress >= self->__totalProgress )
+//                NSLog( @"🍓 %@", _DataSource.request.URL.absoluteString );
+//                [ self->__progressHUD setMode: MBProgressHUDModeIndeterminate ];
+//            }
+//        }
     }
 
 #pragma mark Private Interfaces
