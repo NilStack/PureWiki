@@ -86,7 +86,6 @@
 - ( void ) awakeFromNib
     {
     [ self.__backingWebView setFrameLoadDelegate: self ];
-    [ self.__backingWebView setResourceLoadDelegate: self ];
     [ self.__backingWebView setMaintainsBackForwardList: NO ];
 
     [ self.__webView setPolicyDelegate: self ];
@@ -200,7 +199,7 @@
         {
         self->__progressHUD = [ [ MBProgressHUD alloc ] initWithView: self ];
 
-        [ self->__progressHUD setMode: MBProgressHUDModeDeterminate ];
+        [ self->__progressHUD setMode: MBProgressHUDModeIndeterminate ];
         [ self->__progressHUD setLabelText: @"LOADING…" ];
 
         [ self addSubview: self->__progressHUD ];
@@ -210,13 +209,6 @@
         }
     }
 
-- ( void )        webView: ( WebView* )_Sender
-    didCommitLoadForFrame: ( WebFrame* )_Frame
-    {
-    self->__totalProgress = ( CGFloat )[ [ ( NSHTTPURLResponse* )_Frame.dataSource.response allHeaderFields ][ @"Content-Length" ] longLongValue ];
-    self->__currentProgress = ( CGFloat )( _Frame.dataSource.data.length );
-    [ self->__progressHUD setProgress: self.__progressPercent ];
-    }
 
 - ( void )        webView: ( WebView* )_WebView
     didFinishLoadForFrame: ( WebFrame* )_Frame
@@ -308,47 +300,6 @@
             [ _Listener ignore ];
             }
         }
-    }
-
-#pragma mark Conforms to <WebResourceLoadDelegate>
-- ( id )                webView: ( WebView* )_WebView
-    identifierForInitialRequest: ( NSURLRequest* )_Request
-                 fromDataSource: ( WebDataSource* )_DataSource
-    {
-    return _Request.URL.absoluteString;
-    }
-
-- ( void )     webView: ( WebView* )_Sender
-              resource: ( id )_Identifier
-    didReceiveResponse: ( NSURLResponse* )_Response
-        fromDataSource: ( WebDataSource* )_DataSource
-    {
-//    NSLog( @"🍓%@ %lld", _Identifier, [ [ ( NSHTTPURLResponse* )_Response allHeaderFields ][ @"Content-Length" ] longLongValue ] );
-//    if ( _Sender == self.__backingWebView )
-//        {
-//        }
-    }
-
-- ( void )          webView: ( WebView* )_Sender
-                   resource: ( id )_Identifier
-    didReceiveContentLength: ( NSInteger )_Length
-             fromDataSource: ( WebDataSource* )_DataSource
-    {
-    NSLog( @"🍓%lu, %ld", _DataSource.data.length, _Length );
-//    if ( _Sender == self.__backingWebView )
-//        {
-//        if ( [ _Identifier isEqualToString: _DataSource.request.URL.absoluteString ] )
-//            {
-//            self->__currentProgress = _Length;
-//            [ self->__progressHUD setProgress: self.__progressPercent ];
-
-//            NSLog( @"🍍 %@  %g vs. %g", _DataSource.request.URL.absoluteString, self->__currentProgress, self->__totalProgress );
-
-//            if ( self->__currentProgress >= self->__totalProgress )
-//                NSLog( @"🍓 %@", _DataSource.request.URL.absoluteString );
-//                [ self->__progressHUD setMode: MBProgressHUDModeIndeterminate ];
-//            }
-//        }
     }
 
 #pragma mark Private Interfaces

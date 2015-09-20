@@ -98,48 +98,75 @@
     }
 
 NSString static* const sPagePreviewContentCSS =
-    @"body {"
-        "font-family: \"Helvetica Neue\";"
-        "color: rgb(10, 10, 10);"
-        "font-size: 1em;"
-        "line-height: 130%;"
-        "font-weight: lighter;"
-        "}"
+@"  body {"
+"       font-family: \"Helvetica Neue\";"
+"       color: rgb(10, 10, 10);"
+"       font-size: 1em;"
+"       line-height: 130%;"
+"       font-weight: lighter;"
+"       }"
 
-    "strong, b {"
-        "color: rgb(0, 0, 0);"
-        "font-weight: normal;"
-        "}"
+"   strong, b {"
+"       color: rgb(0, 0, 0);"
+"       font-weight: normal;"
+"       }"
 
-    " a {"
-        "text-decoration: none;"
-        "color: rgb(10, 10, 10);"
-        "}";
+"     a {"
+"       text-decoration: none;"
+"       color: rgb(10, 10, 10);"
+"       }";
+
+NSString static* const sNoPreviewCSS =
+@"    i {"
+"       font-style: italic;"
+"       font-family: \"Helvetica Neue\";"
+"       color: rgb(80, 80, 80);"
+"       font-size: 1em;"
+"       line-height: 130%;"
+"       font-weight: regular;"
+"       }";
+
 
 #pragma mark Private Interfaces
 - ( NSXMLDocument* ) __processedTheFuckingHTMLDocument: ( NSXMLDocument* )_HTMLDoc
     {
-    NSXMLNode* currentNode = _HTMLDoc;
-    NSXMLElement* styleNode = [ [ NSXMLElement alloc ] initWithXMLString: [ NSString stringWithFormat: @"<style>%@</style>", sPagePreviewContentCSS ] error: nil ];
+    NSXMLDocument* processedDoc = nil;
+    NSString* css = nil;
 
-       do
+    if ( _HTMLDoc )
         {
-        if ( currentNode.isHeadElement )
+        processedDoc = _HTMLDoc;
+        css = sPagePreviewContentCSS;
+        }
+    else
+        {
+        processedDoc = [ [ NSXMLDocument alloc ] initWithXMLString: @"<i style=\"font-family: \"Helvetica Neue\";\">No Preview</i>"
+                                                           options: NSXMLDocumentTidyHTML
+                                                             error: nil ];
+        css = sNoPreviewCSS;
+        }
+
+        NSXMLNode* currentNode = processedDoc;
+        NSXMLElement* styleNode = [ [ NSXMLElement alloc ] initWithXMLString: [ NSString stringWithFormat: @"<style>%@</style>", css ] error: nil ];
+
+           do
             {
-            [ ( NSXMLElement* )currentNode addChild: styleNode ];
-            break;
-            }
+            if ( currentNode.isHeadElement )
+                {
+                [ ( NSXMLElement* )currentNode addChild: styleNode ];
+                break;
+                }
 
-        } while ( ( currentNode = currentNode.nextNode ) );
+            } while ( ( currentNode = currentNode.nextNode ) );
 
-    #if DEBUG
-    [ _HTMLDoc.XMLString writeToFile: [ NSHomeDirectory() stringByAppendingString: [ NSString stringWithFormat: @"/%@.htm", self->__openedWikiPage.openedWikiPage.title ] ]
-                          atomically: YES
-                            encoding: NSUTF8StringEncoding
-                               error: nil ];
-    #endif
+        #if DEBUG
+        [ _HTMLDoc.XMLString writeToFile: [ NSHomeDirectory() stringByAppendingString: [ NSString stringWithFormat: @"/%@.htm", self->__openedWikiPage.openedWikiPage.title ] ]
+                              atomically: YES
+                                encoding: NSUTF8StringEncoding
+                                   error: nil ];
+        #endif
 
-    return _HTMLDoc;
+    return processedDoc;
     }
 
 @end // PWOpenedPageContentPreviewView class

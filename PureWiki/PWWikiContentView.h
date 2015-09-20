@@ -42,7 +42,7 @@
 
 // PWWikiContentView class
 @interface PWWikiContentView : NSView
-    <WebFrameLoadDelegate, WebPolicyDelegate, WebResourceLoadDelegate, MBProgressHUDDelegate>
+    <WebFrameLoadDelegate, WebPolicyDelegate, MBProgressHUDDelegate>
     {
 @private
     WikiEngine __strong* _wikiEngine;
