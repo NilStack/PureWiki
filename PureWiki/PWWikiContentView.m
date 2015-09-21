@@ -197,12 +197,18 @@
     {
     if ( _WebView == self.__backingWebView )
         {
+        if ( self->__progressHUD )
+            {
+            [ self->__progressHUD hide: YES ];
+            [ self->__progressHUD removeFromSuperview ];
+            }
+
         self->__progressHUD = [ [ MBProgressHUD alloc ] initWithView: self ];
+
+        [ self addSubview: self->__progressHUD ];
 
         [ self->__progressHUD setMode: MBProgressHUDModeIndeterminate ];
         [ self->__progressHUD setLabelText: @"LOADING…" ];
-
-        [ self addSubview: self->__progressHUD ];
 
         [ self->__progressHUD setProgress: 0.f ];
         [ self->__progressHUD show: YES ];
@@ -261,7 +267,6 @@
 
         else if ( _WebView == self.__webView )
             {
-            [ self.__webView setPolicyDelegate: self ];
             [ self __restoreScrollPosition ];
 
             [ self askToBecomeFirstResponder ];
@@ -280,6 +285,15 @@
 
 #pragma mark Conforms to <WebPolicyDelegate>
 
+- ( void )          webView: ( WebView* )_WebView
+    decidePolicyForMIMEType: ( NSString* )_Type
+                    request: ( NSURLRequest* )_Request
+                      frame: ( WebFrame* )_Frame
+           decisionListener: ( id <WebPolicyDecisionListener> )_Listener
+    {
+    // TODO:
+    }
+
 // Routes all the navigation action that occured in self.__webView
 - ( void )                  webView: ( WebView* )_WebView
     decidePolicyForNavigationAction: ( NSDictionary* )_ActionInformation
@@ -296,9 +310,16 @@
             [ _Listener use ];
         else
             {
-            [ self.__backingWebView.mainFrame loadRequest: _Request ];
+            NSString* beginningURL = [ NSString stringWithFormat: @"https://%@.wikipedia.org/wiki", self->_wikiEngine.ISOLanguageCode ];
+            if ( [ _Request.URL.absoluteString hasPrefix: beginningURL ] )
+                [ self.__backingWebView.mainFrame loadRequest: _Request ];
+            else
+                [ [ NSWorkspace sharedWorkspace ] openURL: _Request.URL ];
+
             [ _Listener ignore ];
             }
+
+        [ self.__webView setPolicyDelegate: self ];
         }
     }
 
@@ -344,8 +365,7 @@ NSString* const sScrollAnimationJS =
 - ( void ) __restoreScrollPosition
     {
     [ self.__webView stringByEvaluatingJavaScriptFromString:
-//        [ NSString stringWithFormat: sScrollAnimationJS, self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
-        [ NSString stringWithFormat:@"window.scrollTo( %g, %g )", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
+    [ NSString stringWithFormat:@"window.scrollTo( %g, %g )", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
     }
 
 - ( void ) __reloadAllStatusConsumers
