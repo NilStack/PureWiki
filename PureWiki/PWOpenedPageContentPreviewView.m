@@ -133,7 +133,8 @@ NSString static* const sNoPreviewCSS =
     NSXMLDocument* processedDoc = nil;
     NSString* css = nil;
 
-    if ( _HTMLDoc )
+    NSXMLElement* bodyElement = [ _HTMLDoc.rootElement elementsForName: @"body" ].firstObject;
+    if ( _HTMLDoc && ( bodyElement.childCount > 0 ) )
         {
         processedDoc = _HTMLDoc;
         css = sPagePreviewContentCSS;
@@ -158,6 +159,7 @@ NSString static* const sNoPreviewCSS =
                 }
 
             } while ( ( currentNode = currentNode.nextNode ) );
+
 
         #if DEBUG
         [ _HTMLDoc.XMLString writeToFile: [ NSHomeDirectory() stringByAppendingString: [ NSString stringWithFormat: @"/%@.htm", self->__openedWikiPage.openedWikiPage.title ] ]
