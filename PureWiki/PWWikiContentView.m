@@ -44,6 +44,7 @@
 @property ( strong ) WebView* __backingWebView;
 @property ( assign ) CGFloat __progressPercent;
 
+- ( void ) __stopLoading;
 - ( void ) __saveScrollPosition;
 - ( void ) __restoreScrollPosition;
 - ( void ) __reloadAllStatusConsumers;
@@ -118,9 +119,7 @@
         {
         self->_originalWikiPage = _WikiPage;
 
-        [ self.__webView.mainFrame stopLoading ];
-        [ self.__backingWebView.mainFrame stopLoading ];
-
+        [ self __stopLoading ];
         [ self->_backForwardList cleanUp ];
 
         NSURLRequest* request = [ NSURLRequest requestWithURL: self->_originalWikiPage.URL ];
@@ -310,7 +309,9 @@
             [ _Listener use ];
         else
             {
-            NSString* beginningURL = [ NSString stringWithFormat: @"https://%@.wikipedia.org/wiki", self->_wikiEngine.ISOLanguageCode ];
+            [ self __stopLoading ];
+
+            NSString* beginningURL = [ NSString stringWithFormat: @"https://%@.wikipedia.org", self->_wikiEngine.ISOLanguageCode ];
             if ( [ _Request.URL.absoluteString hasPrefix: beginningURL ] )
                 [ self.__backingWebView.mainFrame loadRequest: _Request ];
             else
@@ -324,6 +325,12 @@
     }
 
 #pragma mark Private Interfaces
+- ( void ) __stopLoading
+    {
+    [ self.__webView.mainFrame stopLoading ];
+    [ self.__backingWebView.mainFrame stopLoading ];
+    }
+
 - ( void ) __saveScrollPosition
     {
     NSString* xOffset = [ self.__webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageXOffset" ] ];
