@@ -809,8 +809,8 @@
 				83ED35DC1BA4593C00CEFE61 /* __WikiQueryTask.h */,
 				83ED35DD1BA4593C00CEFE61 /* __WikiRevision.h */,
 				83ED35DE1BA4593C00CEFE61 /* __WikiSearchResult.h */,
-				8323AC131BAEC629009037B9 /* NSXMLNode+__WikiRevision.m */,
 				8323AC141BAEC629009037B9 /* NSXMLNode+__WikiRevision.h */,
+				8323AC131BAEC629009037B9 /* NSXMLNode+__WikiRevision.m */,
 			);
 			path = internal;
 			sourceTree = "<group>";
