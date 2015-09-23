@@ -42,7 +42,6 @@
 @implementation PWSidebarTabsTableCell
 
 @dynamic openedWikiPage;
-@dynamic isHostRowViewSelected;
 
 - ( void ) awakeFromNib
     {
@@ -72,18 +71,11 @@
     return self->_openedWikiPage;
     }
 
-- ( BOOL ) isHostRowViewSelected
+- ( void ) setBackgroundStyle: ( NSBackgroundStyle )_BgStyle
     {
-    return self->__isHostRowViewSelected;
-    }
-
-- ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
-    {
-    if ( self->__isHostRowViewSelected != _YesOrNo )
-        {
-        self->__isHostRowViewSelected = _YesOrNo;
-        NSLog( @"%@", self->__isHostRowViewSelected ? @"✅" : @"❌" );
-        }
+    NSTableRowView* hostRowView = ( NSTableRowView* )[ self superview ];
+    NSLog( @"%@     Selected: %@    %lu", hostRowView, hostRowView.isSelected ? @"✅" : @"❌", _BgStyle );
+    [ super setBackgroundStyle: _BgStyle ];
     }
 
 #pragma mark Private Interfaces

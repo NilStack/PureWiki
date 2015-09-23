@@ -40,13 +40,10 @@
 
     PWOpenedPagePreviewTitleField __strong* __openedPageContentPreivewTitleField;
     PWOpenedPageContentPreviewView __strong* __openedPageContentPreviewView;
-
-    BOOL __isHostRowViewSelected;
     }
 
 #pragma mark Ivar Properties
 @property ( strong, readwrite ) PWOpenedWikiPage* openedWikiPage;
-@property ( assign, readwrite, setter = setHostRowViewSelected: ) BOOL isHostRowViewSelected;
 
 #pragma mark Outlets
 @property ( weak ) IBOutlet PWPWikiPageImageWell* pageImageView;

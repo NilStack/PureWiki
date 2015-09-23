@@ -23,6 +23,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSidebarTableRowView.h"
+#import "PWSidebarTabsTableCell.h"
 #import "NSColor+TKSafariSearchbar.h"
 
 // PWSidebarTableRowView class
@@ -51,8 +52,6 @@
         [ selectionPath fill ];
         [ selectionPath stroke ];
         }
-
-    NSLog( @"%@", ( ( NSView* )[ self viewAtColumn: 0 ] ).superview  );
     }
 
 @end // PWSidebarTableRowView class
