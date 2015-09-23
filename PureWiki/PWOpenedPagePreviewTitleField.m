@@ -80,6 +80,7 @@ CGFloat static const kLeadingGap = 4.5f;
     return self->__openedWikiPage;
     }
 
+#pragma mark Conforms to <PWSubviewOfSidebarTableRowView>
 - ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
     {
     if ( self->__isHostRowViewSelected != _YesOrNo )

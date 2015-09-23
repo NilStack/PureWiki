@@ -29,6 +29,13 @@
 
 @end // PWSidebarTableRowView class
 
+// PWSubviewOfSidebarTableRowView protocol
+@protocol PWSubviewOfSidebarTableRowView <NSObject>
+
+@property ( assign, readwrite, setter = setHostRowViewSelected: ) BOOL isHostRowViewSelected;
+
+@end // PWSubviewOfSidebarTableRowView protocol
+
 /*===============================================================================┐
 |                                                                                | 
 |                      ++++++     =++++~     +++=     =+++                       | 

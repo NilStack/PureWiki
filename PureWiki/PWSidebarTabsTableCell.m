@@ -72,11 +72,7 @@
     return self->_openedWikiPage;
     }
 
-- ( BOOL ) isHostRowViewSelected
-    {
-    return self->__isHostRowViewSelected;
-    }
-
+#pragma mark Conforms to <PWSubviewOfSidebarTableRowView>
 - ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
     {
     if ( self->__isHostRowViewSelected != _YesOrNo )
@@ -86,6 +82,11 @@
 
         [ self->__openedPageContentPreivewTitleField setHostRowViewSelected: self->__isHostRowViewSelected ];
         }
+    }
+
+- ( BOOL ) isHostRowViewSelected
+    {
+    return self->__isHostRowViewSelected;
     }
 
 #pragma mark Private Interfaces
