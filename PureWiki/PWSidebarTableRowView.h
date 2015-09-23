@@ -22,19 +22,19 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSidebarTabsTable.h"
-#import "PWOpenedPageContentPreviewView.h"
+@import Cocoa;
 
-// PWSidebarTabsTable class
-@implementation PWSidebarTabsTable
+// PWSidebarTableRowView class
+@interface PWSidebarTableRowView : NSTableRowView
 
-#pragma Initializations
-- ( void ) awakeFromNib
-    {
-    [ self setSelectionHighlightStyle: NSTableViewSelectionHighlightStyleRegular ];
-    }
+@end // PWSidebarTableRowView class
 
-@end // PWSidebarTabsTable class
+// PWSubviewOfSidebarTableRowView protocol
+@protocol PWSubviewOfSidebarTableRowView <NSObject>
+
+@property ( assign, readwrite, setter = setHostRowViewSelected: ) BOOL isHostRowViewSelected;
+
+@end // PWSubviewOfSidebarTableRowView protocol
 
 /*===============================================================================┐
 |                                                                                | 

@@ -25,6 +25,7 @@
 #import "PWOpenedPageContentPreviewView.h"
 #import "PWOpenedWikiPage.h"
 #import "PWOpenedPageContentPreviewBackingTextView.h"
+#import "NSColor+TKSafariSearchbar.h"
 
 #import "NSXMLNode+PWOpenedPagePreview.h"
 
@@ -70,8 +71,8 @@
     {
     self->__openedWikiPage = _OpenedWikiPage;
 
-    NSXMLDocument* prettyParsedSnippet =
-        [ self __processedTheFuckingHTMLDocument: self->__openedWikiPage.openedWikiPage.lastRevision.prettyParsedSnippet ];
+    NSXMLDocument* prettyParsedSnippet = [ self __processedTheFuckingHTMLDocument:
+        self->__openedWikiPage.openedWikiPage.lastRevision.prettyParsedSnippet ];
         
     NSData* HTMLData = [ prettyParsedSnippet.XMLString dataUsingEncoding: NSUTF8StringEncoding ];
     self->__internalTextStorage = [ [ NSTextStorage alloc ] initWithHTML: HTMLData documentAttributes: nil ];
@@ -85,11 +86,13 @@
 
     [ layoutManager addTextContainer: textContainer ];
 
-    ( void )[ [ PWOpenedPageContentPreviewBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer ];
-
+    ( void )[ [ PWOpenedPageContentPreviewBackingTextView alloc ] initWithFrame: self.frame
+                                                                  textContainer: textContainer ];
     [ self setSubviews: @[ self.backingTextView ] ];
     [ self.backingTextView configureForAutoLayout ];
     [ self.backingTextView autoPinEdgesToSuperviewEdges ];
+
+    [ self setHostRowViewSelected: self->__isHostRowViewSelected ];
     }
 
 - ( PWOpenedWikiPage* ) openedWikiPage
@@ -97,49 +100,98 @@
     return self->__openedWikiPage;
     }
 
-NSString static* const sPagePreviewContentCSS =
-    @"body {"
-        "font-family: \"Helvetica Neue\";"
-        "color: rgb(10, 10, 10);"
-        "font-size: 1em;"
-        "line-height: 130%;"
-        "font-weight: lighter;"
-        "}"
+#pragma mark Conforms to <PWSubviewOfSidebarTableRowView>
+- ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
+    {
+    self->__isHostRowViewSelected = _YesOrNo;
 
-    "strong, b {"
-        "color: rgb(0, 0, 0);"
-        "font-weight: normal;"
-        "}"
+    NSColor* foregroundColor =
+        self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ];
 
-    " a {"
-        "text-decoration: none;"
-        "color: rgb(10, 10, 10);"
-        "}";
+    [ self->__internalTextStorage addAttribute: NSForegroundColorAttributeName
+                                         value: foregroundColor
+                                         range: NSMakeRange( 0, self->__internalTextStorage.length ) ];
+
+    [ self.backingTextView setHostRowViewSelected: self->__isHostRowViewSelected ];
+    }
+
+- ( BOOL ) isHostRowViewSelected
+    {
+    return self->__isHostRowViewSelected;
+    }
 
 #pragma mark Private Interfaces
+
+NSString static* const sPagePreviewContentCSS =
+@"  body {"
+"       font-family: \"Helvetica Neue\";"
+"       color: rgb(10, 10, 10);"
+"       font-size: 1em;"
+"       line-height: 130%;"
+"       font-weight: lighter;"
+"       }"
+
+"   strong, b {"
+"       color: rgb(0, 0, 0);"
+"       font-weight: normal;"
+"       }"
+
+"     a {"
+"       text-decoration: none;"
+"       color: rgb(10, 10, 10);"
+"       }";
+
+NSString static* const sNoPreviewCSS =
+@"    i {"
+"       font-style: italic;"
+"       font-family: \"Helvetica Neue\";"
+"       color: rgb(80, 80, 80);"
+"       font-size: 1em;"
+"       line-height: 130%;"
+"       font-weight: regular;"
+"       }";
+
 - ( NSXMLDocument* ) __processedTheFuckingHTMLDocument: ( NSXMLDocument* )_HTMLDoc
     {
-    NSXMLNode* currentNode = _HTMLDoc;
-    NSXMLElement* styleNode = [ [ NSXMLElement alloc ] initWithXMLString: [ NSString stringWithFormat: @"<style>%@</style>", sPagePreviewContentCSS ] error: nil ];
+    NSXMLDocument* processedDoc = nil;
+    NSString* css = nil;
 
-       do
+    NSXMLElement* bodyElement = [ _HTMLDoc.rootElement elementsForName: @"body" ].firstObject;
+    if ( _HTMLDoc && ( bodyElement.childCount > 0 ) )
         {
-        if ( currentNode.isHeadElement )
+        processedDoc = _HTMLDoc;
+        css = sPagePreviewContentCSS;
+        }
+    else
+        {
+        processedDoc = [ [ NSXMLDocument alloc ] initWithXMLString: @"<i style=\"font-family: \"Helvetica Neue\";\">No Preview</i>"
+                                                           options: NSXMLDocumentTidyHTML
+                                                             error: nil ];
+        css = sNoPreviewCSS;
+        }
+
+        NSXMLNode* currentNode = processedDoc;
+        NSXMLElement* styleNode = [ [ NSXMLElement alloc ] initWithXMLString: [ NSString stringWithFormat: @"<style>%@</style>", css ] error: nil ];
+
+           do
             {
-            [ ( NSXMLElement* )currentNode addChild: styleNode ];
-            break;
-            }
+            if ( currentNode.isHeadElement )
+                {
+                [ ( NSXMLElement* )currentNode addChild: styleNode ];
+                break;
+                }
 
-        } while ( ( currentNode = currentNode.nextNode ) );
+            } while ( ( currentNode = currentNode.nextNode ) );
 
-    #if DEBUG
-    [ _HTMLDoc.XMLString writeToFile: [ NSHomeDirectory() stringByAppendingString: [ NSString stringWithFormat: @"/%@.htm", self->__openedWikiPage.openedWikiPage.title ] ]
-                          atomically: YES
-                            encoding: NSUTF8StringEncoding
-                               error: nil ];
-    #endif
 
-    return _HTMLDoc;
+        #if DEBUG
+        [ _HTMLDoc.XMLString writeToFile: [ NSHomeDirectory() stringByAppendingString: [ NSString stringWithFormat: @"/%@.htm", self->__openedWikiPage.openedWikiPage.title ] ]
+                              atomically: YES
+                                encoding: NSUTF8StringEncoding
+                                   error: nil ];
+        #endif
+
+    return processedDoc;
     }
 
 @end // PWOpenedPageContentPreviewView class

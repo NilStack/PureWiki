@@ -35,8 +35,6 @@
 #import "TKSafariSearchbarController.h"
 #import "PWSidebarTabsTableController.h"
 
-#import "DJProgressHUD.h"
-
 #import "SugarWiki.h"
 
 // Private Interfaces
@@ -44,7 +42,9 @@
 
 @property ( weak ) IBOutlet WebView* __webView;
 @property ( strong ) WebView* __backingWebView;
+@property ( assign ) CGFloat __progressPercent;
 
+- ( void ) __stopLoading;
 - ( void ) __saveScrollPosition;
 - ( void ) __restoreScrollPosition;
 - ( void ) __reloadAllStatusConsumers;
@@ -62,6 +62,8 @@
 @synthesize owner;
 
 @dynamic UUID;
+
+@dynamic __progressPercent;
 
 #pragma mark Initializations
 - ( instancetype ) initWithCoder: ( nonnull NSCoder* )_Coder
@@ -117,9 +119,7 @@
         {
         self->_originalWikiPage = _WikiPage;
 
-        [ self.__webView.mainFrame stopLoading ];
-        [ self.__backingWebView.mainFrame stopLoading ];
-
+        [ self __stopLoading ];
         [ self->_backForwardList cleanUp ];
 
         NSURLRequest* request = [ NSURLRequest requestWithURL: self->_originalWikiPage.URL ];
@@ -140,6 +140,11 @@
 - ( NSString* ) UUID
     {
     return self->_UUID;
+    }
+
+- ( CGFloat ) __progressPercent
+    {
+    return self->__currentProgress / self->__totalProgress;
     }
 
 #pragma mark IBActions
@@ -187,9 +192,28 @@
 
 #pragma mark Conforms to <WebFrameLoadDelegate>
 - ( void )                  webView: ( WebView* )_WebView
-    didCommitLoadForFrame: ( WebFrame* )_Frame
+    didStartProvisionalLoadForFrame: ( WebFrame* )_Frame
     {
+    if ( _WebView == self.__backingWebView )
+        {
+        if ( self->__progressHUD )
+            {
+            [ self->__progressHUD hide: YES ];
+            [ self->__progressHUD removeFromSuperview ];
+            }
+
+        self->__progressHUD = [ [ MBProgressHUD alloc ] initWithView: self ];
+
+        [ self addSubview: self->__progressHUD ];
+
+        [ self->__progressHUD setMode: MBProgressHUDModeIndeterminate ];
+        [ self->__progressHUD setLabelText: @"LOADING…" ];
+
+        [ self->__progressHUD setProgress: 0.f ];
+        [ self->__progressHUD show: YES ];
+        }
     }
+
 
 - ( void )        webView: ( WebView* )_WebView
     didFinishLoadForFrame: ( WebFrame* )_Frame
@@ -242,11 +266,12 @@
 
         else if ( _WebView == self.__webView )
             {
-            [ self.__webView setPolicyDelegate: self ];
             [ self __restoreScrollPosition ];
 
             [ self askToBecomeFirstResponder ];
             [ [ ( PWStackContainerView* )( self.owner ) sidebarTabsTableController ] pushOpenedWikiPage: self.currentOpenedWikiPage ];
+
+            [ self->__progressHUD hide: YES ];
 
             #if DEBUG
             NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, _debuggingBFList, _backForwardList );
@@ -258,6 +283,15 @@
     }
 
 #pragma mark Conforms to <WebPolicyDelegate>
+
+- ( void )          webView: ( WebView* )_WebView
+    decidePolicyForMIMEType: ( NSString* )_Type
+                    request: ( NSURLRequest* )_Request
+                      frame: ( WebFrame* )_Frame
+           decisionListener: ( id <WebPolicyDecisionListener> )_Listener
+    {
+    // TODO:
+    }
 
 // Routes all the navigation action that occured in self.__webView
 - ( void )                  webView: ( WebView* )_WebView
@@ -275,13 +309,28 @@
             [ _Listener use ];
         else
             {
-            [ self.__backingWebView.mainFrame loadRequest: _Request ];
+            [ self __stopLoading ];
+
+            NSString* beginningURL = [ NSString stringWithFormat: @"https://%@.wikipedia.org", self->_wikiEngine.ISOLanguageCode ];
+            if ( [ _Request.URL.absoluteString hasPrefix: beginningURL ] )
+                [ self.__backingWebView.mainFrame loadRequest: _Request ];
+            else
+                [ [ NSWorkspace sharedWorkspace ] openURL: _Request.URL ];
+
             [ _Listener ignore ];
             }
+
+        [ self.__webView setPolicyDelegate: self ];
         }
     }
 
 #pragma mark Private Interfaces
+- ( void ) __stopLoading
+    {
+    [ self.__webView.mainFrame stopLoading ];
+    [ self.__backingWebView.mainFrame stopLoading ];
+    }
+
 - ( void ) __saveScrollPosition
     {
     NSString* xOffset = [ self.__webView stringByEvaluatingJavaScriptFromString: [ NSString stringWithFormat:@"window.pageXOffset" ] ];
@@ -323,8 +372,7 @@ NSString* const sScrollAnimationJS =
 - ( void ) __restoreScrollPosition
     {
     [ self.__webView stringByEvaluatingJavaScriptFromString:
-//        [ NSString stringWithFormat: sScrollAnimationJS, self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
-        [ NSString stringWithFormat:@"window.scrollTo( %g, %g )", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
+    [ NSString stringWithFormat:@"window.scrollTo( %g, %g )", self->_backForwardList.currentItem.xOffset, self->_backForwardList.currentItem.yOffset ] ];
     }
 
 - ( void ) __reloadAllStatusConsumers

@@ -42,6 +42,7 @@
 @implementation PWSidebarTabsTableCell
 
 @dynamic openedWikiPage;
+@dynamic isHostRowViewSelected;
 
 - ( void ) awakeFromNib
     {
@@ -71,15 +72,34 @@
     return self->_openedWikiPage;
     }
 
+#pragma mark Conforms to <PWSubviewOfSidebarTableRowView>
+- ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
+    {
+    if ( self->__isHostRowViewSelected != _YesOrNo )
+        {
+        self->__isHostRowViewSelected = _YesOrNo;
+        NSLog( @"%@", self->__isHostRowViewSelected ? @"✅" : @"❌" );
+
+        [ self->__openedPageContentPreivewTitleField setHostRowViewSelected: self->__isHostRowViewSelected ];
+        [ self->__openedPageContentPreviewView setHostRowViewSelected: self->__isHostRowViewSelected ];
+        [ self.pageImageView setHostRowViewSelected: self->__isHostRowViewSelected ];
+        }
+    }
+
+- ( BOOL ) isHostRowViewSelected
+    {
+    return self->__isHostRowViewSelected;
+    }
+
 #pragma mark Private Interfaces
-CGFloat kInsetFromLeading = 20.f;
+CGFloat kInsetFromLeading = 15.f;
 CGFloat kInsetFromTrailing = 5.f;
 CGFloat kInsetFromTop = 10.f;
 CGFloat kInsetFromBottom = 10.f;
 
 CGFloat kPageTitleFieldMinWidth = 50.f;
 
-CGFloat kOffsetFromPageImageView = 10.f;
+CGFloat kOffsetFromPageImageView = 5.f;
 CGFloat kOffsetBetweenPageTitleAndSnippetField = 5.f;
 
 - ( void ) __relayout
@@ -101,7 +121,7 @@ CGFloat kOffsetBetweenPageTitleAndSnippetField = 5.f;
 
     [ self.pageImageView autoSetDimensionsToSize: self.pageImageView.frame.size ];
     [ self.pageImageView autoPinEdgeToSuperviewEdge: ALEdgeLeading withInset: kInsetFromLeading relation: NSLayoutRelationEqual ];
-    [ self.pageImageView autoPinEdgeToSuperviewEdge: ALEdgeTop withInset: kInsetFromTop relation: NSLayoutRelationEqual ];
+    [ self.pageImageView autoAlignAxisToSuperviewAxis: ALAxisHorizontal ];
 
     [ self->__openedPageContentPreivewTitleField autoSetDimension: ALDimensionHeight toSize: 24.f relation: NSLayoutRelationEqual ];
     [ self->__openedPageContentPreivewTitleField autoSetDimension: ALDimensionWidth toSize: kPageTitleFieldMinWidth relation: NSLayoutRelationGreaterThanOrEqual ];

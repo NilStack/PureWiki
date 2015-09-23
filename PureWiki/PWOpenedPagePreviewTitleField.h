@@ -22,16 +22,18 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+#import "PWSidebarTableRowView.h"
 
 @class PWOpenedWikiPage;
 
 // PWOpenedPagePreviewTitleField class
-@interface PWOpenedPagePreviewTitleField : NSView
+@interface PWOpenedPagePreviewTitleField : NSView <PWSubviewOfSidebarTableRowView>
     {
 @private
     NSDictionary __strong* __attrs;
     PWOpenedWikiPage __strong* __openedWikiPage;
+
+    BOOL __isHostRowViewSelected;
     }
 
 @property ( strong, readwrite ) PWOpenedWikiPage* openedWikiPage;

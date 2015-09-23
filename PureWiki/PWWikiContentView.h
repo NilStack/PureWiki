@@ -25,6 +25,8 @@
 @import Cocoa;
 @import WebKit;
 
+#import "MBProgressHUD.h"
+
 @class PWCastrateFactory;
 @class PWStackContainerView;
 @class PWNavButtonsPairView;
@@ -39,7 +41,8 @@
 @protocol PWWikiContentViewStatusConsumer;
 
 // PWWikiContentView class
-@interface PWWikiContentView : NSView <WebFrameLoadDelegate, WebPolicyDelegate>
+@interface PWWikiContentView : NSView
+    <WebFrameLoadDelegate, WebPolicyDelegate, MBProgressHUDDelegate>
     {
 @private
     WikiEngine __strong* _wikiEngine;
@@ -51,6 +54,10 @@
     #endif
 
     NSString __strong* _UUID;
+
+    MBProgressHUD* __progressHUD;
+    CGFloat __totalProgress;
+    CGFloat __currentProgress;
     }
 
 #pragma mark Ivar Properties

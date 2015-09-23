@@ -22,19 +22,44 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSidebarTabsTable.h"
-#import "PWOpenedPageContentPreviewView.h"
+#import "PWSidebarTableRowView.h"
+#import "PWSidebarTabsTableCell.h"
+#import "NSColor+TKSafariSearchbar.h"
 
-// PWSidebarTabsTable class
-@implementation PWSidebarTabsTable
+// PWSidebarTableRowView class
+@implementation PWSidebarTableRowView
 
-#pragma Initializations
-- ( void ) awakeFromNib
+- ( void ) drawBackgroundInRect: ( NSRect )_DirtyRect
     {
-    [ self setSelectionHighlightStyle: NSTableViewSelectionHighlightStyleRegular ];
+    [ ( ( PWSidebarTabsTableCell* )[ self viewAtColumn: 0 ] ) setHostRowViewSelected: self.isSelected ];
     }
 
-@end // PWSidebarTabsTable class
+- ( void ) drawSelectionInRect: ( NSRect )_DirtyRect
+    {
+    if ( self.selectionHighlightStyle == NSTableViewSelectionHighlightStyleRegular )
+        {
+        NSColor* beautyColor = nil;
+
+        if ( self.isSelected )
+            {
+            if ( NSApp.active )
+                beautyColor = [ [ NSColor colorWithHTMLColor: @"F5A623" ] colorWithAlphaComponent: .65f ];
+            else
+                beautyColor = [ NSColor colorWithCalibratedWhite: .82f alpha: .65f ];
+            }
+        else
+            beautyColor = [ NSColor clearColor ];
+
+        [ beautyColor setStroke ];
+        [ beautyColor setFill ];
+
+        NSBezierPath* selectionPath = [ NSBezierPath bezierPathWithRect: _DirtyRect ];
+        [ selectionPath fill ];
+        [ selectionPath stroke ];
+        }
+    }
+
+@end // PWSidebarTableRowView class
 
 /*===============================================================================┐
 |                                                                                | 

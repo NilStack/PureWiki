@@ -33,6 +33,7 @@ CGFloat static const kLeadingGap = 4.5f;
 @implementation PWOpenedPagePreviewTitleField
 
 @dynamic openedWikiPage;
+@dynamic isHostRowViewSelected;
 
 #pragma mark Initializations
 - ( instancetype ) initWithFrame: ( NSRect )_Frame
@@ -40,10 +41,7 @@ CGFloat static const kLeadingGap = 4.5f;
     if ( self = [ super initWithFrame: _Frame ] )
         {
         [ self configureForAutoLayout ];
-
-        self->__attrs = @{ NSFontAttributeName : [ NSFont fontWithName: @"Helvetica Neue" size: 15.f ]
-                         , NSForegroundColorAttributeName : [ NSColor blackColor ]
-                         };
+        [ self setHostRowViewSelected: NO ];
         }
 
     return self;
@@ -77,6 +75,24 @@ CGFloat static const kLeadingGap = 4.5f;
 - ( PWOpenedWikiPage* ) openedWikiPage
     {
     return self->__openedWikiPage;
+    }
+
+#pragma mark Conforms to <PWSubviewOfSidebarTableRowView>
+- ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
+    {
+    self->__isHostRowViewSelected = _YesOrNo;
+
+    self->__attrs = @{ NSFontAttributeName : [ NSFont fontWithName: @"Helvetica Neue" size: 15.f ]
+                     , NSForegroundColorAttributeName
+                        : self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor blackColor ]
+                     };
+
+    [ self setNeedsDisplay: YES ];
+    }
+
+- ( BOOL ) isHostRowViewSelected
+    {
+    return self->__isHostRowViewSelected;
     }
 
 @end // PWOpenedPagePreviewTitleField class

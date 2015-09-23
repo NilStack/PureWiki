@@ -29,6 +29,7 @@
 #import "PWActionNotifications.h"
 #import "PWWikiContentView.h"
 #import "PWOpenedWikiPage.h"
+#import "PWSidebarTableRowView.h"
 
 #import "SugarWiki.h"
 
@@ -121,6 +122,17 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     [ self willChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
         self->_currentSelectedPage = self->_openedWikiPages[ selectedRowIndex ];
     [ self didChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
+    }
+
+- ( NSTableRowView* ) tableView: ( NSTableView* )_TableView
+                  rowViewForRow: ( NSInteger )_Row
+    {
+    PWSidebarTableRowView* rowView = [ _TableView rowViewAtRow: _Row makeIfNecessary: YES ];
+
+    if ( !rowView )
+        rowView = [ [ PWSidebarTableRowView alloc ] initWithFrame: NSZeroRect ];
+
+    return rowView;
     }
 
 #pragma mark Dynamic Properties

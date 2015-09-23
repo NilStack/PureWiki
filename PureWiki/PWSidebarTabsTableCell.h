@@ -22,8 +22,9 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
 @import WebKit;
+
+#import "PWSidebarTableRowView.h"
 
 @class PWPWikiPageImageWell;
 @class PWOpenedWikiPage;
@@ -33,13 +34,15 @@
 @class WikiPage;
 
 // PWSidebarTabsTableCell class
-@interface PWSidebarTabsTableCell : NSTableCellView
+@interface PWSidebarTabsTableCell : NSTableCellView <PWSubviewOfSidebarTableRowView>
     {
 @private
     PWOpenedWikiPage __strong* _openedWikiPage;
 
     PWOpenedPagePreviewTitleField __strong* __openedPageContentPreivewTitleField;
     PWOpenedPageContentPreviewView __strong* __openedPageContentPreviewView;
+
+    BOOL __isHostRowViewSelected;
     }
 
 #pragma mark Ivar Properties

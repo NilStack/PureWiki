@@ -44,6 +44,7 @@
 		835CB4921BAF0A2C00A35C1C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 835CB4901BAF0A2C00A35C1C /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		837B975C1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837B975B1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m */; };
 		837B975E1B8D7BCF00BDDCF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */; };
+		838E15511BB279C40069C276 /* PWSidebarTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 838E15501BB279C40069C276 /* PWSidebarTableRowView.m */; settings = {ASSET_TAGS = (); }; };
 		839585E11B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 839585E01B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m */; };
 		839585E41B9312CF00F6CBB3 /* __TKTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 839585E31B9312CF00F6CBB3 /* __TKTextLayer.m */; };
 		839585E81B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 839585E71B933CDC00F6CBB3 /* __TKSearchbarBackingLayer.m */; };
@@ -217,6 +218,8 @@
 		837B975A1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKSafariSearchbarCell.h; path = PureWiki/TKSafariSearchbarCell.h; sourceTree = "<group>"; };
 		837B975B1B8CB41B00BDDCF0 /* TKSafariSearchbarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TKSafariSearchbarCell.m; path = PureWiki/TKSafariSearchbarCell.m; sourceTree = "<group>"; };
 		837B975D1B8D7BCF00BDDCF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		838E154F1BB279C40069C276 /* PWSidebarTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTableRowView.h; sourceTree = "<group>"; };
+		838E15501BB279C40069C276 /* PWSidebarTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSidebarTableRowView.m; sourceTree = "<group>"; };
 		839585DF1B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+TKSafariSearchbar.h"; sourceTree = "<group>"; };
 		839585E01B92EFC900F6CBB3 /* NSColor+TKSafariSearchbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+TKSafariSearchbar.m"; sourceTree = "<group>"; };
 		839585E21B9312CF00F6CBB3 /* __TKTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = __TKTextLayer.h; path = PureWiki/__TKTextLayer.h; sourceTree = "<group>"; };
@@ -448,6 +451,8 @@
 				833AAEB21BADFCD9001546A5 /* extensions */,
 				83480E9E1B83728000A33030 /* PWSidebarTabsTableController.h */,
 				83480E9F1B83728000A33030 /* PWSidebarTabsTableController.m */,
+				838E154F1BB279C40069C276 /* PWSidebarTableRowView.h */,
+				838E15501BB279C40069C276 /* PWSidebarTableRowView.m */,
 				83480E951B83530C00A33030 /* PWSidebarTabsTable.h */,
 				83480E961B83530C00A33030 /* PWSidebarTabsTable.m */,
 				83480E981B83532D00A33030 /* PWSidebarTabsTableCell.h */,
@@ -809,8 +814,8 @@
 				83ED35DC1BA4593C00CEFE61 /* __WikiQueryTask.h */,
 				83ED35DD1BA4593C00CEFE61 /* __WikiRevision.h */,
 				83ED35DE1BA4593C00CEFE61 /* __WikiSearchResult.h */,
-				8323AC131BAEC629009037B9 /* NSXMLNode+__WikiRevision.m */,
 				8323AC141BAEC629009037B9 /* NSXMLNode+__WikiRevision.h */,
+				8323AC131BAEC629009037B9 /* NSXMLNode+__WikiRevision.m */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -1010,6 +1015,7 @@
 				8321EC951B8C40C40099C824 /* PWArtworkConstants.m in Sources */,
 				83ED36B71BA4593C00CEFE61 /* __WikiContinuationUncompleted.m in Sources */,
 				83ED36C01BA4593C00CEFE61 /* AFHTTPRequestOperationManager.m in Sources */,
+				838E15511BB279C40069C276 /* PWSidebarTableRowView.m in Sources */,
 				8323AC151BAEC629009037B9 /* NSXMLNode+__WikiRevision.m in Sources */,
 				83ED36BB1BA4593C00CEFE61 /* SugarWikiInfo.m in Sources */,
 				83C108281BAB29390096FC57 /* PWSearchResultSnippetBackingTextView.m in Sources */,

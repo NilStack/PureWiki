@@ -22,17 +22,19 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+#import "PWSidebarTableRowView.h"
 
 @class PWOpenedWikiPage;
 @class PWOpenedPageContentPreviewBackingTextView;
 
 // PWOpenedPageContentPreviewView class
-@interface PWOpenedPageContentPreviewView : NSView
+@interface PWOpenedPageContentPreviewView : NSView <PWSubviewOfSidebarTableRowView>
     {
 @protected
     PWOpenedWikiPage __strong* __openedWikiPage;
     NSTextStorage __strong* __internalTextStorage;
+
+    BOOL __isHostRowViewSelected;
     }
 
 @property ( strong, readonly ) PWOpenedPageContentPreviewBackingTextView* backingTextView;

@@ -32,11 +32,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="271" height="970"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <tableView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="97" rowSizeStyle="automatic" viewBased="YES" id="wU4-4o-6Ew" customClass="PWSidebarTabsTable">
+                                                <tableView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="97" rowSizeStyle="automatic" viewBased="YES" id="wU4-4o-6Ew" customClass="PWSidebarTabsTable">
                                                     <rect key="frame" x="0.0" y="0.0" width="271" height="970"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                    <color key="backgroundColor" red="0.4114178361217497" green="0.58301217862016241" blue="0.79220000000000002" alpha="0.0" colorSpace="deviceRGB"/>
+                                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                                     <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                                     <color key="gridColor" red="0.75686274509803919" green="0.75686274509803919" blue="0.75686274509803919" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <tableColumns>
@@ -58,7 +58,7 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GLP-7k-EMs" customClass="PWPWikiPageImageWell">
-                                                                            <rect key="frame" x="20" y="27" width="60" height="60"/>
+                                                                            <rect key="frame" x="20" y="27" width="70" height="70"/>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="oKe-qZ-JwS" customClass="PWWikiPageImageCell"/>
                                                                         </imageView>
                                                                     </subviews>

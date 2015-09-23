@@ -65,11 +65,16 @@
     }
 
 #pragma mark Accessors
+- ( NSImage* ) __fuckingImage
+    {
+    return self->__isHostRowViewSelected ? [ NSImage imageNamed: PWArtworkWikiPageImageHighlighted ] : [ NSImage imageNamed: PWArtworkWikiPageImageNormal ];
+    }
+
 - ( void ) setWikiPage: ( WikiPage* )_WikiPage
     {
     [ self.cell setHighlighted: NO ];
 
-    NSImage* normalDefaultContentPreview = [ NSImage imageNamed: PWArtworkWikiPageImageNormal ];
+//    NSImage* [ self __fuckingImage ] = [ self __fuckingImage ];
 
     if ( self->_wikiPage != _WikiPage )
         {
@@ -80,7 +85,7 @@
                 {
                 if ( [ _Response.MIMEType isEqualToString: @"image/svg+xml" ] )
                     // TODO: Looking forward to integrate with the SVG converter tools like SVGKit
-                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: normalDefaultContentPreview waitUntilDone: NO ];
+                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
                 else
                     {
                     NSImage* wikiPageImage = [ [ NSImage alloc ] initWithData: _ImageData ];
@@ -132,11 +137,11 @@
                 } failure:
                     ^( NSError* _Error )
                         {
-                        [ self performSelectorOnMainThread: @selector( setImage: ) withObject: normalDefaultContentPreview waitUntilDone: NO ];
+                        [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
                         }  stopAllOtherTasks: YES ];
                 }
         else
-            [ self setImage: normalDefaultContentPreview ];
+            [ self setImage: [ self __fuckingImage ] ];
         }
     }
 
@@ -196,6 +201,17 @@
 - ( Class ) cellClass
     {
     return [ PWWikiPageImageCell class ];
+    }
+
+#pragma mark Conforms to <PWSubviewOfSidebarTableRowView>
+- ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
+    {
+    self->__isHostRowViewSelected = _YesOrNo;
+    }
+
+- ( BOOL ) isHostRowViewSelected
+    {
+    return self->__isHostRowViewSelected;
     }
 
 #pragma mark Private Interfaces
