@@ -82,6 +82,7 @@
 
         [ self->__openedPageContentPreivewTitleField setHostRowViewSelected: self->__isHostRowViewSelected ];
         [ self->__openedPageContentPreviewView setHostRowViewSelected: self->__isHostRowViewSelected ];
+        [ self.pageImageView setHostRowViewSelected: self->__isHostRowViewSelected ];
         }
     }
 

@@ -22,7 +22,7 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+#import "PWSidebarTableRowView.h"
 
 @class AFHTTPSessionManager;
 
@@ -30,7 +30,7 @@
 @class WikiPage;
 
 // PWPWikiPageImageWell class
-@interface PWPWikiPageImageWell : NSImageView
+@interface PWPWikiPageImageWell : NSImageView <PWSubviewOfSidebarTableRowView>
     {
 @private
     WikiEngine __strong* _wikiEngine;
@@ -41,6 +41,8 @@
 
     NSTrackingAreaOptions _trackingAreaOptions;
     NSTrackingArea __strong* _trackingArea;
+
+    BOOL __isHostRowViewSelected;
     }
 
 @property ( strong, readwrite ) WikiPage* wikiPage;
