@@ -32,9 +32,12 @@
 @private
     NSDictionary __strong* __attrs;
     PWOpenedWikiPage __strong* __openedWikiPage;
+
+    BOOL __isHostRowViewSelected;
     }
 
 @property ( strong, readwrite ) PWOpenedWikiPage* openedWikiPage;
+@property ( assign, readwrite, setter = setHostRowViewSelected: ) BOOL isHostRowViewSelected;
 
 @end // PWOpenedPagePreviewTitleField classs
 
