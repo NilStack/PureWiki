@@ -22,10 +22,14 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+#import "PWSidebarTableRowView.h"
 
 // PWOpenedPageContentPreviewBackingTextView class
-@interface PWOpenedPageContentPreviewBackingTextView : NSTextView
+@interface PWOpenedPageContentPreviewBackingTextView : NSTextView <PWSubviewOfSidebarTableRowView>
+    {
+@protected
+    BOOL __isHostRowViewSelected;
+    }
 
 @end // PWOpenedPageContentPreviewBackingTextView class
 

@@ -81,6 +81,7 @@
         NSLog( @"%@", self->__isHostRowViewSelected ? @"✅" : @"❌" );
 
         [ self->__openedPageContentPreivewTitleField setHostRowViewSelected: self->__isHostRowViewSelected ];
+        [ self->__openedPageContentPreviewView setHostRowViewSelected: self->__isHostRowViewSelected ];
         }
     }
 

@@ -31,15 +31,11 @@
 
 - ( void ) drawBackgroundInRect: ( NSRect )_DirtyRect
     {
-//    NSLog( @"%@ %@  %s", self, self.isSelected ? @"✅" : @"❌", __PRETTY_FUNCTION__ );
-//    [ [ NSColor blackColor ] set ];
-//    NSRectFill( _DirtyRect );
     [ ( ( PWSidebarTabsTableCell* )[ self viewAtColumn: 0 ] ) setHostRowViewSelected: self.isSelected ];
     }
 
 - ( void ) drawSelectionInRect: ( NSRect )_DirtyRect
     {
-//    NSLog( @"%@ %@  %s", self, self.isSelected ? @"✅" : @"❌", __PRETTY_FUNCTION__ );
     if ( self.selectionHighlightStyle == NSTableViewSelectionHighlightStyleRegular )
         {
         NSColor* beautyColor = nil;

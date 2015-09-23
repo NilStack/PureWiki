@@ -25,6 +25,7 @@
 #import "PWOpenedPageContentPreviewView.h"
 #import "PWOpenedWikiPage.h"
 #import "PWOpenedPageContentPreviewBackingTextView.h"
+#import "NSColor+TKSafariSearchbar.h"
 
 #import "NSXMLNode+PWOpenedPagePreview.h"
 
@@ -70,11 +71,19 @@
     {
     self->__openedWikiPage = _OpenedWikiPage;
 
-    NSXMLDocument* prettyParsedSnippet =
-        [ self __processedTheFuckingHTMLDocument: self->__openedWikiPage.openedWikiPage.lastRevision.prettyParsedSnippet ];
+    NSXMLDocument* prettyParsedSnippet = [ self __processedTheFuckingHTMLDocument:
+        self->__openedWikiPage.openedWikiPage.lastRevision.prettyParsedSnippet ];
         
     NSData* HTMLData = [ prettyParsedSnippet.XMLString dataUsingEncoding: NSUTF8StringEncoding ];
     self->__internalTextStorage = [ [ NSTextStorage alloc ] initWithHTML: HTMLData documentAttributes: nil ];
+
+    //
+    NSColor* newColor = self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ];
+    [ self->__internalTextStorage addAttribute: NSForegroundColorAttributeName
+                                         value: newColor
+                                         range: NSMakeRange( 0, self->__internalTextStorage.length ) ];
+
+    //
 
     NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
     [ self->__internalTextStorage addLayoutManager: layoutManager ];
@@ -85,17 +94,47 @@
 
     [ layoutManager addTextContainer: textContainer ];
 
-    ( void )[ [ PWOpenedPageContentPreviewBackingTextView alloc ] initWithFrame: self.frame textContainer: textContainer ];
-
+    ( void )[ [ PWOpenedPageContentPreviewBackingTextView alloc ] initWithFrame: self.frame
+                                                                  textContainer: textContainer ];
     [ self setSubviews: @[ self.backingTextView ] ];
     [ self.backingTextView configureForAutoLayout ];
     [ self.backingTextView autoPinEdgesToSuperviewEdges ];
+
+    [ self.backingTextView setHostRowViewSelected: self->__isHostRowViewSelected ];
+    }
+
+- ( void ) __feedInternalTextStorage
+    {
+
     }
 
 - ( PWOpenedWikiPage* ) openedWikiPage
     {
     return self->__openedWikiPage;
     }
+
+#pragma mark Conforms to <PWSubviewOfSidebarTableRowView>
+- ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
+    {
+    if ( self->__isHostRowViewSelected != _YesOrNo )
+        {
+        self->__isHostRowViewSelected = _YesOrNo;
+
+        NSColor* newColor = self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ];
+        [ self->__internalTextStorage addAttribute: NSForegroundColorAttributeName
+                                             value: newColor
+                                             range: NSMakeRange( 0, self->__internalTextStorage.length ) ];
+
+        [ self.backingTextView setHostRowViewSelected: self->__isHostRowViewSelected ];
+        }
+    }
+
+- ( BOOL ) isHostRowViewSelected
+    {
+    return self->__isHostRowViewSelected;
+    }
+
+#pragma mark Private Interfaces
 
 NSString static* const sPagePreviewContentCSS =
 @"  body {"
@@ -126,8 +165,6 @@ NSString static* const sNoPreviewCSS =
 "       font-weight: regular;"
 "       }";
 
-
-#pragma mark Private Interfaces
 - ( NSXMLDocument* ) __processedTheFuckingHTMLDocument: ( NSXMLDocument* )_HTMLDoc
     {
     NSXMLDocument* processedDoc = nil;

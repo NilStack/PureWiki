@@ -23,6 +23,7 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWOpenedPageContentPreviewBackingTextView.h"
+#import "NSColor+TKSafariSearchbar.h"
 
 // PWOpenedPageContentPreviewBackingTextView class
 @implementation PWOpenedPageContentPreviewBackingTextView
@@ -33,7 +34,7 @@
     {
     if ( self = [ super initWithFrame: _Frame textContainer: _TextContainer ] )
         {
-        [ self setLinkTextAttributes: @{ NSForegroundColorAttributeName : [ NSColor colorWithSRGBRed: 10.f / 255 green: 10.f / 255 blue: 10.f / 255 alpha: 1.f ] } ];
+        [ self setLinkTextAttributes: @{ NSForegroundColorAttributeName : self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ] } ];
 
         [ self setEditable: NO ];
         [ self setSelectable: NO ];
@@ -43,6 +44,22 @@
 
     return self;
     }
+
+#pragma mark Conforms to <PWSubviewOfSidebarTableRowView>
+- ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
+    {
+    if ( self->__isHostRowViewSelected != _YesOrNo )
+        {
+        self->__isHostRowViewSelected = _YesOrNo;
+        [ self setLinkTextAttributes: @{ NSForegroundColorAttributeName : self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ] } ];
+        }
+    }
+
+- ( BOOL ) isHostRowViewSelected
+    {
+    return self->__isHostRowViewSelected;
+    }
+
 
 @end // PWOpenedPageContentPreviewBackingTextView class
 
