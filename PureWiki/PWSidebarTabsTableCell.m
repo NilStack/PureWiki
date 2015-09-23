@@ -92,14 +92,14 @@
     }
 
 #pragma mark Private Interfaces
-CGFloat kInsetFromLeading = 20.f;
+CGFloat kInsetFromLeading = 15.f;
 CGFloat kInsetFromTrailing = 5.f;
 CGFloat kInsetFromTop = 10.f;
 CGFloat kInsetFromBottom = 10.f;
 
 CGFloat kPageTitleFieldMinWidth = 50.f;
 
-CGFloat kOffsetFromPageImageView = 10.f;
+CGFloat kOffsetFromPageImageView = 5.f;
 CGFloat kOffsetBetweenPageTitleAndSnippetField = 5.f;
 
 - ( void ) __relayout
@@ -121,7 +121,7 @@ CGFloat kOffsetBetweenPageTitleAndSnippetField = 5.f;
 
     [ self.pageImageView autoSetDimensionsToSize: self.pageImageView.frame.size ];
     [ self.pageImageView autoPinEdgeToSuperviewEdge: ALEdgeLeading withInset: kInsetFromLeading relation: NSLayoutRelationEqual ];
-    [ self.pageImageView autoPinEdgeToSuperviewEdge: ALEdgeTop withInset: kInsetFromTop relation: NSLayoutRelationEqual ];
+    [ self.pageImageView autoAlignAxisToSuperviewAxis: ALAxisHorizontal ];
 
     [ self->__openedPageContentPreivewTitleField autoSetDimension: ALDimensionHeight toSize: 24.f relation: NSLayoutRelationEqual ];
     [ self->__openedPageContentPreivewTitleField autoSetDimension: ALDimensionWidth toSize: kPageTitleFieldMinWidth relation: NSLayoutRelationGreaterThanOrEqual ];

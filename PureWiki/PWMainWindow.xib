@@ -58,7 +58,7 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GLP-7k-EMs" customClass="PWPWikiPageImageWell">
-                                                                            <rect key="frame" x="20" y="27" width="60" height="60"/>
+                                                                            <rect key="frame" x="20" y="27" width="70" height="70"/>
                                                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="oKe-qZ-JwS" customClass="PWWikiPageImageCell"/>
                                                                         </imageView>
                                                                     </subviews>
