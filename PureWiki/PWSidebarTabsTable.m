@@ -23,13 +23,15 @@
   ██████████████████████████████████████████████████████████████████████████████*/
 
 #import "PWSidebarTabsTable.h"
+#import "PWOpenedPageContentPreviewView.h"
 
 // PWSidebarTabsTable class
 @implementation PWSidebarTabsTable
 
+#pragma Initializations
 - ( void ) awakeFromNib
     {
-//    [ self setAllowsEmptySelection: NO ];
+    [ self setSelectionHighlightStyle: NSTableViewSelectionHighlightStyleRegular ];
     }
 
 @end // PWSidebarTabsTable class

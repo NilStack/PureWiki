@@ -35,7 +35,12 @@
         NSColor* beautyColor = nil;
 
         if ( self.isSelected )
-            beautyColor = [ [ NSColor colorWithHTMLColor: @"F5A623" ] colorWithAlphaComponent: .65f ];
+            {
+            if ( NSApp.active )
+                beautyColor = [ [ NSColor colorWithHTMLColor: @"F5A623" ] colorWithAlphaComponent: .65f ];
+            else
+                beautyColor = [ NSColor colorWithCalibratedWhite: .82f alpha: .65f ];
+            }
         else
             beautyColor = [ NSColor clearColor ];
 
