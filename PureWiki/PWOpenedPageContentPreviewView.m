@@ -77,14 +77,6 @@
     NSData* HTMLData = [ prettyParsedSnippet.XMLString dataUsingEncoding: NSUTF8StringEncoding ];
     self->__internalTextStorage = [ [ NSTextStorage alloc ] initWithHTML: HTMLData documentAttributes: nil ];
 
-    //
-    NSColor* newColor = self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ];
-    [ self->__internalTextStorage addAttribute: NSForegroundColorAttributeName
-                                         value: newColor
-                                         range: NSMakeRange( 0, self->__internalTextStorage.length ) ];
-
-    //
-
     NSLayoutManager* layoutManager = [ [ NSLayoutManager alloc ] init ];
     [ self->__internalTextStorage addLayoutManager: layoutManager ];
 
@@ -100,12 +92,7 @@
     [ self.backingTextView configureForAutoLayout ];
     [ self.backingTextView autoPinEdgesToSuperviewEdges ];
 
-    [ self.backingTextView setHostRowViewSelected: self->__isHostRowViewSelected ];
-    }
-
-- ( void ) __feedInternalTextStorage
-    {
-
+    [ self setHostRowViewSelected: self->__isHostRowViewSelected ];
     }
 
 - ( PWOpenedWikiPage* ) openedWikiPage
@@ -116,17 +103,16 @@
 #pragma mark Conforms to <PWSubviewOfSidebarTableRowView>
 - ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
     {
-    if ( self->__isHostRowViewSelected != _YesOrNo )
-        {
-        self->__isHostRowViewSelected = _YesOrNo;
+    self->__isHostRowViewSelected = _YesOrNo;
 
-        NSColor* newColor = self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ];
-        [ self->__internalTextStorage addAttribute: NSForegroundColorAttributeName
-                                             value: newColor
-                                             range: NSMakeRange( 0, self->__internalTextStorage.length ) ];
+    NSColor* foregroundColor =
+        self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ];
 
-        [ self.backingTextView setHostRowViewSelected: self->__isHostRowViewSelected ];
-        }
+    [ self->__internalTextStorage addAttribute: NSForegroundColorAttributeName
+                                         value: foregroundColor
+                                         range: NSMakeRange( 0, self->__internalTextStorage.length ) ];
+
+    [ self.backingTextView setHostRowViewSelected: self->__isHostRowViewSelected ];
     }
 
 - ( BOOL ) isHostRowViewSelected

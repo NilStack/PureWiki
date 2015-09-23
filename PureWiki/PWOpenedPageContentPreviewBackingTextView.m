@@ -34,12 +34,12 @@
     {
     if ( self = [ super initWithFrame: _Frame textContainer: _TextContainer ] )
         {
-        [ self setLinkTextAttributes: @{ NSForegroundColorAttributeName : self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ] } ];
-
         [ self setEditable: NO ];
         [ self setSelectable: NO ];
         [ self setBackgroundColor: [ NSColor clearColor ] ];
         [ self configureForAutoLayout ];
+
+        [ self setHostRowViewSelected: NO ];
         }
 
     return self;
@@ -48,18 +48,16 @@
 #pragma mark Conforms to <PWSubviewOfSidebarTableRowView>
 - ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
     {
-    if ( self->__isHostRowViewSelected != _YesOrNo )
-        {
-        self->__isHostRowViewSelected = _YesOrNo;
-        [ self setLinkTextAttributes: @{ NSForegroundColorAttributeName : self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ] } ];
-        }
+    self->__isHostRowViewSelected = _YesOrNo;
+    [ self setLinkTextAttributes: @{ NSForegroundColorAttributeName
+                                        : self->__isHostRowViewSelected ? [ NSColor whiteColor ] : [ NSColor colorWithHTMLColor: @"0a0a0a" ]
+                                   } ];
     }
 
 - ( BOOL ) isHostRowViewSelected
     {
     return self->__isHostRowViewSelected;
     }
-
 
 @end // PWOpenedPageContentPreviewBackingTextView class
 
