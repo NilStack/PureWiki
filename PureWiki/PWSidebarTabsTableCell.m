@@ -42,6 +42,7 @@
 @implementation PWSidebarTabsTableCell
 
 @dynamic openedWikiPage;
+@dynamic isHostRowViewSelected;
 
 - ( void ) awakeFromNib
     {
@@ -69,6 +70,20 @@
 - ( PWOpenedWikiPage* ) openedWikiPage
     {
     return self->_openedWikiPage;
+    }
+
+- ( BOOL ) isHostRowViewSelected
+    {
+    return self->__isHostRowViewSelected;
+    }
+
+- ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
+    {
+    if ( self->__isHostRowViewSelected != _YesOrNo )
+        {
+        self->__isHostRowViewSelected = _YesOrNo;
+        NSLog( @"%@", self->__isHostRowViewSelected ? @"✅" : @"❌" );
+        }
     }
 
 #pragma mark Private Interfaces

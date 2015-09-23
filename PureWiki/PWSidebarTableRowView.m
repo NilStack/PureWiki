@@ -51,6 +51,8 @@
         [ selectionPath fill ];
         [ selectionPath stroke ];
         }
+
+    NSLog( @"%@", ( ( NSView* )[ self viewAtColumn: 0 ] ).superview  );
     }
 
 @end // PWSidebarTableRowView class
