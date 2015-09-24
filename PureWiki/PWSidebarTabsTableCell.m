@@ -78,7 +78,6 @@
     if ( self->__isHostRowViewSelected != _YesOrNo )
         {
         self->__isHostRowViewSelected = _YesOrNo;
-        NSLog( @"%@", self->__isHostRowViewSelected ? @"✅" : @"❌" );
 
         [ self->__openedPageContentPreivewTitleField setHostRowViewSelected: self->__isHostRowViewSelected ];
         [ self->__openedPageContentPreviewView setHostRowViewSelected: self->__isHostRowViewSelected ];
