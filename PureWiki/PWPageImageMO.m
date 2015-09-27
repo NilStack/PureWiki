@@ -22,22 +22,27 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
-@import CoreData;
+#import "PWPageImageMO.h"
 
-@class PWMainWindowController;
+// PWPageImageMO class
+@implementation PWPageImageMO
 
-// PWAppDelegate class
-@interface PWAppDelegate : NSObject <NSApplicationDelegate>
+#pragma mark Initializations
+- ( void ) awakeFromInsert
+    {
+    [ super awakeFromInsert ];
 
-@property ( strong ) PWMainWindowController* mainWindowController;
+    NSLog( @"%s", __PRETTY_FUNCTION__ );
+    }
 
-#pragma mark - Core Data stack
-@property ( readonly, strong, nonatomic ) NSPersistentStoreCoordinator* persistentStoreCoordinator;
-@property ( readonly, strong, nonatomic ) NSManagedObjectModel* managedObjectModel;
-@property ( readonly, strong, nonatomic ) NSManagedObjectContext* managedObjectContext;
+- ( void ) awakeFromFetch
+    {
+    [ super awakeFromFetch ];
 
-@end // PWAppDelegate class
+    NSLog( @"%s", __PRETTY_FUNCTION__ );
+    }
+
+@end // PWPageImageMO class
 
 /*===============================================================================┐
 |                                                                                | 

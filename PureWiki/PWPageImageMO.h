@@ -22,22 +22,14 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
 @import CoreData;
 
-@class PWMainWindowController;
+// PWPageImageMO class
+@interface PWPageImageMO : NSManagedObject
 
-// PWAppDelegate class
-@interface PWAppDelegate : NSObject <NSApplicationDelegate>
 
-@property ( strong ) PWMainWindowController* mainWindowController;
 
-#pragma mark - Core Data stack
-@property ( readonly, strong, nonatomic ) NSPersistentStoreCoordinator* persistentStoreCoordinator;
-@property ( readonly, strong, nonatomic ) NSManagedObjectModel* managedObjectModel;
-@property ( readonly, strong, nonatomic ) NSManagedObjectContext* managedObjectContext;
-
-@end // PWAppDelegate class
+@end // PWPageImageMO class
 
 /*===============================================================================┐
 |                                                                                | 

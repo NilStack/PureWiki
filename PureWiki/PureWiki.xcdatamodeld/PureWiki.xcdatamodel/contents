@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F25a" minimumToolsVersion="Xcode 7.0">
+    <entity name="PageImage" representedClassName="PWPageImageMO" syncable="YES">
+        <attribute name="pageImageData" attributeType="Binary" syncable="YES"/>
+        <attribute name="pageImageID" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="PageImage" positionX="-63" positionY="-18" width="128" height="75"/>
+    </elements>
+</model>
