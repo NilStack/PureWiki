@@ -88,11 +88,10 @@
                                                        endpoint: @"commons"
                                                isDefaultContent: &isDefaultContent
                                                           error: nil ];
-
             if ( image )
-                [ self performSelectorOnMainThread: @selector( setImage: ) withObject: image waitUntilDone: NO ];
+                [ self performSelectorOnMainThread: @selector( setImage: ) withObject: image waitUntilDone: YES ];
             else if ( !image && isDefaultContent )
-                [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
+                [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: YES ];
             else
                 {
                 [ self->_wikiEngine fetchImage: self->_wikiPage.pageImageName
