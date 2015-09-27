@@ -22,16 +22,20 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+@import Foundation;
+@import CoreData;
 
-@class PWMainWindowController;
+// PWDataRepository class
+@interface PWDataRepository : NSObject
 
-// PWAppDelegate class
-@interface PWAppDelegate : NSObject <NSApplicationDelegate>
++ ( instancetype ) sharedDataRepository;
 
-@property ( strong ) PWMainWindowController* mainWindowController;
+#pragma mark - Core Data stack
+@property ( readonly, strong, nonatomic ) NSPersistentStoreCoordinator* persistentStoreCoordinator;
+@property ( readonly, strong, nonatomic ) NSManagedObjectModel* managedObjectModel;
+@property ( readonly, strong, nonatomic ) NSManagedObjectContext* managedObjectContext;
 
-@end // PWAppDelegate class
+@end // PWDataRepository class
 
 /*===============================================================================┐
 |                                                                                | 
@@ -44,7 +48,7 @@
 |                           +++=       =+++         +                            | 
 |                            +++~       +++=       +=                            | 
 |                            ,+++      ~++++=     ==                             | 
-|                             ++++     +  +++     +                              | 
+|                             ++++     +  +++     +      r                        | 
 |                              +++=   +   ~+++   +,                              | 
 |                               +++  +:    =+++ ==                               | 
 |                               =++++=      +++++                                | 

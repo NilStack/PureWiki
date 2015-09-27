@@ -23,6 +23,7 @@
 		833AAEB11BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 833AAEB01BADFAF9001546A5 /* NSXMLNode+PWOpenedPagePreview.m */; settings = {ASSET_TAGS = (); }; };
 		8342C71D1BB804C400637857 /* PureWiki.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342C71B1BB804C400637857 /* PureWiki.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		8342C7211BB8073200637857 /* PWPageImageMO.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342C7201BB8073200637857 /* PWPageImageMO.m */; settings = {ASSET_TAGS = (); }; };
+		8342C7241BB808E900637857 /* PWDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342C7231BB808E900637857 /* PWDataRepository.m */; settings = {ASSET_TAGS = (); }; };
 		83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E931B8351BF00A33030 /* PWWikiContentView.m */; };
 		83480E971B83530C00A33030 /* PWSidebarTabsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E961B83530C00A33030 /* PWSidebarTabsTable.m */; };
 		83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */; };
@@ -181,6 +182,8 @@
 		8342C71C1BB804C400637857 /* PureWiki.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PureWiki.xcdatamodel; sourceTree = "<group>"; };
 		8342C71F1BB8073200637857 /* PWPageImageMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWPageImageMO.h; sourceTree = "<group>"; };
 		8342C7201BB8073200637857 /* PWPageImageMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWPageImageMO.m; sourceTree = "<group>"; };
+		8342C7221BB808E900637857 /* PWDataRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWDataRepository.h; sourceTree = "<group>"; };
+		8342C7231BB808E900637857 /* PWDataRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWDataRepository.m; sourceTree = "<group>"; };
 		83480E921B8351BF00A33030 /* PWWikiContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentView.h; sourceTree = "<group>"; };
 		83480E931B8351BF00A33030 /* PWWikiContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentView.m; sourceTree = "<group>"; };
 		83480E951B83530C00A33030 /* PWSidebarTabsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTable.h; sourceTree = "<group>"; };
@@ -638,6 +641,8 @@
 			children = (
 				83B794121B7DCE5F00F4544E /* PWAppDelegate.h */,
 				83B794131B7DCE5F00F4544E /* PWAppDelegate.m */,
+				8342C7221BB808E900637857 /* PWDataRepository.h */,
+				8342C7231BB808E900637857 /* PWDataRepository.m */,
 				8322BF801B83812500A890C9 /* PWActionNotifications.h */,
 				8322BF811B83812500A890C9 /* PWActionNotifications.m */,
 				8321EC931B8C40C40099C824 /* PWArtworkConstants.h */,
@@ -1081,6 +1086,7 @@
 				835CB48E1BAEFA7800A35C1C /* DJProgressHUD.m in Sources */,
 				83ED36C21BA4593C00CEFE61 /* AFNetworkReachabilityManager.m in Sources */,
 				8321EC851B8C0C940099C824 /* PWWikiPageImageCell.m in Sources */,
+				8342C7241BB808E900637857 /* PWDataRepository.m in Sources */,
 				83E42E6F1BAC73A3009C6799 /* PWOpenedPageContentPreviewBackingTextView.m in Sources */,
 				83ED36B51BA4593C00CEFE61 /* __WikiContinuationCompleted.m in Sources */,
 				83509BE31B8738E800C4F454 /* PWWikiContentViewController.m in Sources */,
