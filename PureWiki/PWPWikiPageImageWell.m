@@ -115,14 +115,14 @@
                                 if ( [ _Task.response.MIMEType isEqualToString: @"image/svg+xml" ] )
                                     {
                                     // TODO: Looking forward to integrate with the SVG converter tools like SVGKit
-                                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
+                                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: YES ];
                                     [ sharedDataRepo insertPageImage: nil endpoint: @"commons" name: self->_wikiPage.pageImageName isDefaultContent: YES error: nil ];
                                     self->__usingDefaultContent = YES;
                                     }
                                 else
                                     {
                                     NSImage* wikiPageImage = [ [ NSImage alloc ] initWithData: ( NSData* )_ResponseObject ];
-                                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: wikiPageImage waitUntilDone: NO ];
+                                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: wikiPageImage waitUntilDone: YES ];
                                     [ sharedDataRepo insertPageImage: wikiPageImage endpoint: @"commons" name: self->_wikiPage.pageImageName isDefaultContent: NO error: nil ];
                                     self->__usingDefaultContent = NO;
                                     }
@@ -130,7 +130,10 @@
                                 } failure:
                                     ^( NSURLSessionDataTask* _Task, NSError* _Error )
                                         {
-                                        NSLog( @"%@", _Error );
+                                        NSLog( @">>> (Error) Error fetching page image due to: %@", _Error );
+
+                                        [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: YES ];
+                                        self->__usingDefaultContent = YES;
                                         } ];
 
                         [ self->_dataTask resume ];
@@ -138,7 +141,9 @@
                     } failure:
                         ^( NSError* _Error )
                             {
-                            [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
+                            NSLog( @">>> (Error) Error searching for page image due to: %@", _Error );
+
+                            [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: YES ];
                             self->__usingDefaultContent = YES;
                             }  stopAllOtherTasks: YES ];
                     }
