@@ -139,6 +139,7 @@
                         ^( NSError* _Error )
                             {
                             [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
+                            self->__usingDefaultContent = YES;
                             }  stopAllOtherTasks: YES ];
                     }
                 }
