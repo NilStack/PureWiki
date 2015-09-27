@@ -60,14 +60,14 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     if ( _OpendedWikiPage )
         {
         NSUInteger index = [ self->_openedWikiPages indexOfObject: _OpendedWikiPage ];
-        BOOL isPushing = NO;
 
         if ( index == NSNotFound )
             {
             [ self->_openedWikiPages addObject: _OpendedWikiPage ];
-            isPushing = YES;
-
             [ self.sidebarTabsTable reloadData ];
+
+            NSIndexSet* indexesShouldBeSelected = [ NSIndexSet indexSetWithIndex: self->_openedWikiPages.count - 1 ];
+            [ self.sidebarTabsTable selectRowIndexes: indexesShouldBeSelected byExtendingSelection: NO ];
             }
         else
             {
@@ -76,17 +76,11 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
             if ( opendedWikiPage.openedWikiPage != _OpendedWikiPage.openedWikiPage )
                 opendedWikiPage.openedWikiPage = _OpendedWikiPage.openedWikiPage;
 
-            NSIndexSet* rowIndexes = [ NSIndexSet indexSetWithIndex: [ self->_openedWikiPages indexOfObject: self->_currentSelectedPage ] ];
+            NSIndexSet* rowIndexes = [ NSIndexSet indexSetWithIndex: index ];
             NSIndexSet* columnIndexes = [ NSIndexSet indexSetWithIndex: 0 ];
 
             [ self.sidebarTabsTable reloadDataForRowIndexes: rowIndexes columnIndexes: columnIndexes ];
             }
-
-        NSIndexSet* selectRowIndexes =
-            [ NSIndexSet indexSetWithIndex: isPushing ? ( self->_openedWikiPages.count - 1 )
-                                                      : [ self->_openedWikiPages indexOfObject: self->_currentSelectedPage ] ];
-
-        [ self.sidebarTabsTable selectRowIndexes: selectRowIndexes byExtendingSelection: NO ];
         }
     }
 
