@@ -47,14 +47,6 @@ id static __sSharedDataRepository;
     return __sSharedDataRepository;
     }
 
-- ( void ) awakeFromNib
-    {
-    NSLog( @"%@", self.applicationDocumentsDirectory );
-    NSLog( @"%@", self.managedObjectModel );
-    NSLog( @"%@", self.persistentStoreCoordinator );
-    NSLog( @"%@", self.managedObjectContext );
-    }
-
 #pragma mark - Page Image
 - ( NSString* ) __base64EncodedURL: ( NSURL* )_URL
     {
@@ -65,36 +57,43 @@ id static __sSharedDataRepository;
     }
 
 - ( void ) insertPageImage: ( NSImage* )_PageImage
-                       URL: ( NSURL* )_URL
+                  endpoint: ( NSString* )_Endpoint
+                      name: ( NSString* )_Name
+          isDefaultContent: ( BOOL )_Flag
                      error: ( NSError** )_Error
     {
     PWPageImageMO* pageImage = [ NSEntityDescription insertNewObjectForEntityForName: @"PageImage"
                                                               inManagedObjectContext: self.managedObjectContext ];
 
-    NSString* ID = [ self __base64EncodedURL: _URL ];
-    [ pageImage setPageImageID: ID ];
-    [ pageImage setPageImageData: _PageImage.TIFFRepresentation ];
+    [ pageImage setIsDefaultContent: _Flag ];
+    [ pageImage setEndpoint: _Endpoint ];
+    [ pageImage setName: _Name ];
+
+    if ( !pageImage.isDefaultContent )
+        [ pageImage setDataRep: _PageImage.TIFFRepresentation ];
 
     [ self.managedObjectContext save: _Error ];
     }
 
-- ( NSImage* ) pagePageOfURL: ( NSURL* )_URL
-                       error: ( NSError** )_Error
+- ( NSImage* ) pageImageWithName: ( NSString* )_Name
+                        endpoint: ( NSString* )_Endpoint
+                isDefaultContent: ( BOOL* )_Flag
+                           error: ( NSError** )_Error
     {
     NSImage* image = nil;
 
     NSFetchRequest* fetchRequest = [ NSFetchRequest fetchRequestWithEntityName: @"PageImage" ];
     [ fetchRequest setResultType: NSManagedObjectResultType ];
-
-    NSString* ID = [ self __base64EncodedURL: _URL ];
-    [ fetchRequest setPredicate: [ NSPredicate predicateWithFormat: @"pageImageID == %@", ID ] ];
+    [ fetchRequest setPredicate: [ NSPredicate predicateWithFormat: @"endpoint == %@ && name == %@", _Endpoint, _Name ] ];
 
     NSArray* fetchedResults = [ self.managedObjectContext executeFetchRequest: fetchRequest error: _Error ];
     if ( fetchRequest )
         {
-        NSData* tiffRep = [ fetchedResults firstObject ];
-        if ( [ tiffRep isKindOfClass: [ NSData class ] ] )
-            image = [ [ NSImage alloc ] initWithData: tiffRep ];
+        PWPageImageMO* pageImage = [ fetchedResults firstObject ];
+        image = [ [ NSImage alloc ] initWithData: pageImage.dataRep ];
+
+        if ( _Flag )
+            *_Flag = pageImage.isDefaultContent;
         }
 
     return image;

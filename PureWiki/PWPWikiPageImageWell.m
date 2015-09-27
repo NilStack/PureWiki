@@ -75,57 +75,51 @@
     {
     [ self.cell setHighlighted: NO ];
 
+    PWDataRepository* sharedDataRepo = [ PWDataRepository sharedDataRepository ];
+
     if ( self->_wikiPage != _WikiPage )
         {
         self->_wikiPage = _WikiPage;
 
-        void (^__handleFetchedPageImageData)( NSData*, NSURLResponse*, NSError* ) =
-            ^( NSData* _ImageData, NSURLResponse* _Response, NSError* _Error )
-                {
-                if ( [ _Response.MIMEType isEqualToString: @"image/svg+xml" ] )
-                    // TODO: Looking forward to integrate with the SVG converter tools like SVGKit
-                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
-                else
-                    {
-                    NSImage* wikiPageImage = [ [ NSImage alloc ] initWithData: _ImageData ];
-                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: wikiPageImage waitUntilDone: NO ];
-
-                    [ [ PWDataRepository sharedDataRepository ] insertPageImage: wikiPageImage URL: _Response.URL error: nil ];
-                    }
-                };
-
         if ( self->_wikiPage.pageImageName )
             {
-            [ self->_wikiEngine fetchImage: self->_wikiPage.pageImageName
-                                   success:
-            ^( WikiImage* _WikiImage )
+            BOOL isDefaultContent = NO;
+            NSImage* image = [ sharedDataRepo pageImageWithName: self->_wikiPage.pageImageName
+                                                       endpoint: @"commons"
+                                               isDefaultContent: &isDefaultContent
+                                                          error: nil ];
+
+            if ( image )
+                [ self performSelectorOnMainThread: @selector( setImage: ) withObject: image waitUntilDone: NO ];
+            else if ( !image && isDefaultContent )
+                [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
+            else
                 {
-                if ( _WikiImage )
+                [ self->_wikiEngine fetchImage: self->_wikiPage.pageImageName
+                                       success:
+                ^( WikiImage* _WikiImage )
                     {
-                    NSURL* imageURL = _WikiImage.URL;
-
-                    NSURLRequest* imageRequest = [ NSURLRequest requestWithURL: imageURL ];
-                    NSCachedURLResponse* cachedRequest = [ [ NSURLCache sharedURLCache ] cachedResponseForRequest: imageRequest ];
-
-                    if ( cachedRequest )
-                        __handleFetchedPageImageData( cachedRequest.data, cachedRequest.response, nil );
-                    else
+                    if ( _WikiImage )
                         {
-
+                        NSURL* imageURL = _WikiImage.URL;
                         self->_dataTask = [ self->_HTTPSessionManager GET: imageURL.absoluteString
                                                                parameters: nil
                                                                   success:
                           ^( NSURLSessionDataTask* _Task, id _ResponseObject )
                                 {
-                                __handleFetchedPageImageData( ( NSData* )_ResponseObject, _Task.response, nil );
+                                if ( [ _Task.response.MIMEType isEqualToString: @"image/svg+xml" ] )
+                                    {
+                                    // TODO: Looking forward to integrate with the SVG converter tools like SVGKit
+                                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
+                                    [ sharedDataRepo insertPageImage: nil endpoint: @"commons" name: self->_wikiPage.pageImageName isDefaultContent: YES error: nil ];
+                                    }
+                                else
+                                    {
+                                    NSImage* wikiPageImage = [ [ NSImage alloc ] initWithData: ( NSData* )_ResponseObject ];
+                                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: wikiPageImage waitUntilDone: NO ];
+                                    [ sharedDataRepo insertPageImage: wikiPageImage endpoint: @"commons" name: self->_wikiPage.pageImageName isDefaultContent: NO error: nil ];
+                                    }
 
-                                NSCachedURLResponse* cache =
-                                    [ [ NSCachedURLResponse alloc ] initWithResponse: _Task.response
-                                                                                data: ( NSData* )_ResponseObject
-                                                                            userInfo: nil
-                                                                       storagePolicy: NSURLCacheStorageAllowed ];
-
-                                [ [ NSURLCache sharedURLCache ] storeCachedResponse: cache forRequest: imageRequest ];
                                 } failure:
                                     ^( NSURLSessionDataTask* _Task, NSError* _Error )
                                         {
@@ -134,12 +128,12 @@
 
                         [ self->_dataTask resume ];
                         }
+                    } failure:
+                        ^( NSError* _Error )
+                            {
+                            [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
+                            }  stopAllOtherTasks: YES ];
                     }
-                } failure:
-                    ^( NSError* _Error )
-                        {
-                        [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
-                        }  stopAllOtherTasks: YES ];
                 }
         else
             [ self setImage: [ self __fuckingImage ] ];

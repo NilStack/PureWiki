@@ -31,8 +31,8 @@
 + ( instancetype ) sharedDataRepository;
 
 #pragma mark - Page Image
-- ( void ) insertPageImage: ( NSImage* )_PageImage URL: ( NSURL* )_URL error: ( NSError** )_Error;
-- ( NSImage* ) pagePageOfURL: ( NSURL* )_URL error: ( NSError** )_Error;
+- ( void ) insertPageImage: ( NSImage* )_PageImage endpoint: ( NSString* )_Endpoint name: ( NSString* )_Name isDefaultContent: ( BOOL )_Flag error: ( NSError** )_Error;
+- ( NSImage* ) pageImageWithName: ( NSString* )_Name endpoint: ( NSString* )_Endpoint isDefaultContent: ( BOOL* )_Flag error: ( NSError** )_Error;
 
 #pragma mark - Core Data stack
 @property ( readonly, strong, nonatomic ) NSPersistentStoreCoordinator* persistentStoreCoordinator;

@@ -456,9 +456,21 @@
 		8342C71E1BB806E000637857 /* managed-object-model */ = {
 			isa = PBXGroup;
 			children = (
-				8342C71B1BB804C400637857 /* PureWiki.xcdatamodeld */,
+				8342C7251BB8315C00637857 /* mom */,
+				8342C7221BB808E900637857 /* PWDataRepository.h */,
+				8342C7231BB808E900637857 /* PWDataRepository.m */,
+				8342C71F1BB8073200637857 /* PWPageImageMO.h */,
+				8342C7201BB8073200637857 /* PWPageImageMO.m */,
 			);
 			name = "managed-object-model";
+			sourceTree = "<group>";
+		};
+		8342C7251BB8315C00637857 /* mom */ = {
+			isa = PBXGroup;
+			children = (
+				8342C71B1BB804C400637857 /* PureWiki.xcdatamodeld */,
+			);
+			name = mom;
 			sourceTree = "<group>";
 		};
 		83480E901B83515000A33030 /* sidebar */ = {
@@ -475,8 +487,6 @@
 				83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */,
 				8321EC801B8C0C940099C824 /* PWPWikiPageImageWell.h */,
 				8321EC811B8C0C940099C824 /* PWPWikiPageImageWell.m */,
-				8342C71F1BB8073200637857 /* PWPageImageMO.h */,
-				8342C7201BB8073200637857 /* PWPageImageMO.m */,
 				8321EC821B8C0C940099C824 /* PWWikiPageImageCell.h */,
 				8321EC831B8C0C940099C824 /* PWWikiPageImageCell.m */,
 				83E42E701BADCFBA009C6799 /* PWOpenedPagePreviewTitleField.h */,
@@ -641,8 +651,6 @@
 			children = (
 				83B794121B7DCE5F00F4544E /* PWAppDelegate.h */,
 				83B794131B7DCE5F00F4544E /* PWAppDelegate.m */,
-				8342C7221BB808E900637857 /* PWDataRepository.h */,
-				8342C7231BB808E900637857 /* PWDataRepository.m */,
 				8322BF801B83812500A890C9 /* PWActionNotifications.h */,
 				8322BF811B83812500A890C9 /* PWActionNotifications.m */,
 				8321EC931B8C40C40099C824 /* PWArtworkConstants.h */,

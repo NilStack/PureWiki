@@ -27,8 +27,11 @@
 // PWPageImageMO class
 @interface PWPageImageMO : NSManagedObject
 
-@property ( strong, readwrite ) NSString* pageImageID;
-@property ( strong, readwrite ) NSData* pageImageData;
+@property ( assign, readwrite ) BOOL isDefaultContent;
+
+@property ( strong, readwrite ) NSString* endpoint;
+@property ( strong, readwrite ) NSString* name;
+@property ( strong, readwrite ) NSData* dataRep;
 
 @end // PWPageImageMO class
 

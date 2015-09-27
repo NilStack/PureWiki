@@ -27,8 +27,11 @@
 // PWPageImageMO class
 @implementation PWPageImageMO
 
-@dynamic pageImageID;
-@dynamic pageImageData;
+@dynamic isDefaultContent;
+
+@dynamic endpoint;
+@dynamic name;
+@dynamic dataRep;
 
 #pragma mark Initializations
 - ( void ) awakeFromInsert
