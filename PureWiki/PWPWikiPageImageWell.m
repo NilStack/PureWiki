@@ -89,9 +89,15 @@
                                                isDefaultContent: &isDefaultContent
                                                           error: nil ];
             if ( image )
+                {
                 [ self performSelectorOnMainThread: @selector( setImage: ) withObject: image waitUntilDone: YES ];
+                self->__usingDefaultContent = NO;
+                }
             else if ( !image && isDefaultContent )
+                {
                 [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: YES ];
+                self->__usingDefaultContent = YES;
+                }
             else
                 {
                 [ self->_wikiEngine fetchImage: self->_wikiPage.pageImageName
@@ -111,18 +117,20 @@
                                     // TODO: Looking forward to integrate with the SVG converter tools like SVGKit
                                     [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
                                     [ sharedDataRepo insertPageImage: nil endpoint: @"commons" name: self->_wikiPage.pageImageName isDefaultContent: YES error: nil ];
+                                    self->__usingDefaultContent = YES;
                                     }
                                 else
                                     {
                                     NSImage* wikiPageImage = [ [ NSImage alloc ] initWithData: ( NSData* )_ResponseObject ];
                                     [ self performSelectorOnMainThread: @selector( setImage: ) withObject: wikiPageImage waitUntilDone: NO ];
                                     [ sharedDataRepo insertPageImage: wikiPageImage endpoint: @"commons" name: self->_wikiPage.pageImageName isDefaultContent: NO error: nil ];
+                                    self->__usingDefaultContent = NO;
                                     }
 
                                 } failure:
                                     ^( NSURLSessionDataTask* _Task, NSError* _Error )
                                         {
-
+                                        NSLog( @"%@", _Error );
                                         } ];
 
                         [ self->_dataTask resume ];
@@ -135,7 +143,10 @@
                     }
                 }
         else
+            {
+            self->__usingDefaultContent = YES;
             [ self setImage: [ self __fuckingImage ] ];
+            }
         }
     }
 
@@ -201,6 +212,9 @@
 - ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
     {
     self->__isHostRowViewSelected = _YesOrNo;
+
+    if ( self->__usingDefaultContent )
+        [ self setImage: [ self __fuckingImage ] ];
     }
 
 - ( BOOL ) isHostRowViewSelected

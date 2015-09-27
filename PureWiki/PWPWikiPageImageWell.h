@@ -42,6 +42,7 @@
     NSTrackingAreaOptions _trackingAreaOptions;
     NSTrackingArea __strong* _trackingArea;
 
+    BOOL __usingDefaultContent;
     BOOL __isHostRowViewSelected;
     }
 
