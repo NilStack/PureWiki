@@ -270,6 +270,7 @@
 
             [ self askToBecomeFirstResponder ];
             [ [ ( PWStackContainerView* )( self.owner ) sidebarTabsTableController ] pushOpenedWikiPage: self.currentOpenedWikiPage ];
+            [ self __reloadAllStatusConsumers ];
 
             [ self->__progressHUD hide: YES ];
 
