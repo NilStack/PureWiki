@@ -24,6 +24,8 @@
 
 #import "PWDataRepository.h"
 
+#import "PWPageImageMO.h"
+
 // PWDataRepository class
 @implementation PWDataRepository
 
@@ -51,6 +53,51 @@ id static __sSharedDataRepository;
     NSLog( @"%@", self.managedObjectModel );
     NSLog( @"%@", self.persistentStoreCoordinator );
     NSLog( @"%@", self.managedObjectContext );
+    }
+
+#pragma mark - Page Image
+- ( NSString* ) __base64EncodedURL: ( NSURL* )_URL
+    {
+    NSData* URLDataRef = [ [ _URL absoluteString ] dataUsingEncoding: NSUTF8StringEncoding ];
+    NSString* base64ed = [ URLDataRef base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength ];
+
+    return base64ed;
+    }
+
+- ( void ) insertPageImage: ( NSImage* )_PageImage
+                       URL: ( NSURL* )_URL
+                     error: ( NSError** )_Error
+    {
+    PWPageImageMO* pageImage = [ NSEntityDescription insertNewObjectForEntityForName: @"PageImage"
+                                                              inManagedObjectContext: self.managedObjectContext ];
+
+    NSString* ID = [ self __base64EncodedURL: _URL ];
+    [ pageImage setPageImageID: ID ];
+    [ pageImage setPageImageData: _PageImage.TIFFRepresentation ];
+
+    [ self.managedObjectContext save: _Error ];
+    }
+
+- ( NSImage* ) pagePageOfURL: ( NSURL* )_URL
+                       error: ( NSError** )_Error
+    {
+    NSImage* image = nil;
+
+    NSFetchRequest* fetchRequest = [ NSFetchRequest fetchRequestWithEntityName: @"PageImage" ];
+    [ fetchRequest setResultType: NSManagedObjectResultType ];
+
+    NSString* ID = [ self __base64EncodedURL: _URL ];
+    [ fetchRequest setPredicate: [ NSPredicate predicateWithFormat: @"pageImageID == %@", ID ] ];
+
+    NSArray* fetchedResults = [ self.managedObjectContext executeFetchRequest: fetchRequest error: _Error ];
+    if ( fetchRequest )
+        {
+        NSData* tiffRep = [ fetchedResults firstObject ];
+        if ( [ tiffRep isKindOfClass: [ NSData class ] ] )
+            image = [ [ NSImage alloc ] initWithData: tiffRep ];
+        }
+
+    return image;
     }
 
 #pragma mark - Core Data stack

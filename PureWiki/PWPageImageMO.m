@@ -27,6 +27,9 @@
 // PWPageImageMO class
 @implementation PWPageImageMO
 
+@dynamic pageImageID;
+@dynamic pageImageData;
+
 #pragma mark Initializations
 - ( void ) awakeFromInsert
     {

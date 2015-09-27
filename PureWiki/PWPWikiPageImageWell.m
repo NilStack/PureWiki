@@ -25,6 +25,7 @@
 #import "PWPWikiPageImageWell.h"
 #import "PWWikiPageImageCell.h"
 #import "PWArtworkConstants.h"
+#import "PWDataRepository.h"
 
 #import "AFNetworking.h"
 #import "SugarWiki.h"
@@ -74,8 +75,6 @@
     {
     [ self.cell setHighlighted: NO ];
 
-//    NSImage* [ self __fuckingImage ] = [ self __fuckingImage ];
-
     if ( self->_wikiPage != _WikiPage )
         {
         self->_wikiPage = _WikiPage;
@@ -90,6 +89,8 @@
                     {
                     NSImage* wikiPageImage = [ [ NSImage alloc ] initWithData: _ImageData ];
                     [ self performSelectorOnMainThread: @selector( setImage: ) withObject: wikiPageImage waitUntilDone: NO ];
+
+                    [ [ PWDataRepository sharedDataRepository ] insertPageImage: wikiPageImage URL: _Response.URL error: nil ];
                     }
                 };
 
@@ -124,7 +125,7 @@
                                                                             userInfo: nil
                                                                        storagePolicy: NSURLCacheStorageAllowed ];
 
-                            [ [ NSURLCache sharedURLCache ] storeCachedResponse: cache forRequest: imageRequest ];
+                                [ [ NSURLCache sharedURLCache ] storeCachedResponse: cache forRequest: imageRequest ];
                                 } failure:
                                     ^( NSURLSessionDataTask* _Task, NSError* _Error )
                                         {

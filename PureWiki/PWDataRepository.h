@@ -30,6 +30,10 @@
 
 + ( instancetype ) sharedDataRepository;
 
+#pragma mark - Page Image
+- ( void ) insertPageImage: ( NSImage* )_PageImage URL: ( NSURL* )_URL error: ( NSError** )_Error;
+- ( NSImage* ) pagePageOfURL: ( NSURL* )_URL error: ( NSError** )_Error;
+
 #pragma mark - Core Data stack
 @property ( readonly, strong, nonatomic ) NSPersistentStoreCoordinator* persistentStoreCoordinator;
 @property ( readonly, strong, nonatomic ) NSManagedObjectModel* managedObjectModel;
@@ -48,7 +52,7 @@
 |                           +++=       =+++         +                            | 
 |                            +++~       +++=       +=                            | 
 |                            ,+++      ~++++=     ==                             | 
-|                             ++++     +  +++     +      r                        | 
+|                             ++++     +  +++     +                              | 
 |                              +++=   +   ~+++   +,                              | 
 |                               +++  +:    =+++ ==                               | 
 |                               =++++=      +++++                                | 
