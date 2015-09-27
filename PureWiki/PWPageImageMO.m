@@ -37,15 +37,11 @@
 - ( void ) awakeFromInsert
     {
     [ super awakeFromInsert ];
-
-    NSLog( @"%s", __PRETTY_FUNCTION__ );
     }
 
 - ( void ) awakeFromFetch
     {
     [ super awakeFromFetch ];
-
-    NSLog( @"%s", __PRETTY_FUNCTION__ );
     }
 
 @end // PWPageImageMO class

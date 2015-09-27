@@ -66,6 +66,8 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
             {
             [ self->_openedWikiPages addObject: _OpendedWikiPage ];
             isPushing = YES;
+
+            [ self.sidebarTabsTable reloadData ];
             }
         else
             {
@@ -73,9 +75,12 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 
             if ( opendedWikiPage.openedWikiPage != _OpendedWikiPage.openedWikiPage )
                 opendedWikiPage.openedWikiPage = _OpendedWikiPage.openedWikiPage;
-            }
 
-        [ self.sidebarTabsTable reloadData ];
+            NSIndexSet* rowIndexes = [ NSIndexSet indexSetWithIndex: [ self->_openedWikiPages indexOfObject: self->_currentSelectedPage ] ];
+            NSIndexSet* columnIndexes = [ NSIndexSet indexSetWithIndex: 0 ];
+
+            [ self.sidebarTabsTable reloadDataForRowIndexes: rowIndexes columnIndexes: columnIndexes ];
+            }
 
         NSIndexSet* selectRowIndexes =
             [ NSIndexSet indexSetWithIndex: isPushing ? ( self->_openedWikiPages.count - 1 )
@@ -118,10 +123,13 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 - ( void ) tableViewSelectionDidChange: ( nonnull NSNotification* )_Notification
     {
     NSInteger selectedRowIndex = self.sidebarTabsTable.selectedRow;
-    
-    [ self willChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
-        self->_currentSelectedPage = self->_openedWikiPages[ selectedRowIndex ];
-    [ self didChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
+
+    if ( selectedRowIndex > -1 )
+        {
+        [ self willChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
+            self->_currentSelectedPage = self->_openedWikiPages[ selectedRowIndex ];
+        [ self didChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
+        }
     }
 
 - ( NSTableRowView* ) tableView: ( NSTableView* )_TableView
