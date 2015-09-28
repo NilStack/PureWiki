@@ -158,9 +158,10 @@ NSString* const kResultsColumnID = @"results-column";
 
 - ( void ) searchValue: ( NSString* )SearchValue
     {
-    // TODO:
     if ( SearchValue.length > 0 )
         {
+        [ self stopSearchingAndClearResults ];
+
         [ self->_timer invalidate ];
         self->_timer = [ NSTimer timerWithTimeInterval: ( NSTimeInterval ).6f
                                                 target: self
@@ -199,6 +200,10 @@ NSString* const kResultsColumnID = @"results-column";
     [ self stopSearching ];
     [ self->_fetchedResults removeAllObjects ];
     [ self.searchResultsTableView reloadData ];
+
+    self->__continuation = nil;
+    self->__searchingValue = nil;
+    self->__isLoadingMoreResults = NO;
     }
 
 #pragma mark Conforms to <NSTableViewDataSource>
@@ -235,6 +240,13 @@ NSString* const kResultsColumnID = @"results-column";
      shouldSelectRow: ( NSInteger )_Row
     {
     return NO;
+    }
+
+#pragma mark Conforms to <PWSearchResultsScrollViewDelegate>
+- ( void ) searchResultsScrollView: ( PWSearchResultsScrollView* )_SearchResultsScrollView
+            shouldFetchMoreResults: ( NSClipView* )_ClipView
+    {
+    [ self _searchWikiPagesBasedThatHaveValue: self->__searchingValue ];
     }
 
 #pragma mark Dynamic Properties
@@ -301,35 +313,44 @@ NSString* const kResultsColumnID = @"results-column";
     NSLog( @">>> (Invocation) %s", __PRETTY_FUNCTION__ );
     #endif
 
-    [ self _searchWikiPagesBasedThatHaveValue: _Timer.userInfo[ @"value" ] ];
+    self->__searchingValue = _Timer.userInfo[ @"value" ];
+    [ self popUpAttachPanel ];
+    [ self _searchWikiPagesBasedThatHaveValue: self->__searchingValue ];
     [ _Timer invalidate ];
     }
 
 - ( void ) _searchWikiPagesBasedThatHaveValue: ( NSString* )_Value
     {
-    [ self popUpAttachPanel ];
-    [ self->_instantSearchWikiEngine searchAllPagesThatHaveValue: _Value
-                                                    inNamespaces: nil
-                                                        approach: WikiEngineSearchApproachPageText
-                                                           limit: 10
-                                                   usesGenerator: NO
-                                                    continuation: nil
-                                                         success:
-        ^( __SugarArray_of( WikiSearchResult* ) _SearchResults
-         , WikiContinuation* _Continuation
-         , BOOL _IsBatchComplete )
-            {
-            if ( _SearchResults )
+    if ( !self->__isLoadingMoreResults )
+        {
+        self->__isLoadingMoreResults = YES;
+        [ self->_instantSearchWikiEngine searchAllPagesThatHaveValue: _Value
+                                                        inNamespaces: nil
+                                                            approach: WikiEngineSearchApproachPageText
+                                                               limit: 10
+                                                       usesGenerator: NO
+                                                        continuation: self->__continuation
+                                                             success:
+            ^( __SugarArray_of( WikiSearchResult* ) _SearchResults
+             , WikiContinuation* _Continuation
+             , BOOL _IsBatchComplete )
                 {
-                [ self->_fetchedResults removeAllObjects ];
-                [ self->_fetchedResults addObjectsFromArray: _SearchResults ];
-                [ self.searchResultsTableView reloadData ];
-                }
-            } failure:
-                ^( NSError* _Error )
+                if ( _SearchResults )
                     {
-                    NSLog( @"%@", _Error );
-                    } stopAllOtherTasks: YES ];
+                    self->__continuation = _Continuation;
+
+                    [ self->_fetchedResults addObjectsFromArray: _SearchResults ];
+                    [ self.searchResultsTableView reloadData ];
+                    }
+
+                self->__isLoadingMoreResults = NO;
+                } failure:
+                    ^( NSError* _Error )
+                        {
+                        NSLog( @"%@", _Error );
+                        self->__isLoadingMoreResults = NO;
+                        } stopAllOtherTasks: YES ];
+        }
     }
 
 - ( void ) _relativeWindowStartLiveResize: ( NSNotification* )_Notif
@@ -350,7 +371,6 @@ NSString* const kResultsColumnID = @"results-column";
     if ( self.isInUse )
         [ self popUpAttachPanel ];
     }
-
 
 @end // PWSearchResultsAttachPanelController class
 

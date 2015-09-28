@@ -21,7 +21,7 @@
 └==============================================================================┘██
   ██████████████████████████████████████████████████████████████████████████████*/
 
-@import Cocoa;
+#import "PWSearchResultsScrollView.h"
 
 #import "SugarWiki.h"
 
@@ -33,7 +33,7 @@
 
 // PWSearchResultsAttachPanelController class
 @interface PWSearchResultsAttachPanelController : NSWindowController
-    <NSTableViewDataSource, NSTableViewDelegate>
+    <NSTableViewDataSource, NSTableViewDelegate, PWSearchResultsScrollViewDelegate>
     {
 @protected
     __strong __SugarMutableArray_of( WikiSearchResult* ) _fetchedResults;    // Used as backing store
@@ -42,6 +42,10 @@
     NSTimer __strong* _timer;
 
     NSView __weak* _relativeView;
+
+    WikiContinuation __strong __block* __continuation;
+    NSString __strong* __searchingValue;
+    BOOL __isLoadingMoreResults;
     }
 
 @property ( weak, readonly ) PWSearchResultsAttachPanel* searchResultsAttachPanel;

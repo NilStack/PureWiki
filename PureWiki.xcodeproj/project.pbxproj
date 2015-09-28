@@ -24,6 +24,7 @@
 		8342C71D1BB804C400637857 /* PureWiki.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342C71B1BB804C400637857 /* PureWiki.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		8342C7211BB8073200637857 /* PWPageImageMO.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342C7201BB8073200637857 /* PWPageImageMO.m */; settings = {ASSET_TAGS = (); }; };
 		8342C7241BB808E900637857 /* PWDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342C7231BB808E900637857 /* PWDataRepository.m */; settings = {ASSET_TAGS = (); }; };
+		8342C8831BB97A1500E715DA /* PWSearchResultsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342C8821BB97A1500E715DA /* PWSearchResultsScrollView.m */; settings = {ASSET_TAGS = (); }; };
 		83480E941B8351BF00A33030 /* PWWikiContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E931B8351BF00A33030 /* PWWikiContentView.m */; };
 		83480E971B83530C00A33030 /* PWSidebarTabsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E961B83530C00A33030 /* PWSidebarTabsTable.m */; };
 		83480E9A1B83532D00A33030 /* PWSidebarTabsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83480E991B83532D00A33030 /* PWSidebarTabsTableCell.m */; };
@@ -184,6 +185,8 @@
 		8342C7201BB8073200637857 /* PWPageImageMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWPageImageMO.m; sourceTree = "<group>"; };
 		8342C7221BB808E900637857 /* PWDataRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWDataRepository.h; sourceTree = "<group>"; };
 		8342C7231BB808E900637857 /* PWDataRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWDataRepository.m; sourceTree = "<group>"; };
+		8342C8811BB97A1500E715DA /* PWSearchResultsScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSearchResultsScrollView.h; sourceTree = "<group>"; };
+		8342C8821BB97A1500E715DA /* PWSearchResultsScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWSearchResultsScrollView.m; sourceTree = "<group>"; };
 		83480E921B8351BF00A33030 /* PWWikiContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWWikiContentView.h; sourceTree = "<group>"; };
 		83480E931B8351BF00A33030 /* PWWikiContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWWikiContentView.m; sourceTree = "<group>"; };
 		83480E951B83530C00A33030 /* PWSidebarTabsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWSidebarTabsTable.h; sourceTree = "<group>"; };
@@ -422,6 +425,8 @@
 				83509BD31B862A1400C4F454 /* PWSearchResultsAttachPanelController.m */,
 				8321EC7D1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.h */,
 				8321EC7E1B8A2C7D0099C824 /* PWSearchResultsAttachPanelBlurBgView.m */,
+				8342C8811BB97A1500E715DA /* PWSearchResultsScrollView.h */,
+				8342C8821BB97A1500E715DA /* PWSearchResultsScrollView.m */,
 				83509BD81B864A9100C4F454 /* PWSearchResultsTableView.h */,
 				83509BD91B864A9100C4F454 /* PWSearchResultsTableView.m */,
 				83509BDB1B864B1300C4F454 /* PWSearchResultsTableCellView.h */,
@@ -1119,6 +1124,7 @@
 				83480E9D1B83589900A33030 /* PWSplitView.m in Sources */,
 				83A6CC791B91FAFF0048AE73 /* __TKFrozenTitleTextLayer.m in Sources */,
 				83509BDA1B864A9100C4F454 /* PWSearchResultsTableView.m in Sources */,
+				8342C8831BB97A1500E715DA /* PWSearchResultsScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
