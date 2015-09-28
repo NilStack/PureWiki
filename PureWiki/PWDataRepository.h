@@ -19,64 +19,27 @@
 |                             ALL RIGHTS RESERVED.                             |██
 |                                                                              |██
 └==============================================================================┘██
+  ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSearchResultsScrollView.h"
+@import Foundation;
+@import CoreData;
 
-#import "SugarWiki.h"
+// PWDataRepository class
+@interface PWDataRepository : NSObject
 
-@class PWSearchResultsAttachPanel;
-@class PWSearchResultsTableView;
++ ( instancetype ) sharedDataRepository;
 
-@class WikiEngine;
-@class WikiSearchResult;
+#pragma mark - Page Image
+- ( void ) insertPageImage: ( NSImage* )_PageImage endpoint: ( NSString* )_Endpoint name: ( NSString* )_Name isDefaultContent: ( BOOL )_Flag error: ( NSError** )_Error;
+- ( NSImage* ) pageImageWithName: ( NSString* )_Name endpoint: ( NSString* )_Endpoint isDefaultContent: ( BOOL* )_Flag error: ( NSError** )_Error;
 
-// PWSearchResultsAttachPanelController class
-@interface PWSearchResultsAttachPanelController : NSWindowController
-    <NSTableViewDataSource, NSTableViewDelegate, PWSearchResultsScrollViewDelegate>
-    {
-@protected
-    __strong __SugarMutableArray_of( WikiSearchResult* ) _fetchedResults;    // Used as backing store
+#pragma mark - Core Data stack
+@property ( readonly, strong, nonatomic ) NSPersistentStoreCoordinator* persistentStoreCoordinator;
+@property ( readonly, strong, nonatomic ) NSManagedObjectModel* managedObjectModel;
+@property ( readonly, strong, nonatomic ) NSManagedObjectContext* managedObjectContext;
 
-    WikiEngine __strong* _instantSearchWikiEngine;
-    NSTimer __strong* _timer;
-
-    NSView __weak* _relativeView;
-
-    WikiContinuation __strong __block* __continuation;
-    NSString __strong* __searchingValue;
-    BOOL __isLoadingMoreResults;
-    }
-
-@property ( weak, readonly ) PWSearchResultsAttachPanel* searchResultsAttachPanel;
-
-#pragma mark Outlets
-@property ( weak ) IBOutlet PWSearchResultsTableView* searchResultsTableView;
-
-#pragma mark Controlling The Attach Panel
-@property ( weak, readwrite ) NSView* relativeView;
-
-- ( void ) popUpAttachPanel;
-- ( void ) popUpAttachPanelOnWindow: ( NSWindow* )_ParentWindow at: ( NSPoint )_PointInScreen;
-- ( void ) closeAttachPanel;
-- ( void ) closeAttachPanelAndClearResults;
-
-#pragma mark Handling Search Results
-@property ( assign, readonly ) BOOL hasCompletedInstantSearch;
-@property ( assign, readonly ) BOOL isInUse;
-
-- ( void ) searchValue: ( NSString* )SearchValue;
-
-// Stop searching but remains the search results
-- ( void ) stopSearching;
-
-// Stop searching and clears all the search results
-- ( void ) stopSearchingAndClearResults;
-
-#pragma mark Initializations
-+ ( instancetype ) controllerWithRelativeView: ( NSView* )_RelativeView;
-
-@end // PWSearchResultsAttachPanelController class
+@end // PWDataRepository class
 
 /*===============================================================================┐
 |                                                                                | 

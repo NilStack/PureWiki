@@ -23,7 +23,7 @@
                     <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="NEo-s5-ZXu" customClass="PWSearchResultsAttachPanelBlurBgView">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="127" horizontalPageScroll="10" verticalLineScroll="127" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="127" horizontalPageScroll="10" verticalLineScroll="127" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-kx-gi9" customClass="PWSearchResultsScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="90d-g9-3dd">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
@@ -84,6 +84,9 @@
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
+                                <connections>
+                                    <outlet property="delegate" destination="-2" id="Cnv-bI-PR3"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <constraints>

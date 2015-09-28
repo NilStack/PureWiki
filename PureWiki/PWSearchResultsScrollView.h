@@ -22,33 +22,34 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSidebarTableRowView.h"
+@import Cocoa;
 
-@class AFHTTPSessionManager;
+@class PWSearchResultsTableView;
+@protocol PWSearchResultsScrollViewDelegate;
 
-@class WikiEngine;
-@class WikiPage;
+// Notification Names
+NSString extern* const PWSearchResultsScrollViewTypeUserInfoKey;
 
-// PWPWikiPageImageWell class
-@interface PWPWikiPageImageWell : NSImageView <PWSubviewOfSidebarTableRowView>
-    {
-@private
-    WikiEngine __strong* _wikiEngine;
+// PWSearchResultsScrollView class
+@interface PWSearchResultsScrollView : NSScrollView
 
-    WikiPage   __strong* _wikiPage;
-    AFHTTPSessionManager  __strong* _HTTPSessionManager;
-    NSURLSessionTask __strong* _dataTask;
+#pragma mark Accessors
+@property ( weak, readwrite ) IBOutlet id <PWSearchResultsScrollViewDelegate> delegate;
+@property ( weak, readonly ) PWSearchResultsTableView* timelineTableView;
 
-    NSTrackingAreaOptions _trackingAreaOptions;
-    NSTrackingArea __strong* _trackingArea;
+@end // PWSearchResultsScrollView class
 
-    BOOL __usingDefaultContent;
-    BOOL __isHostRowViewSelected;
-    }
+// PWSearchResultsScrollViewDelegate protocol
+@protocol PWSearchResultsScrollViewDelegate <NSObject>
 
-@property ( strong, readwrite ) WikiPage* wikiPage;
+@optional
 
-@end // PWPWikiPageImageWell class
+// Tells the delegate that the data source of search results table (document view of this scroll view)
+// should fetch more results
+- ( void ) searchResultsScrollView: ( PWSearchResultsScrollView* )_SearchResultsScrollView
+            shouldFetchMoreResults: ( NSClipView* )_ClipView;
+
+@end // PWSearchResultsScrollViewDelegate protocol
 
 /*=============================================================================┐
 |                                                                              |

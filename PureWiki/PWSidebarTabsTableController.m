@@ -60,12 +60,14 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     if ( _OpendedWikiPage )
         {
         NSUInteger index = [ self->_openedWikiPages indexOfObject: _OpendedWikiPage ];
-        BOOL isPushing = NO;
 
         if ( index == NSNotFound )
             {
             [ self->_openedWikiPages addObject: _OpendedWikiPage ];
-            isPushing = YES;
+            [ self.sidebarTabsTable reloadData ];
+
+            NSIndexSet* indexesShouldBeSelected = [ NSIndexSet indexSetWithIndex: self->_openedWikiPages.count - 1 ];
+            [ self.sidebarTabsTable selectRowIndexes: indexesShouldBeSelected byExtendingSelection: NO ];
             }
         else
             {
@@ -73,15 +75,12 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 
             if ( opendedWikiPage.openedWikiPage != _OpendedWikiPage.openedWikiPage )
                 opendedWikiPage.openedWikiPage = _OpendedWikiPage.openedWikiPage;
+
+            NSIndexSet* rowIndexes = [ NSIndexSet indexSetWithIndex: index ];
+            NSIndexSet* columnIndexes = [ NSIndexSet indexSetWithIndex: 0 ];
+
+            [ self.sidebarTabsTable reloadDataForRowIndexes: rowIndexes columnIndexes: columnIndexes ];
             }
-
-        [ self.sidebarTabsTable reloadData ];
-
-        NSIndexSet* selectRowIndexes =
-            [ NSIndexSet indexSetWithIndex: isPushing ? ( self->_openedWikiPages.count - 1 )
-                                                      : [ self->_openedWikiPages indexOfObject: self->_currentSelectedPage ] ];
-
-        [ self.sidebarTabsTable selectRowIndexes: selectRowIndexes byExtendingSelection: NO ];
         }
     }
 
@@ -118,10 +117,13 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
 - ( void ) tableViewSelectionDidChange: ( nonnull NSNotification* )_Notification
     {
     NSInteger selectedRowIndex = self.sidebarTabsTable.selectedRow;
-    
-    [ self willChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
-        self->_currentSelectedPage = self->_openedWikiPages[ selectedRowIndex ];
-    [ self didChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
+
+    if ( selectedRowIndex > -1 )
+        {
+        [ self willChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
+            self->_currentSelectedPage = self->_openedWikiPages[ selectedRowIndex ];
+        [ self didChangeValueForKey: PWSidebarCurrentSelectedPageKVOPath ];
+        }
     }
 
 - ( NSTableRowView* ) tableView: ( NSTableView* )_TableView

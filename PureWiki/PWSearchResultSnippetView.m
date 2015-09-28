@@ -157,7 +157,7 @@ NSString static* const sResultSnippetContentCSS =
 
     NSXMLElement* moreLinkNode = [ [ NSXMLElement alloc ] initWithXMLString: @"<a>more</a>" error: &error ];
     [ moreLinkNode setAttributesWithDictionary: @{ @"id" : @"more"
-                                                 , @"href" : [ NSString stringWithFormat: @"purewiki://search/result/show-more/%@", self->__wikiSearchResult.title ]
+                                                 , @"href" : [ NSString stringWithFormat: @"x-purewiki://search/result/show-more/%@", self->__wikiSearchResult.title ]
                                                  } ];
     [ processedHTML addChild: moreLinkNode ];
 

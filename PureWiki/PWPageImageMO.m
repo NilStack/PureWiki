@@ -19,64 +19,32 @@
 |                             ALL RIGHTS RESERVED.                             |██
 |                                                                              |██
 └==============================================================================┘██
+  ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSearchResultsScrollView.h"
+#import "PWPageImageMO.h"
 
-#import "SugarWiki.h"
+// PWPageImageMO class
+@implementation PWPageImageMO
 
-@class PWSearchResultsAttachPanel;
-@class PWSearchResultsTableView;
+@dynamic isDefaultContent;
 
-@class WikiEngine;
-@class WikiSearchResult;
-
-// PWSearchResultsAttachPanelController class
-@interface PWSearchResultsAttachPanelController : NSWindowController
-    <NSTableViewDataSource, NSTableViewDelegate, PWSearchResultsScrollViewDelegate>
-    {
-@protected
-    __strong __SugarMutableArray_of( WikiSearchResult* ) _fetchedResults;    // Used as backing store
-
-    WikiEngine __strong* _instantSearchWikiEngine;
-    NSTimer __strong* _timer;
-
-    NSView __weak* _relativeView;
-
-    WikiContinuation __strong __block* __continuation;
-    NSString __strong* __searchingValue;
-    BOOL __isLoadingMoreResults;
-    }
-
-@property ( weak, readonly ) PWSearchResultsAttachPanel* searchResultsAttachPanel;
-
-#pragma mark Outlets
-@property ( weak ) IBOutlet PWSearchResultsTableView* searchResultsTableView;
-
-#pragma mark Controlling The Attach Panel
-@property ( weak, readwrite ) NSView* relativeView;
-
-- ( void ) popUpAttachPanel;
-- ( void ) popUpAttachPanelOnWindow: ( NSWindow* )_ParentWindow at: ( NSPoint )_PointInScreen;
-- ( void ) closeAttachPanel;
-- ( void ) closeAttachPanelAndClearResults;
-
-#pragma mark Handling Search Results
-@property ( assign, readonly ) BOOL hasCompletedInstantSearch;
-@property ( assign, readonly ) BOOL isInUse;
-
-- ( void ) searchValue: ( NSString* )SearchValue;
-
-// Stop searching but remains the search results
-- ( void ) stopSearching;
-
-// Stop searching and clears all the search results
-- ( void ) stopSearchingAndClearResults;
+@dynamic endpoint;
+@dynamic name;
+@dynamic dataRep;
 
 #pragma mark Initializations
-+ ( instancetype ) controllerWithRelativeView: ( NSView* )_RelativeView;
+- ( void ) awakeFromInsert
+    {
+    [ super awakeFromInsert ];
+    }
 
-@end // PWSearchResultsAttachPanelController class
+- ( void ) awakeFromFetch
+    {
+    [ super awakeFromFetch ];
+    }
+
+@end // PWPageImageMO class
 
 /*===============================================================================┐
 |                                                                                | 

@@ -31,6 +31,8 @@
 
 @end // Private Interfaces
 
+#pragma mark Initializations
+
 // PWAppDelegate class
 @implementation PWAppDelegate
 

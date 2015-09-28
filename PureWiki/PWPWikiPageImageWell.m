@@ -25,6 +25,7 @@
 #import "PWPWikiPageImageWell.h"
 #import "PWWikiPageImageCell.h"
 #import "PWArtworkConstants.h"
+#import "PWDataRepository.h"
 
 #import "AFNetworking.h"
 #import "SugarWiki.h"
@@ -72,28 +73,32 @@
 
 - ( void ) setWikiPage: ( WikiPage* )_WikiPage
     {
+    self->_wikiPage = _WikiPage;
+
     [ self.cell setHighlighted: NO ];
+    [ self setImage: [ self __fuckingImage ] ];
+    self->__usingDefaultContent = YES;
 
-//    NSImage* [ self __fuckingImage ] = [ self __fuckingImage ];
+    PWDataRepository* sharedDataRepo = [ PWDataRepository sharedDataRepository ];
 
-    if ( self->_wikiPage != _WikiPage )
+    if ( self->_wikiPage.pageImageName )
         {
-        self->_wikiPage = _WikiPage;
-
-        void (^__handleFetchedPageImageData)( NSData*, NSURLResponse*, NSError* ) =
-            ^( NSData* _ImageData, NSURLResponse* _Response, NSError* _Error )
-                {
-                if ( [ _Response.MIMEType isEqualToString: @"image/svg+xml" ] )
-                    // TODO: Looking forward to integrate with the SVG converter tools like SVGKit
-                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
-                else
-                    {
-                    NSImage* wikiPageImage = [ [ NSImage alloc ] initWithData: _ImageData ];
-                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: wikiPageImage waitUntilDone: NO ];
-                    }
-                };
-
-        if ( self->_wikiPage.pageImageName )
+        BOOL isDefaultContent = NO;
+        NSImage* image = [ sharedDataRepo pageImageWithName: self->_wikiPage.pageImageName
+                                                   endpoint: @"commons"
+                                           isDefaultContent: &isDefaultContent
+                                                      error: nil ];
+        if ( image )
+            {
+            [ self performSelectorOnMainThread: @selector( setImage: ) withObject: image waitUntilDone: YES ];
+            self->__usingDefaultContent = NO;
+            }
+        else if ( !image && isDefaultContent )
+            {
+            [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: YES ];
+            self->__usingDefaultContent = YES;
+            }
+        else
             {
             [ self->_wikiEngine fetchImage: self->_wikiPage.pageImageName
                                    success:
@@ -102,46 +107,51 @@
                 if ( _WikiImage )
                     {
                     NSURL* imageURL = _WikiImage.URL;
-
-                    NSURLRequest* imageRequest = [ NSURLRequest requestWithURL: imageURL ];
-                    NSCachedURLResponse* cachedRequest = [ [ NSURLCache sharedURLCache ] cachedResponseForRequest: imageRequest ];
-
-                    if ( cachedRequest )
-                        __handleFetchedPageImageData( cachedRequest.data, cachedRequest.response, nil );
-                    else
-                        {
-
-                        self->_dataTask = [ self->_HTTPSessionManager GET: imageURL.absoluteString
-                                                               parameters: nil
-                                                                  success:
-                          ^( NSURLSessionDataTask* _Task, id _ResponseObject )
+                    self->_dataTask = [ self->_HTTPSessionManager GET: imageURL.absoluteString
+                                                           parameters: nil
+                                                              success:
+                      ^( NSURLSessionDataTask* _Task, id _ResponseObject )
+                            {
+                            if ( [ _Task.response.MIMEType isEqualToString: @"image/svg+xml" ] )
                                 {
-                                __handleFetchedPageImageData( ( NSData* )_ResponseObject, _Task.response, nil );
+                                // TODO: Looking forward to integrate with the SVG converter tools like SVGKit
+                                [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: YES ];
+                                [ sharedDataRepo insertPageImage: nil endpoint: @"commons" name: self->_wikiPage.pageImageName isDefaultContent: YES error: nil ];
+                                self->__usingDefaultContent = YES;
+                                }
+                            else
+                                {
+                                NSImage* wikiPageImage = [ [ NSImage alloc ] initWithData: ( NSData* )_ResponseObject ];
+                                [ self performSelectorOnMainThread: @selector( setImage: ) withObject: wikiPageImage waitUntilDone: YES ];
+                                [ sharedDataRepo insertPageImage: wikiPageImage endpoint: @"commons" name: self->_wikiPage.pageImageName isDefaultContent: NO error: nil ];
+                                self->__usingDefaultContent = NO;
+                                }
 
-                                NSCachedURLResponse* cache =
-                                    [ [ NSCachedURLResponse alloc ] initWithResponse: _Task.response
-                                                                                data: ( NSData* )_ResponseObject
-                                                                            userInfo: nil
-                                                                       storagePolicy: NSURLCacheStorageAllowed ];
+                            } failure:
+                                ^( NSURLSessionDataTask* _Task, NSError* _Error )
+                                    {
+                                    NSLog( @">>> (Error) Error fetching page image due to: %@", _Error );
 
-                            [ [ NSURLCache sharedURLCache ] storeCachedResponse: cache forRequest: imageRequest ];
-                                } failure:
-                                    ^( NSURLSessionDataTask* _Task, NSError* _Error )
-                                        {
+                                    [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: YES ];
+                                    self->__usingDefaultContent = YES;
+                                    } ];
 
-                                        } ];
-
-                        [ self->_dataTask resume ];
-                        }
+                    [ self->_dataTask resume ];
                     }
                 } failure:
                     ^( NSError* _Error )
                         {
-                        [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: NO ];
+                        NSLog( @">>> (Error) Error searching for page image due to: %@", _Error );
+
+                        [ self performSelectorOnMainThread: @selector( setImage: ) withObject: [ self __fuckingImage ] waitUntilDone: YES ];
+                        self->__usingDefaultContent = YES;
                         }  stopAllOtherTasks: YES ];
                 }
-        else
-            [ self setImage: [ self __fuckingImage ] ];
+            }
+    else
+        {
+        self->__usingDefaultContent = YES;
+        [ self setImage: [ self __fuckingImage ] ];
         }
     }
 
@@ -207,6 +217,9 @@
 - ( void ) setHostRowViewSelected: ( BOOL )_YesOrNo
     {
     self->__isHostRowViewSelected = _YesOrNo;
+
+    if ( self->__usingDefaultContent )
+        [ self setImage: [ self __fuckingImage ] ];
     }
 
 - ( BOOL ) isHostRowViewSelected

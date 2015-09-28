@@ -22,33 +22,42 @@
   ████████████████████████████████████████████████████████████████████████████████
   ██████████████████████████████████████████████████████████████████████████████*/
 
-#import "PWSidebarTableRowView.h"
+#import "PWSearchResultsScrollView.h"
 
-@class AFHTTPSessionManager;
+// PWSearchResultsScrollView class
+@implementation PWSearchResultsScrollView
 
-@class WikiEngine;
-@class WikiPage;
+#pragma mark Accessors
+@synthesize delegate;
+@dynamic timelineTableView;
 
-// PWPWikiPageImageWell class
-@interface PWPWikiPageImageWell : NSImageView <PWSubviewOfSidebarTableRowView>
+- ( void ) awakeFromNib
     {
-@private
-    WikiEngine __strong* _wikiEngine;
-
-    WikiPage   __strong* _wikiPage;
-    AFHTTPSessionManager  __strong* _HTTPSessionManager;
-    NSURLSessionTask __strong* _dataTask;
-
-    NSTrackingAreaOptions _trackingAreaOptions;
-    NSTrackingArea __strong* _trackingArea;
-
-    BOOL __usingDefaultContent;
-    BOOL __isHostRowViewSelected;
+    [ self configureForAutoLayout ];
     }
 
-@property ( strong, readwrite ) WikiPage* wikiPage;
+- ( PWSearchResultsTableView* ) timelineTableView
+    {
+    return ( PWSearchResultsTableView* )[ self documentView ];
+    }
 
-@end // PWPWikiPageImageWell class
+#pragma mark Overrides
+- ( void ) reflectScrolledClipView: ( NSClipView* )_ClipView
+    {
+    [ super reflectScrolledClipView: _ClipView ];
+
+    NSRect boundsOfDocumentView = [ self.documentView bounds ];
+    NSRect boundsOfClipView = [ self.contentView bounds ];
+
+    NSPoint currentScrollLocation = boundsOfClipView.origin;
+
+    if ( currentScrollLocation.y != 0 )
+        if ( currentScrollLocation.y >= ( NSMaxY( boundsOfDocumentView ) - NSHeight( boundsOfClipView ) ) )
+            if ( self.delegate && [ self.delegate respondsToSelector: @selector( searchResultsScrollView:shouldFetchMoreResults: ) ] )
+                [ self.delegate searchResultsScrollView: self shouldFetchMoreResults: _ClipView ];
+    }
+
+@end // PWSearchResultsScrollView class
 
 /*=============================================================================┐
 |                                                                              |

@@ -48,6 +48,7 @@
 - ( void ) __saveScrollPosition;
 - ( void ) __restoreScrollPosition;
 - ( void ) __reloadAllStatusConsumers;
+- ( void ) __progressHUDWithError: ( NSError* )_Error;
 
 @end // Private Interfaces
 
@@ -73,10 +74,6 @@
         self->_wikiEngine = [ WikiEngine engineWithISOLanguageCode: @"en" ];
 
         self->_backForwardList = [ PWWikiPageBackForwardList backForwardList ];
-        #if DEBUG
-        self->_debuggingBFList = [ [ WebBackForwardList alloc ] init ];
-        #endif
-
         self.__backingWebView = [ [ WebView alloc ] initWithFrame: NSMakeRect( 0.f, 0.f, 1.f, 1.f ) frameName: nil groupName: nil ];
         self->_UUID = [ @"🐠" stringByAppendingString: PWNonce() ];
         }
@@ -88,6 +85,7 @@
     {
     [ self.__backingWebView setFrameLoadDelegate: self ];
     [ self.__backingWebView setMaintainsBackForwardList: NO ];
+    [ self.__backingWebView setResourceLoadDelegate: self ];
 
     [ self.__webView setPolicyDelegate: self ];
     [ self.__webView setFrameLoadDelegate: self ];
@@ -97,19 +95,11 @@
 #pragma mark Dynamic Properties
 - ( BOOL ) canGoBack
     {
-    #if DEBUG
-     NSLog( @">>> (Log%s) 🐙Back List Count: %d vs. %ld", __PRETTY_FUNCTION__, _debuggingBFList.backListCount, _backForwardList.backListCount );
-    #endif
-
     return ( self->_backForwardList.backListCount > 0 );
     }
 
 - ( BOOL ) canGoForward
     {
-    #if DEBUG
-    NSLog( @">>> (Log%s) 🐙Forward List Count: %d vs. %ld", __PRETTY_FUNCTION__, _debuggingBFList.forwardListCount, _backForwardList.forwardListCount );
-    #endif
-
     return ( self->_backForwardList.forwardListCount > 0 );
     }
 
@@ -153,18 +143,8 @@
     [ self __saveScrollPosition ];
     [ self->_backForwardList goBack ];
     [ self __reloadAllStatusConsumers ];
-    #if DEBUG
-    [ self->_debuggingBFList goBack ];
-    #endif
 
     [ self.__webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
-
-    #if DEBUG
-    NSLog( @"%@", self->_backForwardList );
-    NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, self->_debuggingBFList, self->_backForwardList );
-    NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, self->_debuggingBFList.backItem, self->_backForwardList.backItem );
-    NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, self->_debuggingBFList.forwardItem, self->_backForwardList.forwardItem );
-    #endif
     }
 
 - ( IBAction ) goForwardAction: ( id )_Sender
@@ -172,17 +152,8 @@
     [ self __saveScrollPosition ];
     [ self->_backForwardList goForward ];
     [ self __reloadAllStatusConsumers ];
-    #if DEBUG
-    [ self->_debuggingBFList goForward ];
-    #endif
 
     [ self.__webView.mainFrame loadRequest: [ NSURLRequest requestWithURL: [ ( PWOpenedWikiPage* )( self->_backForwardList.currentItem ) URL ] ] ];
-
-    #if DEBUG
-    NSLog( @">>> (Log:%s) 🐏:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, self->_debuggingBFList, self->_backForwardList );
-    NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, self->_debuggingBFList.backItem, self->_backForwardList.backItem );
-    NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, self->_debuggingBFList.forwardItem, self->_backForwardList.forwardItem );
-    #endif
     }
 
 - ( void ) askToBecomeFirstResponder
@@ -250,14 +221,11 @@
                                                                           openedWikiPage: _MatchedPages.firstObject
                                                                                      URL: archiveURL ];
                             [ self->_backForwardList addItem: openedWikiPage ];
-                            #if DEBUG
-                            [ self->_debuggingBFList addItem: openedWikiPage ];
-                            #endif
                             }
                         } failure:
                             ^( NSError* _Error )
                                 {
-                                NSLog( @"%@", _Error );
+                                [ self __progressHUDWithError: _Error ];
                                 } stopAllOtherTasks: YES ];
                 }
             else
@@ -270,16 +238,27 @@
 
             [ self askToBecomeFirstResponder ];
             [ [ ( PWStackContainerView* )( self.owner ) sidebarTabsTableController ] pushOpenedWikiPage: self.currentOpenedWikiPage ];
+            [ self __reloadAllStatusConsumers ];
 
             [ self->__progressHUD hide: YES ];
-
-            #if DEBUG
-            NSLog( @">>> (Log:%s) 🌰Current back-forward list:\n{%@\nvs.\n%@}", __PRETTY_FUNCTION__, _debuggingBFList, _backForwardList );
-            NSLog( @">>> (Log:%s) 🐣Back Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, _debuggingBFList.backItem, _backForwardList.backItem );
-            NSLog( @">>> (Log:%s) 🐣Forward Page:\n{\n%@\nvs.\n%@\n}", __PRETTY_FUNCTION__, _debuggingBFList.forwardItem, _backForwardList.forwardItem );
-            #endif
             }
         }
+    }
+
+- ( void )                  webView: ( WebView* )_Sender
+    didFailProvisionalLoadWithError: ( NSError* )_Error
+                           forFrame: ( WebFrame* )_Frame
+    {
+    if ( _Sender == self.__backingWebView )
+        [ self __progressHUDWithError: _Error ];
+    }
+
+- ( void )       webView: ( WebView* )_Sender
+    didFailLoadWithError: ( NSError* )_Error
+                forFrame: ( WebFrame* )_Frame
+    {
+    if ( _Sender == self.__backingWebView )
+        [ self __progressHUDWithError: _Error ];
     }
 
 #pragma mark Conforms to <WebPolicyDelegate>
@@ -380,6 +359,15 @@ NSString* const sScrollAnimationJS =
     for ( id <PWWikiContentViewStatusConsumer> _Consumer in self.owner.currentConsumers )
         if ( _Consumer.statusProducer == self )
             [ _Consumer reload ];
+    }
+
+- ( void ) __progressHUDWithError: ( NSError* )_Error
+    {
+    NSLog( @">>> (Error) Error loading Wiki page due to %@", _Error );
+
+    [ self->__progressHUD setMode: MBProgressHUDModeText ];
+    [ self->__progressHUD setLabelText: @"Oops!" ];
+    [ self->__progressHUD hide: YES afterDelay: 3.f ];
     }
 
 @end // PWWikiContentView class
