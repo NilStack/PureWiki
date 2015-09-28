@@ -42,16 +42,13 @@
 
 // PWWikiContentView class
 @interface PWWikiContentView : NSView
-    <WebFrameLoadDelegate, WebPolicyDelegate, MBProgressHUDDelegate>
+    <WebFrameLoadDelegate, WebPolicyDelegate, WebResourceLoadDelegate, MBProgressHUDDelegate>
     {
 @private
     WikiEngine __strong* _wikiEngine;
 
     WikiPage __strong* _originalWikiPage;
     PWWikiPageBackForwardList __strong* _backForwardList;
-    #if DEBUG
-    WebBackForwardList __strong* _debuggingBFList;
-    #endif
 
     NSString __strong* _UUID;
 
