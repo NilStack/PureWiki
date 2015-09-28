@@ -152,7 +152,7 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
         [ self.sidebarTabsTable reloadData ];
 
         if ( self->_openedWikiPages.count > 0 )
-            [ self.sidebarTabsTable selectRowIndexes: [ NSIndexSet indexSetWithIndex: ( self->_openedWikiPages.count - 1 ) ]
+            [ self.sidebarTabsTable selectRowIndexes: [ NSIndexSet indexSetWithIndex: 0 ]
                                 byExtendingSelection: YES ];
 
         [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiOpenedPageDidCloseNotif

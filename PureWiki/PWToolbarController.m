@@ -48,7 +48,7 @@ NSString* const kSearchbarToolbarItemIdentifier = @"kSearchbarToolbarItemIdentif
 - ( NSArray* ) toolbarAllowedItemIdentifiers: ( NSToolbar* )_Toolbar
     {
     return @[ kNavButtonsToolbarItemIdentifier
-            , kSidebarStyleToolbarItemIdentifier
+//            , kSidebarStyleToolbarItemIdentifier
             , NSToolbarFlexibleSpaceItemIdentifier
             , kSearchbarToolbarItemIdentifier
             , NSToolbarFlexibleSpaceItemIdentifier
@@ -58,7 +58,7 @@ NSString* const kSearchbarToolbarItemIdentifier = @"kSearchbarToolbarItemIdentif
 - ( NSArray* ) toolbarDefaultItemIdentifiers: ( NSToolbar* )_Toolbar
     {
     return @[ kNavButtonsToolbarItemIdentifier
-            , kSidebarStyleToolbarItemIdentifier
+//            , kSidebarStyleToolbarItemIdentifier
             , NSToolbarFlexibleSpaceItemIdentifier
             , kSearchbarToolbarItemIdentifier
             , NSToolbarFlexibleSpaceItemIdentifier
