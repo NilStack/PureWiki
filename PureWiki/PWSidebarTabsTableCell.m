@@ -79,6 +79,8 @@
         {
         self->__isHostRowViewSelected = _YesOrNo;
 
+        NSLog( @"🍌changed: %d  -  %@", self->__isHostRowViewSelected, self->_openedWikiPage.title );
+
         [ self->__openedPageContentPreivewTitleField setHostRowViewSelected: self->__isHostRowViewSelected ];
         [ self->__openedPageContentPreviewView setHostRowViewSelected: self->__isHostRowViewSelected ];
         [ self.pageImageView setHostRowViewSelected: self->__isHostRowViewSelected ];

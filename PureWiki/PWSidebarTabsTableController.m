@@ -151,6 +151,10 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
         [ self->_openedWikiPages removeObjectsAtIndexes: affectedIndexes ];
         [ self.sidebarTabsTable reloadData ];
 
+        if ( self->_openedWikiPages.count > 0 )
+            [ self.sidebarTabsTable selectRowIndexes: [ NSIndexSet indexSetWithIndex: ( self->_openedWikiPages.count - 1 ) ]
+                                byExtendingSelection: YES ];
+
         [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiOpenedPageDidCloseNotif
                                                                object: self
                                                              userInfo: @{ kIndexes : affectedIndexes } ];
