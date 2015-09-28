@@ -327,7 +327,7 @@ NSString* const kResultsColumnID = @"results-column";
         [ self->_instantSearchWikiEngine searchAllPagesThatHaveValue: _Value
                                                         inNamespaces: nil
                                                             approach: WikiEngineSearchApproachPageText
-                                                               limit: 10
+                                                               limit: 20
                                                        usesGenerator: NO
                                                         continuation: self->__continuation
                                                              success:
