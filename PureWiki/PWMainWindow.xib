@@ -72,6 +72,7 @@
                                                     <connections>
                                                         <outlet property="dataSource" destination="TDW-Eg-TgK" id="0HP-uI-uHc"/>
                                                         <outlet property="delegate" destination="TDW-Eg-TgK" id="z0D-Kv-pba"/>
+                                                        <outlet property="menu" destination="Kpc-iT-peR" id="BGb-mj-lHw"/>
                                                     </connections>
                                                 </tableView>
                                             </subviews>
@@ -234,6 +235,20 @@
             </connections>
             <point key="canvasLocation" x="451" y="81"/>
         </textField>
+        <menu id="Kpc-iT-peR">
+            <items>
+                <menuItem title="Close" enabled="NO" id="DbS-nI-hjB">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="closeSelectedPage:" target="TDW-Eg-TgK" id="aGp-Ll-ATh"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <connections>
+                <outlet property="delegate" destination="TDW-Eg-TgK" id="v3Y-4w-hwe"/>
+            </connections>
+            <point key="canvasLocation" x="104" y="1558.5"/>
+        </menu>
     </objects>
     <resources>
         <image name="NSColumnViewTemplate" width="16" height="10"/>

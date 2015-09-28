@@ -63,6 +63,11 @@
                                                     selector: @selector( _userDidPickUpSearchItem: )
                                                         name: PureWikiDidPickUpSearchItemNotif
                                                       object: nil ];
+
+        [ [ NSNotificationCenter defaultCenter ] addObserver: self
+                                                    selector: @selector( _openedPagesDidClose: )
+                                                        name: PureWikiOpenedPageDidCloseNotif
+                                                      object: nil ];
         }
 
     return self;
@@ -103,6 +108,12 @@
     [ self->_currentConsumers addObjectsFromArray:@[ self.navButtonsPairView
                                                    , self.safariSearchbarController
                                                    ] ];
+    }
+
+- ( void ) dealloc
+    {
+    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiDidPickUpSearchItemNotif object: nil ];
+    [ [ NSNotificationCenter defaultCenter ] removeObserver: self name: PureWikiOpenedPageDidCloseNotif object: nil ];
     }
 
 - ( BOOL ) acceptsFirstResponder
@@ -169,6 +180,24 @@
                 } stopAllOtherTasks: NO ];
 
     [ self.window makeFirstResponder: self ];
+    }
+
+- ( void ) _openedPagesDidClose: ( NSNotification* )_Notif
+    {
+    NSIndexSet* closedIndexes = _Notif.userInfo[ kIndexes ];
+
+    NSArray* openedPagesShouldClose = [ self->_pagesStack objectsAtIndexes: closedIndexes ];
+    for ( PWOpenedWikiPage* _OpenedPage in openedPagesShouldClose )
+        {
+        NSString* UUID = _OpenedPage.hostContentViewUUID;
+
+        if ( [ self->_currentWikiContentViewController.UUID isEqualToString: UUID ] )
+            [ self->_currentWikiContentViewController.wikiContentView removeFromSuperview ];
+
+        [ self->_contentViewControllers removeObjectForKey: UUID ];
+        }
+
+    [ self->_pagesStack removeObjectsInArray: openedPagesShouldClose ];
     }
 
 @end // PWStackContainerView class

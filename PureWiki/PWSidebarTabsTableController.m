@@ -137,6 +137,26 @@ NSString* const kColumnIdentifierTabs = @"tabs-column";
     return rowView;
     }
 
+#pragma mark IBActions
+- ( IBAction ) closeSelectedPage: ( id )_Sender
+    {
+    NSInteger clickedRow = [ self.sidebarTabsTable clickedRow ];
+    NSIndexSet* affectedIndexes = [ self.sidebarTabsTable selectedRowIndexes ];
+
+    if ( clickedRow != -1 && ![ affectedIndexes containsIndex: clickedRow ] )
+        affectedIndexes = [ NSIndexSet indexSetWithIndex: clickedRow ];
+
+    if ( affectedIndexes.count > 0 && clickedRow != -1 )
+        {
+        [ self->_openedWikiPages removeObjectsAtIndexes: affectedIndexes ];
+        [ self.sidebarTabsTable reloadData ];
+
+        [ [ NSNotificationCenter defaultCenter ] postNotificationName: PureWikiOpenedPageDidCloseNotif
+                                                               object: self
+                                                             userInfo: @{ kIndexes : affectedIndexes } ];
+        }
+    }
+
 #pragma mark Dynamic Properties
 - ( PWOpenedWikiPage* ) currentSelectedPage
     {

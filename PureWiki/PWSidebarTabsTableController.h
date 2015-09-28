@@ -32,7 +32,8 @@
 NSString extern* const PWSidebarCurrentSelectedPageKVOPath;
 
 // PWSidebarTabsTableController class
-@interface PWSidebarTabsTableController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
+@interface PWSidebarTabsTableController : NSViewController
+    <NSTableViewDataSource, NSTableViewDelegate, NSMenuDelegate>
     {
 @protected
     // @[ PWOpenedWikiPage. … ]
@@ -45,6 +46,9 @@ NSString extern* const PWSidebarCurrentSelectedPageKVOPath;
 
 #pragma mark Handling Data Source
 - ( void ) pushOpenedWikiPage: ( PWOpenedWikiPage* )_OpendedWikiPage;
+
+#pragma mark IBActions
+- ( IBAction ) closeSelectedPage: ( id )_Sender;
 
 @end // PWSidebarTabsTableController class
 
