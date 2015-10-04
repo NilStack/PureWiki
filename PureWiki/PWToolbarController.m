@@ -70,40 +70,51 @@ NSString* const kSearchbarToolbarItemIdentifier = @"kSearchbarToolbarItemIdentif
     willBeInsertedIntoToolbar: ( BOOL )_Flag
     {
     NSToolbarItem* toolbarItem = nil;
-    if ( [ _ItemIdentifier isEqualToString: kNavButtonsToolbarItemIdentifier ] )
+    BOOL should = NO;
+
+    NSString* identifier = _ItemIdentifier;
+    NSString* label = nil;
+    NSString* paleteLabel = nil;
+    NSString* toolTip = nil;
+    id content = nil;
+    id target = self;
+    SEL action = nil;
+    NSMenu* repMenu = nil;
+
+    if ( ( should = [ _ItemIdentifier isEqualToString: kNavButtonsToolbarItemIdentifier ] ) )
         {
-        toolbarItem = [ self _toolbarWithIdentifier: _ItemIdentifier
-                                              label: NSLocalizedString( @"Go Back", nil )
-                                        paleteLabel: NSLocalizedString( @"Go Back", nil )
-                                            toolTip: NSLocalizedString( @"Show the previous page", nil )
-                                             target: self
-                                             action: nil
-                                        itemContent: self.navButtons
-                                            repMenu: nil ];
+        label = NSLocalizedString( @"Go Back", nil );
+        paleteLabel = NSLocalizedString( @"Go Back", nil );
+        toolTip = NSLocalizedString( @"Show the previous page", nil );
+        content = self.navButtons;
         }
 
-    if ( [ _ItemIdentifier isEqualToString: kSidebarStyleToolbarItemIdentifier ] )
+    else if ( ( should = [ _ItemIdentifier isEqualToString: kSidebarStyleToolbarItemIdentifier ] ) )
         {
-        toolbarItem = [ self _toolbarWithIdentifier: _ItemIdentifier
-                                              label: NSLocalizedString( @"Sidebar Style", nil )
-                                        paleteLabel: NSLocalizedString( @"Sidebar Style", nil )
-                                            toolTip: NSLocalizedString( @"Switch the sidebar styles", nil )
-                                             target: self
-                                             action: nil
-                                        itemContent: self.sidebarStyleButton
-                                            repMenu: nil ];
+        label = NSLocalizedString( @"Sidebar Style", nil );
+        paleteLabel = NSLocalizedString( @"Sidebar Style", nil );
+        toolTip = NSLocalizedString( @"Switch the sidebar styles", nil );
+        content = self.sidebarStyleButton;
         }
 
-    else if ( [ _ItemIdentifier isEqualToString: kSearchbarToolbarItemIdentifier ] )
+    else if ( ( should = [ _ItemIdentifier isEqualToString: kSearchbarToolbarItemIdentifier ] ) )
         {
-        toolbarItem = [ self _toolbarWithIdentifier: _ItemIdentifier
-                                              label: NSLocalizedString( @"Search Wikipedia", nil )
-                                        paleteLabel: NSLocalizedString( @"Search Wikipedia", nil )
-                                            toolTip: NSLocalizedString( @"Search Wikipedia in here", nil )
-                                             target: self
-                                             action: nil
-                                        itemContent: self.searchWikipediaBar
-                                            repMenu: nil ];
+        label = NSLocalizedString( @"Search Wikipedia", nil );
+        paleteLabel = NSLocalizedString( @"Search Wikipedia", nil );
+        toolTip = NSLocalizedString( @"Search Wikipedia here", nil );
+        content = self.searchWikipediaBar;
+        }
+
+    if ( should )
+        {
+        toolbarItem = [ self _toolbarWithIdentifier: identifier
+                                              label: label
+                                        paleteLabel: paleteLabel
+                                            toolTip: toolTip
+                                             target: target
+                                             action: action
+                                        itemContent: content
+                                            repMenu: repMenu ];
         }
 
     return toolbarItem;
